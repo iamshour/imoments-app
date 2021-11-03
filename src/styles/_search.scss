@@ -1,0 +1,30 @@
+.search-page {
+	margin: 9rem 0;
+}
+
+.search-bar {
+	width: 85%;
+	height: auto;
+	margin: 0 auto;
+	padding: 1.2rem;
+
+	.icon {
+		color: var(--placeholder);
+		font-size: 2.4rem;
+	}
+
+	input {
+		border: 0;
+		font-size: 1.8rem;
+		line-height: 2.4rem;
+		color: var(--primary-font);
+
+		&:focus {
+			outline: 0;
+		}
+
+		&::placeholder {
+			color: var(--placeholder);
+		}
+	}
+}

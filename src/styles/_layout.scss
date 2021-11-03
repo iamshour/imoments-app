@@ -1,0 +1,84 @@
+header,
+nav {
+	position: fixed;
+	&:before {
+		position: absolute;
+		content: "";
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: var(--header-nav-bg);
+		backdrop-filter: blur(32px);
+		z-index: -1;
+	}
+}
+
+header {
+	top: 0;
+	height: 6.4rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.8rem 1.6rem;
+
+	.logo-wrapper {
+		@include centering;
+		img {
+			width: 9.2rem;
+			height: auto;
+		}
+	}
+	.theme-wrapper {
+		@include centering;
+		button {
+			padding: 1.2rem;
+			border-radius: 16px;
+			background: var(--input-bg);
+			border: 1px solid var(--placeholder);
+			.icon {
+				color: var(--theme-icon);
+				font-size: 2.2rem;
+			}
+		}
+	}
+}
+
+nav {
+	bottom: 8px;
+	bottom: -16px;
+	left: 50%;
+	right: 50%;
+	transform: translate(-50%, -50%);
+	width: 95%;
+
+	&::before {
+		border-radius: 32px;
+	}
+
+	.wrapper {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		transition: all 250ms ease-in-out;
+
+		.nav-item {
+			@include centering;
+			padding: 1.8rem;
+			border-radius: 50%;
+
+			.icon {
+				font-size: 3rem;
+				color: var(--nav-icon-unpressed);
+			}
+		}
+		.pressed {
+			background: var(--nav-pressed);
+			.icon {
+				color: white;
+			}
+		}
+	}
+}
