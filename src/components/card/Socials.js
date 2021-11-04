@@ -2,7 +2,7 @@ import { useState } from "react"
 import { AiOutlineLike } from "react-icons/ai"
 import { FaRegComment } from "react-icons/fa"
 
-const Socials = ({ likes, comments }) => {
+const Socials = ({ likes, comments, openModal }) => {
 	const [clicked, setClicked] = useState(false)
 	return (
 		<div className='socials-bar'>
@@ -15,7 +15,7 @@ const Socials = ({ likes, comments }) => {
 				</div>
 				<h2>{likes} likes</h2>
 			</button>
-			<button>
+			<button onClick={openModal}>
 				<div className='icon-wrapper'>
 					<FaRegComment className='icon' />
 				</div>

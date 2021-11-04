@@ -31,15 +31,26 @@ header {
 		}
 	}
 	.theme-wrapper {
-		@include centering;
 		button {
+			@include centering;
 			padding: 1.2rem;
 			border-radius: 16px;
 			background: var(--input-bg);
 			border: 1px solid var(--placeholder);
+			transition: all 250ms ease-in-out;
+			cursor: pointer;
 			.icon {
 				color: var(--theme-icon);
 				font-size: 2.2rem;
+			}
+			&:hover,
+			&:active {
+				background: var(--theme-icon);
+				border-color: transparent;
+				.icon {
+					color: var(--input-bg);
+				}
+				transform: scale(0.97);
 			}
 		}
 	}

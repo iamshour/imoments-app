@@ -1,0 +1,106 @@
+label,
+textarea,
+input {
+	background: var(--input-bg);
+	border: 1px solid var(--placeholder);
+	&:focus {
+		outline: 0;
+		border-color: var(--btn-pressed);
+	}
+}
+.addpost-page {
+	width: 100vw;
+	height: 100vh;
+	@include centering;
+	form {
+		background: var(--card-bg);
+		width: 90%;
+		padding: 2.4rem 1.6rem;
+		border-radius: 1.6rem;
+		.top {
+			display: flex;
+			justify-content: space-evenly;
+			margin-bottom: 2.4rem;
+			.left {
+				label {
+					padding: 2rem;
+					background: var(--input-bg);
+					border-radius: 50%;
+					border: 1px solid var(--placeholder);
+					@include centering;
+
+					.icon {
+						font-size: 4rem;
+						color: var(--placeholder);
+					}
+				}
+			}
+			.right {
+				@include centering;
+				flex-direction: column;
+				h4 {
+					font-size: 2.2rem;
+					color: var(--secondary-font);
+					margin-bottom: 0.6rem;
+				}
+			}
+		}
+		.caption {
+			margin-bottom: 2.4rem;
+			textarea {
+				width: 100%;
+				border-radius: 1.6rem;
+				font-size: 1.6rem;
+				padding: 0.8rem;
+				color: var(--primary-font);
+				&::placeholder {
+					color: var(--placeholder);
+				}
+			}
+		}
+		.tags {
+			margin-bottom: 2.4rem;
+			input {
+				width: 100%;
+				padding: 1.2rem;
+				border-radius: 1.6rem;
+				font-size: 1.6rem;
+				color: var(--primary-font);
+
+				&:focus {
+					outline: 0;
+				}
+
+				&::placeholder {
+					color: var(--placeholder);
+				}
+			}
+		}
+		button {
+			display: flex;
+			align-items: center;
+			background: var(--btn-pressed);
+			padding: 0.8rem 1.6rem;
+			border-radius: 1.6rem;
+			color: white;
+			font-size: 2.4rem;
+			margin: 0 auto;
+			border: 1px solid transparent;
+			cursor: pointer;
+			p,
+			.icon {
+				color: inherit;
+				font-size: inherit;
+			}
+			p {
+				margin-right: 0.8rem;
+			}
+			&:hover,
+			&:active {
+				background: white;
+				color: var(--btn-pressed);
+				border-color: var(--btn-pressed);
+			}
+		}
+	}
+}

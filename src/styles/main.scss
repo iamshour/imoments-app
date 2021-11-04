@@ -57,6 +57,7 @@ $breakpoint-desktop: 1080px;
 @import "layout";
 @import "card";
 @import "search";
+@import "addpost";
 
 html,
 body,
@@ -66,6 +67,7 @@ body,
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	transition: all 250ms ease-in-out;
 }
 
 ul,
@@ -116,7 +118,11 @@ body {
 }
 h1 {
 	color: var(--primary-font);
-	font-size: 1.4rem;
+	font-size: 1.6rem;
+}
+h2 {
+	font-size: 1.2rem;
+	color: var(--secondary-font);
 }
 h6 {
 	font-size: 1rem;

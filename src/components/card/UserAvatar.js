@@ -4,7 +4,7 @@ const UserAvatar = ({ name, time, imgUrl }) => {
 			<img src={imgUrl} alt={name} />
 			<div className='info'>
 				<h1>{name}</h1>
-				<h6>{time}</h6>
+				<h2>{time}</h2>
 			</div>
 		</div>
 	)
