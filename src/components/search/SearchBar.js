@@ -2,7 +2,7 @@ import { BsSearch } from "react-icons/bs"
 
 const SearchBar = ({ input, setInput }) => {
 	return (
-		<div className='search-bar'>
+		<div className='input-bar-icon'>
 			<BsSearch className='icon' />
 			<input
 				type='text'

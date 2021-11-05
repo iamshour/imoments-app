@@ -9,9 +9,12 @@ import Home from "pages/Home"
 import Search from "pages/Search"
 import AddPost from "pages/AddPost"
 import Profile from "pages/Profile"
+import User from "pages/User"
 import Auth from "pages/Auth"
+import { useState } from "react"
 
 function App() {
+	const [authenticated, setAuhenticated] = useState(false)
 	return (
 		<Provider store={store}>
 			<Router>
@@ -20,8 +23,12 @@ function App() {
 						<Route exact path='/' component={Home} />
 						<Route path='/search' component={Search} />
 						<Route path='/addpost' component={AddPost} />
-						<Route path='/profile' component={Profile} />
-						<Route path='/auth' component={Auth} />
+						{authenticated ? (
+							<Route path='/profile' component={Profile} />
+						) : (
+							<Route path='/auth' component={Auth} />
+						)}
+						<Route path='/user/:id' component={User} />
 					</Switch>
 				</Layout>
 			</Router>

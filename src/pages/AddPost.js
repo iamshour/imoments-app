@@ -29,7 +29,7 @@ const AddPost = () => {
 						placeholder='Add caption here...'
 					/>
 				</div>
-				<div className='tags'>
+				<div className='input-bar'>
 					<input type='text' placeholder='Add tags (optional)' />
 				</div>
 				<button>

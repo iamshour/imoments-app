@@ -50,6 +50,19 @@
 	justify-content: center;
 	align-items: center;
 }
+@mixin glass {
+	&:before {
+		position: absolute;
+		content: "";
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: var(--header-nav-bg);
+		backdrop-filter: blur(32px);
+		z-index: -1;
+	}
+}
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1080px;
 
@@ -58,6 +71,8 @@ $breakpoint-desktop: 1080px;
 @import "card";
 @import "search";
 @import "addpost";
+@import "profile";
+@import "auth";
 
 html,
 body,
@@ -145,6 +160,65 @@ button,
 select,
 a {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-family: inherit;
+}
+
+label,
+textarea,
+input {
+	background: var(--input-bg);
+	border: 1px solid var(--placeholder);
+	&:focus {
+		outline: 0;
+		border-color: var(--btn-pressed);
+	}
+	&::placeholder {
+		color: var(--placeholder);
+	}
+}
+
+.input-bar {
+	input {
+		width: 100%;
+		padding: 1.2rem;
+		border-radius: 1.6rem;
+		font-size: 1.6rem;
+		color: var(--primary-font);
+	}
+}
+
+.input-bar-icon {
+	padding: 1.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background: var(--input-bg);
+	border-radius: 1.6rem;
+	border: 1px solid var(--placeholder);
+
+	.icon {
+		color: var(--placeholder);
+		font-size: 2.4rem;
+		margin-right: 0.8rem;
+	}
+	input {
+		border: 0;
+		font-size: 1.8rem;
+		line-height: 2.4rem;
+		color: var(--primary-font);
+		background: none;
+	}
+	&:focus-within {
+		border-color: var(--btn-pressed);
+	}
+}
+
+label {
+	cursor: pointer;
+	&:hover,
+	&:active {
+		transform: scale(0.96);
+	}
 }
 
 @media (min-width: 1800px) {

@@ -1,7 +1,7 @@
 import Card from "components/card/Card"
 import UserCard from "components/profile/UserCard"
 
-const Profile = () => {
+const User = () => {
 	return (
 		<div className='profile-page'>
 			<UserCard
@@ -18,4 +18,4 @@ const Profile = () => {
 	)
 }
 
-export default Profile
+export default User

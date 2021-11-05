@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useLocation } from "react-router"
 //icons
@@ -7,8 +8,10 @@ import { BsPlusLg } from "react-icons/bs"
 
 const Navbar = () => {
 	const location = useLocation()
+	const [authenticated, setAuhenticated] = useState(false)
+
 	return (
-		<nav>
+		<nav style={location.pathname === "/auth" ? { display: "none" } : {}}>
 			<div className='wrapper'>
 				<Link
 					to='/'
@@ -31,9 +34,10 @@ const Navbar = () => {
 					<BsPlusLg className='icon' />
 				</Link>
 				<Link
-					to='profile'
+					to={authenticated ? "profile" : "auth"}
 					className={`nav-item ${
-						location.pathname === "/profile" && "pressed"
+						location.pathname === "/profile" ||
+						(location.pathname === "/auth" && "pressed")
 					}`}
 				>
 					<BsFillPersonFill className='icon' />

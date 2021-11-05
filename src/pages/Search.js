@@ -1,5 +1,5 @@
 import SearchBar from "components/search/SearchBar"
-import UserCard from "components/search/UserCard"
+import ResultCard from "components/search/ResultCard"
 import { useState } from "react"
 
 const Search = () => {
@@ -9,15 +9,11 @@ const Search = () => {
 		<div className='search-page'>
 			<SearchBar input={input} setInput={setInput} />
 			<div className='results'>
-				<UserCard
+				<ResultCard
 					avatar='https://www.w3schools.com/howto/img_avatar.png'
 					name='Samuel Brad'
 					nb='18'
-				/>
-				<UserCard
-					avatar='https://www.w3schools.com/howto/img_avatar.png'
-					name='Samuel Brad'
-					nb='18'
+					id='998'
 				/>
 			</div>
 		</div>

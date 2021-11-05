@@ -1,0 +1,113 @@
+.auth-page {
+	margin-top: 8rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.back-btn {
+		padding: 0.8rem 1.2rem;
+		background: var(--input-bg);
+		color: var(--placeholder);
+		@include centering;
+		border: 1px solid var(--placeholder);
+		border-radius: 12px;
+		align-self: flex-start;
+		margin-left: 2rem;
+		.icon {
+			color: inherit;
+			font-size: 2rem;
+		}
+	}
+	img {
+		width: 25rem;
+		margin: 2rem auto 4rem auto;
+	}
+	.custom-img {
+		margin-bottom: 8rem;
+	}
+	.credentials {
+		width: 100%;
+		.input-bar {
+			display: flex;
+			justify-content: space-between;
+			margin: 0 auto;
+			margin-bottom: 1.6rem;
+			width: 85%;
+
+			input {
+				// margin: 0.8rem;
+				&:first-child {
+					margin-right: 3rem;
+				}
+			}
+		}
+	}
+	.actions {
+		position: fixed;
+		bottom: 0;
+		@include glass;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 2rem;
+		&::before {
+			border-radius: 24px 24px 0 0;
+		}
+		.btns {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 3rem;
+			.btn-regular,
+			.btn-google {
+				border-radius: 2.4rem;
+				border: 1px solid transparent;
+				cursor: pointer;
+				&:hover,
+				&:focus {
+					transform: scale(0.96);
+				}
+			}
+			.btn-regular {
+				margin-bottom: 1rem;
+				font-size: 1.8rem;
+				padding: 1.6rem 8rem;
+				background: var(--btn-pressed);
+				color: white;
+			}
+			.or {
+				font-size: 1.6rem;
+				color: var(--btn-pressed);
+				margin-bottom: 1rem;
+			}
+			.btn-google {
+				background: transparent;
+				border-color: var(--btn-pressed);
+				padding: 1.2rem;
+				@include centering;
+				.icon {
+					font-size: 2.4rem;
+					margin-right: 0.8rem;
+				}
+				p {
+					font-size: 2.4rem;
+					color: var(--btn-pressed);
+				}
+			}
+		}
+		.bottom-actions {
+			width: 100%;
+			@include centering;
+			p {
+				font-size: 1.5rem;
+				color: var(--btn-pressed);
+				margin-right: 1rem;
+			}
+			button {
+				background: none;
+				font-size: 1.5rem;
+				color: green;
+			}
+		}
+	}
+}

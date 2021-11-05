@@ -1,8 +1,9 @@
 import { CgArrowsExpandUpRight } from "react-icons/cg"
+import { Link } from "react-router-dom"
 
-const UserCard = ({ avatar, name, nb }) => {
+const ResultCard = ({ avatar, name, nb, id }) => {
 	return (
-		<div className='user-card'>
+		<Link to={`/user/${id}`} className='result-card'>
 			<div className='left'>
 				<img src={avatar} alt={name} />
 				<div className='info'>
@@ -18,8 +19,8 @@ const UserCard = ({ avatar, name, nb }) => {
 				</h2>
 				<CgArrowsExpandUpRight className='icon' />
 			</div>
-		</div>
+		</Link>
 	)
 }
 
-export default UserCard
+export default ResultCard

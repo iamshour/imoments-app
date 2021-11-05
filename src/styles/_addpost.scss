@@ -1,13 +1,3 @@
-label,
-textarea,
-input {
-	background: var(--input-bg);
-	border: 1px solid var(--placeholder);
-	&:focus {
-		outline: 0;
-		border-color: var(--btn-pressed);
-	}
-}
 .addpost-page {
 	width: 100vw;
 	height: 100vh;
@@ -58,23 +48,8 @@ input {
 				}
 			}
 		}
-		.tags {
+		.input-bar {
 			margin-bottom: 2.4rem;
-			input {
-				width: 100%;
-				padding: 1.2rem;
-				border-radius: 1.6rem;
-				font-size: 1.6rem;
-				color: var(--primary-font);
-
-				&:focus {
-					outline: 0;
-				}
-
-				&::placeholder {
-					color: var(--placeholder);
-				}
-			}
 		}
 		button {
 			display: flex;
