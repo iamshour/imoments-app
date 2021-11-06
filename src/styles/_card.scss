@@ -119,6 +119,7 @@
 
 .backdrop {
 	position: fixed;
+	z-index: 11;
 	top: 0;
 	left: 0;
 	width: 100vw;
@@ -135,7 +136,7 @@
 		height: 85%;
 		max-width: 100rem;
 		max-height: 90rem;
-		z-index: 11;
+		z-index: 19992;
 		cursor: default;
 		border-radius: 12px;
 		overflow-x: hidden;
@@ -232,5 +233,100 @@
 @keyframes smooth-in {
 	100% {
 		opacity: 1;
+	}
+}
+
+@media (min-width: $breakpoint-tablet) {
+	.upper {
+		margin-bottom: 1.6rem;
+		padding: 0 0.8rem;
+
+		.user-avatar-container {
+			img {
+				margin-right: 1.2rem;
+			}
+		}
+	}
+
+	.socials-bar {
+		button {
+			.icon-wrapper {
+				padding: 0.8rem;
+				margin-right: 0.4rem;
+				.icon {
+					font-size: 2.4rem;
+				}
+			}
+		}
+	}
+
+	.card {
+		max-width: 46.8rem;
+		padding: 1.4rem;
+		margin-bottom: 2.4rem;
+		.img-container {
+			margin-bottom: 1.4rem;
+		}
+	}
+
+	.backdrop {
+		.modal {
+			max-width: 70rem;
+
+			&::-webkit-scrollbar {
+				display: unset;
+				width: 8px;
+			}
+			&::-webkit-scrollbar-track {
+				background: transparent;
+			}
+			&::-webkit-scrollbar-thumb {
+				background: var(--secondary-font);
+				border-radius: 16px;
+			}
+
+			.close-modal {
+				.icon {
+					font-size: 2.2rem;
+				}
+			}
+			.upper {
+				padding: 1.6rem;
+			}
+			.img-container {
+				height: 50%;
+				margin-bottom: 1.6rem;
+			}
+		}
+	}
+
+	.comments-wrapper {
+		padding: 2rem 4rem;
+
+		.comment {
+			margin-bottom: 3.2rem;
+			.left {
+				img {
+					width: 5rem;
+					height: 5rem;
+				}
+			}
+			.right {
+				.top {
+					margin-bottom: 2.6rem;
+					h1 {
+						font-size: 1.6rem;
+					}
+					h2 {
+						font-size: 1.2rem;
+					}
+				}
+				.details {
+					p {
+						font-size: 1.6rem;
+					}
+				}
+			}
+		}
 	}
 }

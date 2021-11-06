@@ -2,6 +2,7 @@ header,
 nav {
 	position: fixed;
 	@include glass;
+	z-index: 5;
 }
 
 header {
@@ -27,7 +28,6 @@ header {
 			border-radius: 16px;
 			background: var(--input-bg);
 			border: 1px solid var(--placeholder);
-			transition: all 250ms ease-in-out;
 			cursor: pointer;
 			.icon {
 				color: var(--theme-icon);
@@ -47,12 +47,12 @@ header {
 }
 
 nav {
-	bottom: 8px;
 	bottom: -24px;
 	left: 50%;
 	right: 50%;
 	transform: translate(-50%, -50%);
 	width: 95%;
+	max-width: 62rem;
 
 	&::before {
 		border-radius: 32px;
@@ -79,6 +79,28 @@ nav {
 			background: var(--nav-pressed);
 			.icon {
 				color: white;
+			}
+		}
+	}
+}
+
+@media (min-width: $breakpoint-tablet) {
+	header {
+		top: 0;
+		height: 8rem;
+		padding: 1.6rem 3rem;
+
+		.logo-wrapper {
+			img {
+				width: 12rem;
+			}
+		}
+		.theme-wrapper {
+			button {
+				padding: 1.4rem;
+				.icon {
+					font-size: 2.4rem;
+				}
 			}
 		}
 	}

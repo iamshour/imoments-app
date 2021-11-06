@@ -5,6 +5,7 @@
 	form {
 		background: var(--card-bg);
 		width: 90%;
+		max-width: 57rem;
 		padding: 2.4rem 1.6rem;
 		border-radius: 1.6rem;
 		.top {
@@ -12,15 +13,17 @@
 			justify-content: space-evenly;
 			margin-bottom: 2.4rem;
 			.left {
+				@include centering;
 				label {
-					padding: 2rem;
+					width: 8.2rem;
+					height: 8.2rem;
 					background: var(--input-bg);
 					border-radius: 50%;
 					border: 1px solid var(--placeholder);
 					@include centering;
 
 					.icon {
-						font-size: 4rem;
+						font-size: 4.4rem;
 						color: var(--placeholder);
 					}
 				}
@@ -35,8 +38,48 @@
 				}
 			}
 		}
+		.top-img {
+			justify-content: center;
+			align-items: center;
+			height: 20rem;
+			.img-wrapper {
+				position: relative;
+				width: 80%;
+				height: 100%;
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					border-radius: 1rem;
+				}
+				button {
+					position: absolute;
+					top: 0;
+					right: 0;
+					background: transparent;
+					color: var(--btn-pressed);
+					padding: 0;
+					margin: 0;
+					cursor: pointer;
+					&:hover,
+					&:focus {
+						transform: scale(0.96);
+					}
+					.icon {
+						font-size: 3.4rem;
+					}
+				}
+			}
+		}
 		.caption {
 			margin-bottom: 2.4rem;
+			.counter {
+				margin: 0 0 0.4rem 1.4rem;
+				span {
+					color: var(--btn-pressed);
+					margin-left: 2px;
+				}
+			}
 			textarea {
 				width: 100%;
 				border-radius: 1.6rem;
@@ -48,7 +91,7 @@
 				}
 			}
 		}
-		.input-bar {
+		.tags {
 			margin-bottom: 2.4rem;
 		}
 		button {
@@ -72,9 +115,93 @@
 			}
 			&:hover,
 			&:active {
-				background: white;
-				color: var(--btn-pressed);
-				border-color: var(--btn-pressed);
+				transform: scale(0.97);
+			}
+		}
+	}
+}
+
+@media (min-width: $breakpoint-tablet) {
+	.addpost-page {
+		form {
+			max-width: 75rem;
+			padding: 2.4rem 2.4rem 2.4rem 0.4rem;
+			display: grid;
+			grid-template-columns: 1.2fr 2fr;
+			grid-template-rows: 4fr 1fr 1fr;
+			align-items: center;
+			justify-content: center;
+			gap: 1.6rem 0.4rem;
+			.top {
+				grid-area: 1/1/4/2;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 2.4rem;
+				flex-direction: column-reverse;
+
+				.left {
+					label {
+						padding: 0;
+						width: 9.2rem;
+						height: 9.2rem;
+						.icon {
+							font-size: 4.6rem;
+						}
+					}
+				}
+				.right {
+					margin-bottom: 4rem;
+
+					h4 {
+						font-size: 2.4rem;
+						margin-bottom: 0.8rem;
+					}
+				}
+			}
+			.top-img {
+				height: 36rem;
+			}
+			.caption {
+				grid-area: 1/2/2/3;
+				margin: 0rem;
+				.counter {
+					margin: 0 0 0.4rem 1.4rem;
+				}
+
+				textarea {
+					padding: 1rem;
+				}
+			}
+			.tags {
+				grid-area: 2/2/3/3;
+				margin-bottom: 0;
+			}
+			button {
+				grid-area: 3/2/4/3;
+				display: flex;
+				align-items: center;
+				background: var(--btn-pressed);
+				padding: 0.8rem 1.6rem;
+				border-radius: 1.6rem;
+				color: white;
+				font-size: 2.4rem;
+				margin: 0 auto;
+				border: 1px solid transparent;
+				cursor: pointer;
+				p,
+				.icon {
+					color: inherit;
+					font-size: inherit;
+				}
+				p {
+					margin-right: 0.8rem;
+				}
+				&:hover,
+				&:active {
+					background: white;
+					color: var(--btn-pressed);
+					border-color: var(--btn-pressed);
+				}
 			}
 		}
 	}

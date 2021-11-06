@@ -22,16 +22,16 @@ const Auth = () => {
 			<img src={logo} alt='logo' className={signIn ? "custom-img" : ""} />
 			<div className='credentials'>
 				{!signIn && (
-					<div className='input-bar'>
+					<div className='input-bar auth-bar'>
 						<input type='text' name='firstName' placeholder='First name' />
 						<input type='text' name='lastName' placeholder='Last name' />
 					</div>
 				)}
-				<div className='input-bar-icon'>
+				<div className='input-bar-icon auth-bar-icon'>
 					<IoMailOutline className='icon' />
 					<input type='text' name='email' placeholder='Enter your email' />
 				</div>
-				<div className='input-bar-icon'>
+				<div className='input-bar-icon auth-bar-icon'>
 					<BsFillLockFill className='icon' />
 					<input
 						type='password'
@@ -40,7 +40,7 @@ const Auth = () => {
 					/>
 				</div>
 				{!signIn && (
-					<div className='input-bar-icon'>
+					<div className='input-bar-icon auth-bar-icon'>
 						<BsFillLockFill className='icon' />
 						<input
 							type='password'

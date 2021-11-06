@@ -7,3 +7,9 @@
 	height: 100%;
 	margin: 9rem 0;
 }
+
+@media (min-width: $breakpoint-tablet) {
+	.cards-container {
+		margin: 11rem 0 8rem 0;
+	}
+}

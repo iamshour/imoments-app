@@ -2,11 +2,12 @@
 	margin: 9rem 0;
 }
 
-.input-bar-icon {
+.search-bar {
 	width: 85%;
+	max-width: 50rem;
 	height: auto;
 	margin: 0 auto;
-	margin-bottom: 2rem;
+	margin-bottom: 4rem;
 }
 
 .results {
@@ -16,10 +17,11 @@
 
 	.result-card {
 		width: 85%;
+		max-width: 72rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		border-radius: 16px;
+		border-radius: 24px;
 		padding: 0.8rem 2.4rem 0.8rem 1.6rem;
 		background: var(--card-bg);
 		margin-bottom: 1.6rem;
@@ -57,6 +59,41 @@
 			.icon {
 				font-size: 2.2rem;
 				color: var(--secondary-font);
+			}
+		}
+	}
+}
+
+@media (min-width: $breakpoint-tablet) {
+	.search-page {
+		margin: 12rem 0 8rem 0;
+	}
+
+	.results {
+		.result-card {
+			padding: 1.4rem 2.4rem;
+			margin-bottom: 2.4rem;
+
+			.left {
+				@include centering;
+				img {
+					margin-right: 1.6rem;
+					width: 8rem;
+					height: 8rem;
+				}
+				.info {
+					h1 {
+						margin-bottom: 0.8rem;
+					}
+				}
+			}
+			.right {
+				h2 {
+					margin-bottom: 0.8rem;
+				}
+				.icon {
+					font-size: 2.4rem;
+				}
 			}
 		}
 	}

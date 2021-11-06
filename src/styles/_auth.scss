@@ -3,6 +3,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
+	height: calc(100vh - 8rem);
+	overflow-y: hidden;
 
 	.back-btn {
 		padding: 0.8rem 1.2rem;
@@ -12,6 +15,7 @@
 		border: 1px solid var(--placeholder);
 		border-radius: 12px;
 		align-self: flex-start;
+		margin: 0.3rem auto;
 		margin-left: 2rem;
 		.icon {
 			color: inherit;
@@ -19,32 +23,31 @@
 		}
 	}
 	img {
-		width: 25rem;
-		margin: 2rem auto 4rem auto;
-	}
-	.custom-img {
-		margin-bottom: 8rem;
+		width: 22rem;
+		margin-bottom: 2rem;
 	}
 	.credentials {
-		width: 100%;
-		.input-bar {
+		width: 85%;
+		.auth-bar {
 			display: flex;
 			justify-content: space-between;
 			margin: 0 auto;
-			margin-bottom: 1.6rem;
-			width: 85%;
+			margin-bottom: 1.2rem;
+			// width: 85%;
 
 			input {
-				// margin: 0.8rem;
 				&:first-child {
 					margin-right: 3rem;
 				}
 			}
 		}
+		.auth-bar-icon {
+			margin-bottom: 1.2rem;
+		}
 	}
 	.actions {
-		position: fixed;
-		bottom: 0;
+		position: relative;
+		width: 90%;
 		@include glass;
 		display: flex;
 		flex-direction: column;
@@ -52,12 +55,16 @@
 		padding: 2rem;
 		&::before {
 			border-radius: 24px 24px 0 0;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
 		}
 		.btns {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			margin-bottom: 3rem;
+			margin-bottom: 2.4rem;
 			.btn-regular,
 			.btn-google {
 				border-radius: 2.4rem;
@@ -69,21 +76,21 @@
 				}
 			}
 			.btn-regular {
-				margin-bottom: 1rem;
+				margin-bottom: 0.8rem;
 				font-size: 1.8rem;
-				padding: 1.6rem 8rem;
+				padding: 1.4rem 8rem;
 				background: var(--btn-pressed);
 				color: white;
 			}
 			.or {
 				font-size: 1.6rem;
 				color: var(--btn-pressed);
-				margin-bottom: 1rem;
+				margin-bottom: 0.8rem;
 			}
 			.btn-google {
 				background: transparent;
 				border-color: var(--btn-pressed);
-				padding: 1.2rem;
+				padding: 1rem;
 				@include centering;
 				.icon {
 					font-size: 2.4rem;
@@ -107,7 +114,10 @@
 				background: none;
 				font-size: 1.5rem;
 				color: green;
+				cursor: pointer;
 			}
 		}
 	}
+}
+@media (min-width: $breakpoint-tablet) {
 }
