@@ -8,39 +8,45 @@ nav {
 header {
 	top: 0;
 	height: 6.4rem;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0.8rem 1.6rem;
+	width: 100vw;
+	@include centering;
 
-	.logo-wrapper {
-		@include centering;
-		img {
-			width: 9.2rem;
-			height: auto;
-		}
-	}
-	.theme-wrapper {
-		button {
+	.header-wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.8rem 1.6rem;
+		.logo-wrapper {
 			@include centering;
-			padding: 1.2rem;
-			border-radius: 16px;
-			background: var(--input-bg);
-			border: 1px solid var(--placeholder);
-			cursor: pointer;
-			.icon {
-				color: var(--theme-icon);
-				font-size: 2.2rem;
+			img {
+				width: 9.2rem;
+				height: auto;
 			}
-			&:hover,
-			&:active {
-				background: var(--theme-icon);
-				border-color: transparent;
+		}
+		.theme-wrapper {
+			button {
+				@include centering;
+				padding: 1.2rem;
+				border-radius: 16px;
+				background: var(--input-bg);
+				border: 1px solid var(--placeholder);
+				cursor: pointer;
+				transition: all 250ms ease-in-out;
+
 				.icon {
-					color: var(--input-bg);
+					color: var(--theme-icon);
+					font-size: 2.2rem;
 				}
-				transform: scale(0.97);
+				&:hover,
+				&:active {
+					background: var(--theme-icon);
+					border-color: transparent;
+					.icon {
+						color: var(--input-bg);
+					}
+					transform: scale(0.97);
+				}
 			}
 		}
 	}
@@ -63,12 +69,12 @@ nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		transition: all 250ms ease-in-out;
 
 		.nav-item {
 			@include centering;
 			padding: 1.8rem;
 			border-radius: 50%;
+			@include pressed;
 
 			.icon {
 				font-size: 3rem;
@@ -77,6 +83,9 @@ nav {
 		}
 		.pressed {
 			background: var(--nav-pressed);
+			opacity: 0;
+			@include fade-in;
+			animation-delay: 0s;
 			.icon {
 				color: white;
 			}
@@ -88,18 +97,43 @@ nav {
 	header {
 		top: 0;
 		height: 8rem;
-		padding: 1.6rem 3rem;
 
-		.logo-wrapper {
-			img {
-				width: 12rem;
+		.header-wrapper {
+			padding: 1.6rem 3rem;
+
+			.logo-wrapper {
+				img {
+					width: 12rem;
+				}
+			}
+			.theme-wrapper {
+				button {
+					padding: 1.4rem;
+					.icon {
+						font-size: 2.4rem;
+					}
+				}
 			}
 		}
-		.theme-wrapper {
-			button {
-				padding: 1.4rem;
-				.icon {
-					font-size: 2.4rem;
+	}
+}
+
+@media (min-width: $breakpoint-desktop) {
+	header {
+		.header-wrapper {
+			max-width: 2200px;
+
+			.logo-wrapper {
+				img {
+					width: 13rem;
+				}
+			}
+			.theme-wrapper {
+				button {
+					padding: 1.4rem;
+					.icon {
+						font-size: 2.4rem;
+					}
 				}
 			}
 		}

@@ -1,10 +1,10 @@
 .auth-page {
-	margin-top: 8rem;
+	margin-top: 6.4rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	height: calc(100vh - 8rem);
+	height: calc(100vh - 6.4rem);
 	overflow-y: hidden;
 
 	.back-btn {
@@ -15,8 +15,7 @@
 		border: 1px solid var(--placeholder);
 		border-radius: 12px;
 		align-self: flex-start;
-		margin: 0.3rem auto;
-		margin-left: 2rem;
+		margin: 1.6rem auto 0 2rem;
 		.icon {
 			color: inherit;
 			font-size: 2rem;
@@ -120,4 +119,55 @@
 	}
 }
 @media (min-width: $breakpoint-tablet) {
+	.auth-page {
+		margin-top: 8rem;
+		height: calc(100vh - 8rem);
+
+		.back-btn {
+			margin: 2rem auto 0 2.4rem;
+			.icon {
+				font-size: 2.4rem;
+			}
+		}
+		img {
+			width: 25rem;
+			margin: 0rem;
+		}
+		.credentials {
+			max-width: 60rem;
+			.auth-bar {
+				margin-bottom: 1.6rem;
+			}
+			.auth-bar-icon {
+				margin-bottom: 1.6rem;
+			}
+		}
+		.actions {
+			max-width: 40rem;
+			padding: 3rem 0 2rem 0;
+			.btns {
+				margin-bottom: 2.4rem;
+				.btn-regular {
+					margin-bottom: 1rem;
+					font-size: 2rem;
+				}
+				.or {
+					font-size: 1.7rem;
+					margin-bottom: 1rem;
+				}
+				.btn-google {
+					padding: 1.2rem;
+				}
+			}
+			.bottom-actions {
+				p {
+					font-size: 1.6rem;
+					margin-right: 1.2rem;
+				}
+				button {
+					font-size: 1.6rem;
+				}
+			}
+		}
+	}
 }

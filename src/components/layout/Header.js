@@ -25,24 +25,30 @@ const Header = () => {
 	const switcher = () => {
 		if (theme === "light") {
 			saveTheme("dark")
+			document.querySelector("body").style.transition =
+				"background 250ms ease-in-out, color 250ms ease-in-out"
 		} else {
 			saveTheme("light")
+			document.querySelector("body").style.transition =
+				"background 250ms ease-in-out, color 250ms ease-in-out"
 		}
 	}
 
 	return (
 		<header>
-			<div className='logo-wrapper'>
-				<img src={logo} alt='imoments logo' />
-			</div>
-			<div className='theme-wrapper'>
-				<button onClick={switcher}>
-					{theme === "light" ? (
-						<BsFillMoonFill className='icon' />
-					) : (
-						<FiSun className='icon' />
-					)}
-				</button>
+			<div className='header-wrapper'>
+				<div className='logo-wrapper'>
+					<img src={logo} alt='imoments logo' />
+				</div>
+				<div className='theme-wrapper'>
+					<button onClick={switcher}>
+						{theme === "light" ? (
+							<BsFillMoonFill className='icon' />
+						) : (
+							<FiSun className='icon' />
+						)}
+					</button>
+				</div>
 			</div>
 		</header>
 	)
