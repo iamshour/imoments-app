@@ -1,46 +1,29 @@
 :root {
 	--app-bg-color: #f9f9f9;
 	--app-bg-img: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b24bf5' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-	--card-bg: linear-gradient(137.29deg, #ce96ff -0.05%, #ff8aa3 99.95%);
-	--input-bg: #f2f2f2;
-	--header-nav-bg: linear-gradient(
-		94.07deg,
-		rgba(229, 206, 248, 0.51) 0%,
-		rgba(229, 206, 248, 0.72) 51.04%,
-		rgba(229, 206, 248, 0.51) 100%
-	);
-	--btn-pressed: #8412ce;
+
+	--primary-font: #38005a;
+	--secondary-font: #d083ff;
+	--card-bg: #f2f2f2;
+	--bg-secondary: #f2ddff;
+	--main-color: #b24bf5;
 	--nav-pressed: linear-gradient(180deg, #a844ff 0%, #ff3f67 100%);
 	--nav-icon-unpressed: #666666;
-	--primary-font: #000000;
-	--secondary-font: #fbfbfb;
 	--theme-icon: #b24bf5;
-	--placeholder: #cc8ef4;
 }
 
 [data-theme="dark"] {
 	--app-bg-color: #1c1c1c;
 	--app-bg-img: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23fe8ba7' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-	--card-bg: linear-gradient(
-		117.95deg,
-		#464646 0.54%,
-		#363636 51.39%,
-		#464646 99.18%
-	);
-	--input-bg: #232323;
-	--header-nav-bg: linear-gradient(
-		94.07deg,
-		rgba(25, 25, 25, 0.5) 0%,
-		rgba(25, 25, 25, 0.71) 51.02%,
-		rgba(25, 25, 25, 0.56) 100%
-	);
-	--btn-pressed: #f41760;
-	--nav-pressed: linear-gradient(180deg, #a947ff 0%, #fd6b8a 100%);
-	--nav-icon-unpressed: #b7b7b8;
+
 	--primary-font: #ffffff;
-	--secondary-font: #bcbcbe;
+	--secondary-font: #93495c;
+	--card-bg: #2b121a;
+	--bg-secondary: #1e0606;
+	--main-color: #f41760;
+	--nav-pressed: linear-gradient(180deg, #a844ff 0%, #ff3f67 100%);
+	--nav-icon-unpressed: #666666;
 	--theme-icon: gold;
-	--placeholder: #8f8e8e;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap");
@@ -58,12 +41,30 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-		background: var(--header-nav-bg);
+		background: var(--bg-secondary);
 		backdrop-filter: blur(32px);
 		z-index: -1;
+		opacity: 90%;
+	}
+}
+@mixin card-glass {
+	&:before {
+		position: absolute;
+		content: "";
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: var(--card-bg);
+		backdrop-filter: blur(32px);
+		z-index: -1;
+		opacity: 60%;
+		border: 1px solid var(--secondary-font);
+		border-radius: 8px;
 	}
 }
 @mixin pressed {
+	cursor: pointer;
 	transition: transform 250ms ease-in-out;
 	&:hover,
 	&:active {
@@ -77,6 +78,20 @@
 			opacity: 1;
 		}
 	}
+}
+@mixin backdrop {
+	position: fixed;
+	z-index: 99999;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	max-width: unset;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.95);
+	@include centering;
+	border-radius: 0;
+	margin: 0;
+	cursor: pointer;
 }
 
 $breakpoint-tablet: 768px;
@@ -143,6 +158,7 @@ body {
 	}
 	p {
 		color: var(--primary-font);
+		font-size: 1.6rem;
 	}
 }
 h1 {
@@ -153,6 +169,14 @@ h2 {
 	font-size: 1.2rem;
 	color: var(--secondary-font);
 }
+h3 {
+	font-size: 2rem;
+	color: var(--primary-font);
+}
+h4 {
+	font-size: 1.4rem;
+	color: var(--primary-font);
+}
 h6 {
 	font-size: 1rem;
 	color: var(--secondary-font);
@@ -162,6 +186,7 @@ button {
 	font: unset;
 	font-family: inherit;
 	border: 0;
+	background: unset;
 	&:focus {
 		outline: 0;
 	}
@@ -198,6 +223,16 @@ input {
 		border-radius: 1.6rem;
 		font-size: 1.6rem;
 		color: var(--primary-font);
+		background: var(--bg-secondary);
+		border: 1px solid var(--secondary-font);
+
+		&::placeholder {
+			color: var(--secondary-font);
+		}
+
+		&:focus {
+			outline: var(--main-color);
+		}
 	}
 }
 
@@ -206,12 +241,12 @@ input {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	background: var(--input-bg);
+	background: var(--bg-secondary);
 	border-radius: 1.6rem;
-	border: 1px solid var(--placeholder);
+	border: 1px solid var(--secondary-font);
 
 	.icon {
-		color: var(--placeholder);
+		color: var(--secondary-font);
 		font-size: 2.4rem;
 		margin-right: 0.8rem;
 	}
@@ -221,9 +256,13 @@ input {
 		line-height: 2.4rem;
 		color: var(--primary-font);
 		background: none;
+
+		&::placeholder {
+			color: var(--secondary-font);
+		}
 	}
 	&:focus-within {
-		border-color: var(--btn-pressed);
+		border-color: var(--main-color);
 	}
 }
 

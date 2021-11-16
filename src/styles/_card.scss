@@ -5,11 +5,12 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	background: var(--secondary-font);
-	bottom: -150px;
-	right: 0;
-	border-radius: 4px;
-	opacity: 0.95;
+	bottom: -155px;
+	right: 4px;
+	border-radius: 2px;
+	@include glass;
+	border: 1px solid var(--secondary-font);
+
 	button {
 		width: 100%;
 		height: 100%;
@@ -34,90 +35,129 @@
 		}
 		&:hover,
 		&:active {
-			background: var(--btn-pressed);
+			background: var(--secondary-font);
 			color: white;
 		}
 	}
 }
 
-.card-wrapper {
+.card {
 	width: 90%;
+	height: auto;
 	max-width: 45rem;
 	margin-bottom: 2rem;
+	@include centering;
+	flex-direction: column;
+	padding: 1.4rem 0.8rem;
+	position: relative;
+	@include card-glass;
 
-	.card {
+	.card-upper {
 		width: 100%;
-		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1.4rem;
+		padding: 0 0.4rem;
+		position: relative;
+
+		.left {
+			@include centering;
+			img {
+				width: 5.6rem;
+				height: 5.6rem;
+				object-fit: cover;
+				border-radius: 50%;
+				margin-right: 1rem;
+				@include pressed;
+			}
+			.info {
+				@include centering;
+				flex-direction: column;
+				h1 {
+					margin-bottom: 6px;
+				}
+			}
+		}
+
+		.right {
+			padding: 0.3rem 1rem;
+			@include centering;
+			background: transparent;
+			border: 1px solid var(--secondary-font);
+			cursor: pointer;
+			border-radius: 14px;
+			z-index: 4;
+			@include pressed;
+
+			.icon {
+				color: var(--secondary-font);
+				font-size: 2.4rem;
+			}
+		}
+	}
+	.close-img {
+		z-index: 99999999;
+		position: fixed;
+		top: 2.4rem;
+		right: 2.4rem;
+		padding: 0.8rem;
+		border-radius: 16px;
+		background: var(--secondary-font);
+		border: 1px solid var(--secondary-font);
+		@include pressed;
+		@include centering;
+
+		.icon {
+			font-size: 2.4rem;
+			color: white;
+		}
+	}
+	.img-container {
+		max-width: 45rem;
+		height: 24rem;
+		margin-bottom: 1.4rem;
+		background: none;
+		cursor: pointer;
+		overflow: hidden;
+		border-radius: 8px;
+
+		img {
+			border-radius: 0.8rem;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 250ms ease-in-out;
+			&:hover,
+			&active {
+				transform: scale(1.05);
+			}
+		}
+	}
+	.img-openned {
+		@include backdrop;
+
+		img {
+			transition: transform 250ms ease-in-out;
+			width: 100%;
+			height: auto;
+			overflow-x: hidden;
+			padding: 1.2rem 0.8rem 0 0.8rem;
+			&:hover,
+			&:active {
+				transform: unset;
+			}
+		}
+	}
+	.caption {
+		margin-bottom: 1rem;
+	}
+	.card-bottom {
+		width: 100%;
+		height: auto;
 		@include centering;
 		flex-direction: column;
-		padding: 1.2rem 0.8rem;
-		background: var(--card-bg);
-		border-radius: 16px;
 
-		.upper {
-			width: 100%;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 1.2rem;
-			padding: 0 0.4rem;
-			position: relative;
-
-			.left {
-				@include centering;
-				img {
-					width: 5.6rem;
-					height: 5.6rem;
-					object-fit: cover;
-					border-radius: 50%;
-					margin-right: 1rem;
-				}
-				.info {
-					@include centering;
-					flex-direction: column;
-					h1 {
-						margin-bottom: 6px;
-					}
-				}
-			}
-
-			.right {
-				padding: 0.4rem 1.2rem;
-				@include centering;
-				background: transparent;
-				border: 1px solid var(--secondary-font);
-				cursor: pointer;
-				border-radius: 14px;
-				z-index: 4;
-				@include pressed;
-
-				.icon {
-					color: var(--secondary-font);
-					font-size: 2.4rem;
-				}
-			}
-		}
-		.img-container {
-			max-width: 45rem;
-			height: 24rem;
-			margin-bottom: 1.2rem;
-			background: none;
-			cursor: pointer;
-			overflow: hidden;
-			border-radius: 1.4rem;
-
-			img {
-				border-radius: 0.8rem;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				transition: transform 250ms ease-in-out;
-				&:hover,
-				&active {
-					transform: scale(1.05);
-				}
-			}
-		}
 		.socials-bar {
 			width: 100%;
 			display: flex;
@@ -147,64 +187,30 @@
 				&:hover,
 				&:active {
 					.icon-wrapper {
-						background: var(--btn-pressed);
+						background: var(--main-color);
+						.icon {
+							color: white;
+						}
 					}
 					h2 {
-						color: var(--btn-pressed);
+						color: var(--main-color);
 					}
 				}
 			}
 			.clicked {
 				.icon-wrapper {
-					background: var(--btn-pressed);
+					background: var(--main-color);
+					.icon {
+						color: white;
+					}
 				}
 				h2 {
-					color: var(--btn-pressed);
+					color: var(--main-color);
 				}
 			}
 		}
-	}
-}
-
-.backdrop {
-	position: fixed;
-	z-index: 99999;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	max-width: unset;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0.8);
-	cursor: pointer;
-	@include centering;
-
-	.modal {
-		width: 85%;
-		height: 85%;
-		height: auto;
-		max-width: 100rem;
-		max-height: 80rem;
-		min-height: 42rem;
-		cursor: default;
-		border-radius: 12px;
-		overflow-x: hidden;
-		background: var(--card-bg);
-		position: relative;
-		padding: 1.2rem 0.8rem 0 0.8rem;
-		margin: 0;
-
-		&::-webkit-scrollbar {
-			display: none;
-		}
-
-		.img-container {
-			max-width: unset;
-			height: 60rem;
-			margin-bottom: 1rem;
-		}
 		.comments-wrapper {
-			padding: 1.4rem;
-			margin-top: 0.4rem;
+			padding: 1.2rem 1rem 0.6rem 1rem;
 			overflow-y: scroll;
 			&::-webkit-scrollbar {
 				display: unset;
@@ -225,18 +231,18 @@
 				}
 				.left {
 					position: relative;
-					margin-right: 2.4rem;
-					width: 9rem;
+					width: 5.6rem;
 					img {
 						position: absolute;
 						top: 0;
 						width: 4rem;
 						height: 4rem;
 						border-radius: 50%;
+						@include pressed;
 					}
 				}
 				.right {
-					// flex: 6;
+					width: calc(100% - 5.6rem);
 					@include centering;
 					flex-direction: column;
 					.top {
@@ -245,7 +251,7 @@
 						align-items: center;
 						justify-content: space-between;
 						padding-top: 0.4rem;
-						margin-bottom: 2.4rem;
+						margin-bottom: 1.6rem;
 						h1 {
 							font-size: 1.4rem;
 						}
@@ -260,6 +266,15 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+.img-container {
+	img {
+		&:hover,
+		&active {
+			transform: scale(1.05);
 		}
 	}
 }
@@ -354,14 +369,6 @@
 }
 
 @media (min-width: $breakpoint-desktop) {
-	// .card-wrapper {
-	// 	width: 46.8rem;
-	// 	.card {
-	// 		padding: 1.4rem;
-	// 		margin: 0;
-	// 	}
-	// }
-
 	.dropdown {
 		bottom: -162px;
 		right: 0;

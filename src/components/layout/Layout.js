@@ -1,12 +1,19 @@
 import Header from "./Header"
 import Navbar from "./Navbar"
+import { useLocation } from "react-router"
 
 const Layout = ({ children }) => {
+	const location = useLocation()
 	return (
 		<>
 			<Header />
 			{children}
-			<Navbar />
+			{location.pathname === "/" ||
+			location.pathname === "/search" ||
+			location.pathname === "/addpost" ||
+			location.pathname === "/notifications" ? (
+				<Navbar />
+			) : null}
 		</>
 	)
 }

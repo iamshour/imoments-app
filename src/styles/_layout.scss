@@ -17,20 +17,14 @@ header {
 		justify-content: space-between;
 		align-items: center;
 		padding: 0.8rem 1.6rem;
-		.logo-wrapper {
-			@include centering;
-			img {
-				width: 9.2rem;
-				height: auto;
-			}
-		}
+
 		.theme-wrapper {
 			button {
 				@include centering;
 				padding: 1.2rem;
 				border-radius: 16px;
-				background: var(--input-bg);
-				border: 1px solid var(--placeholder);
+				background: var(--card-bg);
+				border: 1px solid var(--secondary-font);
 				cursor: pointer;
 				transition: all 250ms ease-in-out;
 
@@ -43,12 +37,187 @@ header {
 					background: var(--theme-icon);
 					border-color: transparent;
 					.icon {
-						color: var(--input-bg);
+						color: var(--card-bg);
 					}
 					transform: scale(0.97);
 				}
 			}
 		}
+		.header-info-wrapper {
+			@include centering;
+
+			.go-back {
+				@include centering;
+				padding: 0.8rem;
+				margin-right: 0.8rem;
+				border-radius: 50%;
+				margin-left: -0.8rem;
+				.icon {
+					font-size: 2.4rem;
+					color: var(--primary-font);
+				}
+				&:hover,
+				&:active {
+					background: var(--secondary-font);
+					.icon {
+						color: white;
+					}
+				}
+			}
+		}
+	}
+}
+
+.avatar-wrapper {
+	@include centering;
+	cursor: pointer;
+	@include pressed;
+	img {
+		border-radius: 50%;
+		width: 4rem;
+		height: 4rem;
+		border: 1px solid var(--main-color);
+	}
+}
+
+.backdrop {
+	opacity: 0;
+	@include backdrop;
+	background: rgba(0, 0, 0, 0.85);
+	animation: fading-in 0.2s ease-in forwards;
+	@keyframes fading-in {
+		100% {
+			opacity: 1;
+		}
+	}
+	.left-bar {
+		position: fixed;
+		width: 72vw;
+		max-width: 30rem;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		background: var(--bg-secondary);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		transform: translate(-100px);
+		opacity: 0;
+		animation: slide-in 0.2s ease-in forwards 0.1s;
+		@keyframes slide-in {
+			100% {
+				transform: translate(0);
+				opacity: 1;
+			}
+		}
+
+		.left-bar-upper {
+			margin-bottom: 1.6rem;
+			padding: 2.4rem;
+			position: relative;
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 0.5px;
+				background: var(--secondary-font);
+				opacity: 0.4;
+			}
+			.user-info {
+				@include centering;
+				flex-direction: column;
+				align-items: flex-start;
+				img {
+					width: 6rem;
+					height: 6rem;
+					border-radius: 50%;
+					@include pressed;
+				}
+				h1 {
+					margin: 0.8rem 0 0.4rem 0;
+				}
+			}
+		}
+		.left-bar-links {
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			cursor: default;
+			.link-container {
+				width: 100%;
+				@include centering;
+				justify-content: flex-start;
+				padding: 2.4rem 0.4rem 2.4rem 1.6rem;
+				color: var(--primary-font);
+				cursor: pointer;
+				h3 {
+					color: inherit;
+				}
+				.icon {
+					font-size: 2.2rem;
+					color: inherit;
+					margin-right: 1.6rem;
+				}
+				&:hover,
+				&:active {
+					background: var(--secondary-font);
+					color: white;
+				}
+			}
+		}
+		.left-bar-bottom {
+			margin: 4rem auto;
+			width: 100%;
+			@include centering;
+			img {
+				width: 70%;
+				height: auto;
+			}
+		}
+	}
+}
+.signout-container {
+	width: 80%;
+	height: 25rem;
+	@include centering;
+	flex-direction: column;
+	background: var(--bg-secondary);
+	border-radius: 1.6rem;
+	h3 {
+		text-align: center;
+		padding: 1rem 1.6rem 2.8rem 1.6rem;
+	}
+	.cancel-btn,
+	.signout-btn {
+		padding: 0.8rem 1.6rem;
+		@include centering;
+		border-radius: 1.6rem;
+		margin-bottom: 2.4rem;
+		cursor: pointer;
+		border: 1px solid transparent;
+
+		p {
+			font-size: 2.4rem;
+			color: inherit;
+			margin-right: 0.8rem;
+		}
+		.icon {
+			color: inherit;
+			font-size: 2.4rem;
+		}
+	}
+	.cancel-btn {
+		color: white;
+		background: var(--main-color);
+	}
+
+	.signout-btn {
+		background: var(--secondary-font);
+		color: var(--primary-font);
+		border-color: var(--primary-font);
 	}
 }
 

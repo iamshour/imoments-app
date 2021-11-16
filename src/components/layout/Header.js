@@ -1,11 +1,15 @@
-import logo from "images/logo.png"
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router"
 //icons
 import { FiSun } from "react-icons/fi"
 import { BsFillMoonFill } from "react-icons/bs"
+import { IoArrowBackOutline } from "react-icons/io5"
+import { Link } from "react-router-dom"
+import LeftBar from "./LeftBar"
 
 const Header = () => {
 	const [theme, setTheme] = useState("light")
+	const location = useLocation()
 
 	useEffect(() => {
 		document.documentElement.setAttribute(
@@ -34,12 +38,46 @@ const Header = () => {
 		}
 	}
 
+	const icon =
+		location.pathname === "/profile" ||
+		location.pathname === "/changepass" ||
+		location.pathname === "/report" ||
+		location.pathname === "/about" ? (
+			<Link to='/' className='go-back'>
+				<IoArrowBackOutline className='icon' />
+			</Link>
+		) : null
+
+	const title =
+		location.pathname === "/search"
+			? "Search for users"
+			: location.pathname === "/notifications"
+			? "Notifications"
+			: location.pathname === "/addpost"
+			? "Add a post"
+			: location.pathname === "/profile"
+			? "Profile"
+			: location.pathname === "/changepass"
+			? "Change your password"
+			: location.pathname === "/report"
+			? "Report a problem"
+			: location.pathname === "/report"
+			? "Report a problem"
+			: location.pathname === "/about"
+			? "About imoments app"
+			: null
+
 	return (
 		<header>
 			<div className='header-wrapper'>
-				<div className='logo-wrapper'>
-					<img src={logo} alt='imoments logo' />
-				</div>
+				{location.pathname === "/" ? (
+					<LeftBar />
+				) : (
+					<div className='header-info-wrapper'>
+						{icon && icon}
+						<h3>{title}</h3>
+					</div>
+				)}
 				<div className='theme-wrapper'>
 					<button onClick={switcher}>
 						{theme === "light" ? (

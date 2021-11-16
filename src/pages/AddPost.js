@@ -6,6 +6,11 @@ import axios from "axios"
 const AddPost = () => {
 	const [charCount, setCharCount] = useState(0)
 	const [file, setFile] = useState()
+	const [formData, setFormData] = useState({
+		creator: "",
+		caption: "",
+		imgFile: "",
+	})
 
 	const [message, setMessage] = useState("")
 
@@ -82,7 +87,11 @@ const AddPost = () => {
 						rows='10'
 						placeholder='Add caption here...'
 						maxLength='320'
-						onChange={(e) => setCharCount(e.target.value.length)}
+						value={formData.caption}
+						onChange={(e) => {
+							setCharCount(e.target.value.length)
+							setFormData({ ...formData, caption: e.target.value })
+						}}
 					/>
 				</div>
 				<div className='input-bar tags'>

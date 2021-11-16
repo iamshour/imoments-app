@@ -1,18 +1,17 @@
-import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useLocation } from "react-router"
 //icons
 import { AiFillHome } from "react-icons/ai"
-import { BsSearch, BsFillPersonFill } from "react-icons/bs"
+import { BsSearch } from "react-icons/bs"
 import { BsPlusLg } from "react-icons/bs"
+import { VscBell, VscBellDot } from "react-icons/vsc"
 
 const Navbar = () => {
 	const location = useLocation()
-	const [authenticated, setAuhenticated] = useState(false)
 
 	return (
 		<nav style={location.pathname === "/auth" ? { display: "none" } : {}}>
-			<div className='wrapper'>
+			<div className='wrapper' onChange={window.scroll(0, 0)}>
 				<Link
 					to='/'
 					className={`nav-item ${location.pathname === "/" && "pressed"}`}
@@ -34,13 +33,12 @@ const Navbar = () => {
 					<BsPlusLg className='icon' />
 				</Link>
 				<Link
-					to={authenticated ? "profile" : "auth"}
+					to='/notifications'
 					className={`nav-item ${
-						location.pathname === "/profile" ||
-						(location.pathname === "/auth" && "pressed")
+						location.pathname === "/notifications" && "pressed notif"
 					}`}
 				>
-					<BsFillPersonFill className='icon' />
+					<VscBell className='icon' />
 				</Link>
 			</div>
 		</nav>

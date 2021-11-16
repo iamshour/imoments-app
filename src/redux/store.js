@@ -1,9 +1,9 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
-import { userReducer } from "./reducers/userReducer"
+import posts from "./reducers/posts"
 
 const reducer = combineReducers({
-	user: userReducer,
+	posts,
 })
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const middleware = [thunk]
