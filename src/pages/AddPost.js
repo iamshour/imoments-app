@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { FcAddImage } from "react-icons/fc"
-import { IoMdCheckmarkCircleOutline, IoIosRemoveCircle } from "react-icons/io"
+import { IoMdCheckmarkCircleOutline, IoMdClose } from "react-icons/io"
 import axios from "axios"
 
 const AddPost = () => {
@@ -50,8 +50,8 @@ const AddPost = () => {
 					<div className='top top-img'>
 						<div className='img-wrapper'>
 							<img src={URL.createObjectURL(file)} alt='image' />
-							<button onClick={() => setFile()}>
-								<IoIosRemoveCircle className='icon' />
+							<button className='btn-icon' onClick={() => setFile()}>
+								<IoMdClose className='icon' />
 							</button>
 						</div>
 					</div>
@@ -70,7 +70,7 @@ const AddPost = () => {
 							/>
 						</div>
 						<div className='right'>
-							<h4>Add Images</h4>
+							<h3>Add Image</h3>
 							<h2>(Optional)</h2>
 						</div>
 					</div>
@@ -97,7 +97,7 @@ const AddPost = () => {
 				<div className='input-bar tags'>
 					<input type='text' placeholder='Add tags (optional)' />
 				</div>
-				<button>
+				<button className='btn-large'>
 					<p>Post</p>
 					<IoMdCheckmarkCircleOutline className='icon' />
 				</button>

@@ -7,7 +7,7 @@ import { IoArrowBackOutline } from "react-icons/io5"
 import { Link } from "react-router-dom"
 import LeftBar from "./LeftBar"
 
-const Header = () => {
+const Header = ({ match }) => {
 	const [theme, setTheme] = useState("light")
 	const location = useLocation()
 
@@ -40,7 +40,9 @@ const Header = () => {
 
 	const icon =
 		location.pathname === "/profile" ||
+		location.pathname === "/user/998" ||
 		location.pathname === "/changepass" ||
+		location.pathname === "/bookmarks" ||
 		location.pathname === "/report" ||
 		location.pathname === "/about" ? (
 			<Link to='/' className='go-back'>
@@ -57,8 +59,12 @@ const Header = () => {
 			? "Add a post"
 			: location.pathname === "/profile"
 			? "Profile"
+			: location.pathname === "/user/998"
+			? "Profile"
 			: location.pathname === "/changepass"
 			? "Change your password"
+			: location.pathname === "/bookmarks"
+			? "Bookmarked Posts"
 			: location.pathname === "/report"
 			? "Report a problem"
 			: location.pathname === "/report"

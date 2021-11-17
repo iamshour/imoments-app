@@ -1,25 +1,39 @@
-import { CgArrowsExpandUpRight } from "react-icons/cg"
+import { useState } from "react"
 import { Link } from "react-router-dom"
+//icons
+import { FiUserPlus, FiUserCheck } from "react-icons/fi"
 
-const ResultCard = ({ avatar, name, nb, id }) => {
+const ResultCard = ({ id, name, username, avatar }) => {
+	const [followed, setFollowed] = useState(false)
 	return (
-		<Link to={`/user/${id}`} className='result-card'>
+		<div className='result-card'>
+			<Link className='bg' to={`/user/${id}`} />
 			<div className='left'>
 				<img src={avatar} alt={name} />
 				<div className='info'>
 					<h1>{name}</h1>
-					<h2>{nb} total posts</h2>
+					<h2>@{username}</h2>
 				</div>
 			</div>
 			<div className='right'>
-				<h2>
-					view
-					<br />
-					profile
-				</h2>
-				<CgArrowsExpandUpRight className='icon' />
+				<button
+					className={`btn-medium ${followed && "following"}`}
+					onClick={() => setFollowed(!followed)}
+				>
+					{!followed ? (
+						<>
+							<p>Follow</p>
+							<FiUserPlus className='icon' />
+						</>
+					) : (
+						<>
+							<p>Following</p>
+							<FiUserCheck className='icon' />
+						</>
+					)}
+				</button>
 			</div>
-		</Link>
+		</div>
 	)
 }
 

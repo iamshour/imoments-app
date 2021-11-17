@@ -1,9 +1,13 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { BsFillPersonFill } from "react-icons/bs"
 import logo from "images/logo.png"
+//icons
+import { BsBookmarks, BsInfoCircle, BsLock } from "react-icons/bs"
 import { IoMdClose } from "react-icons/io"
 import { AiOutlineCheck } from "react-icons/ai"
+import { FiUser } from "react-icons/fi"
+import { CgSupport } from "react-icons/cg"
+import { IoLogOutOutline } from "react-icons/io5"
 
 const LeftBar = () => {
 	const [leftBarOpened, setLeftBarOpened] = useState(false)
@@ -69,7 +73,7 @@ const LeftBar = () => {
 								className='link-container'
 								onClick={closeLeftBar}
 							>
-								<BsFillPersonFill className='icon' />
+								<FiUser className='icon' />
 								<h3>Profile</h3>
 							</Link>
 							<Link
@@ -77,15 +81,23 @@ const LeftBar = () => {
 								className='link-container'
 								onClick={closeLeftBar}
 							>
-								<BsFillPersonFill className='icon' />
+								<BsLock className='icon' />
 								<h3>Change Password</h3>
+							</Link>
+							<Link
+								to='/bookmarks'
+								className='link-container'
+								onClick={closeLeftBar}
+							>
+								<BsBookmarks className='icon' />
+								<h3>Bookmarks</h3>
 							</Link>
 							<Link
 								to='/report'
 								className='link-container'
 								onClick={closeLeftBar}
 							>
-								<BsFillPersonFill className='icon' />
+								<CgSupport className='icon' />
 								<h3>Report a problem</h3>
 							</Link>
 							<Link
@@ -93,11 +105,11 @@ const LeftBar = () => {
 								className='link-container'
 								onClick={closeLeftBar}
 							>
-								<BsFillPersonFill className='icon' />
-								<h3>About imoments app</h3>
+								<BsInfoCircle className='icon' />
+								<h3>About app</h3>
 							</Link>
 							<button className='link-container' onClick={signOutModel}>
-								<BsFillPersonFill className='icon' />
+								<IoLogOutOutline className='icon' />
 								<h3>Sign Out</h3>
 							</button>
 						</div>
@@ -111,11 +123,11 @@ const LeftBar = () => {
 				<div className='backdrop' onClick={signOutModelClose}>
 					<div className='signout-container'>
 						<h3>Are you sure you want to sign out?</h3>
-						<button onClick={signOutBtnClose} className='cancel-btn'>
+						<button onClick={signOutBtnClose} className='btn-large'>
 							<p>Cancel</p>
 							<IoMdClose className='icon' />
 						</button>
-						<button className='signout-btn'>
+						<button className='btn-large signout-btn'>
 							<p>Yes, Sign Out</p>
 							<AiOutlineCheck className='icon' />
 						</button>

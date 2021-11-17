@@ -1,11 +1,11 @@
 import { useState } from "react"
 //comps
-import CardUpper from "./CardUpper"
-import Socials from "./Socials"
+import CardUpper from "./Card-upper/CardUpper"
+import Socials from "./Socials/Socials"
 //icons
 import { IoMdClose } from "react-icons/io"
 
-const Card = () => {
+const Card = ({ id, username, avatar, img, caption, time }) => {
 	const [optionsClicked, setOptionsClicked] = useState(false)
 	const [imgOpenned, setImgOpenned] = useState(false)
 
@@ -23,39 +23,30 @@ const Card = () => {
 		document.querySelector("header").style.display = "unset"
 	}
 
-	const customObj = {
-		name: "Ali Shour",
-		time: "10 mins ago",
-		profileAvatar: "https://www.w3schools.com/howto/img_avatar.png",
-		postImg:
-			"https://media.springernature.com/full/springer-cms/rest/v1/img/18893370/v1/height/320",
-		caption:
-			"Lorem ipsum dolor sit amet, adhuc nulla definiebas mei ad, ei doming aperiam delicata est.",
-	}
-
 	return (
 		<div className='card'>
 			<CardUpper
-				name={customObj.name}
-				time={customObj.time}
-				profileAvatar={customObj.profileAvatar}
+				id={id}
+				username={username}
+				time={time}
+				avatar={avatar}
 				optionsClicked={optionsClicked}
 				setOptionsClicked={setOptionsClicked}
 			/>
 			{imgOpenned && (
-				<button className='close-img' onClick={closeImg}>
+				<button className='btn-icon' onClick={closeImg}>
 					<IoMdClose className='icon' />
 				</button>
 			)}
-			{customObj?.postImg && (
+			{img && (
 				<button
 					className={`img-container ${imgOpenned && "img-openned"}`}
 					onClick={openImg}
 				>
-					<img src={customObj.postImg} alt='example' />
+					<img src={img} alt='example' />
 				</button>
 			)}
-			{customObj?.caption && <p className='caption'>{customObj?.caption}</p>}
+			{caption && <p className='caption'>{caption}</p>}
 			<Socials likes={"14"} comments={"29"} />
 		</div>
 	)

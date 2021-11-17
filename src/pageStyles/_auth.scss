@@ -1,52 +1,48 @@
 .auth-page {
-	margin-top: 6.4rem;
+	padding-top: 12rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	height: calc(100vh - 6.4rem);
+	height: 100vh;
 	overflow-y: hidden;
 
-	.back-btn {
-		padding: 0.8rem 1.2rem;
-		background: var(--input-bg);
-		color: var(--placeholder);
-		@include centering;
-		border: 1px solid var(--placeholder);
-		border-radius: 12px;
-		align-self: flex-start;
-		margin: 1.6rem auto 0 2rem;
-		.icon {
-			color: inherit;
-			font-size: 2rem;
-		}
-	}
 	img {
 		width: 22rem;
-		margin-bottom: 2rem;
 	}
 	.credentials {
 		width: 85%;
-		.auth-bar {
-			display: flex;
-			justify-content: space-between;
+		.input-bar,
+		.input-bar-icon {
 			margin: 0 auto;
 			margin-bottom: 1.2rem;
-			// width: 85%;
+		}
+		.input-bar {
+			display: flex;
+			justify-content: space-between;
 
 			input {
 				&:first-child {
-					margin-right: 3rem;
+					margin-right: 1.6rem;
 				}
 			}
 		}
-		.auth-bar-icon {
-			margin-bottom: 1.2rem;
+		.input-bar-icon {
+			.eye {
+				margin: 0 0 0 0.8rem;
+				width: 3rem;
+
+				&:hover,
+				&:active {
+					color: var(--main-color);
+				}
+			}
 		}
 	}
 	.actions {
 		position: relative;
 		width: 90%;
+		max-width: 40rem;
 		@include glass;
 		display: flex;
 		flex-direction: column;
@@ -64,40 +60,32 @@
 			flex-direction: column;
 			align-items: center;
 			margin-bottom: 2.4rem;
-			.btn-regular,
+			width: 100%;
+			.btn-large,
 			.btn-google {
+				padding: 1rem 0;
 				border-radius: 2.4rem;
-				border: 1px solid transparent;
-				cursor: pointer;
-				&:hover,
-				&:focus {
-					transform: scale(0.96);
-				}
 			}
-			.btn-regular {
+			.btn-large {
 				margin-bottom: 0.8rem;
-				font-size: 1.8rem;
-				padding: 1.4rem 8rem;
-				background: var(--btn-pressed);
-				color: white;
+				width: 100%;
 			}
 			.or {
 				font-size: 1.6rem;
-				color: var(--btn-pressed);
+				color: var(--main-color);
 				margin-bottom: 0.8rem;
 			}
 			.btn-google {
 				background: transparent;
-				border-color: var(--btn-pressed);
-				padding: 1rem;
-				@include centering;
+				border-color: var(--main-color);
+				font-size: 2.4rem;
+				color: var(--main-color);
 				.icon {
-					font-size: 2.4rem;
 					margin-right: 0.8rem;
+					font-size: inherit;
 				}
 				p {
-					font-size: 2.4rem;
-					color: var(--btn-pressed);
+					margin: 0;
 				}
 			}
 		}
@@ -106,13 +94,13 @@
 			@include centering;
 			p {
 				font-size: 1.5rem;
-				color: var(--btn-pressed);
+				color: var(--main-color);
 				margin-right: 1rem;
 			}
 			button {
 				background: none;
 				font-size: 1.5rem;
-				color: green;
+				color: rgb(25, 212, 25);
 				cursor: pointer;
 			}
 		}

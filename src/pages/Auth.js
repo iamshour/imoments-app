@@ -1,86 +1,107 @@
 import { useState } from "react"
 import logo from "images/logo.png"
 //icons
-import { BiArrowBack } from "react-icons/bi"
 import { BsFillLockFill } from "react-icons/bs"
 import { IoMailOutline } from "react-icons/io5"
 import { FcGoogle } from "react-icons/fc"
-import { Link } from "react-router-dom"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import Notify from "components/utility/Notify"
 
 const Auth = () => {
 	const [signIn, setSignIn] = useState(false)
+	const [showPass, setShowPass] = useState(false)
+	const [formData, setFormData] = useState({
+		firstName: "",
+		lastName: "",
+		email: "",
+		password: "",
+		confirmPassword: "",
+	})
 
 	const switcher = () => {
 		setSignIn(!signIn)
 	}
 
+	const changeHandler = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value })
+		console.log(formData)
+	}
+
 	return (
 		<div className='auth-page'>
-			<Link to='/' className='back-btn'>
-				<BiArrowBack className='icon' />
-			</Link>
+			<Notify message='warning' />
 			<img src={logo} alt='logo' className={signIn ? "custom-img" : ""} />
 			<div className='credentials'>
 				{!signIn && (
-					<div className='input-bar auth-bar'>
-						<input type='text' name='firstName' placeholder='First name' />
-						<input type='text' name='lastName' placeholder='Last name' />
+					<div className='input-bar'>
+						<input
+							type='text'
+							name='firstName'
+							placeholder='First name'
+							onChange={changeHandler}
+						/>
+						<input
+							type='text'
+							name='lastName'
+							placeholder='Last name'
+							onChange={changeHandler}
+						/>
 					</div>
 				)}
-				<div className='input-bar-icon auth-bar-icon'>
+				<div className='input-bar-icon'>
 					<IoMailOutline className='icon' />
-					<input type='text' name='email' placeholder='Enter your email' />
-				</div>
-				<div className='input-bar-icon auth-bar-icon'>
-					<BsFillLockFill className='icon' />
 					<input
-						type='password'
-						name='password'
-						placeholder='Enter your password'
+						type='text'
+						name='email'
+						placeholder='Enter your email'
+						onChange={changeHandler}
 					/>
 				</div>
+				<div className='input-bar-icon'>
+					<BsFillLockFill className='icon' />
+					<input
+						type={showPass ? "text" : "password"}
+						name='password'
+						placeholder='Enter your password'
+						onChange={changeHandler}
+					/>
+					{!showPass ? (
+						<AiOutlineEye
+							className='icon eye'
+							onClick={() => setShowPass(!showPass)}
+						/>
+					) : (
+						<AiOutlineEyeInvisible
+							className='icon eye'
+							onClick={() => setShowPass(!showPass)}
+						/>
+					)}
+				</div>
 				{!signIn && (
-					<div className='input-bar-icon auth-bar-icon'>
+					<div className='input-bar-icon'>
 						<BsFillLockFill className='icon' />
 						<input
 							type='password'
-							name='password'
+							name='confirmPassword'
 							placeholder='Confirm your password'
+							onChange={changeHandler}
 						/>
 					</div>
 				)}
 			</div>
 			<div className='actions'>
 				<div className='btns'>
-					{signIn ? (
-						<button className='btn-regular'>Sign in</button>
-					) : (
-						<button className='btn-regular'>Sign up</button>
-					)}
+					<button className='btn-large'>Sign {signIn ? "in" : "up"}</button>
 					<p className='or'>or</p>
-					{signIn ? (
-						<button className='btn-google'>
-							<FcGoogle className='icon' />
-							<p>Sign in with Google</p>
-						</button>
-					) : (
-						<button className='btn-google'>
-							<FcGoogle className='icon' />
-							<p>Sign up with Google</p>
-						</button>
-					)}
+					<button className='btn-google btn-large'>
+						<FcGoogle className='icon' />
+						<p>Sign {signIn ? "in" : "up"} with Google</p>
+					</button>
 				</div>
-				{signIn ? (
-					<div className='bottom-actions'>
-						<p>Don't have an account?</p>
-						<button onClick={switcher}>Sign up</button>
-					</div>
-				) : (
-					<div className='bottom-actions'>
-						<p>Already have an account?</p>
-						<button onClick={switcher}>Sign in</button>
-					</div>
-				)}
+				<div className='bottom-actions'>
+					<p>{signIn ? "Don't" : "Already"} have an account?</p>
+					<button onClick={switcher}>Sign {!signIn ? "in" : "up"}</button>
+				</div>
 			</div>
 		</div>
 	)

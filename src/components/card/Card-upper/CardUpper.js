@@ -4,18 +4,19 @@ import { Link } from "react-router-dom"
 import Dropdown from "./Dropdown"
 
 const CardUpper = ({
-	name,
+	username,
 	time,
-	profileAvatar,
+	avatar,
 	optionsClicked,
 	setOptionsClicked,
+	id,
 }) => {
 	return (
 		<div className='card-upper'>
-			<Link to='/' className='left'>
-				<img src={profileAvatar} alt={name} />
+			<Link to={`/user/${id}`} className='left'>
+				<img src={avatar} alt={username} />
 				<div className='info'>
-					<h1>{name}</h1>
+					<h1>{username}</h1>
 					<h2>{time}</h2>
 				</div>
 			</Link>

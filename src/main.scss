@@ -58,9 +58,9 @@
 		background: var(--card-bg);
 		backdrop-filter: blur(32px);
 		z-index: -1;
-		opacity: 60%;
+		opacity: 55%;
 		border: 1px solid var(--secondary-font);
-		border-radius: 8px;
+		border-radius: 16px;
 	}
 }
 @mixin pressed {
@@ -74,6 +74,15 @@
 @mixin fade-in {
 	animation: smoothing-in 0.3s ease-in forwards 0.2s;
 	@keyframes smoothing-in {
+		100% {
+			opacity: 1;
+		}
+	}
+}
+@mixin imgFadeIn {
+	opacity: 0;
+	animation: fading-in 0.2s ease-in forwards;
+	@keyframes fading-in {
 		100% {
 			opacity: 1;
 		}
@@ -97,13 +106,17 @@
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1080px;
 
-@import "home";
-@import "layout";
-@import "card";
-@import "search";
-@import "addpost";
-@import "profile";
-@import "auth";
+@import "./pageStyles/home";
+@import "./pageStyles/addpost";
+@import "./pageStyles/auth";
+@import "./components/layout/layout";
+@import "./components/layout/Header/leftBar";
+@import "./components/card/card";
+@import "./components/search/search";
+@import "./components/profile/profile";
+@import "./components/utility/utility";
+
+//RESETS
 
 html,
 body,
@@ -156,30 +169,6 @@ body {
 	h6 {
 		font-weight: 400;
 	}
-	p {
-		color: var(--primary-font);
-		font-size: 1.6rem;
-	}
-}
-h1 {
-	color: var(--primary-font);
-	font-size: 1.6rem;
-}
-h2 {
-	font-size: 1.2rem;
-	color: var(--secondary-font);
-}
-h3 {
-	font-size: 2rem;
-	color: var(--primary-font);
-}
-h4 {
-	font-size: 1.4rem;
-	color: var(--primary-font);
-}
-h6 {
-	font-size: 1rem;
-	color: var(--secondary-font);
 }
 
 button {
@@ -189,6 +178,28 @@ button {
 	background: unset;
 	&:focus {
 		outline: 0;
+	}
+}
+
+.btn-medium,
+.btn-large {
+	@include centering;
+	cursor: pointer;
+	color: white;
+	background: var(--main-color);
+	border: 1px solid transparent;
+	transition: all 200ms ease-in-out;
+	p,
+	.icon {
+		font-size: inherit;
+		color: inherit;
+	}
+	&:hover,
+	&:active {
+		color: var(--main-color);
+		transform: translateY(-1px);
+		background: white;
+		border-color: var(--main-color);
 	}
 }
 
@@ -205,15 +216,53 @@ a {
 label,
 textarea,
 input {
-	background: var(--input-bg);
-	border: 1px solid var(--placeholder);
+	background: var(--bg-secondary);
+	border: 1px solid var(--secondary-font);
 	&:focus {
 		outline: 0;
-		border-color: var(--btn-pressed);
+		border-color: var(--main-color);
 	}
 	&::placeholder {
-		color: var(--placeholder);
+		color: var(--secondary-font);
 	}
+}
+
+label {
+	cursor: pointer;
+	@include pressed;
+}
+
+.home-page,
+.profile-page,
+.search-page,
+.addpost-page,
+.auth-page {
+	opacity: 0;
+	@include fade-in;
+}
+
+//COMMON STYLING -- CHANGABLE
+
+p {
+	color: var(--primary-font);
+	font-size: 1.6rem;
+}
+
+h1 {
+	color: var(--primary-font);
+	font-size: 1.6rem;
+}
+h2 {
+	font-size: 1.2rem;
+	color: var(--secondary-font);
+}
+h3 {
+	font-size: 2rem;
+	color: var(--primary-font);
+}
+h6 {
+	font-size: 1rem;
+	color: var(--secondary-font);
 }
 
 .input-bar {
@@ -226,12 +275,8 @@ input {
 		background: var(--bg-secondary);
 		border: 1px solid var(--secondary-font);
 
-		&::placeholder {
-			color: var(--secondary-font);
-		}
-
 		&:focus {
-			outline: var(--main-color);
+			border-color: var(--main-color);
 		}
 	}
 }
@@ -251,37 +296,59 @@ input {
 		margin-right: 0.8rem;
 	}
 	input {
+		width: 100%;
 		border: 0;
 		font-size: 1.8rem;
 		line-height: 2.4rem;
 		color: var(--primary-font);
 		background: none;
-
-		&::placeholder {
-			color: var(--secondary-font);
-		}
 	}
 	&:focus-within {
 		border-color: var(--main-color);
+		.icon {
+			color: var(--main-color);
+		}
 	}
 }
 
-label {
-	cursor: pointer;
-	&:hover,
-	&:active {
-		transform: scale(0.96);
+.btn-medium {
+	padding: 0.6rem 1rem;
+	font-size: 1.5rem;
+	border-radius: 8px;
+
+	p {
+		margin-right: 0.4rem;
+	}
+}
+.btn-large {
+	padding: 0.8rem 1.6rem;
+	font-size: 2.4rem;
+	border-radius: 16px;
+	p {
+		margin-right: 0.8rem;
+	}
+}
+.btn-icon {
+	padding: 0.8rem;
+	border-radius: 18px;
+	background: var(--secondary-font);
+	@include pressed;
+	@include centering;
+
+	.icon {
+		font-size: 2.4rem;
+		color: white;
 	}
 }
 
-.home-page,
-.profile-page,
-.search-page,
-.addpost-page,
-.auth-page {
-	opacity: 0;
-	@include fade-in;
+textarea {
+	width: 100%;
+	border-radius: 1.6rem;
+	font-size: 1.5rem;
+	padding: 0.8rem;
+	color: var(--primary-font);
 }
+
 .home-page,
 .profile-page,
 .search-page {
