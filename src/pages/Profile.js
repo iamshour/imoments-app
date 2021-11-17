@@ -1,7 +1,9 @@
 import Card from "components/card/Card"
 import UserCard from "components/profile/UserCard"
 
-const Profile = () => {
+const Profile = ({ match }) => {
+	const pageId = match.params.id
+	const user = JSON.parse(localStorage.getItem("User"))
 	const customUser = [
 		{
 			id: 2,
@@ -45,8 +47,12 @@ const Profile = () => {
 	return (
 		<div className='profile-page'>
 			<UserCard
-				name={"Test Test"}
-				avatar={"https://www.w3schools.com/howto/img_avatar.png"}
+				name={pageId === user?.token ? user?.result?.name : "SAM"}
+				avatar={
+					pageId === user?.token
+						? user?.result?.imageUrl
+						: "https://www.w3schools.com/howto/img_avatar.png"
+				}
 				nb={"3"}
 			/>
 			<h5>My Posts</h5>

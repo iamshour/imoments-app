@@ -1,2 +1,32 @@
-.notify-container {
+.auth-page {
+	.notify-container {
+		margin: 0 auto;
+		padding: 0.4rem;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		width: 85%;
+		max-width: 40rem;
+		// position: absolute;
+		// top: 5rem;
+		// left: 50%;
+		// transform: translateX(-50%);
+
+		p {
+			font-size: 1.6rem;
+		}
+	}
+	.warning {
+		background: yellow;
+		border-color: rgb(189, 189, 14);
+		p {
+			color: darkblue;
+		}
+	}
+	.danger {
+		background: rgb(250, 28, 28);
+		border-color: rgb(163, 6, 6);
+		p {
+			color: white;
+		}
+	}
 }

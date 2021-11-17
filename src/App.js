@@ -9,7 +9,7 @@ import Home from "pages/Home"
 import Search from "pages/Search"
 import AddPost from "pages/AddPost"
 import Profile from "pages/Profile"
-import User from "pages/User"
+// import User from "pages/User"
 import Auth from "pages/Auth"
 import Notifications from "pages/Notifications"
 
@@ -22,10 +22,10 @@ function App() {
 						<Route exact path='/' component={Home} />
 						<Route path='/search' component={Search} />
 						<Route path='/addpost' component={AddPost} />
-						<Route path='/profile' component={Profile} />
+						<Route path='/profile/:id' component={Profile} />
 						<Route path='/notifications' component={Notifications} />
 						<Route path='/auth' component={Auth} />
-						<Route path='/user/:id' component={User} />
+						{/* <Route path='/user/:id' component={User} /> */}
 					</Switch>
 				</Layout>
 			</Router>

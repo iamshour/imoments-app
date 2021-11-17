@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { useLocation } from "react-router"
+//icons/assets
 import logo from "images/logo.png"
-//icons
 import { BsBookmarks, BsInfoCircle, BsLock } from "react-icons/bs"
 import { IoMdClose } from "react-icons/io"
 import { AiOutlineCheck } from "react-icons/ai"
@@ -9,9 +10,11 @@ import { FiUser } from "react-icons/fi"
 import { CgSupport } from "react-icons/cg"
 import { IoLogOutOutline } from "react-icons/io5"
 
-const LeftBar = () => {
+const LeftBar = ({ user }) => {
 	const [leftBarOpened, setLeftBarOpened] = useState(false)
 	const [signOutClicked, setSignOutClicked] = useState(false)
+
+	const location = useLocation()
 
 	const userInfo = {
 		name: "Ali Shour",
@@ -55,21 +58,25 @@ const LeftBar = () => {
 	return (
 		<>
 			<button className='avatar-wrapper' onClick={openLeftBar}>
-				<img src={userInfo.avatar} alt={userInfo.name} />
+				<img src={user?.result?.imageUrl} alt={userInfo.name} />
 			</button>
 			{leftBarOpened && (
 				<div className='backdrop' onClick={closeLeftBar}>
 					<div className='left-bar'>
 						<div className='left-bar-upper'>
-							<Link to='/profile' className='user-info' onClick={closeLeftBar}>
-								<img src={userInfo.avatar} alt={userInfo.name} />
-								<h1>{userInfo.name}</h1>
+							<Link
+								to={`/profile/${user?.token}`}
+								className='user-info'
+								onClick={closeLeftBar}
+							>
+								<img src={user?.result?.imageUrl} alt={user?.result?.name} />
+								<h1>{user?.result?.name}</h1>
 								<h2>{userInfo.username}</h2>
 							</Link>
 						</div>
 						<div className='left-bar-links'>
 							<Link
-								to='/profile'
+								to={`/profile/${user?.token}`}
 								className='link-container'
 								onClick={closeLeftBar}
 							>

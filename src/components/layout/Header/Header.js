@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router"
+//comps
+import LeftBar from "./LeftBar"
 //icons
 import { FiSun } from "react-icons/fi"
 import { BsFillMoonFill } from "react-icons/bs"
 import { IoArrowBackOutline } from "react-icons/io5"
 import { Link } from "react-router-dom"
-import LeftBar from "./LeftBar"
 
-const Header = ({ match }) => {
+const Header = () => {
 	const [theme, setTheme] = useState("light")
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("User")))
 	const location = useLocation()
+
+	useEffect(() => {
+		const token = user?.token
+
+		setUser(JSON.parse(localStorage.getItem("User")))
+		//Later JWT here
+	}, [location])
 
 	useEffect(() => {
 		document.documentElement.setAttribute(
@@ -40,7 +49,7 @@ const Header = ({ match }) => {
 
 	const icon =
 		location.pathname === "/profile" ||
-		location.pathname === "/user/998" ||
+		location.pathname === `/profile/${user?.token}` ||
 		location.pathname === "/changepass" ||
 		location.pathname === "/bookmarks" ||
 		location.pathname === "/report" ||
@@ -59,7 +68,7 @@ const Header = ({ match }) => {
 			? "Add a post"
 			: location.pathname === "/profile"
 			? "Profile"
-			: location.pathname === "/user/998"
+			: location.pathname === `/profile/${user?.token}`
 			? "Profile"
 			: location.pathname === "/changepass"
 			? "Change your password"
@@ -77,7 +86,7 @@ const Header = ({ match }) => {
 		<header>
 			<div className='header-wrapper'>
 				{location.pathname === "/" ? (
-					<LeftBar />
+					<LeftBar user={user} />
 				) : (
 					<div className='header-info-wrapper'>
 						{icon && icon}
