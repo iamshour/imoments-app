@@ -5,7 +5,7 @@ import Socials from "./Socials/Socials"
 //icons
 import { IoMdClose } from "react-icons/io"
 
-const Card = ({ id, username, avatar, img, caption, time }) => {
+const Card = ({ id, name, avatar, img, caption, time }) => {
 	const [optionsClicked, setOptionsClicked] = useState(false)
 	const [imgOpenned, setImgOpenned] = useState(false)
 
@@ -27,9 +27,9 @@ const Card = ({ id, username, avatar, img, caption, time }) => {
 		<div className='card'>
 			<CardUpper
 				id={id}
-				username={username}
-				time={time}
+				name={name}
 				avatar={avatar}
+				time={time}
 				optionsClicked={optionsClicked}
 				setOptionsClicked={setOptionsClicked}
 			/>

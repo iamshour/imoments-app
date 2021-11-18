@@ -1,0 +1,25 @@
+.not-found-page {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background: var(--secondary-font);
+	z-index: 9999999999999;
+	@include centering;
+	flex-direction: column;
+	h5,
+	p,
+	a {
+		opacity: 0;
+		@include fade-in;
+	}
+	h5 {
+		font-size: 6rem;
+		margin-bottom: 2rem;
+		margin-top: -4rem;
+	}
+	h3 {
+		padding: 2rem;
+		text-align: center;
+		margin-bottom: 0.5rem;
+	}
+}

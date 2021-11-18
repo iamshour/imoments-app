@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
-import { useLocation } from "react-router"
+import { useHistory } from "react-router"
+import { useDispatch } from "react-redux"
 //icons/assets
 import logo from "images/logo.png"
 import { BsBookmarks, BsInfoCircle, BsLock } from "react-icons/bs"
@@ -10,11 +11,12 @@ import { FiUser } from "react-icons/fi"
 import { CgSupport } from "react-icons/cg"
 import { IoLogOutOutline } from "react-icons/io5"
 
-const LeftBar = ({ user }) => {
+const LeftBar = ({ user, setUser }) => {
 	const [leftBarOpened, setLeftBarOpened] = useState(false)
 	const [signOutClicked, setSignOutClicked] = useState(false)
 
-	const location = useLocation()
+	const history = useHistory()
+	const dispatch = useDispatch()
 
 	const userInfo = {
 		name: "Ali Shour",
@@ -54,6 +56,13 @@ const LeftBar = ({ user }) => {
 		setSignOutClicked(false)
 		document.querySelector("nav").style.display = "unset"
 	}
+	const signOut = () => {
+		dispatch({
+			type: "SIGN_OUT",
+		})
+		history.push("/auth")
+		setUser(null)
+	}
 
 	return (
 		<>
@@ -65,7 +74,7 @@ const LeftBar = ({ user }) => {
 					<div className='left-bar'>
 						<div className='left-bar-upper'>
 							<Link
-								to={`/profile/${user?.token}`}
+								to={`/profile/${user?.result?.googleId}`}
 								className='user-info'
 								onClick={closeLeftBar}
 							>
@@ -76,7 +85,7 @@ const LeftBar = ({ user }) => {
 						</div>
 						<div className='left-bar-links'>
 							<Link
-								to={`/profile/${user?.token}`}
+								to={`/profile/${user?.result?.googleId}`}
 								className='link-container'
 								onClick={closeLeftBar}
 							>
@@ -134,7 +143,7 @@ const LeftBar = ({ user }) => {
 							<p>Cancel</p>
 							<IoMdClose className='icon' />
 						</button>
-						<button className='btn-large signout-btn'>
+						<button className='btn-large signout-btn' onClick={signOut}>
 							<p>Yes, Sign Out</p>
 							<AiOutlineCheck className='icon' />
 						</button>

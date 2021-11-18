@@ -14,7 +14,7 @@ const Header = () => {
 	const location = useLocation()
 
 	useEffect(() => {
-		const token = user?.token
+		// const token = user?.token
 
 		setUser(JSON.parse(localStorage.getItem("User")))
 		//Later JWT here
@@ -49,7 +49,7 @@ const Header = () => {
 
 	const icon =
 		location.pathname === "/profile" ||
-		location.pathname === `/profile/${user?.token}` ||
+		location.pathname === `/profile/${user?.result?.googleId}` ||
 		location.pathname === "/changepass" ||
 		location.pathname === "/bookmarks" ||
 		location.pathname === "/report" ||
@@ -68,7 +68,7 @@ const Header = () => {
 			? "Add a post"
 			: location.pathname === "/profile"
 			? "Profile"
-			: location.pathname === `/profile/${user?.token}`
+			: location.pathname === `/profile/${user?.result?.googleId}`
 			? "Profile"
 			: location.pathname === "/changepass"
 			? "Change your password"
@@ -86,7 +86,7 @@ const Header = () => {
 		<header>
 			<div className='header-wrapper'>
 				{location.pathname === "/" ? (
-					<LeftBar user={user} />
+					<LeftBar user={user} setUser={setUser} />
 				) : (
 					<div className='header-info-wrapper'>
 						{icon && icon}

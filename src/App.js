@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router"
 import { Provider } from "react-redux"
 import store from "redux/store"
 import "main.scss"
@@ -9,26 +11,44 @@ import Home from "pages/Home"
 import Search from "pages/Search"
 import AddPost from "pages/AddPost"
 import Profile from "pages/Profile"
-// import User from "pages/User"
 import Auth from "pages/Auth"
 import Notifications from "pages/Notifications"
+import NotFound from "pages/NotFound"
 
 function App() {
+	const location = useLocation()
+
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("User")))
+
+	useEffect(() => {
+		// const token = user?.token
+
+		setUser(JSON.parse(localStorage.getItem("User")))
+		//Later JWT here
+	}, [location])
 	return (
 		<Provider store={store}>
-			<Router>
-				<Layout>
-					<Switch>
-						<Route exact path='/' component={Home} />
-						<Route path='/search' component={Search} />
-						<Route path='/addpost' component={AddPost} />
-						<Route path='/profile/:id' component={Profile} />
-						<Route path='/notifications' component={Notifications} />
-						<Route path='/auth' component={Auth} />
-						{/* <Route path='/user/:id' component={User} /> */}
-					</Switch>
-				</Layout>
-			</Router>
+			<Layout>
+				<Switch>
+					<Route path='/auth'>{user ? <Redirect to='/' /> : <Auth />}</Route>
+					<Route exact path='/'>
+						{user ? <Home /> : <Redirect to='/auth' />}
+					</Route>
+					<Route path='/search'>
+						{user ? <Search /> : <Redirect to='/auth' />}
+					</Route>
+					<Route path='/addpost'>
+						{user ? <AddPost /> : <Redirect to='/auth' />}
+					</Route>
+					<Route path='/profile/:id'>
+						{user ? <Profile /> : <Redirect to='/auth' />}
+					</Route>
+					<Route path='/notifications'>
+						{user ? <Notifications /> : <Redirect to='/auth' />}
+					</Route>
+					<Route component={NotFound} />
+				</Switch>
+			</Layout>
 		</Provider>
 	)
 }

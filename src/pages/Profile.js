@@ -1,8 +1,11 @@
 import Card from "components/card/Card"
 import UserCard from "components/profile/UserCard"
+import { useHistory, useParams } from "react-router"
 
-const Profile = ({ match }) => {
-	const pageId = match.params.id
+const Profile = () => {
+	const params = useParams()
+
+	const history = useHistory()
 	const user = JSON.parse(localStorage.getItem("User"))
 	const customUser = [
 		{
@@ -44,25 +47,28 @@ const Profile = ({ match }) => {
 		(user) => user.caption && user.img !== null
 	)
 
+	if (!user) {
+		history.push("/auth")
+	}
+
+	const userInfo = {
+		name: params?.id === user?.result?.googleId ? user?.result?.name : null,
+		id: params?.id === user?.result?.googleId ? user?.result?.googleId : null,
+		avatar:
+			params?.id === user?.result?.googleId ? user?.result?.imageUrl : null,
+	}
+
 	return (
 		<div className='profile-page'>
-			<UserCard
-				name={pageId === user?.token ? user?.result?.name : "SAM"}
-				avatar={
-					pageId === user?.token
-						? user?.result?.imageUrl
-						: "https://www.w3schools.com/howto/img_avatar.png"
-				}
-				nb={"3"}
-			/>
+			<UserCard name={userInfo.name} avatar={userInfo.avatar} nb={"3"} />
 			<h5>My Posts</h5>
 			<div className='cards-container'>
 				{filteredUser.map((user) => (
 					<Card
 						key={user.id}
-						id={user.id}
-						username={user.username}
-						avatar={user.avatar}
+						id={userInfo.id}
+						avatar={userInfo.avatar}
+						name={userInfo.name}
 						img={user.img}
 						caption={user.caption}
 						time={user.time}
