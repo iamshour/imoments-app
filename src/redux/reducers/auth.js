@@ -3,13 +3,13 @@ export const auth = (
 	action
 ) => {
 	switch (action.type) {
-		case "SIGN_IN_SUCCESS":
+		case "AUTH_SUCCESS":
 			localStorage.setItem("User", JSON.stringify({ ...action?.payload }))
 			return {
 				...state,
 				authData: action?.payload,
 			}
-		case "SIGN_IN_FAIL":
+		case "AUTH_FAIL":
 			return {
 				...state,
 				authData: action.payload,

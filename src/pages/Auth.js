@@ -8,11 +8,12 @@ import { BsFillLockFill } from "react-icons/bs"
 import { IoMailOutline } from "react-icons/io5"
 import { FcGoogle } from "react-icons/fc"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { googleAuth, signIn, signUp } from "redux/actions/auth"
 
 const Auth = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
-	const [signIn, setSignIn] = useState(false)
+	const [showSignin, setShowSignin] = useState(true)
 	const [showPass, setShowPass] = useState(false)
 	const [formData, setFormData] = useState({
 		firstName: "",
@@ -23,7 +24,7 @@ const Auth = () => {
 	})
 
 	const switcher = () => {
-		setSignIn(!signIn)
+		setShowSignin(!showSignin)
 		setShowPass(false)
 	}
 
@@ -34,25 +35,32 @@ const Auth = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+
+		if (showSignin) {
+			dispatch(signIn(formData, history))
+		} else {
+			dispatch(signUp(formData, history))
+		}
 	}
 
 	const googleSucccess = async (res) => {
 		const result = res?.profileObj
 		const token = res?.tokenId
 
-		try {
-			dispatch({
-				type: "SIGN_IN_SUCCESS",
-				payload: { result, token },
-			})
+		dispatch(googleAuth({ result, token }, history))
+		// try {
+		// 	dispatch({
+		// 		type: "AUTH_SUCCESS",
+		// 		payload: { result, token },
+		// 	})
 
-			history.push("/")
-		} catch (err) {
-			dispatch({
-				type: "SIGN_IN_FAIL",
-				payload: err,
-			})
-		}
+		// 	history.push("/")
+		// } catch (err) {
+		// 	dispatch({
+		// 		type: "AUTH_FAIL",
+		// 		payload: err,
+		// 	})
+		// }
 	}
 	const googleFailure = (err) => {
 		console.log(`Error: ${err}`)
@@ -60,9 +68,9 @@ const Auth = () => {
 
 	return (
 		<form className='auth-page' onSubmit={(e) => e.preventDefault()}>
-			<img src={logo} alt='logo' className={signIn ? "custom-img" : ""} />
+			<img src={logo} alt='logo' className={showSignin ? "custom-img" : ""} />
 			<div className='credentials'>
-				{!signIn && (
+				{!showSignin && (
 					<div className='input-bar'>
 						<input
 							type='text'
@@ -107,7 +115,7 @@ const Auth = () => {
 						/>
 					)}
 				</div>
-				{!signIn && (
+				{!showSignin && (
 					<div className='input-bar-icon'>
 						<BsFillLockFill className='icon' />
 						<input
@@ -122,7 +130,7 @@ const Auth = () => {
 			<div className='actions'>
 				<div className='btns'>
 					<button className='btn-large' onClick={handleSubmit}>
-						Sign {signIn ? "in" : "up"}
+						Sign {showSignin ? "in" : "up"}
 					</button>
 					<p className='or'>or</p>
 					<GoogleLogin
@@ -135,7 +143,7 @@ const Auth = () => {
 								disabled={renderProps.disabled}
 							>
 								<FcGoogle className='icon' />
-								<p>Sign {signIn ? "in" : "up"} with Google</p>
+								<p>Sign {showSignin ? "in" : "up"} with Google</p>
 							</button>
 						)}
 						onSuccess={googleSucccess}
@@ -144,8 +152,8 @@ const Auth = () => {
 					/>
 				</div>
 				<div className='bottom-actions'>
-					<p>{signIn ? "Don't" : "Already"} have an account?</p>
-					<button onClick={switcher}>Sign {!signIn ? "in" : "up"}</button>
+					<p>{showSignin ? "Don't" : "Already"} have an account?</p>
+					<button onClick={switcher}>Sign {!showSignin ? "in" : "up"}</button>
 				</div>
 			</div>
 		</form>

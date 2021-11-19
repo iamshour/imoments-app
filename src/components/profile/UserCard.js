@@ -6,7 +6,6 @@ const UserCard = ({ name, avatar }) => {
 			<div className='left'>
 				<img src={avatar} alt={name} />
 				<h1>{name}</h1>
-				<h2>@iamshour</h2>
 			</div>
 			<div className='right'>
 				<div className='top-btns'>

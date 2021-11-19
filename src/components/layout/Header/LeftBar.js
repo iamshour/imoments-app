@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { useDispatch } from "react-redux"
+import { presets } from "components/utility/utilis"
 //icons/assets
 import logo from "images/logo.png"
 import { BsBookmarks, BsInfoCircle, BsLock } from "react-icons/bs"
@@ -17,12 +18,6 @@ const LeftBar = ({ user, setUser }) => {
 
 	const history = useHistory()
 	const dispatch = useDispatch()
-
-	const userInfo = {
-		name: "Ali Shour",
-		username: "iamshour",
-		avatar: "https://www.w3schools.com/howto/img_avatar.png",
-	}
 
 	const openLeftBar = () => {
 		setLeftBarOpened(true)
@@ -67,25 +62,31 @@ const LeftBar = ({ user, setUser }) => {
 	return (
 		<>
 			<button className='avatar-wrapper' onClick={openLeftBar}>
-				<img src={user?.result?.imageUrl} alt={userInfo.name} />
+				<img
+					src={user?.user?.avatar ? user?.user?.avatar : presets?.avatar}
+					alt={user?.user?.name}
+				/>
 			</button>
 			{leftBarOpened && (
 				<div className='backdrop' onClick={closeLeftBar}>
 					<div className='left-bar'>
 						<div className='left-bar-upper'>
 							<Link
-								to={`/profile/${user?.result?.googleId}`}
+								to={`/profile/${user?.user?._id}`}
 								className='user-info'
 								onClick={closeLeftBar}
 							>
-								<img src={user?.result?.imageUrl} alt={user?.result?.name} />
-								<h1>{user?.result?.name}</h1>
-								<h2>{userInfo.username}</h2>
+								<img
+									src={
+										user?.user?.avatar ? user?.user?.avatar : presets?.avatar
+									}
+								/>
+								<h1>{user?.user?.name}</h1>
 							</Link>
 						</div>
 						<div className='left-bar-links'>
 							<Link
-								to={`/profile/${user?.result?.googleId}`}
+								to={`/profile/${user?.user?._id}`}
 								className='link-container'
 								onClick={closeLeftBar}
 							>
@@ -117,7 +118,7 @@ const LeftBar = ({ user, setUser }) => {
 								<h3>Report a problem</h3>
 							</Link>
 							<Link
-								to='about'
+								to='/about'
 								className='link-container'
 								onClick={closeLeftBar}
 							>

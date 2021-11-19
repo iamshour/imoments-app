@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useLocation } from "react-router"
 //comps
 import LeftBar from "./LeftBar"
+import { titleFunc, backIcon } from "components/utility/utilis"
 //icons
 import { FiSun } from "react-icons/fi"
 import { BsFillMoonFill } from "react-icons/bs"
@@ -47,40 +48,8 @@ const Header = () => {
 		}
 	}
 
-	const icon =
-		location.pathname === "/profile" ||
-		location.pathname === `/profile/${user?.result?.googleId}` ||
-		location.pathname === "/changepass" ||
-		location.pathname === "/bookmarks" ||
-		location.pathname === "/report" ||
-		location.pathname === "/about" ? (
-			<Link to='/' className='go-back'>
-				<IoArrowBackOutline className='icon' />
-			</Link>
-		) : null
-
-	const title =
-		location.pathname === "/search"
-			? "Search for users"
-			: location.pathname === "/notifications"
-			? "Notifications"
-			: location.pathname === "/addpost"
-			? "Add a post"
-			: location.pathname === "/profile"
-			? "Profile"
-			: location.pathname === `/profile/${user?.result?.googleId}`
-			? "Profile"
-			: location.pathname === "/changepass"
-			? "Change your password"
-			: location.pathname === "/bookmarks"
-			? "Bookmarked Posts"
-			: location.pathname === "/report"
-			? "Report a problem"
-			: location.pathname === "/report"
-			? "Report a problem"
-			: location.pathname === "/about"
-			? "About imoments app"
-			: null
+	const title = titleFunc(location, user)
+	const icon = backIcon(location, user, Link, IoArrowBackOutline)
 
 	return (
 		<header>
