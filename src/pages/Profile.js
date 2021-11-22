@@ -5,26 +5,21 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router"
 import { getSingleUser } from "redux/actions/user"
+import { getUserPosts } from "redux/actions/posts"
 import { useLocation } from "react-router"
 
 const Profile = () => {
 	const params = useParams()
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const user = useSelector((state) => state?.user)
-	const currentUser = JSON.parse(localStorage.getItem("User"))
 
-	const customPost = [
-		{
-			id: 2,
-			name: "Sam Jade",
-			time: "45 mins ago",
-			avatar: "https://www.w3schools.com/howto/img_avatar.png",
-			caption:
-				"Lorem ipsum dolor sit amet, adhuc nulla definiebas mei ad, ei doming aperiam delicata est.",
-			img: "https://picsum.photos/536/354",
-		},
-	]
+	const user = useSelector((state) => state?.user)?.user
+	const { posts } = useSelector((state) => state?.posts)
+	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
+
+	useEffect(() => {
+		dispatch(getUserPosts(params.id))
+	}, [location.pathname])
 
 	useEffect(() => {
 		dispatch(getSingleUser(params.id))
@@ -33,30 +28,30 @@ const Profile = () => {
 	return (
 		<div className='profile-page'>
 			<UserCard
-				name={user?.user?.name}
-				avatar={user?.user?.avatar ? user?.user?.avatar : presets.avatar}
+				name={user?.name}
+				avatar={user?.avatar ? user?.avatar : presets.avatar}
 				nb={"3"}
-				id={user?.user?._id}
+				id={user?._id}
 			/>
-			{currentUser?.user?._id === params?.id ? (
+			{currentUserId === params?.id ? (
 				<h5>My Posts</h5>
 			) : (
 				<h5>
-					{user?.user?.name?.split(" ")[0]?.charAt(0)?.toUpperCase() +
-						user?.user?.name?.split(" ")[0]?.slice(1)}
+					{user?.name?.split(" ")[0]?.charAt(0)?.toUpperCase() +
+						user?.name?.split(" ")[0]?.slice(1)}
 					's posts
 				</h5>
 			)}
 			<div className='cards-container'>
-				{customPost.map((postCreator) => (
+				{posts?.map((post) => (
 					<Card
-						key={postCreator.id}
-						id={postCreator.id}
-						avatar={user?.user?.avatar ? user?.user?.avatar : presets.avatar}
-						name={postCreator?.name}
-						img={postCreator?.img}
-						caption={postCreator.caption}
-						time={postCreator.time}
+						key={post._id}
+						id={user?._id}
+						avatar={user?.avatar ? user?.avatar : presets.avatar}
+						name={user?.name}
+						img={post?.postImg}
+						caption={post?.caption}
+						time={new Date(post?.createdAt).toDateString()}
 					/>
 				))}
 			</div>

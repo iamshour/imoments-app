@@ -1,49 +1,46 @@
+import { useRef } from "react"
 import { useState } from "react"
 import { FcAddImage } from "react-icons/fc"
 import { IoMdCheckmarkCircleOutline, IoMdClose } from "react-icons/io"
+import { useDispatch, useSelector } from "react-redux"
+import { CapUpload, ImgUpload } from "redux/actions/posts"
 
 const AddPost = () => {
+	const dispatch = useDispatch()
+	const success = useSelector((state) => state?.posts)
 	const [charCount, setCharCount] = useState(0)
 	const [file, setFile] = useState()
-	const [formData, setFormData] = useState({
-		creator: "",
-		caption: "",
-		imgFile: "",
-	})
-
-	// const [message, setMessage] = useState("")
+	const captionRef = useRef()
+	const user = JSON.parse(localStorage.getItem("User"))
 
 	const imgChange = (e) => {
 		if (e.target.files[0]) {
 			setFile(e.target.files[0])
-			console.log(e.target.files[0])
 		}
 	}
 
 	const addPost = async (e) => {
 		e.preventDefault()
+		const creatorId = user?.user?._id
+		const caption = captionRef.current.value
+
+		if (file && !caption) {
+			const imgData = new FormData()
+			imgData.set("image", file)
+			imgData.set("creatorId", creatorId)
+			dispatch(ImgUpload(imgData))
+		} else if (caption && !file) {
+			dispatch(CapUpload({ creatorId, caption }))
+		} else if (file && caption) {
+			const imgData = new FormData()
+			imgData.set("image", file)
+			imgData.set("caption", caption)
+			imgData.set("creatorId", creatorId)
+
+			dispatch(ImgUpload(imgData))
+		}
 	}
-
-	// const addPost = async (e) => {
-	// 	const formData = new FormData()
-	// 	formData.append("avatar", file)
-
-	// 	try {
-	// 		const res = await axios.post("/post", formData, {
-	// 			headers: {
-	// 				"Content-Type": "multipart/form-data",
-	// 			},
-	// 		})
-
-	// 		const { avatar } = res.data
-	// 	} catch (err) {
-	// 		if (err.response.status === 500) {
-	// 			setMessage("Theres a server issue")
-	// 		} else {
-	// 			setMessage(err.response.data.msg)
-	// 		}
-	// 	}
-	// }
+	console.log(success)
 
 	return (
 		<div className='addpost-page'>
@@ -70,6 +67,7 @@ const AddPost = () => {
 								type='file'
 								style={{ display: "none" }}
 								id='add-img'
+								value={file}
 								onChange={imgChange}
 								accept='.jpg, .jpeg, .png'
 							/>
@@ -92,17 +90,16 @@ const AddPost = () => {
 						rows='10'
 						placeholder='Add caption here...'
 						maxLength='320'
-						value={formData.caption}
+						ref={captionRef}
 						onChange={(e) => {
 							setCharCount(e.target.value.length)
-							setFormData({ ...formData, caption: e.target.value })
 						}}
 					/>
 				</div>
 				<div className='input-bar tags'>
 					<input type='text' placeholder='Add tags (optional)' />
 				</div>
-				<button className='btn-large'>
+				<button className='btn-large' type='submit'>
 					<p>Post</p>
 					<IoMdCheckmarkCircleOutline className='icon' />
 				</button>

@@ -1,14 +1,60 @@
-// import * as api from "api/index"
+import * as api from "api/index"
 
-// export const getPosts = () => async (dispatch) => {
-// 	try {
-// 		const { data } = await api.fetchPosts()
+export const ImgUpload = (imgData) => async (dispatch) => {
+	try {
+		const { data } = await api.uploadImg(imgData)
+		dispatch({
+			type: "CREATE_POST",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+export const CapUpload = (capData) => async (dispatch) => {
+	try {
+		const { data } = await api.uploadCaption(capData)
+		dispatch({
+			type: "CREATE_POST",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
 
-// 		dispatch({
-// 			type: "GET_POSTS",
-// 			payload: data,
-// 		})
-// 	} catch (err) {
-// 		console.log(err.msg)
-// 	}
-// }
+export const getTimeline = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getPosts(userId)
+		dispatch({
+			type: "GET_TIMELINE_POSTS",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const getUserPosts = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getUserPosts(userId)
+		dispatch({
+			type: "GET_USER_POSTS",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}

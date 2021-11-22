@@ -1,12 +1,12 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
-// import posts from "./reducers/posts"
+import { posts } from "./reducers/posts"
 import { auth } from "./reducers/auth"
 import { user } from "./reducers/user"
 import { utility } from "./reducers/utility"
 
 const reducer = combineReducers({
-	// posts,
+	posts,
 	auth,
 	user,
 	utility,
