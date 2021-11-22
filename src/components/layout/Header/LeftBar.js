@@ -80,6 +80,7 @@ const LeftBar = ({ user, setUser }) => {
 									src={
 										user?.user?.avatar ? user?.user?.avatar : presets?.avatar
 									}
+									alt={user?.user?.name || "User avatar"}
 								/>
 								<h1>{user?.user?.name}</h1>
 							</Link>

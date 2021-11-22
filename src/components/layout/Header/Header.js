@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router"
+import { useHistory, useLocation } from "react-router"
 //comps
 import LeftBar from "./LeftBar"
 import { titleFunc, backIcon } from "components/utility/utilis"
@@ -7,12 +7,14 @@ import { titleFunc, backIcon } from "components/utility/utilis"
 import { FiSun } from "react-icons/fi"
 import { BsFillMoonFill } from "react-icons/bs"
 import { IoArrowBackOutline } from "react-icons/io5"
-import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const Header = () => {
 	const [theme, setTheme] = useState("light")
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem("User")))
+	const otherUser = useSelector((state) => state?.user?.user)
 	const location = useLocation()
+	const history = useHistory()
 
 	useEffect(() => {
 		// const token = user?.token
@@ -48,8 +50,14 @@ const Header = () => {
 		}
 	}
 
-	const title = titleFunc(location, user)
-	const icon = backIcon(location, user, Link, IoArrowBackOutline)
+	const title = titleFunc(location, user, otherUser && otherUser)
+	const icon = backIcon(
+		location,
+		user,
+		otherUser && otherUser,
+		history,
+		IoArrowBackOutline
+	)
 
 	return (
 		<header>

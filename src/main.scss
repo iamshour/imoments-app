@@ -204,6 +204,13 @@ button {
 	}
 }
 
+.following-btn {
+	color: var(--main-color);
+	transform: translateY(-1px);
+	background: white;
+	border-color: var(--main-color);
+}
+
 div,
 input,
 textarea,

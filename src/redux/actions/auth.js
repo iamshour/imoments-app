@@ -1,5 +1,4 @@
 import * as api from "api/index"
-import axios from "axios"
 
 export const signUp = (formData, history) => async (dispatch) => {
 	try {
@@ -13,7 +12,7 @@ export const signUp = (formData, history) => async (dispatch) => {
 		history.push("/")
 	} catch (err) {
 		dispatch({
-			type: "AUTH_FAIL",
+			type: "ERROR",
 			payload: err,
 		})
 	}
@@ -31,7 +30,7 @@ export const signIn = (formData, history) => async (dispatch) => {
 		history.push("/")
 	} catch (err) {
 		dispatch({
-			type: "AUTH_FAIL",
+			type: "ERROR",
 			payload: err,
 		})
 	}
@@ -49,7 +48,7 @@ export const googleAuth = (googleData, history) => async (dispatch) => {
 		history.push("/")
 	} catch (err) {
 		dispatch({
-			type: "AUTH_FAILED",
+			type: "ERROR",
 			payload: err,
 		})
 	}

@@ -1,4 +1,4 @@
-export const titleFunc = (location, user) => {
+export const titleFunc = (location, user, otherUser) => {
 	const title =
 		location.pathname === "/search"
 			? "Search for users"
@@ -9,7 +9,12 @@ export const titleFunc = (location, user) => {
 			: location.pathname === "/profile"
 			? "Profile"
 			: location.pathname === `/profile/${user?.user?._id}`
-			? "Profile"
+			? "My profile"
+			: location.pathname === `/profile/${otherUser?._id}`
+			? `${
+					otherUser?.name?.split(" ")[0]?.charAt(0)?.toUpperCase() +
+					otherUser?.name?.split(" ")[0]?.slice(1)
+			  }'s profile`
 			: location.pathname === "/changepass"
 			? "Change your password"
 			: location.pathname === "/bookmarks"
@@ -24,18 +29,24 @@ export const titleFunc = (location, user) => {
 
 	return title
 }
-
-export const backIcon = (location, user, Link, IoArrowBackOutline) => {
+export const backIcon = (
+	location,
+	user,
+	otherUser,
+	history,
+	IoArrowBackOutline
+) => {
 	const icon =
 		location.pathname === "/profile" ||
 		location.pathname === `/profile/${user?.user?._id}` ||
+		location.pathname === `/profile/${otherUser?._id}` ||
 		location.pathname === "/changepass" ||
 		location.pathname === "/bookmarks" ||
 		location.pathname === "/report" ||
 		location.pathname === "/about" ? (
-			<Link to='/' className='go-back'>
+			<button onClick={() => history.goBack()} className='go-back'>
 				<IoArrowBackOutline className='icon' />
-			</Link>
+			</button>
 		) : null
 
 	return icon

@@ -1,7 +1,7 @@
 import Card from "components/card/Card"
 // import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
-import { getPosts } from "redux/actions/posts"
+// import { useEffect } from "react"
+// import { getPosts } from "redux/actions/posts"
 
 const Home = () => {
 	// const dispatch = useDispatch()

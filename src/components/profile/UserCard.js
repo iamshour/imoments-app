@@ -1,6 +1,9 @@
+import FollowBtn from "components/utility/FollowBtn"
 import { FiUserCheck, FiUsers } from "react-icons/fi"
 
-const UserCard = ({ name, avatar }) => {
+const UserCard = ({ name, avatar, id }) => {
+	const currentUser = JSON.parse(localStorage.getItem("User"))
+
 	return (
 		<div className='user-card'>
 			<div className='left'>
@@ -25,9 +28,13 @@ const UserCard = ({ name, avatar }) => {
 						you to deteca
 					</p>
 				</div>
-				<button className='btn-medium'>
-					<p>Edit Profile</p>
-				</button>
+				{currentUser?.user?._id === id ? (
+					<button className='btn-medium'>
+						<p>Edit Profile</p>
+					</button>
+				) : (
+					<FollowBtn className='profile-follow' />
+				)}
 			</div>
 		</div>
 	)

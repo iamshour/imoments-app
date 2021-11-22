@@ -1,37 +1,30 @@
-import { useState } from "react"
+import FollowBtn from "components/utility/FollowBtn"
 import { Link } from "react-router-dom"
 //icons
-import { FiUserPlus, FiUserCheck } from "react-icons/fi"
 
-const ResultCard = ({ id, name, username, avatar }) => {
-	const [followed, setFollowed] = useState(false)
+const ResultCard = ({ id, name, avatar }) => {
+	const currentUser = JSON.parse(localStorage.getItem("User"))
+
 	return (
 		<div className='result-card'>
-			<Link className='bg' to={`/user/${id}`} />
+			<Link className='bg' to={`/profile/${id}`} />
 			<div className='left'>
 				<img src={avatar} alt={name} />
 				<div className='info'>
 					<h1>{name}</h1>
-					<h2>@{username}</h2>
 				</div>
 			</div>
 			<div className='right'>
-				<button
-					className={`btn-medium ${followed && "following"}`}
-					onClick={() => setFollowed(!followed)}
-				>
-					{!followed ? (
-						<>
-							<p>Follow</p>
-							<FiUserPlus className='icon' />
-						</>
-					) : (
-						<>
-							<p>Following</p>
-							<FiUserCheck className='icon' />
-						</>
-					)}
-				</button>
+				{id !== currentUser?.user?._id ? (
+					<FollowBtn />
+				) : (
+					<Link
+						to={`/profile/${currentUser?.user?._id}`}
+						className='btn-medium'
+					>
+						<p>View profile</p>
+					</Link>
+				)}
 			</div>
 		</div>
 	)

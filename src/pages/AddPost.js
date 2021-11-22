@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { FcAddImage } from "react-icons/fc"
 import { IoMdCheckmarkCircleOutline, IoMdClose } from "react-icons/io"
-import axios from "axios"
 
 const AddPost = () => {
 	const [charCount, setCharCount] = useState(0)
@@ -12,7 +11,7 @@ const AddPost = () => {
 		imgFile: "",
 	})
 
-	const [message, setMessage] = useState("")
+	// const [message, setMessage] = useState("")
 
 	const imgChange = (e) => {
 		if (e.target.files[0]) {
@@ -23,25 +22,28 @@ const AddPost = () => {
 
 	const addPost = async (e) => {
 		e.preventDefault()
-		const formData = new FormData()
-		formData.append("avatar", file)
-
-		try {
-			const res = await axios.post("/post", formData, {
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
-			})
-
-			const { avatar } = res.data
-		} catch (err) {
-			if (err.response.status === 500) {
-				setMessage("Theres a server issue")
-			} else {
-				setMessage(err.response.data.msg)
-			}
-		}
 	}
+
+	// const addPost = async (e) => {
+	// 	const formData = new FormData()
+	// 	formData.append("avatar", file)
+
+	// 	try {
+	// 		const res = await axios.post("/post", formData, {
+	// 			headers: {
+	// 				"Content-Type": "multipart/form-data",
+	// 			},
+	// 		})
+
+	// 		const { avatar } = res.data
+	// 	} catch (err) {
+	// 		if (err.response.status === 500) {
+	// 			setMessage("Theres a server issue")
+	// 		} else {
+	// 			setMessage(err.response.data.msg)
+	// 		}
+	// 	}
+	// }
 
 	return (
 		<div className='addpost-page'>
@@ -49,7 +51,10 @@ const AddPost = () => {
 				{file ? (
 					<div className='top top-img'>
 						<div className='img-wrapper'>
-							<img src={URL.createObjectURL(file)} alt='image' />
+							<img
+								src={URL.createObjectURL(file)}
+								alt="user's selection to upload"
+							/>
 							<button className='btn-icon' onClick={() => setFile()}>
 								<IoMdClose className='icon' />
 							</button>

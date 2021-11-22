@@ -1,49 +1,79 @@
-import ResultCard from "components/search/ResultCard"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { clearTab, searchUser } from "redux/actions/user"
+//comps
+import { presets } from "components/utility/utilis"
+import ResultCard from "components/search/ResultCard"
+//icons
 import { BsSearch } from "react-icons/bs"
+import { RiSendPlane2Fill } from "react-icons/ri"
+import { useEffect } from "react"
+import { useLocation } from "react-router"
 
 const Search = () => {
+	const dispatch = useDispatch()
+	const location = useLocation()
 	const [input, setInput] = useState("")
+	const [showBtn, setShowBtn] = useState(false)
+	const { results, error } = useSelector((state) => state.user)
+	const { loading } = useSelector((state) => state.utility)
 
-	const exampleUsers = [
-		{
-			avatar: "https://www.w3schools.com/howto/img_avatar.png",
-			name: "Samuel Brad",
-			username: "aliopwer",
-			id: "998",
-		},
-		{
-			avatar: "https://www.w3schools.com/howto/img_avatar.png",
-			name: "Jack Bross",
-			username: "jackbross12",
-			id: "95",
-		},
-	]
+	const submitSearch = (e) => {
+		e.preventDefault()
+		dispatch(searchUser(input))
+	}
+
+	useEffect(() => {
+		return () => {
+			setInput("")
+		}
+	}, [results])
+
+	useEffect(() => {
+		clearTab(dispatch)
+	}, [location.pathname, dispatch])
 
 	return (
 		<div className='search-page'>
-			<div className='input-bar-icon search-bar'>
+			<form className='input-bar-icon search-bar' onSubmit={submitSearch}>
 				<BsSearch className='icon' />
 				<input
 					type='text'
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
 					placeholder='search for users'
+					onFocus={() => setShowBtn(true)}
+					onBlur={() =>
+						setTimeout(() => {
+							setShowBtn(!showBtn)
+						}, 1000)
+					}
 				/>
-			</div>
-			{exampleUsers.length > 0 && (
+				{showBtn && (
+					<button>
+						<RiSendPlane2Fill type='submit' className='icon' />
+					</button>
+				)}
+			</form>
+
+			{loading ? (
+				<div>loading...</div>
+			) : !error && results?.length > 0 && results !== null ? (
 				<div className='results'>
-					{exampleUsers.map((user) => (
+					{results.map((user) => (
 						<ResultCard
-							key={user.id}
-							id={user.id}
-							name={user.name}
-							username={user.username}
-							avatar={user.avatar}
+							key={user?._id}
+							id={user?._id}
+							name={user?.name}
+							avatar={user?.avatar ? user?.avatar : presets.avatar}
 						/>
 					))}
 				</div>
-			)}
+			) : error ? (
+				<div className='no-results'>
+					<p>{error}</p>
+				</div>
+			) : null}
 		</div>
 	)
 }

@@ -4,7 +4,8 @@ import { useLocation } from "react-router"
 import { AiFillHome } from "react-icons/ai"
 import { BsSearch } from "react-icons/bs"
 import { BsPlusLg } from "react-icons/bs"
-import { VscBell, VscBellDot } from "react-icons/vsc"
+import { VscBell } from "react-icons/vsc"
+// VscBellDot
 
 const Navbar = () => {
 	const location = useLocation()

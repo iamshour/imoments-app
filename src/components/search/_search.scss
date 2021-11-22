@@ -5,6 +5,16 @@
 		height: auto;
 		margin: 0 auto;
 		margin-bottom: 4rem;
+		button {
+			cursor: pointer;
+			width: 2.4rem;
+			height: 2.4rem;
+			padding: 0;
+			margin: 0;
+			.icon {
+				margin: 0;
+			}
+		}
 	}
 
 	.results {
@@ -35,7 +45,7 @@
 
 			&:hover,
 			&:active {
-				transform: translateY(-4px);
+				transform: translateY(-2px);
 			}
 
 			.left {
@@ -60,13 +70,22 @@
 				flex-direction: column;
 				position: relative;
 				z-index: 1;
-				.following {
-					color: var(--main-color);
-					transform: translateY(-1px);
-					background: white;
-					border-color: var(--main-color);
-				}
 			}
+			.right-custom {
+				z-index: -1;
+			}
+		}
+	}
+
+	.no-results {
+		margin: 0 auto;
+		width: 90%;
+		max-width: 72rem;
+		padding: 1.6rem;
+		position: relative;
+		@include card-glass;
+		p {
+			font-size: 1.6rem;
 		}
 	}
 }
