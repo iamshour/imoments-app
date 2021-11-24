@@ -1,19 +1,20 @@
-import { AiOutlineEllipsis } from "react-icons/ai"
-import { IoMdClose } from "react-icons/io"
 import { Link } from "react-router-dom"
 import Dropdown from "./Dropdown"
+//icons
+import { AiOutlineEllipsis } from "react-icons/ai"
+import { IoMdClose } from "react-icons/io"
 
 const CardUpper = ({
+	avatar,
+	creatorId,
 	name,
 	time,
-	avatar,
 	optionsClicked,
 	setOptionsClicked,
-	id,
 }) => {
 	return (
 		<div className='card-upper'>
-			<Link to={`/user/${id}`} className='left'>
+			<Link to={`/profile/${creatorId}`} className='left'>
 				<img src={avatar} alt={name} />
 				<div className='info'>
 					<h1>{name}</h1>

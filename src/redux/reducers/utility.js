@@ -1,9 +1,17 @@
-export const utility = (state = { error: null, loading: false }, action) => {
+export const utility = (
+	state = { notification: null, loading: false, modalStatus: false },
+	action
+) => {
 	switch (action.type) {
-		case "ERROR":
+		case "SET_MODAL":
 			return {
 				...state,
-				error: action.payload,
+				modalStatus: action.payload,
+			}
+		case "NOTIFICATION":
+			return {
+				...state,
+				notification: action.payload,
 			}
 		case "LOADING_START":
 			return {

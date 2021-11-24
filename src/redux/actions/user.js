@@ -3,6 +3,9 @@ import * as api from "api/index"
 export const getSingleUser = (id) => async (dispatch) => {
 	try {
 		dispatch({
+			type: "CLEAR_TAB",
+		})
+		dispatch({
 			type: "LOADING_START",
 		})
 		const { data } = await api.getUser(id)
@@ -15,7 +18,7 @@ export const getSingleUser = (id) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
-			type: "ERROR",
+			type: "NOTIFICATION",
 			payload: error.response.data.message,
 		})
 	}

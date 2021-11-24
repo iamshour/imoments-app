@@ -4,12 +4,18 @@ export const ImgUpload = (imgData) => async (dispatch) => {
 	try {
 		const { data } = await api.uploadImg(imgData)
 		dispatch({
+			type: "LOADING_START",
+		})
+		dispatch({
 			type: "CREATE_POST",
 			payload: data,
 		})
+		dispatch({
+			type: "LOADING_FINISH",
+		})
 	} catch (error) {
 		dispatch({
-			type: "ERROR",
+			type: "NOTIFICATION",
 			payload: error.response.data.message,
 		})
 	}
@@ -18,12 +24,18 @@ export const CapUpload = (capData) => async (dispatch) => {
 	try {
 		const { data } = await api.uploadCaption(capData)
 		dispatch({
+			type: "LOADING_START",
+		})
+		dispatch({
 			type: "CREATE_POST",
 			payload: data,
 		})
+		dispatch({
+			type: "LOADING_FINISH",
+		})
 	} catch (error) {
 		dispatch({
-			type: "ERROR",
+			type: "NOTIFICATION",
 			payload: error.response.data.message,
 		})
 	}
@@ -38,7 +50,7 @@ export const getTimeline = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
-			type: "ERROR",
+			type: "NOTIFICATION",
 			payload: error.response.data.message,
 		})
 	}
@@ -53,7 +65,7 @@ export const getUserPosts = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
-			type: "ERROR",
+			type: "NOTIFICATION",
 			payload: error.response.data.message,
 		})
 	}

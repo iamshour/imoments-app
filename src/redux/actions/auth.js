@@ -10,10 +10,10 @@ export const signUp = (formData, history) => async (dispatch) => {
 		})
 
 		history.push("/")
-	} catch (err) {
+	} catch (error) {
 		dispatch({
-			type: "ERROR",
-			payload: err,
+			type: "NOTIFICATION",
+			payload: error,
 		})
 	}
 }
@@ -28,10 +28,10 @@ export const signIn = (formData, history) => async (dispatch) => {
 		})
 
 		history.push("/")
-	} catch (err) {
+	} catch (error) {
 		dispatch({
-			type: "ERROR",
-			payload: err,
+			type: "NOTIFICATION",
+			payload: error,
 		})
 	}
 }
@@ -46,10 +46,10 @@ export const googleAuth = (googleData, history) => async (dispatch) => {
 		})
 
 		history.push("/")
-	} catch (err) {
+	} catch (error) {
 		dispatch({
-			type: "ERROR",
-			payload: err,
+			type: "NOTIFICATION",
+			payload: error,
 		})
 	}
 }

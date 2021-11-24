@@ -13,13 +13,18 @@ const Profile = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 
+	//getting this user by id
 	const user = useSelector((state) => state?.user)?.user
 	const { posts } = useSelector((state) => state?.posts)
 	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
 
 	useEffect(() => {
 		dispatch(getUserPosts(params.id))
-	}, [location.pathname])
+
+		return () => {
+			dispatch(getUserPosts())
+		}
+	}, [location, dispatch, params.id])
 
 	useEffect(() => {
 		dispatch(getSingleUser(params.id))
@@ -46,9 +51,7 @@ const Profile = () => {
 				{posts?.map((post) => (
 					<Card
 						key={post._id}
-						id={user?._id}
-						avatar={user?.avatar ? user?.avatar : presets.avatar}
-						name={user?.name}
+						creatorId={post?.creatorId}
 						img={post?.postImg}
 						caption={post?.caption}
 						time={new Date(post?.createdAt).toDateString()}
