@@ -1,24 +1,24 @@
 export const posts = (
 	state = { success: null, posts: null, timeline: null },
-	action
+	{ type, payload }
 ) => {
-	switch (action.type) {
+	switch (type) {
 		case "GET_TIMELINE_POSTS":
 			return {
 				...state,
-				timeline: action.payload,
+				timeline: payload,
 			}
 
 		case "GET_USER_POSTS":
 			return {
 				...state,
-				posts: action.payload,
+				posts: payload,
 			}
 
 		case "CREATE_POST":
 			return {
 				...state,
-				success: action.payload,
+				success: payload,
 			}
 
 		default:

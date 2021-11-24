@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react"
 import { useLocation } from "react-router"
-import { useDispatch } from "react-redux"
-import { setModalStatus } from "redux/actions/utility"
-import axios from "axios"
 //comps
 import CardUpper from "./Card-upper/CardUpper"
 import Socials from "./Socials/Socials"
@@ -12,7 +9,6 @@ import { presets } from "components/utility/utilis"
 import { getUser } from "api"
 
 const Card = ({ creatorId, img, caption, time }) => {
-	const dispatch = useDispatch()
 	const location = useLocation()
 	const [postCreator, setPostCreator] = useState(null)
 
@@ -25,19 +21,27 @@ const Card = ({ creatorId, img, caption, time }) => {
 			setPostCreator(data)
 		}
 		customFunc()
+
+		return () => {
+			setPostCreator({})
+		}
 	}, [location])
 
 	const openImg = () => {
-		dispatch(setModalStatus(true))
 		setOptionsClicked(false)
 		setImgOpenned(true)
 		document.querySelector("html").style.overflowY = "hidden"
+		document.querySelector("header").style.display = "none"
+		location.pathname === "/" &&
+			(document.querySelector("nav").style.display = "none")
 	}
 
 	const closeImg = (e) => {
-		dispatch(setModalStatus(false))
 		setImgOpenned(false)
+		document.querySelector("header").style.display = "unset"
 		document.querySelector("html").style.overflowY = "visible"
+		location.pathname === "/" &&
+			(document.querySelector("nav").style.display = "unset")
 	}
 
 	return (

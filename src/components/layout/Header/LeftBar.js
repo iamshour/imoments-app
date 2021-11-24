@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
-import { useDispatch } from "react-redux"
+import { signOut } from "redux/actions/auth"
 import { presets } from "components/utility/utilis"
 //icons/assets
 import logo from "images/logo.png"
@@ -11,13 +11,14 @@ import { AiOutlineCheck } from "react-icons/ai"
 import { FiUser } from "react-icons/fi"
 import { CgSupport } from "react-icons/cg"
 import { IoLogOutOutline } from "react-icons/io5"
+import { useDispatch } from "react-redux"
 
 const LeftBar = ({ user, setUser }) => {
+	const dispatch = useDispatch()
 	const [leftBarOpened, setLeftBarOpened] = useState(false)
-	const [signOutClicked, setSignOutClicked] = useState(false)
+	const [modalOpened, setModalOpened] = useState(false)
 
 	const history = useHistory()
-	const dispatch = useDispatch()
 
 	const openLeftBar = () => {
 		setLeftBarOpened(true)
@@ -33,7 +34,7 @@ const LeftBar = ({ user, setUser }) => {
 	}
 	const signOutModel = () => {
 		setLeftBarOpened(false)
-		setSignOutClicked(true)
+		setModalOpened(true)
 		document.querySelector("nav").style.display = "hidden"
 	}
 	const signOutModelClose = (e) => {
@@ -42,21 +43,14 @@ const LeftBar = ({ user, setUser }) => {
 			e.target.classList.contains("close-modal")
 		) {
 			setLeftBarOpened(false)
-			setSignOutClicked(false)
+			setModalOpened(false)
 			document.querySelector("nav").style.display = "unset"
 		}
 	}
 	const signOutBtnClose = (e) => {
 		setLeftBarOpened(false)
-		setSignOutClicked(false)
+		setModalOpened(false)
 		document.querySelector("nav").style.display = "unset"
-	}
-	const signOut = () => {
-		dispatch({
-			type: "SIGN_OUT",
-		})
-		history.push("/auth")
-		setUser(null)
 	}
 
 	return (
@@ -137,7 +131,7 @@ const LeftBar = ({ user, setUser }) => {
 					</div>
 				</div>
 			)}
-			{signOutClicked && (
+			{modalOpened && (
 				<div className='backdrop' onClick={signOutModelClose}>
 					<div className='signout-container'>
 						<h3>Are you sure you want to sign out?</h3>
@@ -145,7 +139,10 @@ const LeftBar = ({ user, setUser }) => {
 							<p>Cancel</p>
 							<IoMdClose className='icon' />
 						</button>
-						<button className='btn-large signout-btn' onClick={signOut}>
+						<button
+							className='btn-large signout-btn'
+							onClick={() => dispatch(signOut(history))}
+						>
 							<p>Yes, Sign Out</p>
 							<AiOutlineCheck className='icon' />
 						</button>

@@ -5,17 +5,26 @@ import { auth } from "./reducers/auth"
 import { user } from "./reducers/user"
 import { utility } from "./reducers/utility"
 
-const reducer = combineReducers({
+const allreducers = combineReducers({
 	posts,
 	auth,
 	user,
 	utility,
 })
+
+const rootReducer = (state, action) => {
+	if (action.type === "RESET_APP") {
+		state = undefined
+	}
+
+	return allreducers(state, action)
+}
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const middleware = [thunk]
 
 const store = createStore(
-	reducer,
+	rootReducer,
 	composeEnhancers(applyMiddleware(...middleware))
 )
 

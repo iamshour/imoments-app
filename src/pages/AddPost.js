@@ -8,6 +8,7 @@ import { CapUpload, ImgUpload } from "redux/actions/posts"
 const AddPost = () => {
 	const dispatch = useDispatch()
 	const success = useSelector((state) => state?.posts)
+	const { loading } = useSelector((state) => state?.utility)
 
 	const [charCount, setCharCount] = useState(0)
 	const [file, setFile] = useState()
@@ -42,8 +43,6 @@ const AddPost = () => {
 		}
 	}
 	console.log(success)
-
-	const clear = () => {}
 
 	return (
 		<div className='addpost-page'>

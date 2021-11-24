@@ -1,25 +1,25 @@
 export const user = (
 	state = { user: null, results: null, error: null },
-	action
+	{ type, payload }
 ) => {
-	switch (action.type) {
+	switch (type) {
 		case "GET_USER":
 			return {
 				...state,
 				error: null,
-				user: action.payload,
+				user: payload,
 			}
 		case "SEARCH_USER":
 			return {
 				...state,
 				error: null,
-				results: action.payload,
+				results: payload,
 			}
 		case "NO_RESULTS":
 			return {
 				...state,
 				results: null,
-				error: action.payload,
+				error: payload,
 			}
 		case "CLEAR_TAB":
 			return {

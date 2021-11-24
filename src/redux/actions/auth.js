@@ -53,3 +53,21 @@ export const googleAuth = (googleData, history) => async (dispatch) => {
 		})
 	}
 }
+
+export const signOut = (history) => (dispatch) => {
+	try {
+		dispatch({
+			type: "SIGN_OUT",
+		})
+		dispatch({
+			type: "RESET_APP",
+		})
+
+		history.push("/auth")
+	} catch (error) {
+		dispatch({
+			type: "NOTIFICATION",
+			payload: error,
+		})
+	}
+}
