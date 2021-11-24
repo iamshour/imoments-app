@@ -19,15 +19,28 @@ const Home = () => {
 
 	return (
 		<div className='home-page'>
-			{timeline?.map((post) => (
-				<Card
-					key={post._id}
-					creatorId={post?.creatorId}
-					img={post?.postImg}
-					caption={post?.caption}
-					time={new Date(post?.createdAt).toDateString()}
-				/>
-			))}
+			{timeline?.length > 0 ? (
+				timeline?.map((post) => (
+					<Card
+						key={post._id}
+						creatorId={post?.creatorId}
+						img={post?.postImg}
+						caption={post?.caption}
+						time={new Date(post?.createdAt).toDateString()}
+					/>
+				))
+			) : (
+				<div>
+					<h1>
+						Welcome To imoments, where you can share your favorite moments with
+						your friends &amp; family!
+					</h1>
+					<p>
+						No Posts yet. Add your own posts by clicking on the (+) button
+						below, or follow some new friends!
+					</p>
+				</div>
+			)}
 		</div>
 	)
 }

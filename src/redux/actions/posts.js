@@ -2,16 +2,13 @@ import * as api from "api/index"
 
 export const ImgUpload = (imgData) => async (dispatch) => {
 	try {
-		const { data } = await api.uploadImg(imgData)
 		dispatch({
 			type: "LOADING_START",
 		})
+		const { data } = await api.uploadImg(imgData)
 		dispatch({
 			type: "CREATE_POST",
 			payload: data,
-		})
-		dispatch({
-			type: "LOADING_FINISH",
 		})
 	} catch (error) {
 		dispatch({
@@ -22,16 +19,13 @@ export const ImgUpload = (imgData) => async (dispatch) => {
 }
 export const CapUpload = (capData) => async (dispatch) => {
 	try {
-		const { data } = await api.uploadCaption(capData)
 		dispatch({
 			type: "LOADING_START",
 		})
+		const { data } = await api.uploadCaption(capData)
 		dispatch({
 			type: "CREATE_POST",
 			payload: data,
-		})
-		dispatch({
-			type: "LOADING_FINISH",
 		})
 	} catch (error) {
 		dispatch({

@@ -16,16 +16,16 @@ const Card = ({ creatorId, img, caption, time }) => {
 	const [imgOpenned, setImgOpenned] = useState(false)
 
 	useEffect(() => {
-		const customFunc = async () => {
+		const getPostCreator = async () => {
 			const { data } = await getUser(creatorId)
 			setPostCreator(data)
 		}
-		customFunc()
+		getPostCreator()
 
 		return () => {
 			setPostCreator({})
 		}
-	}, [location])
+	}, [location, creatorId])
 
 	const openImg = () => {
 		setOptionsClicked(false)

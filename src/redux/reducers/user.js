@@ -1,5 +1,5 @@
 export const user = (
-	state = { user: null, results: null, error: null },
+	state = { user: null, results: null, error: null, loading: false },
 	{ type, payload }
 ) => {
 	switch (type) {
@@ -9,11 +9,19 @@ export const user = (
 				error: null,
 				user: payload,
 			}
+
+		case "SEARCH_USER_LOADING":
+			return {
+				...state,
+				loading: true,
+			}
+
 		case "SEARCH_USER":
 			return {
 				...state,
 				error: null,
 				results: payload,
+				loading: false,
 			}
 		case "NO_RESULTS":
 			return {
@@ -21,7 +29,7 @@ export const user = (
 				results: null,
 				error: payload,
 			}
-		case "CLEAR_TAB":
+		case "CLEAR_USER_TAB":
 			return {
 				user: null,
 				error: null,

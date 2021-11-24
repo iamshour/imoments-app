@@ -4,8 +4,8 @@ const Loading = () => {
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				style={{
-					margin: "auto",
-					display: "block",
+					// margin: "auto",
+					// display: "block",
 					shapeRendering: "auto",
 				}}
 				viewBox='0 0 100 100'

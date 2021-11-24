@@ -134,8 +134,7 @@ const Auth = () => {
 					</button>
 					<p className='or'>or</p>
 					<GoogleLogin
-						// clientId={`${process.env.REACT_APP_CLIENT_ID}`}
-						clientId='1062053880590-13hion9ui20mj647tsi5ntdsm2olspcm.apps.googleusercontent.com'
+						clientId={`${process.env.REACT_APP_CLIENT_ID}`}
 						render={(renderProps) => (
 							<button
 								className='btn-google btn-large'

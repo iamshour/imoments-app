@@ -28,6 +28,12 @@ const Profile = () => {
 
 	useEffect(() => {
 		dispatch(getSingleUser(params.id))
+
+		return () => {
+			dispatch({
+				type: "CLEAR_USER_TAB",
+			})
+		}
 	}, [location, dispatch, params.id])
 
 	return (

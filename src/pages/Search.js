@@ -9,6 +9,7 @@ import { BsSearch } from "react-icons/bs"
 import { RiSendPlane2Fill } from "react-icons/ri"
 import { useEffect } from "react"
 import { useLocation } from "react-router"
+import Loading from "components/utility/Loading"
 
 const Search = () => {
 	const dispatch = useDispatch()
@@ -16,22 +17,21 @@ const Search = () => {
 	const [input, setInput] = useState("")
 	const [showBtn, setShowBtn] = useState(false)
 	const { results, error } = useSelector((state) => state.user)
-	const { loading } = useSelector((state) => state.utility)
+	const { loading } = useSelector((state) => state.user)
 
 	const submitSearch = (e) => {
 		e.preventDefault()
 		dispatch(searchUser(input))
+		setInput("")
 	}
 
 	useEffect(() => {
 		return () => {
-			setInput("")
+			dispatch({
+				type: "CLEAR_USER_TAB",
+			})
 		}
-	}, [results])
-
-	useEffect(() => {
-		clearTab(dispatch)
-	}, [location.pathname, dispatch])
+	}, [location, dispatch])
 
 	return (
 		<div className='search-page'>
@@ -57,7 +57,9 @@ const Search = () => {
 			</form>
 
 			{loading ? (
-				<div>loading...</div>
+				<div>
+					<Loading />
+				</div>
 			) : !error && results?.length > 0 && results !== null ? (
 				<div className='results'>
 					{results.map((user) => (

@@ -33,9 +33,15 @@
 
 .loading-container {
 	width: 100%;
+	// height: 60%;
 	height: 100%;
-	position: relative;
-	@include backdrop;
+	@include centering;
+	// position: relative;
+	// @include backdrop;
+
+	svg {
+		width: 70%;
+	}
 
 	.loading {
 		fill: var(--main-color);
