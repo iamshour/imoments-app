@@ -1,14 +1,16 @@
 import FollowBtn from "components/utility/FollowBtn"
+import { presets } from "components/utility/utilis"
 import { FiUserCheck, FiUsers } from "react-icons/fi"
 
-const UserCard = ({ name, avatar, id }) => {
-	const currentUser = JSON.parse(localStorage.getItem("User"))
-
+const UserCard = ({ currentUserId, user }) => {
 	return (
 		<div className='user-card'>
 			<div className='left'>
-				<img src={avatar} alt={name} />
-				<h1>{name}</h1>
+				<img
+					src={user?.avatar ? user?.avatar : presets.avatar}
+					alt={user?.name}
+				/>
+				<h1>{user?.name}</h1>
 			</div>
 			<div className='right'>
 				<div className='top-btns'>
@@ -28,12 +30,16 @@ const UserCard = ({ name, avatar, id }) => {
 						you to deteca
 					</p>
 				</div>
-				{currentUser?.user?._id === id ? (
+				{currentUserId === user?.id ? (
 					<button className='btn-medium'>
 						<p>Edit Profile</p>
 					</button>
 				) : (
-					<FollowBtn className='profile-follow' />
+					<FollowBtn
+						className='profile-follow'
+						userId={user?.id}
+						currentUserId={currentUserId}
+					/>
 				)}
 			</div>
 		</div>

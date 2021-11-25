@@ -1,5 +1,5 @@
 export const posts = (
-	state = { success: null, posts: null, timeline: null, loading: false },
+	state = { success: null, timeline: null, loading: false },
 	{ type, payload }
 ) => {
 	switch (type) {
@@ -12,12 +12,6 @@ export const posts = (
 			return {
 				...state,
 				timeline: payload,
-			}
-
-		case "GET_USER_POSTS":
-			return {
-				...state,
-				posts: payload,
 			}
 
 		case "CREATE_POST":

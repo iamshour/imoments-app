@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { clearTab, searchUser } from "redux/actions/user"
+import { searchUser } from "redux/actions/user"
 //comps
 import { presets } from "components/utility/utilis"
 import ResultCard from "components/search/ResultCard"
@@ -27,6 +27,7 @@ const Search = () => {
 
 	useEffect(() => {
 		return () => {
+			setInput("")
 			dispatch({
 				type: "CLEAR_USER_TAB",
 			})

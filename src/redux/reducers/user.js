@@ -1,5 +1,12 @@
 export const user = (
-	state = { user: null, results: null, error: null, loading: false },
+	state = {
+		user: null,
+		results: null,
+		error: null,
+		loading: false,
+		userProfile: null,
+		currentUserProfile: null,
+	},
 	{ type, payload }
 ) => {
 	switch (type) {
@@ -8,6 +15,18 @@ export const user = (
 				...state,
 				error: null,
 				user: payload,
+			}
+
+		case "GET_USER_PROFILE":
+			return {
+				...state,
+				userProfile: payload,
+			}
+
+		case "GET_CURRENT_USER_PROFILE":
+			return {
+				...state,
+				currentUserProfile: payload,
 			}
 
 		case "SEARCH_USER_LOADING":
@@ -23,6 +42,7 @@ export const user = (
 				results: payload,
 				loading: false,
 			}
+
 		case "NO_RESULTS":
 			return {
 				...state,
@@ -33,6 +53,8 @@ export const user = (
 			return {
 				user: null,
 				error: null,
+				userProfile: null,
+				currentUserProfile: null,
 			}
 
 		default:

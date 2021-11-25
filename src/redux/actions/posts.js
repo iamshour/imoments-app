@@ -49,18 +49,3 @@ export const getTimeline = (userId) => async (dispatch) => {
 		})
 	}
 }
-
-export const getUserPosts = (userId) => async (dispatch) => {
-	try {
-		const { data } = await api.getUserPosts(userId)
-		dispatch({
-			type: "GET_USER_POSTS",
-			payload: data,
-		})
-	} catch (error) {
-		dispatch({
-			type: "NOTIFICATION",
-			payload: error.response.data.message,
-		})
-	}
-}

@@ -10,16 +10,19 @@ import { IoArrowBackOutline } from "react-icons/io5"
 import { useSelector } from "react-redux"
 
 const Header = () => {
-	const [theme, setTheme] = useState("light")
-	const [user, setUser] = useState(JSON.parse(localStorage.getItem("User")))
-	const otherUser = useSelector((state) => state?.user?.user)
-	const location = useLocation()
 	const history = useHistory()
+	const location = useLocation()
+	const [theme, setTheme] = useState("light")
+	const [currentUser, setCurrentUser] = useState(
+		JSON.parse(localStorage.getItem("User"))?.user
+	)
+	const otherUserId = useSelector((state) => state?.user?.userProfile)?.id
+	const otherUserName = useSelector((state) => state?.user?.userProfile)?.name
 
 	useEffect(() => {
 		// const token = user?.token
 
-		setUser(JSON.parse(localStorage.getItem("User")))
+		setCurrentUser(JSON.parse(localStorage.getItem("User"))?.user)
 		//Later JWT here
 	}, [location])
 
@@ -50,11 +53,16 @@ const Header = () => {
 		}
 	}
 
-	const title = titleFunc(location, user, otherUser && otherUser)
+	const title = titleFunc(
+		location,
+		currentUser,
+		otherUserId && otherUserId,
+		otherUserName && otherUserName
+	)
 	const icon = backIcon(
 		location,
-		user,
-		otherUser && otherUser,
+		currentUser,
+		otherUserId && otherUserId,
 		history,
 		IoArrowBackOutline
 	)
@@ -63,7 +71,7 @@ const Header = () => {
 		<header>
 			<div className='header-wrapper'>
 				{location.pathname === "/" ? (
-					<LeftBar user={user} setUser={setUser} />
+					<LeftBar currentUser={currentUser} />
 				) : (
 					<div className='header-info-wrapper'>
 						{icon && icon}

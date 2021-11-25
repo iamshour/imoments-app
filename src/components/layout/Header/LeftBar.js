@@ -13,7 +13,7 @@ import { CgSupport } from "react-icons/cg"
 import { IoLogOutOutline } from "react-icons/io5"
 import { useDispatch } from "react-redux"
 
-const LeftBar = ({ user, setUser }) => {
+const LeftBar = ({ currentUser }) => {
 	const dispatch = useDispatch()
 	const [leftBarOpened, setLeftBarOpened] = useState(false)
 	const [modalOpened, setModalOpened] = useState(false)
@@ -57,8 +57,8 @@ const LeftBar = ({ user, setUser }) => {
 		<>
 			<button className='avatar-wrapper' onClick={openLeftBar}>
 				<img
-					src={user?.user?.avatar ? user?.user?.avatar : presets?.avatar}
-					alt={user?.user?.name}
+					src={currentUser?.avatar ? currentUser?.avatar : presets?.avatar}
+					alt={currentUser?.name}
 				/>
 			</button>
 			{leftBarOpened && (
@@ -66,22 +66,22 @@ const LeftBar = ({ user, setUser }) => {
 					<div className='left-bar'>
 						<div className='left-bar-upper'>
 							<Link
-								to={`/profile/${user?.user?._id}`}
+								to={`/profile/${currentUser._id}`}
 								className='user-info'
 								onClick={closeLeftBar}
 							>
 								<img
 									src={
-										user?.user?.avatar ? user?.user?.avatar : presets?.avatar
+										currentUser.avatar ? currentUser.avatar : presets?.avatar
 									}
-									alt={user?.user?.name || "User avatar"}
+									alt={currentUser.name || "User avatar"}
 								/>
-								<h1>{user?.user?.name}</h1>
+								<h1>{currentUser.name}</h1>
 							</Link>
 						</div>
 						<div className='left-bar-links'>
 							<Link
-								to={`/profile/${user?.user?._id}`}
+								to={`/profile/${currentUser._id}`}
 								className='link-container'
 								onClick={closeLeftBar}
 							>

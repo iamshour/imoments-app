@@ -15,6 +15,38 @@ export const getSingleUser = (id) => async (dispatch) => {
 	}
 }
 
+export const getUserProfile = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getProfile(userId)
+
+		dispatch({
+			type: "GET_USER_PROFILE",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const getCurrentUserProfile = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getProfile(userId)
+
+		dispatch({
+			type: "GET_CURRENT_USER_PROFILE",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
 export const searchUser = (searchTerm) => async (dispatch) => {
 	try {
 		const { data } = await api.searchUser(searchTerm)

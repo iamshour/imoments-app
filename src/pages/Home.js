@@ -9,9 +9,8 @@ const Home = () => {
 	const dispatch = useDispatch()
 	const { timeline } = useSelector((state) => state.posts)
 
-	//Current active user
-	const user = JSON.parse(localStorage.getItem("User"))?.user
-	const userId = user?._id
+	//Current active user Id
+	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
 
 	useEffect(() => {
 		dispatch(getTimeline(userId))
