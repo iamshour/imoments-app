@@ -1,6 +1,7 @@
+import FollowingBtn from "./Btns/FollowingBtn"
+import FollowersBtn from "./Btns/FollowersBtn"
 import FollowBtn from "components/utility/FollowBtn"
 import { presets } from "components/utility/utilis"
-import { FiUserCheck, FiUsers } from "react-icons/fi"
 
 const UserCard = ({ currentUserId, user }) => {
 	return (
@@ -14,14 +15,8 @@ const UserCard = ({ currentUserId, user }) => {
 			</div>
 			<div className='right'>
 				<div className='top-btns'>
-					<button>
-						<FiUserCheck className='icon' />
-						<p>192 followings</p>
-					</button>
-					<button>
-						<FiUsers className='icon' />
-						<p>234 followers</p>
-					</button>
+					<FollowingBtn currentUserId={currentUserId} userId={user?._id} />
+					<FollowersBtn currentUserId={currentUserId} userId={user?._id} />
 				</div>
 				<div className='bio-content'>
 					<p>
@@ -30,16 +25,17 @@ const UserCard = ({ currentUserId, user }) => {
 						you to deteca
 					</p>
 				</div>
-				{currentUserId === user?.id ? (
+				{currentUserId === user?._id ? (
 					<button className='btn-medium'>
 						<p>Edit Profile</p>
 					</button>
 				) : (
-					<FollowBtn
-						className='profile-follow'
-						userId={user?.id}
-						currentUserId={currentUserId}
-					/>
+					<div />
+					// <FollowBtn
+					// 	className='profile-follow'
+					// 	userId={user?.id}
+					// 	currentUserId={currentUserId}
+					// />
 				)}
 			</div>
 		</div>

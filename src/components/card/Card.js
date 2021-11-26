@@ -8,7 +8,7 @@ import { IoMdClose } from "react-icons/io"
 import { presets } from "components/utility/utilis"
 import { getUser } from "api"
 
-const Card = ({ creatorId, img, caption, time, currentUser }) => {
+const Card = ({ creatorId, img, caption, time }) => {
 	const location = useLocation()
 	const [postCreator, setPostCreator] = useState(null)
 

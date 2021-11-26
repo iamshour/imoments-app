@@ -12,7 +12,7 @@ export const ImgUpload = (imgData) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
-			type: "NOTIFICATION",
+			type: "ERROR",
 			payload: error.response.data.message,
 		})
 	}
@@ -29,7 +29,7 @@ export const CapUpload = (capData) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
-			type: "NOTIFICATION",
+			type: "ERROR",
 			payload: error.response.data.message,
 		})
 	}
@@ -44,7 +44,22 @@ export const getTimeline = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
-			type: "NOTIFICATION",
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const getUserPosts = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getUserPosts(userId)
+		dispatch({
+			type: "GET_USER_POSTS",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
 			payload: error.response.data.message,
 		})
 	}

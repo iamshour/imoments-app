@@ -1,9 +1,9 @@
-export const utility = (state = { notification: null }, { type, payload }) => {
+export const utility = (state = { error: null }, { type, payload }) => {
 	switch (type) {
-		case "NOTIFICATION":
+		case "ERROR":
 			return {
 				...state,
-				notification: payload,
+				error: payload,
 			}
 
 		default:

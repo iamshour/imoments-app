@@ -11,12 +11,11 @@ const AddPost = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const { success, loading } = useSelector((state) => state?.posts)
-	console.log(loading)
 
 	const [charCount, setCharCount] = useState(0)
 	const [file, setFile] = useState()
 	const captionRef = useRef()
-	const user = JSON.parse(localStorage.getItem("User"))
+	const user = JSON.parse(localStorage.getItem("User"))?.user
 
 	const imgChange = (e) => {
 		if (e.target.files[0]) {
@@ -26,7 +25,7 @@ const AddPost = () => {
 
 	const addPost = async (e) => {
 		e.preventDefault()
-		const creatorId = user?.user?._id
+		const creatorId = user?._id
 		const caption = captionRef.current.value
 
 		if (file && !caption) {
@@ -58,11 +57,11 @@ const AddPost = () => {
 	return (
 		<div className='addpost-page'>
 			<form onSubmit={addPost}>
-				{loading && success === null ? (
+				{loading && (success === null || undefined) ? (
 					<div>
 						<Loading />
 					</div>
-				) : !loading && success !== null ? (
+				) : !loading && (success !== null || undefined) ? (
 					<div>SUCCESSFULL</div>
 				) : (
 					<>

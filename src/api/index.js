@@ -8,8 +8,9 @@ export const signIn = (data) => API.post("user/signin", data)
 export const googleApi = (data) => API.post("user/googleauth", data)
 
 //USERS
-export const getProfile = (userId) => API.get(`user/profile/${userId}`)
-export const getUser = (id) => API.get(`user/${id}`)
+export const getFollowers = (userId) => API.get(`user/followers/${userId}`)
+export const getFollowing = (userId) => API.get(`user/following/${userId}`)
+export const getUser = (userId) => API.get(`user/${userId}`)
 export const searchUser = (searchTerm) => API.get(`user?name=${searchTerm}`)
 export const followUser = (userId, currentUserId) =>
 	API.put(`user/${userId}/follow`, currentUserId, {
@@ -18,6 +19,7 @@ export const followUser = (userId, currentUserId) =>
 	})
 
 //POSTS
+export const getUserPosts = (userId) => API.get(`/posts/${userId}`)
 export const getPosts = (userId) => API.get(`/posts/timeline/${userId}`)
 export const uploadImg = (imgData) => API.post("/posts/uploadimg", imgData)
 export const uploadCaption = (capData) =>

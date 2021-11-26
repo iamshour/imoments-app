@@ -1,8 +1,8 @@
 import * as api from "api/index"
 
-export const getSingleUser = (id) => async (dispatch) => {
+export const getSingleUser = (userId) => async (dispatch) => {
 	try {
-		const { data } = await api.getUser(id)
+		const { data } = await api.getUser(userId)
 		dispatch({
 			type: "GET_USER",
 			payload: data,
@@ -10,38 +10,6 @@ export const getSingleUser = (id) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "NOTIFICATION",
-			payload: error.response.data.message,
-		})
-	}
-}
-
-export const getUserProfile = (userId) => async (dispatch) => {
-	try {
-		const { data } = await api.getProfile(userId)
-
-		dispatch({
-			type: "GET_USER_PROFILE",
-			payload: data,
-		})
-	} catch (error) {
-		dispatch({
-			type: "ERROR",
-			payload: error.response.data.message,
-		})
-	}
-}
-
-export const getCurrentUserProfile = (userId) => async (dispatch) => {
-	try {
-		const { data } = await api.getProfile(userId)
-
-		dispatch({
-			type: "GET_CURRENT_USER_PROFILE",
-			payload: data,
-		})
-	} catch (error) {
-		dispatch({
-			type: "ERROR",
 			payload: error.response.data.message,
 		})
 	}
@@ -60,6 +28,53 @@ export const searchUser = (searchTerm) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "NO_RESULTS",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const followUnfollow = (userId, currentUserId) => async (dispatch) => {
+	try {
+		const { data } = await api.followUser(userId, {
+			currentUserId: currentUserId,
+		})
+		dispatch({
+			type: "FOLLOW",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const getFollowersAction = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getFollowers(userId)
+		dispatch({
+			type: "GET_FOLLOWERS",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const getFollowing = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getFollowers(userId)
+		dispatch({
+			type: "GET_FOLLOWING",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
 			payload: error.response.data.message,
 		})
 	}

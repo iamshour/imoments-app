@@ -63,10 +63,10 @@ const Search = () => {
 				</div>
 			) : !error && results?.length > 0 && results !== null ? (
 				<div className='results'>
-					{results.map((user) => (
+					{results?.map((user) => (
 						<ResultCard
 							key={user?._id}
-							id={user?._id}
+							userId={user?._id}
 							name={user?.name}
 							avatar={user?.avatar ? user?.avatar : presets.avatar}
 						/>

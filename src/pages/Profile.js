@@ -2,34 +2,43 @@ import Card from "components/card/Card"
 import UserCard from "components/profile/UserCard"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router"
-import { getCurrentUserProfile, getUserProfile } from "redux/actions/user"
-import { useLocation } from "react-router"
+import { useLocation, useParams } from "react-router"
+import { getUserPosts } from "redux/actions/posts"
+import { getSingleUser } from "redux/actions/user"
 
 const Profile = () => {
 	const params = useParams()
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const currentUser = useSelector((state) => state?.user)?.currentUserProfile
-	const otherUser = useSelector((state) => state?.user)?.userProfile
-	const user = currentUser?.id === params?.id ? currentUser : otherUser
+	// const { message } = useSelector((state) => state?.user)
 
-	//getting this user by id
+	//GETTING CURRENT USER ID
 	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
 
+	//GETTING VISITED USER
+	const { user } = useSelector((state) => state?.user)
+
+	const { userPosts } = useSelector((state) => state?.posts)
+
 	useEffect(() => {
-		if (currentUserId === params.id) {
-			dispatch(getCurrentUserProfile(params.id))
-		} else {
-			dispatch(getUserProfile(params.id))
-		}
+		dispatch(getSingleUser(params.id))
+
+		// return () => {
+		// 	dispatch({
+		// 		type: "CLEAR_USER_TAB",
+		// 	})
+		// }
+	}, [params.id, dispatch, location])
+
+	useEffect(() => {
+		dispatch(getUserPosts(params.id))
 
 		return () => {
 			dispatch({
-				type: "CLEAR_USER_TAB",
+				type: "CLEAR_POSTS",
 			})
 		}
-	}, [location, params.id, currentUserId])
+	}, [params.id, dispatch])
 
 	return (
 		<div className='profile-page'>
@@ -44,7 +53,7 @@ const Profile = () => {
 				</h5>
 			)}
 			<div className='cards-container'>
-				{user?.posts?.map((post) => (
+				{userPosts?.map((post) => (
 					<Card
 						key={post._id}
 						creatorId={post?.creatorId}
