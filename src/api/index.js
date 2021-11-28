@@ -8,9 +8,9 @@ export const signIn = (data) => API.post("user/signin", data)
 export const googleApi = (data) => API.post("user/googleauth", data)
 
 //USERS
-export const getFollowers = (userId) => API.get(`user/followers/${userId}`)
-export const getFollowing = (userId) => API.get(`user/following/${userId}`)
 export const getUser = (userId) => API.get(`user/${userId}`)
+export const getFollowers = (userId) => API.get(`user/${userId}/followers`)
+export const getFollowing = (userId) => API.get(`user/${userId}/following`)
 export const searchUser = (searchTerm) => API.get(`user?name=${searchTerm}`)
 export const followUser = (userId, currentUserId) =>
 	API.put(`user/${userId}/follow`, currentUserId, {

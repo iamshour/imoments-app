@@ -16,8 +16,8 @@ const Header = () => {
 	const [currentUser, setCurrentUser] = useState(
 		JSON.parse(localStorage.getItem("User"))?.user
 	)
-	const otherUserId = useSelector((state) => state?.user?.userProfile)?.id
-	const otherUserName = useSelector((state) => state?.user?.userProfile)?.name
+	const otherUserId = useSelector((state) => state?.user?.user)?._id
+	const otherUserName = useSelector((state) => state?.user?.user)?.name
 
 	useEffect(() => {
 		// const token = user?.token

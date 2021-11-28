@@ -1,15 +1,14 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useLocation } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import { searchUser } from "redux/actions/user"
 //comps
+import Loading from "components/utility/Loading"
 import { presets } from "components/utility/utilis"
 import ResultCard from "components/search/ResultCard"
 //icons
 import { BsSearch } from "react-icons/bs"
 import { RiSendPlane2Fill } from "react-icons/ri"
-import { useEffect } from "react"
-import { useLocation } from "react-router"
-import Loading from "components/utility/Loading"
 
 const Search = () => {
 	const dispatch = useDispatch()

@@ -1,18 +1,19 @@
 import { useEffect } from "react"
 import { FiUsers } from "react-icons/fi"
 import { useDispatch, useSelector } from "react-redux"
-import { useLocation } from "react-router"
-import { getFollowersAction } from "redux/actions/user"
+import { useLocation, useParams } from "react-router"
+import { getFollowers } from "redux/actions/user"
 
-const FollowersBtn = ({ currentUserId, userId }) => {
+const FollowersBtn = ({ currentUserId }) => {
+	const params = useParams()
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const { message } = useSelector((state) => state?.user)
 	const { followers } = useSelector((state) => state?.user)
 
 	useEffect(() => {
-		dispatch(getFollowersAction(userId))
-	}, [message, location, userId, dispatch])
+		dispatch(getFollowers(params?.id))
+	}, [location, dispatch, params?.id, message])
 
 	return (
 		<button>
@@ -22,9 +23,9 @@ const FollowersBtn = ({ currentUserId, userId }) => {
 				followers?.length === null ||
 				followers?.length === undefined
 					? "No Followers yet"
-					: followers === 1
+					: followers?.length === 1
 					? "1 Follower"
-					: followers + "Followers"}
+					: followers?.length + " Followers"}
 			</p>
 		</button>
 	)

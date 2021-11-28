@@ -59,8 +59,7 @@ export const user = (
 			return {
 				user: null,
 				error: null,
-				userProfile: null,
-				currentUserProfile: null,
+				results: null,
 			}
 
 		default:

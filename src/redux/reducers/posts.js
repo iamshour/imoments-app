@@ -27,15 +27,11 @@ export const posts = (
 				loading: false,
 			}
 
-		case "CLEAR_ADD_POST":
-			return {
-				success: null,
-				loading: false,
-			}
-
 		case "CLEAR_POSTS":
 			return {
 				posts: null,
+				success: null,
+				loading: false,
 			}
 
 		default:

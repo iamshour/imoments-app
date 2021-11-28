@@ -1,7 +1,7 @@
 import FollowingBtn from "./Btns/FollowingBtn"
 import FollowersBtn from "./Btns/FollowersBtn"
-import FollowBtn from "components/utility/FollowBtn"
 import { presets } from "components/utility/utilis"
+import FollowBtn from "components/utility/FollowBtn"
 
 const UserCard = ({ currentUserId, user }) => {
 	return (
@@ -15,8 +15,8 @@ const UserCard = ({ currentUserId, user }) => {
 			</div>
 			<div className='right'>
 				<div className='top-btns'>
-					<FollowingBtn currentUserId={currentUserId} userId={user?._id} />
-					<FollowersBtn currentUserId={currentUserId} userId={user?._id} />
+					<FollowingBtn currentUserId={currentUserId} />
+					<FollowersBtn currentUserId={currentUserId} />
 				</div>
 				<div className='bio-content'>
 					<p>
@@ -30,12 +30,11 @@ const UserCard = ({ currentUserId, user }) => {
 						<p>Edit Profile</p>
 					</button>
 				) : (
-					<div />
-					// <FollowBtn
-					// 	className='profile-follow'
-					// 	userId={user?.id}
-					// 	currentUserId={currentUserId}
-					// />
+					<FollowBtn
+						className='profile-follow'
+						userId={user?._id}
+						currentUserId={currentUserId}
+					/>
 				)}
 			</div>
 		</div>

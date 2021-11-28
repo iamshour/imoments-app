@@ -50,7 +50,7 @@ export const followUnfollow = (userId, currentUserId) => async (dispatch) => {
 	}
 }
 
-export const getFollowersAction = (userId) => async (dispatch) => {
+export const getFollowers = (userId) => async (dispatch) => {
 	try {
 		const { data } = await api.getFollowers(userId)
 		dispatch({
@@ -67,7 +67,8 @@ export const getFollowersAction = (userId) => async (dispatch) => {
 
 export const getFollowing = (userId) => async (dispatch) => {
 	try {
-		const { data } = await api.getFollowers(userId)
+		const { data } = await api.getFollowing(userId)
+
 		dispatch({
 			type: "GET_FOLLOWING",
 			payload: data,

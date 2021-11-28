@@ -1,10 +1,7 @@
-import FollowBtn from "components/utility/FollowBtn"
 import { Link } from "react-router-dom"
 //icons
 
 const ResultCard = ({ userId, name, avatar }) => {
-	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
-
 	return (
 		<div className='result-card'>
 			<Link className='bg' to={`/profile/${userId}`} />
@@ -15,14 +12,9 @@ const ResultCard = ({ userId, name, avatar }) => {
 				</div>
 			</div>
 			<div className='right'>
-				{userId !== currentUserId ? (
-					// <FollowBtn userId={userId} currentUserId={currentUserId} />
-					<div />
-				) : (
-					<Link to={`/profile/${currentUserId}`} className='btn-medium'>
-						<p>View profile</p>
-					</Link>
-				)}
+				<Link to={`/profile/${userId}`} className='btn-medium'>
+					<p>View profile</p>
+				</Link>
 			</div>
 		</div>
 	)

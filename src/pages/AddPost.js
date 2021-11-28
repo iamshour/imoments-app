@@ -1,4 +1,5 @@
 import Loading from "components/utility/Loading"
+import { useEffect } from "react"
 import { useRef } from "react"
 import { useState } from "react"
 import { FcAddImage } from "react-icons/fc"
@@ -45,14 +46,16 @@ const AddPost = () => {
 		}
 	}
 
-	if (success) {
-		setTimeout(() => {
-			history.push("/")
-			dispatch({
-				type: "CLEAR_ADD_POST",
-			})
-		}, 3000)
-	}
+	useEffect(() => {
+		if (success) {
+			setTimeout(() => {
+				history.push("/")
+				dispatch({
+					type: "CLEAR_POSTS",
+				})
+			}, 3000)
+		}
+	}, [success, dispatch])
 
 	return (
 		<div className='addpost-page'>
