@@ -27,6 +27,13 @@ export const posts = (
 				loading: false,
 			}
 
+		case "DELETE_POST":
+			return {
+				...state,
+				success: payload,
+				loading: false,
+			}
+
 		case "CLEAR_POSTS":
 			return {
 				posts: null,

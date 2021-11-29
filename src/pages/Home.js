@@ -12,9 +12,11 @@ const Home = () => {
 	//Current active user Id
 	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
 
+	const { success } = useSelector((state) => state?.posts)
+
 	useEffect(() => {
 		dispatch(getTimeline(userId))
-	}, [dispatch, location, userId])
+	}, [dispatch, location, userId, success])
 
 	return (
 		<div className='home-page'>
@@ -23,6 +25,7 @@ const Home = () => {
 					<Card
 						key={post._id}
 						creatorId={post?.creatorId}
+						postId={post?._id}
 						img={post?.postImg}
 						caption={post?.caption}
 						time={new Date(post?.createdAt).toDateString()}

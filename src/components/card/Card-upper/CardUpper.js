@@ -7,11 +7,18 @@ import { IoMdClose } from "react-icons/io"
 const CardUpper = ({
 	avatar,
 	creatorId,
+	postId,
 	name,
 	time,
 	optionsClicked,
 	setOptionsClicked,
 }) => {
+	if (optionsClicked) {
+		setTimeout(() => {
+			setOptionsClicked(false)
+		}, 8000)
+	}
+
 	return (
 		<div className='card-upper'>
 			<Link to={`/profile/${creatorId}`} className='left'>
@@ -31,7 +38,7 @@ const CardUpper = ({
 					<AiOutlineEllipsis className='icon' />
 				)}
 			</button>
-			{optionsClicked && <Dropdown />}
+			{optionsClicked && <Dropdown postId={postId} creatorId={creatorId} />}
 		</div>
 	)
 }

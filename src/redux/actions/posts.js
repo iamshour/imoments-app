@@ -64,3 +64,21 @@ export const getUserPosts = (userId) => async (dispatch) => {
 		})
 	}
 }
+
+export const deletePost = (postId, creatorId) => async (dispatch) => {
+	try {
+		const { data } = await api.deletePost(postId)
+		dispatch({
+			type: "LOADING_START",
+		})
+		dispatch({
+			type: "DELETE_POST",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}

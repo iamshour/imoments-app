@@ -8,7 +8,7 @@ import { IoMdClose } from "react-icons/io"
 import { presets } from "components/utility/utilis"
 import { getUser } from "api"
 
-const Card = ({ creatorId, img, caption, time }) => {
+const Card = ({ creatorId, postId, img, caption, time }) => {
 	const location = useLocation()
 	const [postCreator, setPostCreator] = useState(null)
 
@@ -49,6 +49,7 @@ const Card = ({ creatorId, img, caption, time }) => {
 			<CardUpper
 				avatar={postCreator?.avatar ? postCreator?.avatar : presets.avatar}
 				creatorId={creatorId}
+				postId={postId}
 				name={postCreator?.name}
 				time={time}
 				optionsClicked={optionsClicked}
