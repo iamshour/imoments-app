@@ -6,11 +6,18 @@ import AddComment from "./Comment/AddComment"
 import { AiOutlineLike } from "react-icons/ai"
 import { FaRegComment } from "react-icons/fa"
 import { IoIosArrowUp } from "react-icons/io"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { likePost } from "redux/actions/posts"
 
-const Socials = ({ likes, comments }) => {
-	const [clicked, setClicked] = useState(false)
+const Socials = ({ likes, comments, creatorId, postId }) => {
+	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
+	const dispatch = useDispatch()
 	const [commentsClicked, setCommentsClicked] = useState(false)
+	const [likesLength, setLikesLength] = useState(likes?.length)
 
+	const [clicked, setClicked] = useState(likes?.includes(userId) ? true : false)
+	const [likesStyle, setLikesStyle] = useState(clicked)
 	const customComments = [
 		{
 			cmnt: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate molestias nisi voluptatibus ea? Vero, aliquam",
@@ -32,17 +39,31 @@ const Socials = ({ likes, comments }) => {
 		},
 	]
 
+	console.log()
+
+	useEffect(() => {
+		setClicked(likes?.includes(userId) ? true : false)
+	}, [likes, userId, clicked])
+
+	const likeHandler = () => {
+		if (clicked) {
+			setLikesLength(likesLength - 1)
+			setLikesStyle(false)
+		} else {
+			setLikesLength(likesLength + 1)
+			setLikesStyle(true)
+		}
+		dispatch(likePost(postId, { userId: userId }))
+	}
+
 	return (
 		<div className='card-bottom'>
 			<div className='socials-bar'>
-				<button
-					onClick={() => setClicked(!clicked)}
-					className={clicked ? "clicked" : ""}
-				>
+				<button onClick={likeHandler} className={likesStyle ? "clicked" : ""}>
 					<div className='icon-wrapper'>
 						<AiOutlineLike className='icon' />
 					</div>
-					<h2>{likes} likes</h2>
+					<h2>{likesLength} likes</h2>
 				</button>
 				<button onClick={() => setCommentsClicked(!commentsClicked)}>
 					{!commentsClicked ? (

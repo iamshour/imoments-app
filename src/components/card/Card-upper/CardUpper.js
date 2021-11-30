@@ -12,6 +12,8 @@ const CardUpper = ({
 	time,
 	optionsClicked,
 	setOptionsClicked,
+	editClicked,
+	setEditClicked,
 }) => {
 	return (
 		<div className='card-upper'>
@@ -37,6 +39,8 @@ const CardUpper = ({
 					postId={postId}
 					creatorId={creatorId}
 					setOptionsClicked={setOptionsClicked}
+					editClicked={editClicked}
+					setEditClicked={setEditClicked}
 				/>
 			)}
 		</div>

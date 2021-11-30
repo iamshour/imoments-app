@@ -154,6 +154,15 @@
 	}
 }
 
+.edit-btns {
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	padding-top: 1.4rem;
+}
+
 //Comments Section
 .card-bottom {
 	width: 100%;

@@ -1,5 +1,8 @@
 export const posts = (
-	state = { timeline: null, userPosts: null },
+	state = {
+		timeline: null,
+		userPosts: null,
+	},
 	{ type, payload }
 ) => {
 	switch (type) {

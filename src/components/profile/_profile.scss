@@ -77,6 +77,10 @@
 	}
 	.cards-container {
 		margin: 0;
+		position: relative;
+	}
+	.empty-container {
+		height: 30vh;
 	}
 }
 

@@ -56,9 +56,9 @@ export const getTimeline = (userId) => async (dispatch) => {
 	}
 }
 
-export const getUserPosts = (userId) => async (dispatch) => {
+export const getProfilePosts = (userId) => async (dispatch) => {
 	try {
-		const { data } = await api.getUserPosts(userId)
+		const { data } = await api.getProfilePosts(userId)
 		dispatch({
 			type: "GET_USER_POSTS",
 			payload: data,
@@ -84,6 +84,43 @@ export const deletePost = (postId) => async (dispatch) => {
 		dispatch({
 			type: "LOADING_END",
 		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const updatePost = (postId, postData) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "LOADING_START",
+		})
+		const { data } = await api.updatePost(postId, postData)
+		dispatch({
+			type: "NEW_MESSAGE",
+			payload: data,
+		})
+		dispatch({
+			type: "LOADING_END",
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const likePost = (postId, userId) => async (dispatch) => {
+	try {
+		await api.likePost(postId, userId)
+		// const { data } = await api.likePost(postId, userId)
+		// dispatch({
+		// 	type: "NEW_MESSAGE",
+		// 	payload: data,
+		// })
 	} catch (error) {
 		dispatch({
 			type: "ERROR",

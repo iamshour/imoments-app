@@ -7,12 +7,21 @@ import CardUpper from "./Card-upper/CardUpper"
 //icons
 import { IoMdClose } from "react-icons/io"
 import { presets } from "components/utility/utilis"
+import Textarea from "components/utility/Textarea"
+import { useDispatch } from "react-redux"
+import { updatePost } from "redux/actions/posts"
 
-const Card = ({ creatorId, postId, img, caption, time }) => {
+const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 	const location = useLocation()
+	const dispatch = useDispatch()
 	const [postCreator, setPostCreator] = useState(null)
 
 	const [optionsClicked, setOptionsClicked] = useState(false)
+	const [editClicked, setEditClicked] = useState(false)
+	const [content, setContent] = useState(caption ? caption : null)
+
+	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
+
 	const [imgOpenned, setImgOpenned] = useState(false)
 
 	useEffect(() => {
@@ -44,6 +53,10 @@ const Card = ({ creatorId, postId, img, caption, time }) => {
 			(document.querySelector("nav").style.display = "unset")
 	}
 
+	const handleUpdate = () => {
+		dispatch(updatePost(postId, { caption: content, userId }))
+	}
+
 	return (
 		<div className='card'>
 			<CardUpper
@@ -54,6 +67,8 @@ const Card = ({ creatorId, postId, img, caption, time }) => {
 				time={time}
 				optionsClicked={optionsClicked}
 				setOptionsClicked={setOptionsClicked}
+				editClicked={editClicked}
+				setEditClicked={setEditClicked}
 			/>
 			{imgOpenned && (
 				<button className='btn-icon' onClick={closeImg}>
@@ -68,8 +83,37 @@ const Card = ({ creatorId, postId, img, caption, time }) => {
 					<img src={img} alt='example' />
 				</button>
 			)}
-			{caption && <p className='caption'>{caption}</p>}
-			<Socials likes={"14"} comments={"29"} />
+			{editClicked ? (
+				<Textarea
+					content={content}
+					setContent={setContent}
+					customRows={4}
+					name='caption'
+					maxCh='320'
+				/>
+			) : caption ? (
+				<p className='caption'>{caption}</p>
+			) : null}
+			{editClicked ? (
+				<div className='edit-btns'>
+					<button className='btn-medium' onClick={handleUpdate}>
+						Update
+					</button>
+					<button
+						onClick={() => setEditClicked(false)}
+						className='btn-medium reverse-btn'
+					>
+						Cancel
+					</button>
+				</div>
+			) : (
+				<Socials
+					likes={likes}
+					comments={"29"}
+					creatorId={creatorId}
+					postId={postId}
+				/>
+			)}
 		</div>
 	)
 }

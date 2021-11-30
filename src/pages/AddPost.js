@@ -1,7 +1,7 @@
 import Loading from "components/utility/Loading"
 import SuccessMessage from "components/utility/SuccessMessage"
+import Textarea from "components/utility/Textarea"
 import { useEffect } from "react"
-import { useRef } from "react"
 import { useState } from "react"
 import { FcAddImage } from "react-icons/fc"
 import { IoMdCheckmarkCircleOutline, IoMdClose } from "react-icons/io"
@@ -14,9 +14,8 @@ const AddPost = () => {
 	const history = useHistory()
 	const { message, loading } = useSelector((state) => state?.utility)
 
-	const [charCount, setCharCount] = useState(0)
 	const [file, setFile] = useState()
-	const captionRef = useRef()
+	const [caption, setCaption] = useState("")
 	const user = JSON.parse(localStorage.getItem("User"))?.user
 
 	const imgChange = (e) => {
@@ -28,7 +27,6 @@ const AddPost = () => {
 	const addPost = async (e) => {
 		e.preventDefault()
 		const creatorId = user?._id
-		const caption = captionRef.current.value
 
 		if (file && !caption) {
 			const imgData = new FormData()
@@ -99,24 +97,13 @@ const AddPost = () => {
 							</div>
 						</div>
 					)}
-
-					<div className='caption'>
-						<h2 className='counter'>
-							Characters count: {charCount}/320{" "}
-							{charCount >= 320 && <span>Max Ch reached!</span>}
-						</h2>
-						<textarea
-							name='caption'
-							cols='30'
-							rows='10'
-							placeholder='Add caption here...'
-							maxLength='320'
-							ref={captionRef}
-							onChange={(e) => {
-								setCharCount(e.target.value.length)
-							}}
-						/>
-					</div>
+					<Textarea
+						content={caption}
+						setContent={setCaption}
+						customRows={10}
+						name='caption'
+						maxCh='320'
+					/>
 					<button className='btn-large' type='submit'>
 						<p>Post</p>
 						<IoMdCheckmarkCircleOutline className='icon' />

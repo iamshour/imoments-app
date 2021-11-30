@@ -19,13 +19,13 @@ export const followUser = (userId, currentUserId) =>
 	})
 
 //POSTS
-export const getUserPosts = (userId) => API.get(`/posts/${userId}`)
+export const getProfilePosts = (userId) => API.get(`/posts/${userId}/profile`)
 export const getPosts = (userId) => API.get(`/posts/timeline/${userId}`)
-export const deletePost = (postId) =>
-	API.delete(`/posts/${postId}`, {
-		"content-type": "application/json",
-		method: "DELETE",
-	})
+export const updatePost = (postId, postData) =>
+	API.put(`/posts/${postId}/update`, postData)
+export const likePost = (postId, userId) =>
+	API.put(`/posts/${postId}/like`, userId)
+export const deletePost = (postId) => API.delete(`/posts/${postId}/delete`)
 export const uploadImg = (imgData) => API.post("/posts/uploadimg", imgData)
 export const uploadCaption = (capData) =>
 	API.post("/posts/uploadcaption", capData)

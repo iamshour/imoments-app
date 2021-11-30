@@ -11,7 +11,13 @@ import { IoMdClose } from "react-icons/io"
 import { BsBookmark } from "react-icons/bs"
 import { MdOutlineReportProblem } from "react-icons/md"
 
-const Dropdown = ({ creatorId, postId, setOptionsClicked }) => {
+const Dropdown = ({
+	creatorId,
+	postId,
+	setOptionsClicked,
+	editClicked,
+	setEditClicked,
+}) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
@@ -22,7 +28,13 @@ const Dropdown = ({ creatorId, postId, setOptionsClicked }) => {
 		<div className='dropdown'>
 			{currentUserId === creatorId ? (
 				<>
-					<button className='dropdown-btn'>
+					<button
+						onClick={() => {
+							setEditClicked(true)
+							setOptionsClicked(false)
+						}}
+						className='dropdown-btn'
+					>
 						<BiEdit className='icon' />
 						<p>Edit Post</p>
 					</button>

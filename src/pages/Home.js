@@ -4,18 +4,16 @@ import { useEffect } from "react"
 import { getTimeline } from "redux/actions/posts"
 import Card from "components/card/Card"
 import Loading from "components/utility/Loading"
-import SuccessMessage from "components/utility/SuccessMessage"
 import { useState } from "react"
 
 const Home = () => {
 	const location = useLocation()
 	const dispatch = useDispatch()
-	const { timeline } = useSelector((state) => state.posts)
 	const [customFetch, setCustomFetch] = useState(true)
-
 	//Current active user Id
 	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
 
+	const { timeline } = useSelector((state) => state.posts)
 	const { loading, message } = useSelector((state) => state?.utility)
 
 	useEffect(() => {
@@ -24,7 +22,7 @@ const Home = () => {
 		if (customFetch) {
 			setTimeout(() => {
 				setCustomFetch(false)
-			}, 3000)
+			}, 4000)
 		}
 
 		return () => {
@@ -35,6 +33,7 @@ const Home = () => {
 				type: "CLEAR_POSTS",
 			})
 		}
+		//eslint-disable-next-line
 	}, [dispatch, location, userId, message])
 
 	return (
@@ -50,6 +49,7 @@ const Home = () => {
 						img={post?.postImg}
 						caption={post?.caption}
 						time={new Date(post?.createdAt).toDateString()}
+						likes={post?.likes}
 					/>
 				))
 			) : (

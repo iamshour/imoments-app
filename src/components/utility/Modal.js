@@ -1,6 +1,4 @@
-import { IoMdClose } from "react-icons/io"
 import { useLocation } from "react-router"
-import { closeModalBtn } from "./utilis"
 
 const Modal = ({ children, setModalOpen, setExtraOption }) => {
 	const location = useLocation()
