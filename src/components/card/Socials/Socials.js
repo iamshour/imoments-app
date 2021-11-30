@@ -1,18 +1,20 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useLocation } from "react-router"
+import { useDispatch } from "react-redux"
+import { likePost } from "redux/actions/posts"
 //comps
 import Comment from "./Comment/Comment"
 import AddComment from "./Comment/AddComment"
 //icons
-import { AiOutlineLike } from "react-icons/ai"
+import { AiOutlineLike, AiFillLike } from "react-icons/ai"
 import { FaRegComment } from "react-icons/fa"
 import { IoIosArrowUp } from "react-icons/io"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { likePost } from "redux/actions/posts"
 
 const Socials = ({ likes, comments, creatorId, postId }) => {
-	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
 	const dispatch = useDispatch()
+	const location = useLocation()
+	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
+
 	const [commentsClicked, setCommentsClicked] = useState(false)
 	const [likesLength, setLikesLength] = useState(likes?.length)
 
@@ -43,15 +45,17 @@ const Socials = ({ likes, comments, creatorId, postId }) => {
 
 	useEffect(() => {
 		setClicked(likes?.includes(userId) ? true : false)
-	}, [likes, userId, clicked])
+	}, [likes, userId, location])
 
 	const likeHandler = () => {
 		if (clicked) {
 			setLikesLength(likesLength - 1)
 			setLikesStyle(false)
+			setClicked(false)
 		} else {
 			setLikesLength(likesLength + 1)
 			setLikesStyle(true)
+			setClicked(true)
 		}
 		dispatch(likePost(postId, { userId: userId }))
 	}
@@ -61,7 +65,11 @@ const Socials = ({ likes, comments, creatorId, postId }) => {
 			<div className='socials-bar'>
 				<button onClick={likeHandler} className={likesStyle ? "clicked" : ""}>
 					<div className='icon-wrapper'>
-						<AiOutlineLike className='icon' />
+						{likesStyle ? (
+							<AiFillLike className='icon' />
+						) : (
+							<AiOutlineLike className='icon' />
+						)}
 					</div>
 					<h2>{likesLength} likes</h2>
 				</button>

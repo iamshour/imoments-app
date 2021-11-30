@@ -116,11 +116,6 @@ export const updatePost = (postId, postData) => async (dispatch) => {
 export const likePost = (postId, userId) => async (dispatch) => {
 	try {
 		await api.likePost(postId, userId)
-		// const { data } = await api.likePost(postId, userId)
-		// dispatch({
-		// 	type: "NEW_MESSAGE",
-		// 	payload: data,
-		// })
 	} catch (error) {
 		dispatch({
 			type: "ERROR",

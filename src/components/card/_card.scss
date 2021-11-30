@@ -163,7 +163,7 @@
 	padding-top: 1.4rem;
 }
 
-//Comments Section
+//Likes/Comments Section
 .card-bottom {
 	width: 100%;
 	height: auto;
@@ -180,13 +180,12 @@
 			@include centering;
 			cursor: pointer;
 			background: none;
+			transition: all 250ms ease-in-out;
 			.icon-wrapper {
 				padding: 0.8rem;
 				border-radius: 50%;
 				@include centering;
 				margin-right: 0.4rem;
-				background: transparent;
-				transition: all 250ms ease-in-out;
 
 				.icon {
 					font-size: 2rem;
@@ -199,9 +198,8 @@
 			&:hover,
 			&:active {
 				.icon-wrapper {
-					background: var(--main-color);
 					.icon {
-						color: white;
+						color: var(--main-color);
 					}
 				}
 				h2 {
@@ -211,9 +209,8 @@
 		}
 		.clicked {
 			.icon-wrapper {
-				background: var(--main-color);
 				.icon {
-					color: white;
+					color: var(--main-color);
 				}
 			}
 			h2 {

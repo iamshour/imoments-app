@@ -81,6 +81,7 @@ const Profile = () => {
 							img={post?.postImg}
 							caption={post?.caption}
 							time={new Date(post?.createdAt).toDateString()}
+							likes={post?.likes}
 						/>
 					))
 				) : customFetch ? (
