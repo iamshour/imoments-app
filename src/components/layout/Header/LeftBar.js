@@ -135,16 +135,19 @@ const LeftBar = ({ currentUser }) => {
 				<div className='backdrop' onClick={signOutModelClose}>
 					<div className='signout-container'>
 						<h3>Are you sure you want to sign out?</h3>
-						<button onClick={signOutBtnClose} className='btn-large'>
-							<p>Cancel</p>
-							<IoMdClose className='icon' />
-						</button>
 						<button
-							className='btn-large signout-btn'
+							className='btn-medium'
 							onClick={() => dispatch(signOut(history))}
 						>
 							<p>Yes, Sign Out</p>
 							<AiOutlineCheck className='icon' />
+						</button>
+						<button
+							onClick={signOutBtnClose}
+							className='btn-medium reverse-btn'
+						>
+							<p>Cancel</p>
+							<IoMdClose className='icon' />
 						</button>
 					</div>
 				</div>

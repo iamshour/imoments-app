@@ -1,0 +1,12 @@
+.notifications-page {
+	width: 100vw;
+	height: 100vh;
+	@include centering;
+
+	.example-btn {
+		background: var(--main-color);
+		color: white;
+		padding: 2rem;
+		font-size: 2rem;
+	}
+}

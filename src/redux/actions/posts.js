@@ -7,8 +7,11 @@ export const ImgUpload = (imgData) => async (dispatch) => {
 		})
 		const { data } = await api.uploadImg(imgData)
 		dispatch({
-			type: "CREATE_POST",
+			type: "NEW_MESSAGE",
 			payload: data,
+		})
+		dispatch({
+			type: "LOADING_END",
 		})
 	} catch (error) {
 		dispatch({
@@ -24,8 +27,11 @@ export const CapUpload = (capData) => async (dispatch) => {
 		})
 		const { data } = await api.uploadCaption(capData)
 		dispatch({
-			type: "CREATE_POST",
+			type: "NEW_MESSAGE",
 			payload: data,
+		})
+		dispatch({
+			type: "LOADING_END",
 		})
 	} catch (error) {
 		dispatch({
@@ -65,15 +71,18 @@ export const getUserPosts = (userId) => async (dispatch) => {
 	}
 }
 
-export const deletePost = (postId, creatorId) => async (dispatch) => {
+export const deletePost = (postId) => async (dispatch) => {
 	try {
-		const { data } = await api.deletePost(postId)
 		dispatch({
 			type: "LOADING_START",
 		})
+		const { data } = await api.deletePost(postId)
 		dispatch({
-			type: "DELETE_POST",
+			type: "NEW_MESSAGE",
 			payload: data,
+		})
+		dispatch({
+			type: "LOADING_END",
 		})
 	} catch (error) {
 		dispatch({

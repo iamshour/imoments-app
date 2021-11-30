@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
 import { useLocation } from "react-router"
 //comps
-import CardUpper from "./Card-upper/CardUpper"
+import { getUser } from "api"
 import Socials from "./Socials/Socials"
+import CardUpper from "./Card-upper/CardUpper"
 //icons
 import { IoMdClose } from "react-icons/io"
 import { presets } from "components/utility/utilis"
-import { getUser } from "api"
 
 const Card = ({ creatorId, postId, img, caption, time }) => {
 	const location = useLocation()

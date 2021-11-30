@@ -1,4 +1,5 @@
 import Loading from "components/utility/Loading"
+import SuccessMessage from "components/utility/SuccessMessage"
 import { useEffect } from "react"
 import { useRef } from "react"
 import { useState } from "react"
@@ -11,7 +12,7 @@ import { CapUpload, ImgUpload } from "redux/actions/posts"
 const AddPost = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
-	const { success, loading } = useSelector((state) => state?.posts)
+	const { message, loading } = useSelector((state) => state?.utility)
 
 	const [charCount, setCharCount] = useState(0)
 	const [file, setFile] = useState()
@@ -47,89 +48,81 @@ const AddPost = () => {
 	}
 
 	useEffect(() => {
-		if (success) {
+		if (message) {
 			setTimeout(() => {
 				history.push("/")
 				dispatch({
-					type: "CLEAR_POSTS",
+					type: "CLEAR_UTILITY",
 				})
-			}, 3000)
+			}, 2000)
 		}
-	}, [success, dispatch])
+	}, [message, dispatch, history])
 
 	return (
 		<div className='addpost-page'>
-			<form onSubmit={addPost}>
-				{loading && (success === null || undefined) ? (
-					<div>
-						<Loading />
-					</div>
-				) : !loading && (success !== null || undefined) ? (
-					<div>SUCCESSFULL</div>
-				) : (
-					<>
-						{file ? (
-							<div className='top top-img'>
-								<div className='img-wrapper'>
-									<img
-										src={URL.createObjectURL(file)}
-										alt="user's selection to upload"
-									/>
-									<button className='btn-icon' onClick={() => setFile()}>
-										<IoMdClose className='icon' />
-									</button>
-								</div>
+			{loading && (message === null || undefined) ? (
+				<Loading />
+			) : !loading && (message !== null || undefined) ? (
+				<SuccessMessage message={message?.message} />
+			) : (
+				<form onSubmit={addPost}>
+					{file ? (
+						<div className='top top-img'>
+							<div className='img-wrapper'>
+								<img
+									src={URL.createObjectURL(file)}
+									alt="user's selection to upload"
+								/>
+								<button className='btn-icon' onClick={() => setFile()}>
+									<IoMdClose className='icon' />
+								</button>
 							</div>
-						) : (
-							<div className='top'>
-								<div className='left'>
-									<label htmlFor='add-img'>
-										<FcAddImage className='icon' />
-									</label>
-									<input
-										type='file'
-										style={{ display: "none" }}
-										id='add-img'
-										value={file}
-										onChange={imgChange}
-										accept='.jpg, .jpeg, .png'
-									/>
-								</div>
-								<div className='right'>
-									<h3>Add Image</h3>
-									<h2>(Optional)</h2>
-								</div>
+						</div>
+					) : (
+						<div className='top'>
+							<div className='left'>
+								<label htmlFor='add-img'>
+									<FcAddImage className='icon' />
+								</label>
+								<input
+									type='file'
+									style={{ display: "none" }}
+									id='add-img'
+									value={file}
+									onChange={imgChange}
+									accept='.jpg, .jpeg, .png'
+								/>
 							</div>
-						)}
+							<div className='right'>
+								<h3>Add Image</h3>
+								<h2>(Optional)</h2>
+							</div>
+						</div>
+					)}
 
-						<div className='caption'>
-							<h2 className='counter'>
-								Characters count: {charCount}/320{" "}
-								{charCount >= 320 && <span>Max Ch reached!</span>}
-							</h2>
-							<textarea
-								name='caption'
-								cols='30'
-								rows='10'
-								placeholder='Add caption here...'
-								maxLength='320'
-								ref={captionRef}
-								onChange={(e) => {
-									setCharCount(e.target.value.length)
-								}}
-							/>
-						</div>
-						<div className='input-bar tags'>
-							<input type='text' placeholder='Add tags (optional)' />
-						</div>
-						<button className='btn-large' type='submit'>
-							<p>Post</p>
-							<IoMdCheckmarkCircleOutline className='icon' />
-						</button>
-					</>
-				)}
-			</form>
-			)
+					<div className='caption'>
+						<h2 className='counter'>
+							Characters count: {charCount}/320{" "}
+							{charCount >= 320 && <span>Max Ch reached!</span>}
+						</h2>
+						<textarea
+							name='caption'
+							cols='30'
+							rows='10'
+							placeholder='Add caption here...'
+							maxLength='320'
+							ref={captionRef}
+							onChange={(e) => {
+								setCharCount(e.target.value.length)
+							}}
+						/>
+					</div>
+					<button className='btn-large' type='submit'>
+						<p>Post</p>
+						<IoMdCheckmarkCircleOutline className='icon' />
+					</button>
+				</form>
+			)}
 		</div>
 	)
 }

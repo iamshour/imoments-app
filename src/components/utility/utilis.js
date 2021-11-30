@@ -60,3 +60,18 @@ export const backIcon = (
 export const presets = {
 	avatar: "https://www.w3schools.com/howto/img_avatar.png",
 }
+
+export const openModal = (location) => {
+	document.querySelector("html").style.overflowY = "hidden"
+	document.querySelector("header").style.display = "none"
+	location.pathname === ("/" || "/search" || "/addPost" || "/notifications") &&
+		(document.querySelector("nav").style.display = "none")
+}
+
+export const closeModalBtn = (location) => {
+	document.querySelector("html").style.overflowY = "unset"
+	document.querySelector("header").style.display = "unset"
+
+	location.pathname === ("/" || "/search" || "/addPost" || "/notifications") &&
+		(document.querySelector("nav").style.display = "unset")
+}

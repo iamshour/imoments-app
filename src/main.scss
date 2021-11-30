@@ -106,16 +106,17 @@
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1080px;
 
+@import "./components/utility/utility";
 @import "./pageStyles/home";
 @import "./pageStyles/addpost";
 @import "./pageStyles/auth";
 @import "./pageStyles/notFound";
+@import "./pageStyles/notifications";
 @import "./components/layout/layout";
 @import "./components/layout/Header/leftBar";
 @import "./components/card/card";
 @import "./components/search/search";
 @import "./components/profile/profile";
-@import "./components/utility/utility";
 
 //RESETS
 
@@ -209,6 +210,12 @@ button {
 	transform: translateY(-1px);
 	background: white;
 	border-color: var(--main-color);
+}
+
+.reverse-btn {
+	background: var(--secondary-font);
+	color: var(--primary-font);
+	border-color: var(--primary-font);
 }
 
 div,

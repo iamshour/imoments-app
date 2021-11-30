@@ -6,7 +6,7 @@
 		width: 90%;
 		max-width: 57rem;
 		padding: 2rem 1.6rem;
-		border-radius: 1.6rem;
+		border-radius: 16px;
 		position: relative;
 		@include card-glass;
 		.top {
@@ -70,9 +70,6 @@
 					margin-left: 2px;
 				}
 			}
-		}
-		.tags {
-			margin-bottom: 2rem;
 		}
 		.btn-large {
 			margin: 0 auto;

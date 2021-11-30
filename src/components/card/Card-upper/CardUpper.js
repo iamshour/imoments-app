@@ -13,12 +13,6 @@ const CardUpper = ({
 	optionsClicked,
 	setOptionsClicked,
 }) => {
-	if (optionsClicked) {
-		setTimeout(() => {
-			setOptionsClicked(false)
-		}, 8000)
-	}
-
 	return (
 		<div className='card-upper'>
 			<Link to={`/profile/${creatorId}`} className='left'>
@@ -38,7 +32,13 @@ const CardUpper = ({
 					<AiOutlineEllipsis className='icon' />
 				)}
 			</button>
-			{optionsClicked && <Dropdown postId={postId} creatorId={creatorId} />}
+			{optionsClicked && (
+				<Dropdown
+					postId={postId}
+					creatorId={creatorId}
+					setOptionsClicked={setOptionsClicked}
+				/>
+			)}
 		</div>
 	)
 }

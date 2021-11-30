@@ -1,43 +1,41 @@
-.auth-page {
-	.notify-container {
-		margin: 0 auto;
-		padding: 0.4rem;
-		border: 1px solid transparent;
-		border-radius: 4px;
-		width: 85%;
-		max-width: 40rem;
-		// position: absolute;
-		// top: 5rem;
-		// left: 50%;
-		// transform: translateX(-50%);
+.notification-container {
+	margin: 0 auto;
+	padding: 0.4rem;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	width: 85%;
+	max-width: 40rem;
+	// position: absolute;
+	// top: 5rem;
+	// left: 50%;
+	// transform: translateX(-50%);
 
-		p {
-			font-size: 1.6rem;
-		}
+	p {
+		font-size: 1.6rem;
 	}
-	.warning {
-		background: yellow;
-		border-color: rgb(189, 189, 14);
-		p {
-			color: darkblue;
-		}
+}
+.warning {
+	background: yellow;
+	border-color: rgb(189, 189, 14);
+	p {
+		color: darkblue;
 	}
-	.danger {
-		background: rgb(250, 28, 28);
-		border-color: rgb(163, 6, 6);
-		p {
-			color: white;
-		}
+}
+.danger {
+	background: rgb(250, 28, 28);
+	border-color: rgb(163, 6, 6);
+	p {
+		color: white;
 	}
 }
 
 .loading-container {
 	width: 100%;
-	// height: 60%;
-	height: 100%;
 	@include centering;
-	// position: relative;
-	// @include backdrop;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 
 	svg {
 		width: 70%;
@@ -45,5 +43,64 @@
 
 	.loading {
 		fill: var(--main-color);
+	}
+}
+
+.modal-backdrop {
+	@include backdrop;
+	opacity: 0;
+	background: rgba(0, 0, 0, 0.85);
+	animation: fading-in 0.2s ease-in forwards;
+	@keyframes fading-in {
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.modal-container {
+		position: relative;
+		width: 80%;
+		max-height: 70%;
+		height: auto;
+		background: var(--bg-secondary);
+		cursor: default;
+		padding: 2rem;
+		border-radius: 16px;
+		box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6), -1px -2px 8px rgba(0, 0, 0, 0.6);
+
+		h3 {
+			text-align: center;
+			padding: 1rem 1.6rem 2.8rem 1.6rem;
+			padding: 0 1.6rem 2.4rem 1.6rem;
+		}
+
+		.btns {
+			@include centering;
+			justify-content: space-around;
+			width: 100%;
+			flex-wrap: wrap;
+			gap: 1rem;
+		}
+	}
+}
+
+.conditional-container {
+	max-width: 80%;
+	padding: 1.6rem;
+	border-radius: 16px;
+	position: relative;
+	@include card-glass;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+
+	.success-icon {
+		font-size: 20rem;
+		color: green;
+		margin-bottom: 1rem;
+	}
+	h3 {
+		text-align: center;
 	}
 }

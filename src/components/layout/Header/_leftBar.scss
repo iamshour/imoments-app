@@ -97,25 +97,28 @@
 		}
 	}
 }
+
 .signout-container {
+	position: relative;
 	width: 80%;
-	height: 25rem;
-	@include centering;
-	flex-direction: column;
+	max-height: 70%;
+	height: auto;
 	background: var(--bg-secondary);
-	border-radius: 1.6rem;
+	cursor: default;
+	padding: 2rem;
+	border-radius: 16px;
+	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6), -1px -2px 8px rgba(0, 0, 0, 0.6);
+	@include centering;
+	justify-content: space-around;
+	flex-wrap: wrap;
+
 	h3 {
 		text-align: center;
 		padding: 1rem 1.6rem 2.8rem 1.6rem;
+		padding: 0 1.6rem 2.4rem 1.6rem;
 	}
 
 	.btn-large {
 		margin-bottom: 2.4rem;
-	}
-
-	.signout-btn {
-		background: var(--secondary-font);
-		color: var(--primary-font);
-		border-color: var(--primary-font);
 	}
 }
