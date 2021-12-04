@@ -8,7 +8,12 @@ export const signIn = (data) => API.post("user/signin", data)
 export const googleApi = (data) => API.post("user/googleauth", data)
 
 //USERS
-export const getUser = (userId) => API.get(`user/${userId}`)
+export const getUser = (userId, currentUserId) =>
+	API.get(`user/${userId}`, currentUserId)
+export const addProfileInfo = (userId, userData) =>
+	API.post(`user/${userId}/add`, userData)
+export const updateProfile = (userId, userData) =>
+	API.put(`user/${userId}/update`, userData)
 export const getFollowers = (userId) => API.get(`user/${userId}/followers`)
 export const getFollowing = (userId) => API.get(`user/${userId}/following`)
 export const searchUser = (searchTerm) => API.get(`user?name=${searchTerm}`)
@@ -19,8 +24,10 @@ export const followUser = (userId, currentUserId) =>
 	})
 
 //POSTS
-export const getProfilePosts = (userId) => API.get(`/posts/${userId}/profile`)
-export const getPosts = (userId) => API.get(`/posts/timeline/${userId}`)
+export const getProfilePosts = (userId, cancelToken) =>
+	API.get(`/posts/${userId}/profile`, cancelToken)
+export const getPosts = (userId, cancelToken) =>
+	API.get(`/posts/timeline/${userId}`, cancelToken)
 export const updatePost = (postId, postData) =>
 	API.put(`/posts/${postId}/update`, postData)
 export const likePost = (postId, userId) =>

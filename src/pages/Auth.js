@@ -30,7 +30,6 @@ const Auth = () => {
 
 	const changeHandler = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value })
-		console.log(formData)
 	}
 
 	const handleSubmit = (e) => {
@@ -48,19 +47,6 @@ const Auth = () => {
 		const token = res?.tokenId
 
 		dispatch(googleAuth({ result, token }, history))
-		// try {
-		// 	dispatch({
-		// 		type: "AUTH_SUCCESS",
-		// 		payload: { result, token },
-		// 	})
-
-		// 	history.push("/")
-		// } catch (err) {
-		// 	dispatch({
-		// 		type: "AUTH_FAIL",
-		// 		payload: err,
-		// 	})
-		// }
 	}
 	const googleFailure = (err) => {
 		console.log(`Error: ${err}`)

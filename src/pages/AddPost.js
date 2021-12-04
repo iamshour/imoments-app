@@ -12,7 +12,7 @@ import { CapUpload, ImgUpload } from "redux/actions/posts"
 const AddPost = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
-	const { message, loading } = useSelector((state) => state?.utility)
+	const { postMessage, postLoading } = useSelector((state) => state?.posts)
 
 	const [file, setFile] = useState()
 	const [caption, setCaption] = useState("")
@@ -46,22 +46,22 @@ const AddPost = () => {
 	}
 
 	useEffect(() => {
-		if (message) {
+		if (postMessage) {
 			setTimeout(() => {
 				history.push("/")
 				dispatch({
-					type: "CLEAR_UTILITY",
+					type: "CLEAR_ADD_POST",
 				})
 			}, 2000)
 		}
-	}, [message, dispatch, history])
+	}, [postMessage, dispatch, history])
 
 	return (
 		<div className='addpost-page'>
-			{loading && (message === null || undefined) ? (
+			{postLoading && (postMessage === null || undefined) ? (
 				<Loading />
-			) : !loading && (message !== null || undefined) ? (
-				<SuccessMessage message={message?.message} />
+			) : !postLoading && (postMessage !== null || undefined) ? (
+				<SuccessMessage message={postMessage?.message} />
 			) : (
 				<form onSubmit={addPost}>
 					{file ? (

@@ -4,8 +4,7 @@ const SuccessMessage = ({ message }) => {
 	return (
 		<div className='conditional-container'>
 			<BsCheck2Circle className='success-icon' />
-			{/* <h3>{message}</h3> */}
-			<h3>Post uploaded successfully!</h3>
+			<h3>{message}</h3>
 		</div>
 	)
 }

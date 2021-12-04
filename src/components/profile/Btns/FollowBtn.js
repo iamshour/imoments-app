@@ -9,8 +9,7 @@ const FollowBtn = ({ currentUserId, userId }) => {
 	const dispatch = useDispatch()
 	const [followed, setFollowed] = useState(false)
 
-	const { message } = useSelector((state) => state?.user)
-	const { followers } = useSelector((state) => state?.user)
+	const { followers, userMessage } = useSelector((state) => state?.user)
 
 	useEffect(() => {
 		setFollowed(
@@ -18,7 +17,7 @@ const FollowBtn = ({ currentUserId, userId }) => {
 				? true
 				: false
 		)
-	}, [userId, location, message, followers])
+	}, [userId, location, userMessage, followers])
 
 	return (
 		<button

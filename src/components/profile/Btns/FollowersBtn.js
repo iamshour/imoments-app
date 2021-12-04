@@ -8,12 +8,11 @@ const FollowersBtn = ({ currentUserId }) => {
 	const params = useParams()
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const { message } = useSelector((state) => state?.user)
-	const { followers } = useSelector((state) => state?.user)
+	const { followers, userMessage } = useSelector((state) => state?.user)
 
 	useEffect(() => {
 		dispatch(getFollowers(params?.id))
-	}, [location, dispatch, params?.id, message])
+	}, [location, dispatch, params?.id, userMessage])
 
 	return (
 		<button>

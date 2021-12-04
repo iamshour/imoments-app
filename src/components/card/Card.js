@@ -67,7 +67,6 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 				time={time}
 				optionsClicked={optionsClicked}
 				setOptionsClicked={setOptionsClicked}
-				editClicked={editClicked}
 				setEditClicked={setEditClicked}
 			/>
 			{imgOpenned && (

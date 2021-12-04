@@ -8,12 +8,11 @@ const FollowingBtn = ({ currentUserId }) => {
 	const params = useParams()
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const { message } = useSelector((state) => state?.user)
-	const { following } = useSelector((state) => state?.user)
+	const { following, userMessage } = useSelector((state) => state?.user)
 
 	useEffect(() => {
 		dispatch(getFollowing(params?.id))
-	}, [location, params?.id, dispatch, message])
+	}, [location, params?.id, dispatch, userMessage])
 
 	return (
 		<button>

@@ -1,12 +1,13 @@
-import Card from "components/card/Card"
-import UserCard from "components/profile/UserCard"
-import Loading from "components/utility/Loading"
-import { useState } from "react"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useState } from "react"
 import { useLocation, useParams } from "react-router"
-import { getProfilePosts } from "redux/actions/posts"
+import { useDispatch, useSelector } from "react-redux"
 import { getSingleUser } from "redux/actions/user"
+import { getProfilePosts } from "redux/actions/posts"
+//COMPS
+import Card from "components/card/Card"
+import Loading from "components/utility/Loading"
+import UserCard from "components/profile/UserCard"
+import axios from "axios"
 
 const Profile = () => {
 	const params = useParams()
@@ -18,24 +19,27 @@ const Profile = () => {
 	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
 
 	//GETTING VISITED USER
-	const { user } = useSelector((state) => state?.user)
+	const { user, userMessage } = useSelector((state) => state?.user)
 
-	const { userPosts } = useSelector((state) => state?.posts)
-	const { loading, message } = useSelector((state) => state?.utility)
+	const { userPosts, postMessage, postLoading } = useSelector(
+		(state) => state?.posts
+	)
 
 	useEffect(() => {
-		dispatch(getSingleUser(params.id))
+		const source = axios.CancelToken.source()
+
+		dispatch(getSingleUser(params.id, { cancelToken: source.token }))
 
 		return () => {
+			source.cancel()
 			dispatch({
 				type: "CLEAR_USER_TAB",
 			})
 		}
-	}, [params.id, dispatch, location])
+	}, [params.id, dispatch, location, userMessage])
 
 	useEffect(() => {
 		dispatch(getProfilePosts(params.id))
-
 		if (customFetch) {
 			setTimeout(() => {
 				setCustomFetch(false)
@@ -44,14 +48,11 @@ const Profile = () => {
 
 		return () => {
 			dispatch({
-				type: "CLEAR_UTILITY",
-			})
-			dispatch({
 				type: "CLEAR_POSTS",
 			})
 		}
 		//eslint-disable-next-line
-	}, [params.id, dispatch, message])
+	}, [params.id, dispatch, postMessage])
 
 	return (
 		<div className='profile-page'>
@@ -67,10 +68,10 @@ const Profile = () => {
 			)}
 			<div
 				className={`cards-container ${
-					(loading || userPosts?.length === 0) && "empty-container"
+					(postLoading || userPosts?.length === 0) && "empty-container"
 				}`}
 			>
-				{loading ? (
+				{postLoading ? (
 					<Loading />
 				) : userPosts?.length > 0 ? (
 					userPosts?.map((post) => (

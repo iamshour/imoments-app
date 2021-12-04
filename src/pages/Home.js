@@ -1,23 +1,24 @@
-import { useLocation } from "react-router"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
 import { getTimeline } from "redux/actions/posts"
+//COMPS
 import Card from "components/card/Card"
 import Loading from "components/utility/Loading"
-import { useState } from "react"
+import axios from "axios"
 
 const Home = () => {
-	const location = useLocation()
 	const dispatch = useDispatch()
 	const [customFetch, setCustomFetch] = useState(true)
 	//Current active user Id
 	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
 
-	const { timeline } = useSelector((state) => state.posts)
-	const { loading, message } = useSelector((state) => state?.utility)
+	const { timeline, postMessage, postLoading } = useSelector(
+		(state) => state.posts
+	)
 
 	useEffect(() => {
-		dispatch(getTimeline(userId))
+		const source = axios.CancelToken.source()
+		dispatch(getTimeline(userId, { cancelToken: source.token }))
 
 		if (customFetch) {
 			setTimeout(() => {
@@ -26,19 +27,17 @@ const Home = () => {
 		}
 
 		return () => {
-			dispatch({
-				type: "CLEAR_UTILITY",
-			})
+			source.cancel()
 			dispatch({
 				type: "CLEAR_POSTS",
 			})
 		}
 		//eslint-disable-next-line
-	}, [dispatch, location, userId, message])
+	}, [dispatch, userId, postMessage])
 
 	return (
 		<div className='home-page'>
-			{loading ? (
+			{postLoading ? (
 				<Loading />
 			) : timeline?.length > 0 ? (
 				timeline?.map((post) => (

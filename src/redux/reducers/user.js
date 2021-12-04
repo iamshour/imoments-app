@@ -4,9 +4,10 @@ export const user = (
 		results: null,
 		error: null,
 		loading: false,
-		message: null,
 		followers: null,
 		following: null,
+		userLoading: false,
+		userMessage: null,
 	},
 	{ type, payload }
 ) => {
@@ -16,25 +17,21 @@ export const user = (
 				...state,
 				user: payload,
 			}
-
 		case "GET_FOLLOWERS":
 			return {
 				...state,
 				followers: payload,
 			}
-
 		case "GET_FOLLOWING":
 			return {
 				...state,
 				following: payload,
 			}
-
 		case "SEARCH_USER_LOADING":
 			return {
 				...state,
 				loading: true,
 			}
-
 		case "SEARCH_USER":
 			return {
 				...state,
@@ -42,24 +39,36 @@ export const user = (
 				results: payload,
 				loading: false,
 			}
-
-		case "FOLLOW":
-			return {
-				...state,
-				message: payload,
-			}
-
 		case "NO_RESULTS":
 			return {
 				...state,
 				results: null,
 				error: payload,
 			}
+		case "START_USER_LOADING":
+			return {
+				...state,
+				userLoading: true,
+			}
+		case "END_USER_LOADING":
+			return {
+				...state,
+				userLoading: false,
+			}
+		case "NEW_USER_MESSAGE":
+			return {
+				...state,
+				userMessage: payload,
+			}
 		case "CLEAR_USER_TAB":
 			return {
 				user: null,
+				followers: null,
+				following: null,
 				error: null,
 				results: null,
+				userLoading: null,
+				userMessage: null,
 			}
 
 		default:

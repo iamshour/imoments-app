@@ -12,7 +12,6 @@ const CardUpper = ({
 	time,
 	optionsClicked,
 	setOptionsClicked,
-	editClicked,
 	setEditClicked,
 }) => {
 	return (
@@ -39,7 +38,6 @@ const CardUpper = ({
 					postId={postId}
 					creatorId={creatorId}
 					setOptionsClicked={setOptionsClicked}
-					editClicked={editClicked}
 					setEditClicked={setEditClicked}
 				/>
 			)}

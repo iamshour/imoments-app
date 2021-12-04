@@ -39,7 +39,7 @@ export const followUnfollow = (userId, currentUserId) => async (dispatch) => {
 			currentUserId: currentUserId,
 		})
 		dispatch({
-			type: "FOLLOW",
+			type: "NEW_USER_MESSAGE",
 			payload: data,
 		})
 	} catch (error) {
@@ -72,6 +72,48 @@ export const getFollowing = (userId) => async (dispatch) => {
 		dispatch({
 			type: "GET_FOLLOWING",
 			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const addProfileInfo = (userId, userData) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "START_USER_LOADING",
+		})
+		const { data } = await api.addProfileInfo(userId, userData)
+		dispatch({
+			type: "NEW_USER_MESSAGE",
+			payload: data,
+		})
+		dispatch({
+			type: "END_USER_LOADING",
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const updateProfile = (userId, userData) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "START_USER_LOADING",
+		})
+		const { data } = await api.updateProfile(userId, userData)
+		dispatch({
+			type: "NEW_USER_MESSAGE",
+			payload: data,
+		})
+		dispatch({
+			type: "END_USER_LOADING",
 		})
 	} catch (error) {
 		dispatch({

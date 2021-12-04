@@ -11,13 +11,7 @@ import { IoMdClose } from "react-icons/io"
 import { BsBookmark } from "react-icons/bs"
 import { MdOutlineReportProblem } from "react-icons/md"
 
-const Dropdown = ({
-	creatorId,
-	postId,
-	setOptionsClicked,
-	editClicked,
-	setEditClicked,
-}) => {
+const Dropdown = ({ creatorId, postId, setOptionsClicked, setEditClicked }) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
