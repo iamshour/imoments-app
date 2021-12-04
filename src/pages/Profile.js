@@ -7,7 +7,6 @@ import { getProfilePosts } from "redux/actions/posts"
 import Card from "components/card/Card"
 import Loading from "components/utility/Loading"
 import UserCard from "components/profile/UserCard"
-import axios from "axios"
 
 const Profile = () => {
 	const params = useParams()
@@ -16,7 +15,7 @@ const Profile = () => {
 	const [customFetch, setCustomFetch] = useState(true)
 
 	//GETTING CURRENT USER ID
-	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
+	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	//GETTING VISITED USER
 	const { user, userMessage } = useSelector((state) => state?.user)
@@ -26,12 +25,9 @@ const Profile = () => {
 	)
 
 	useEffect(() => {
-		const source = axios.CancelToken.source()
-
-		dispatch(getSingleUser(params.id, { cancelToken: source.token }))
+		dispatch(getSingleUser(params.id))
 
 		return () => {
-			source.cancel()
 			dispatch({
 				type: "CLEAR_USER_TAB",
 			})

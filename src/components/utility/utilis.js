@@ -1,9 +1,4 @@
-export const titleFunc = (
-	location,
-	currentUser,
-	otherUserId,
-	otherUserName
-) => {
+export const titleFunc = (location, currentUser, user) => {
 	const title =
 		location.pathname === "/search"
 			? "Search for users"
@@ -15,10 +10,10 @@ export const titleFunc = (
 			? "Profile"
 			: location.pathname === `/profile/${currentUser?._id}`
 			? "My profile"
-			: location.pathname === `/profile/${otherUserId}`
+			: location.pathname === `/profile/${user?._id}`
 			? `${
-					otherUserName?.split(" ")[0]?.charAt(0)?.toUpperCase() +
-					otherUserName?.split(" ")[0]?.slice(1)
+					user?.name?.split(" ")[0]?.charAt(0)?.toUpperCase() +
+					user?.name?.split(" ")[0]?.slice(1)
 			  }'s profile`
 			: location.pathname === "/changepass"
 			? "Change your password"
@@ -37,14 +32,14 @@ export const titleFunc = (
 export const backIcon = (
 	location,
 	currentUser,
-	otherUserId,
+	user,
 	history,
 	IoArrowBackOutline
 ) => {
 	const icon =
 		location.pathname === "/profile" ||
 		location.pathname === `/profile/${currentUser?._id}` ||
-		location.pathname === `/profile/${otherUserId}` ||
+		location.pathname === `/profile/${user?._id}` ||
 		location.pathname === "/changepass" ||
 		location.pathname === "/bookmarks" ||
 		location.pathname === "/report" ||

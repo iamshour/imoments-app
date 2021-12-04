@@ -8,23 +8,33 @@ import { FiSun } from "react-icons/fi"
 import { BsFillMoonFill } from "react-icons/bs"
 import { IoArrowBackOutline } from "react-icons/io5"
 import { useSelector } from "react-redux"
+import { getUser } from "api"
 
 const Header = () => {
 	const history = useHistory()
 	const location = useLocation()
 	const [theme, setTheme] = useState("light")
+	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
+
 	const [currentUser, setCurrentUser] = useState(
-		JSON.parse(localStorage.getItem("User"))?.user
+		JSON.parse(localStorage.getItem("User"))
 	)
-	const otherUserId = useSelector((state) => state?.user?.user)?._id
-	const otherUserName = useSelector((state) => state?.user?.user)?.name
+
+	const { user, userMessage } = useSelector((state) => state?.user)
 
 	useEffect(() => {
 		// const token = user?.token
+		if (currentUserId) {
+			const getCurrentUser = async () => {
+				const { data } = await getUser(currentUserId)
+				localStorage.setItem("User", JSON.stringify(data))
+				setCurrentUser(JSON.parse(localStorage.getItem("User")))
+			}
+			getCurrentUser()
+		}
 
-		setCurrentUser(JSON.parse(localStorage.getItem("User"))?.user)
 		//Later JWT here
-	}, [location])
+	}, [location, currentUserId, userMessage])
 
 	useEffect(() => {
 		document.documentElement.setAttribute(
@@ -40,7 +50,6 @@ const Header = () => {
 		localStorage.setItem("theme", theme)
 		document.documentElement.setAttribute("data-theme", theme)
 	}
-
 	const switcher = () => {
 		if (theme === "light") {
 			saveTheme("dark")
@@ -53,16 +62,11 @@ const Header = () => {
 		}
 	}
 
-	const title = titleFunc(
-		location,
-		currentUser,
-		otherUserId && otherUserId,
-		otherUserName && otherUserName
-	)
+	const title = titleFunc(location, currentUser, user && user)
 	const icon = backIcon(
 		location,
 		currentUser,
-		otherUserId && otherUserId,
+		user && user,
 		history,
 		IoArrowBackOutline
 	)

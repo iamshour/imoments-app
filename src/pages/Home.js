@@ -4,21 +4,19 @@ import { getTimeline } from "redux/actions/posts"
 //COMPS
 import Card from "components/card/Card"
 import Loading from "components/utility/Loading"
-import axios from "axios"
 
 const Home = () => {
 	const dispatch = useDispatch()
 	const [customFetch, setCustomFetch] = useState(true)
 	//Current active user Id
-	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
+	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	const { timeline, postMessage, postLoading } = useSelector(
 		(state) => state.posts
 	)
 
 	useEffect(() => {
-		const source = axios.CancelToken.source()
-		dispatch(getTimeline(userId, { cancelToken: source.token }))
+		dispatch(getTimeline(userId))
 
 		if (customFetch) {
 			setTimeout(() => {
@@ -27,7 +25,6 @@ const Home = () => {
 		}
 
 		return () => {
-			source.cancel()
 			dispatch({
 				type: "CLEAR_POSTS",
 			})

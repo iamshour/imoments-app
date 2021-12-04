@@ -14,7 +14,7 @@ import { MdOutlineReportProblem } from "react-icons/md"
 const Dropdown = ({ creatorId, postId, setOptionsClicked, setEditClicked }) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const currentUserId = JSON.parse(localStorage.getItem("User"))?.user?._id
+	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	const [deleteClicked, setDeleteClicked] = useState(false)
 

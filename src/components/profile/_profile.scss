@@ -1,11 +1,11 @@
 .profile-page {
 	width: 100%;
 	height: 100%;
-	padding: 8rem 0;
+	margin: 8rem 0;
 
 	.profile-card-wrapper {
 		width: 100%;
-		height: 22vh;
+		height: 17rem;
 		position: relative;
 		@include centering;
 		.loading-container {

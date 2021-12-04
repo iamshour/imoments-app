@@ -1,16 +1,17 @@
 export const auth = (
-	state = { authData: JSON.parse(localStorage.getItem("User")) || null },
+	state = { authData: JSON.parse(localStorage.getItem("userId")) || null },
 	{ type, payload }
 ) => {
 	switch (type) {
 		case "AUTH_SUCCESS":
-			localStorage.setItem("User", JSON.stringify({ ...payload }))
+			localStorage.setItem("userId", JSON.stringify({ ...payload }))
 			return {
 				...state,
 				authData: payload,
 			}
 		case "SIGN_OUT":
 			localStorage.removeItem("User")
+			localStorage.removeItem("userId")
 			// localStorage.clear()
 			return {
 				authData: null,

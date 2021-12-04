@@ -41,12 +41,12 @@ export const CapUpload = (capData) => async (dispatch) => {
 	}
 }
 
-export const getTimeline = (userId, cancelToken) => async (dispatch) => {
+export const getTimeline = (userId) => async (dispatch) => {
 	try {
 		dispatch({
 			type: "START_POST_LOADING",
 		})
-		const { data } = await api.getPosts(userId, cancelToken)
+		const { data } = await api.getPosts(userId)
 		dispatch({
 			type: "GET_TIMELINE_POSTS",
 			payload: data,
@@ -62,12 +62,12 @@ export const getTimeline = (userId, cancelToken) => async (dispatch) => {
 	}
 }
 
-export const getProfilePosts = (userId, cancelToken) => async (dispatch) => {
+export const getProfilePosts = (userId) => async (dispatch) => {
 	try {
 		dispatch({
 			type: "START_POST_LOADING",
 		})
-		const { data } = await api.getProfilePosts(userId, cancelToken)
+		const { data } = await api.getProfilePosts(userId)
 		dispatch({
 			type: "GET_USER_POSTS",
 			payload: data,

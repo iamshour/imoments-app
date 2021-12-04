@@ -13,7 +13,7 @@ import { IoIosArrowUp } from "react-icons/io"
 const Socials = ({ likes, comments, creatorId, postId }) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
+	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	const [commentsClicked, setCommentsClicked] = useState(false)
 	const [likesLength, setLikesLength] = useState(likes?.length)

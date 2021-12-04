@@ -10,6 +10,7 @@ import { presets } from "components/utility/utilis"
 import Textarea from "components/utility/Textarea"
 import { useDispatch } from "react-redux"
 import { updatePost } from "redux/actions/posts"
+import { useSelector } from "react-redux"
 
 const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 	const location = useLocation()
@@ -20,9 +21,10 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 	const [editClicked, setEditClicked] = useState(false)
 	const [content, setContent] = useState(caption ? caption : null)
 
-	const userId = JSON.parse(localStorage.getItem("User"))?.user?._id
+	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	const [imgOpenned, setImgOpenned] = useState(false)
+	const { userMessage } = useSelector((state) => state?.user)
 
 	useEffect(() => {
 		const getPostCreator = async () => {
@@ -34,7 +36,7 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 		return () => {
 			setPostCreator({})
 		}
-	}, [location, creatorId])
+	}, [location, creatorId, userMessage])
 
 	const openImg = () => {
 		setOptionsClicked(false)

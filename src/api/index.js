@@ -24,10 +24,8 @@ export const followUser = (userId, currentUserId) =>
 	})
 
 //POSTS
-export const getProfilePosts = (userId, cancelToken) =>
-	API.get(`/posts/${userId}/profile`, cancelToken)
-export const getPosts = (userId, cancelToken) =>
-	API.get(`/posts/timeline/${userId}`, cancelToken)
+export const getProfilePosts = (userId) => API.get(`/posts/${userId}/profile`)
+export const getPosts = (userId) => API.get(`/posts/timeline/${userId}`)
 export const updatePost = (postId, postData) =>
 	API.put(`/posts/${postId}/update`, postData)
 export const likePost = (postId, userId) =>

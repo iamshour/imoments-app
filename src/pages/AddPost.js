@@ -16,7 +16,7 @@ const AddPost = () => {
 
 	const [file, setFile] = useState()
 	const [caption, setCaption] = useState("")
-	const user = JSON.parse(localStorage.getItem("User"))?.user
+	const creatorId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	const imgChange = (e) => {
 		if (e.target.files[0]) {
@@ -26,7 +26,6 @@ const AddPost = () => {
 
 	const addPost = async (e) => {
 		e.preventDefault()
-		const creatorId = user?._id
 
 		if (file && !caption) {
 			const imgData = new FormData()
