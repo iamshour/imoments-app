@@ -68,7 +68,7 @@
 	transition: transform 250ms ease-in-out;
 	&:hover,
 	&:active {
-		transform: scale(0.96);
+		transform: scale(0.99);
 	}
 }
 @mixin fade-in {
@@ -112,6 +112,7 @@ $breakpoint-desktop: 1080px;
 @import "./pageStyles/auth";
 @import "./pageStyles/notFound";
 @import "./pageStyles/notifications";
+@import "./pageStyles/settings";
 @import "./components/layout/layout";
 @import "./components/layout/Header/leftBar";
 @import "./components/card/card";
@@ -205,6 +206,36 @@ button {
 	}
 }
 
+.btn-medium {
+	padding: 0.6rem 1rem;
+	font-size: 1.5rem;
+	border-radius: 8px;
+
+	p {
+		margin-right: 0.4rem;
+	}
+}
+.btn-large {
+	padding: 0.8rem 1.6rem;
+	font-size: 2.4rem;
+	border-radius: 16px;
+	p {
+		margin-right: 0.8rem;
+	}
+}
+.btn-icon {
+	padding: 0.8rem;
+	border-radius: 18px;
+	background: var(--secondary-font);
+	@include pressed;
+	@include centering;
+
+	.icon {
+		font-size: 2.4rem;
+		color: white;
+	}
+}
+
 .following-btn {
 	color: var(--main-color);
 	transform: translateY(-1px);
@@ -239,6 +270,13 @@ input {
 	}
 	&::placeholder {
 		color: var(--secondary-font);
+	}
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active {
+		transition: background-color 5000s;
+		-webkit-text-fill-color: var(--primary-font) !important;
 	}
 }
 
@@ -279,14 +317,17 @@ h6 {
 	font-size: 1rem;
 	color: var(--secondary-font);
 }
+input {
+	width: 100%;
+	font-size: 1.6rem;
+	color: var(--primary-font);
+	line-height: 2.4rem;
+}
 
 .input-bar {
 	input {
-		width: 100%;
 		padding: 1.2rem;
 		border-radius: 1.6rem;
-		font-size: 1.6rem;
-		color: var(--primary-font);
 		background: var(--bg-secondary);
 		border: 1px solid var(--secondary-font);
 
@@ -311,11 +352,7 @@ h6 {
 		margin-right: 0.8rem;
 	}
 	input {
-		width: 100%;
 		border: 0;
-		font-size: 1.8rem;
-		line-height: 2.4rem;
-		color: var(--primary-font);
 		background: none;
 	}
 	&:focus-within {
@@ -323,36 +360,6 @@ h6 {
 		.icon {
 			color: var(--main-color);
 		}
-	}
-}
-
-.btn-medium {
-	padding: 0.6rem 1rem;
-	font-size: 1.5rem;
-	border-radius: 8px;
-
-	p {
-		margin-right: 0.4rem;
-	}
-}
-.btn-large {
-	padding: 0.8rem 1.6rem;
-	font-size: 2.4rem;
-	border-radius: 16px;
-	p {
-		margin-right: 0.8rem;
-	}
-}
-.btn-icon {
-	padding: 0.8rem;
-	border-radius: 18px;
-	background: var(--secondary-font);
-	@include pressed;
-	@include centering;
-
-	.icon {
-		font-size: 2.4rem;
-		color: white;
 	}
 }
 

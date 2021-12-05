@@ -21,7 +21,7 @@ const Home = () => {
 		if (customFetch) {
 			setTimeout(() => {
 				setCustomFetch(false)
-			}, 4000)
+			}, 1500)
 		}
 
 		return () => {

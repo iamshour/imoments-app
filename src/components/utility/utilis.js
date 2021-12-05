@@ -6,8 +6,6 @@ export const titleFunc = (location, currentUser, user) => {
 			? "Notifications"
 			: location.pathname === "/addpost"
 			? "Add a post"
-			: location.pathname === "/profile"
-			? "Profile"
 			: location.pathname === `/profile/${currentUser?._id}`
 			? "My profile"
 			: location.pathname === `/profile/${user?._id}`
@@ -15,12 +13,10 @@ export const titleFunc = (location, currentUser, user) => {
 					user?.name?.split(" ")[0]?.charAt(0)?.toUpperCase() +
 					user?.name?.split(" ")[0]?.slice(1)
 			  }'s profile`
-			: location.pathname === "/changepass"
-			? "Change your password"
+			: location.pathname === "/settings"
+			? "Account Settings"
 			: location.pathname === "/bookmarks"
 			? "Bookmarked Posts"
-			: location.pathname === "/report"
-			? "Report a problem"
 			: location.pathname === "/report"
 			? "Report a problem"
 			: location.pathname === "/about"
@@ -37,10 +33,9 @@ export const backIcon = (
 	IoArrowBackOutline
 ) => {
 	const icon =
-		location.pathname === "/profile" ||
 		location.pathname === `/profile/${currentUser?._id}` ||
 		location.pathname === `/profile/${user?._id}` ||
-		location.pathname === "/changepass" ||
+		location.pathname === "/settings" ||
 		location.pathname === "/bookmarks" ||
 		location.pathname === "/report" ||
 		location.pathname === "/about" ? (

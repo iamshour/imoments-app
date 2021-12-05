@@ -122,3 +122,45 @@ export const updateProfile = (userId, userData) => async (dispatch) => {
 		})
 	}
 }
+
+export const deleteUser = (userId) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "START_USER_LOADING",
+		})
+		const { data } = await api.deleteUser(userId)
+		dispatch({
+			type: "NEW_USER_MESSAGE",
+			payload: data,
+		})
+		dispatch({
+			type: "END_USER_LOADING",
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const changepass = (userId, userData) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "START_USER_LOADING",
+		})
+		const { data } = await api.changepass(userId, userData)
+		dispatch({
+			type: "NEW_USER_MESSAGE",
+			payload: data,
+		})
+		dispatch({
+			type: "END_USER_LOADING",
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}

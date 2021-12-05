@@ -22,6 +22,9 @@ export const followUser = (userId, currentUserId) =>
 		"content-type": "application/json",
 		method: "PUT",
 	})
+export const changepass = (userId, userData) =>
+	API.put(`user/${userId}/changepass`, userData)
+export const deleteUser = (userId) => API.delete(`user/${userId}/delete`)
 
 //POSTS
 export const getProfilePosts = (userId) => API.get(`/posts/${userId}/profile`)

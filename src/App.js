@@ -14,16 +14,18 @@ import Profile from "pages/Profile"
 import Auth from "pages/Auth"
 import Notifications from "pages/Notifications"
 import NotFound from "pages/NotFound"
+import Settings from "pages/Settings"
+import Bookmarks from "pages/Bookmarks"
 
 function App() {
 	const location = useLocation()
 
-	const [user, setUser] = useState(JSON.parse(localStorage.getItem("User")))
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("userId")))
 
 	useEffect(() => {
 		// const token = user?.token
 
-		setUser(JSON.parse(localStorage.getItem("User")))
+		setUser(JSON.parse(localStorage.getItem("userId")))
 		//Later JWT here
 	}, [location])
 	return (
@@ -45,6 +47,12 @@ function App() {
 					</Route>
 					<Route path='/notifications'>
 						{user ? <Notifications /> : <Redirect to='/auth' />}
+					</Route>
+					<Route path='/settings'>
+						{user ? <Settings /> : <Redirect to='/auth' />}
+					</Route>
+					<Route path='/bookmarks'>
+						{user ? <Bookmarks /> : <Redirect to='/auth' />}
 					</Route>
 					<Route component={NotFound} />
 				</Switch>

@@ -39,7 +39,7 @@ const Profile = () => {
 		if (customFetch) {
 			setTimeout(() => {
 				setCustomFetch(false)
-			}, 2000)
+			}, 1500)
 		}
 
 		return () => {
