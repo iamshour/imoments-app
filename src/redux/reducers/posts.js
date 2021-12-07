@@ -2,6 +2,7 @@ export const posts = (
 	state = {
 		timeline: null,
 		userPosts: null,
+		bookmarkedPosts: null,
 		postMessage: null,
 		postLoading: false,
 	},
@@ -17,6 +18,11 @@ export const posts = (
 			return {
 				...state,
 				userPosts: payload,
+			}
+		case "GET_BOOKMARKED_POSTS":
+			return {
+				...state,
+				bookmarkedPosts: payload,
 			}
 		case "NEW_POST_MESSAGE":
 			return {
@@ -39,8 +45,9 @@ export const posts = (
 			}
 		case "CLEAR_POSTS":
 			return {
-				userPosts: null,
 				timeline: null,
+				userPosts: null,
+				bookmarkedPosts: null,
 				postMessage: null,
 				postLoading: false,
 			}

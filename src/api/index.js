@@ -8,8 +8,7 @@ export const signIn = (data) => API.post("user/signin", data)
 export const googleApi = (data) => API.post("user/googleauth", data)
 
 //USERS
-export const getUser = (userId, currentUserId) =>
-	API.get(`user/${userId}`, currentUserId)
+export const getUser = (userId) => API.get(`user/${userId}`)
 export const addProfileInfo = (userId, userData) =>
 	API.post(`user/${userId}/add`, userData)
 export const updateProfile = (userId, userData) =>
@@ -28,12 +27,17 @@ export const deleteUser = (userId) => API.delete(`user/${userId}/delete`)
 
 //POSTS
 export const getProfilePosts = (userId) => API.get(`/posts/${userId}/profile`)
-export const getPosts = (userId) => API.get(`/posts/timeline/${userId}`)
+export const getPosts = (userId) => API.get(`/posts/${userId}/timeline`)
+export const getBookmarkedPosts = (userId) =>
+	API.get(`/posts/${userId}/bookmarks`)
+
 export const updatePost = (postId, postData) =>
 	API.put(`/posts/${postId}/update`, postData)
 export const likePost = (postId, userId) =>
 	API.put(`/posts/${postId}/like`, userId)
 export const deletePost = (postId) => API.delete(`/posts/${postId}/delete`)
+export const bookmarkPost = (postId, userId) =>
+	API.put(`/posts/${postId}/bookmark`, userId)
 export const uploadImg = (imgData) => API.post("/posts/uploadimg", imgData)
 export const uploadCaption = (capData) =>
 	API.post("/posts/uploadcaption", capData)

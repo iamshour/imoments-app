@@ -1,26 +1,51 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useLocation } from "react-router"
 import { useDispatch } from "react-redux"
-import { deletePost } from "redux/actions/posts"
+import { bookmarkPost, deletePost } from "redux/actions/posts"
 //COMPS
 import Modal from "components/utility/Modal"
 import { closeModalBtn, openModal } from "components/utility/utilis"
 //ICONS
 import { BiEdit } from "react-icons/bi"
 import { IoMdClose } from "react-icons/io"
-import { BsBookmark } from "react-icons/bs"
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs"
 import { MdOutlineReportProblem } from "react-icons/md"
 
 const Dropdown = ({ creatorId, postId, setOptionsClicked, setEditClicked }) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
+	const currentUser = JSON.parse(localStorage.getItem("User"))
 
 	const [deleteClicked, setDeleteClicked] = useState(false)
 
+	const [bookmarkIncluded, setBookmarkIncluded] = useState(
+		currentUser?.bookmarks?.includes(postId) ? true : false
+	)
+	const [bookmarkClicked, setbookmarkClicked] = useState(bookmarkIncluded)
+
+	const bookmarkHandler = () => {
+		if (bookmarkIncluded) {
+			setbookmarkClicked(false)
+			setBookmarkIncluded(false)
+
+			if (location.pathname === "/bookmarks") {
+				dispatch({
+					type: "NEW_POST_MESSAGE",
+					data: "Removed from bookmarks successfully",
+				})
+			}
+		} else {
+			setbookmarkClicked(true)
+			setBookmarkIncluded(true)
+		}
+		dispatch(bookmarkPost(postId, { userId: currentUser?._id }))
+	}
+	// useEffect(() => {
+	// 	setClicked(likes?.includes(userId) ? true : false)
+	// }, [likes, userId, location])
 	return (
 		<div className='dropdown'>
-			{currentUserId === creatorId ? (
+			{currentUser?._id === creatorId ? (
 				<>
 					<button
 						onClick={() => {
@@ -75,8 +100,12 @@ const Dropdown = ({ creatorId, postId, setOptionsClicked, setEditClicked }) => {
 				</>
 			) : (
 				<>
-					<button className='dropdown-btn'>
-						<BsBookmark className='icon' />
+					<button className='dropdown-btn' onClick={bookmarkHandler}>
+						{bookmarkClicked ? (
+							<BsBookmarkFill className='icon' />
+						) : (
+							<BsBookmark className='icon' />
+						)}
 						<p>Bookmark</p>
 					</button>
 					<button className='dropdown-btn'>

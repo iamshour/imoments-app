@@ -18,8 +18,10 @@ const Socials = ({ likes, comments, creatorId, postId }) => {
 	const [commentsClicked, setCommentsClicked] = useState(false)
 	const [likesLength, setLikesLength] = useState(likes?.length)
 
-	const [clicked, setClicked] = useState(likes?.includes(userId) ? true : false)
-	const [likesStyle, setLikesStyle] = useState(clicked)
+	const [likeIncluded, setLikeIncluded] = useState(
+		likes?.includes(userId) ? true : false
+	)
+	const [likeClicked, setLikeClicked] = useState(likeIncluded)
 	const customComments = [
 		{
 			cmnt: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate molestias nisi voluptatibus ea? Vero, aliquam",
@@ -41,21 +43,15 @@ const Socials = ({ likes, comments, creatorId, postId }) => {
 		},
 	]
 
-	console.log()
-
-	useEffect(() => {
-		setClicked(likes?.includes(userId) ? true : false)
-	}, [likes, userId, location])
-
 	const likeHandler = () => {
-		if (clicked) {
+		if (likeIncluded) {
 			setLikesLength(likesLength - 1)
-			setLikesStyle(false)
-			setClicked(false)
+			setLikeClicked(false)
+			setLikeIncluded(false)
 		} else {
 			setLikesLength(likesLength + 1)
-			setLikesStyle(true)
-			setClicked(true)
+			setLikeClicked(true)
+			setLikeIncluded(true)
 		}
 		dispatch(likePost(postId, { userId: userId }))
 	}
@@ -63,9 +59,9 @@ const Socials = ({ likes, comments, creatorId, postId }) => {
 	return (
 		<div className='card-bottom'>
 			<div className='socials-bar'>
-				<button onClick={likeHandler} className={likesStyle ? "clicked" : ""}>
+				<button onClick={likeHandler} className={likeClicked ? "clicked" : ""}>
 					<div className='icon-wrapper'>
-						{likesStyle ? (
+						{likeClicked ? (
 							<AiFillLike className='icon' />
 						) : (
 							<AiOutlineLike className='icon' />

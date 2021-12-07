@@ -21,19 +21,14 @@ const FollowBtn = ({ currentUserId, userId }) => {
 
 	return (
 		<button
-			className={`btn-medium ${followed === true && "following-btn"}`}
+			className={`btn-medium ${followed && "following-btn"}`}
 			onClick={() => dispatch(followUnfollow(userId, currentUserId))}
 		>
-			{followed === false ? (
-				<>
-					<p>Follow</p>
-					<FiUserPlus className='icon' />
-				</>
+			<p>{followed ? "Following" : "Follow"}</p>
+			{followed ? (
+				<FiUserCheck className='icon' />
 			) : (
-				<>
-					<p>Following</p>
-					<FiUserCheck className='icon' />
-				</>
+				<FiUserPlus className='icon' />
 			)}
 		</button>
 	)

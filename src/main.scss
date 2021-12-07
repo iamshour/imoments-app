@@ -286,6 +286,7 @@ label {
 }
 
 .home-page,
+.bookmarks-page,
 .profile-page,
 .search-page,
 .addpost-page,
@@ -372,6 +373,7 @@ textarea {
 }
 
 .home-page,
+.bookmarks-page,
 .search-page {
 	width: 100%;
 	height: 100%;
@@ -380,6 +382,7 @@ textarea {
 
 @media (min-width: $breakpoint-tablet) {
 	.home-page,
+	.bookmarks-page,
 	.profile-page,
 	.search-page {
 		margin: 12rem 0 8rem 0;
@@ -397,6 +400,7 @@ textarea {
 
 @media (min-width: $breakpoint-desktop) {
 	.home-page,
+	.bookmarks-page,
 	.profile-page,
 	.search-page {
 		margin: 14rem auto 8rem auto;
