@@ -172,3 +172,14 @@ export const likePost = (postId, userId) => async (dispatch) => {
 		})
 	}
 }
+
+export const addComment = (postId, commentData) => async (dispatch) => {
+	try {
+		await api.addComment(postId, commentData)
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}

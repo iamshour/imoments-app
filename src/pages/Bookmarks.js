@@ -12,7 +12,6 @@ const Bookmarks = () => {
 	const { bookmarkedPosts, postLoading, postMessage } = useSelector(
 		(state) => state.posts
 	)
-	console.log(bookmarkedPosts)
 
 	useEffect(() => {
 		dispatch(getBookmarkedPosts(currentUserId))

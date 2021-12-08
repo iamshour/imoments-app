@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom"
+import Moment from "react-moment"
+//COMPS
 import Dropdown from "./Dropdown"
 //icons
 import { AiOutlineEllipsis } from "react-icons/ai"
 import { IoMdClose } from "react-icons/io"
+import { useState } from "react"
+import { useEffect } from "react"
+import { useLocation } from "react-router"
 
 const CardUpper = ({
 	avatar,
@@ -14,18 +19,40 @@ const CardUpper = ({
 	setOptionsClicked,
 	setEditClicked,
 }) => {
+	const location = useLocation()
+	const currentUser = JSON.parse(localStorage.getItem("User"))
+	const [bookmarkIncluded, setBookmarkIncluded] = useState(
+		currentUser?.bookmarks?.includes(postId) ? true : false
+	)
+	const [bookmarkClicked, setbookmarkClicked] = useState(bookmarkIncluded)
+
+	useEffect(() => {
+		setBookmarkIncluded(currentUser?.bookmarks?.includes(postId) ? true : false)
+	}, [currentUser.bookmarks, location, postId])
+
 	return (
 		<div className='card-upper'>
 			<Link to={`/profile/${creatorId}`} className='left'>
 				<img src={avatar} alt={name} />
 				<div className='info'>
 					<h1>{name}</h1>
-					<h2>{time}</h2>
+					<h2>
+						<Moment fromNow>{time}</Moment>
+					</h2>
 				</div>
 			</Link>
 			<button
 				className='right'
-				onClick={() => setOptionsClicked(!optionsClicked)}
+				onClick={() => {
+					setOptionsClicked(!optionsClicked)
+					if (bookmarkClicked) {
+						setbookmarkClicked(true)
+						setBookmarkIncluded(true)
+					} else {
+						setbookmarkClicked(false)
+						setBookmarkIncluded(false)
+					}
+				}}
 			>
 				{optionsClicked ? (
 					<IoMdClose className='icon' />
@@ -39,6 +66,10 @@ const CardUpper = ({
 					creatorId={creatorId}
 					setOptionsClicked={setOptionsClicked}
 					setEditClicked={setEditClicked}
+					bookmarkClicked={bookmarkClicked}
+					bookmarkIncluded={bookmarkIncluded}
+					setbookmarkClicked={setbookmarkClicked}
+					setBookmarkIncluded={setBookmarkIncluded}
 				/>
 			)}
 		</div>

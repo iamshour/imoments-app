@@ -1,6 +1,26 @@
+import Textarea from "components/utility/Textarea"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import { addComment } from "redux/actions/posts"
 
-const AddComment = () => {
+const AddComment = ({ postId, setcommentSubmitted }) => {
+	const dispatch = useDispatch()
+	const [comment, setComment] = useState("")
+	const userId = JSON.parse(localStorage.getItem("userId"))?.id
+
+	const handleSubmit = () => {
+		dispatch(
+			addComment(postId, {
+				comment: comment,
+				userId: userId,
+			})
+		)
+		setComment("")
+		setcommentSubmitted(true)
+	}
+	console.log(handleSubmit ? true : false)
+
 	return (
 		<div className='add-comment'>
 			<div className='left'>
@@ -13,13 +33,15 @@ const AddComment = () => {
 				</Link>
 			</div>
 			<div className='right'>
-				<textarea
-					name='addcomment'
-					// cols='30'
-					rows='3'
-					placeholder='Add a comment here'
-				></textarea>
-				<button className='btn-medium'>
+				<Textarea
+					content={comment}
+					setContent={setComment}
+					customRows={4}
+					name='comment'
+					maxCh='220'
+					className='bio-content'
+				/>
+				<button className='btn-medium' onClick={handleSubmit}>
 					<p>Add comment</p>
 				</button>
 			</div>

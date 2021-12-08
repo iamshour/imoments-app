@@ -44,7 +44,7 @@ const Home = () => {
 						postId={post?._id}
 						img={post?.postImg}
 						caption={post?.caption}
-						time={new Date(post?.createdAt).toDateString()}
+						time={post?.createdAt}
 						likes={post?.likes}
 					/>
 				))

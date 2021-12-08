@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useLocation } from "react-router"
 import { useDispatch } from "react-redux"
 import { bookmarkPost, deletePost } from "redux/actions/posts"
@@ -11,17 +11,21 @@ import { IoMdClose } from "react-icons/io"
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs"
 import { MdOutlineReportProblem } from "react-icons/md"
 
-const Dropdown = ({ creatorId, postId, setOptionsClicked, setEditClicked }) => {
+const Dropdown = ({
+	creatorId,
+	postId,
+	setOptionsClicked,
+	setEditClicked,
+	bookmarkClicked,
+	bookmarkIncluded,
+	setBookmarkIncluded,
+	setbookmarkClicked,
+}) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const currentUser = JSON.parse(localStorage.getItem("User"))
 
 	const [deleteClicked, setDeleteClicked] = useState(false)
-
-	const [bookmarkIncluded, setBookmarkIncluded] = useState(
-		currentUser?.bookmarks?.includes(postId) ? true : false
-	)
-	const [bookmarkClicked, setbookmarkClicked] = useState(bookmarkIncluded)
 
 	const bookmarkHandler = () => {
 		if (bookmarkIncluded) {
@@ -39,10 +43,9 @@ const Dropdown = ({ creatorId, postId, setOptionsClicked, setEditClicked }) => {
 			setBookmarkIncluded(true)
 		}
 		dispatch(bookmarkPost(postId, { userId: currentUser?._id }))
+		setOptionsClicked(false)
 	}
-	// useEffect(() => {
-	// 	setClicked(likes?.includes(userId) ? true : false)
-	// }, [likes, userId, location])
+
 	return (
 		<div className='dropdown'>
 			{currentUser?._id === creatorId ? (

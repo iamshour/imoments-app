@@ -33,11 +33,21 @@ export const getBookmarkedPosts = (userId) =>
 
 export const updatePost = (postId, postData) =>
 	API.put(`/posts/${postId}/update`, postData)
+
+export const deletePost = (postId) => API.delete(`/posts/${postId}/delete`)
+
 export const likePost = (postId, userId) =>
 	API.put(`/posts/${postId}/like`, userId)
-export const deletePost = (postId) => API.delete(`/posts/${postId}/delete`)
+
+export const addComment = (postId, commentData) =>
+	API.put(`/posts/${postId}/comment`, commentData)
+
+export const getComments = (postId) => API.get(`/posts/${postId}/comments`)
+
 export const bookmarkPost = (postId, userId) =>
 	API.put(`/posts/${postId}/bookmark`, userId)
+
 export const uploadImg = (imgData) => API.post("/posts/uploadimg", imgData)
+
 export const uploadCaption = (capData) =>
 	API.post("/posts/uploadcaption", capData)

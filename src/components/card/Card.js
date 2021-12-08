@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react"
 import { useLocation } from "react-router"
-//comps
+import { useDispatch, useSelector } from "react-redux"
 import { getUser } from "api"
+import { updatePost } from "redux/actions/posts"
+import { presets } from "components/utility/utilis"
+//comps
 import Socials from "./Socials/Socials"
 import CardUpper from "./Card-upper/CardUpper"
+import Textarea from "components/utility/Textarea"
 //icons
 import { IoMdClose } from "react-icons/io"
-import { presets } from "components/utility/utilis"
-import Textarea from "components/utility/Textarea"
-import { useDispatch } from "react-redux"
-import { updatePost } from "redux/actions/posts"
-import { useSelector } from "react-redux"
 
 const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 	const location = useLocation()

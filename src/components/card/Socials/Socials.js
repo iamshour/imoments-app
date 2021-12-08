@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react"
-import { useLocation } from "react-router"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { likePost } from "redux/actions/posts"
 //comps
@@ -9,39 +8,25 @@ import AddComment from "./Comment/AddComment"
 import { AiOutlineLike, AiFillLike } from "react-icons/ai"
 import { FaRegComment } from "react-icons/fa"
 import { IoIosArrowUp } from "react-icons/io"
+import { getComments } from "api"
+import Loading from "components/utility/Loading"
+import { useEffect } from "react"
 
-const Socials = ({ likes, comments, creatorId, postId }) => {
+const Socials = ({ likes, postId }) => {
 	const dispatch = useDispatch()
-	const location = useLocation()
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
+	const [loading, setLoading] = useState(false)
 	const [commentsClicked, setCommentsClicked] = useState(false)
-	const [likesLength, setLikesLength] = useState(likes?.length)
+	const [commentSubmitted, setcommentSubmitted] = useState(false)
+	const [allComments, setAllComments] = useState([])
+	console.log(allComments)
 
+	const [likesLength, setLikesLength] = useState(likes?.length)
 	const [likeIncluded, setLikeIncluded] = useState(
 		likes?.includes(userId) ? true : false
 	)
 	const [likeClicked, setLikeClicked] = useState(likeIncluded)
-	const customComments = [
-		{
-			cmnt: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate molestias nisi voluptatibus ea? Vero, aliquam",
-			cmntName: "Jade Loolo",
-			cmntTime: "2 days ago",
-			cmntAvatar: "https://i.pravatar.cc/150?img=16",
-		},
-		{
-			cmnt: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate molestias nisi voluptatibus ea? Vero, aliquam",
-			cmntName: "Kaom Paol",
-			cmntTime: "27 days ago",
-			cmntAvatar: "https://i.pravatar.cc/150?img=49",
-		},
-		{
-			cmnt: "Voluptate molestias nisi voluptatibus ea? Vero, aliquam",
-			cmntName: "Kaom Paol",
-			cmntTime: "27 days ago",
-			cmntAvatar: "https://i.pravatar.cc/150?img=2",
-		},
-	]
 
 	const likeHandler = () => {
 		if (likeIncluded) {
@@ -55,6 +40,24 @@ const Socials = ({ likes, comments, creatorId, postId }) => {
 		}
 		dispatch(likePost(postId, { userId: userId }))
 	}
+
+	useEffect(() => {
+		const commentsHandler = async () => {
+			try {
+				setLoading(true)
+				const { data } = await getComments(postId)
+				setAllComments(data)
+				setLoading(false)
+			} catch (error) {
+				dispatch({
+					type: "ERROR",
+					payload: error.response.data.message,
+				})
+			}
+		}
+
+		commentsHandler()
+	}, [commentSubmitted, postId])
 
 	return (
 		<div className='card-bottom'>
@@ -75,7 +78,7 @@ const Socials = ({ likes, comments, creatorId, postId }) => {
 							<div className='icon-wrapper'>
 								<FaRegComment className='icon' />
 							</div>
-							<h2>{comments} comments</h2>
+							{/* <h2>{comments} comments</h2> */}
 						</>
 					) : (
 						<>
@@ -89,15 +92,24 @@ const Socials = ({ likes, comments, creatorId, postId }) => {
 			</div>
 			{commentsClicked && (
 				<div className='comments-wrapper'>
-					<AddComment />
-					{customComments.map((comment) => (
-						<Comment
-							cmnt={comment.cmnt}
-							cmntName={comment.cmntName}
-							cmntTime={comment.cmntTime}
-							cmntAvatar={comment.cmntAvatar}
-						/>
-					))}
+					<AddComment
+						postId={postId}
+						setcommentSubmitted={setcommentSubmitted}
+					/>
+					{loading ? (
+						<Loading />
+					) : allComments?.length === 0 ? (
+						<h1>No Comments yet</h1>
+					) : (
+						allComments.map((comment, index) => (
+							<Comment
+								key={index}
+								commentorId={comment?.commentorId}
+								content={comment?.comment}
+								time={comment?.createdAt}
+							/>
+						))
+					)}
 				</div>
 			)}
 		</div>

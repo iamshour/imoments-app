@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
+import { useDispatch } from "react-redux"
 import { signOut } from "redux/actions/auth"
 import { presets } from "components/utility/utilis"
 //icons/assets
@@ -11,7 +12,6 @@ import { AiOutlineCheck } from "react-icons/ai"
 import { FiUser, FiSettings } from "react-icons/fi"
 import { CgSupport } from "react-icons/cg"
 import { IoLogOutOutline } from "react-icons/io5"
-import { useDispatch } from "react-redux"
 
 const LeftBar = ({ currentUser }) => {
 	const dispatch = useDispatch()
