@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { likePost } from "redux/actions/posts"
 //comps
 import Comment from "./Comment/Comment"
@@ -9,18 +9,15 @@ import { AiOutlineLike, AiFillLike } from "react-icons/ai"
 import { FaRegComment } from "react-icons/fa"
 import { IoIosArrowUp } from "react-icons/io"
 import { getComments } from "api"
-import Loading from "components/utility/Loading"
 import { useEffect } from "react"
 
 const Socials = ({ likes, postId }) => {
 	const dispatch = useDispatch()
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
+	const { commentMsg } = useSelector((state) => state.posts)
 
-	const [loading, setLoading] = useState(false)
 	const [commentsClicked, setCommentsClicked] = useState(false)
-	const [commentSubmitted, setcommentSubmitted] = useState(false)
 	const [allComments, setAllComments] = useState([])
-	console.log(allComments)
 
 	const [likesLength, setLikesLength] = useState(likes?.length)
 	const [likeIncluded, setLikeIncluded] = useState(
@@ -44,10 +41,8 @@ const Socials = ({ likes, postId }) => {
 	useEffect(() => {
 		const commentsHandler = async () => {
 			try {
-				setLoading(true)
 				const { data } = await getComments(postId)
 				setAllComments(data)
-				setLoading(false)
 			} catch (error) {
 				dispatch({
 					type: "ERROR",
@@ -55,14 +50,22 @@ const Socials = ({ likes, postId }) => {
 				})
 			}
 		}
-
 		commentsHandler()
-	}, [commentSubmitted, postId])
+
+		return () => {
+			dispatch({
+				type: "CLEAR_COMMENT_MSG",
+			})
+		}
+	}, [postId, dispatch, commentMsg])
 
 	return (
 		<div className='card-bottom'>
 			<div className='socials-bar'>
-				<button onClick={likeHandler} className={likeClicked ? "clicked" : ""}>
+				<button
+					onClick={likeHandler}
+					className={`socials-btn ${likeClicked && "clicked"}`}
+				>
 					<div className='icon-wrapper'>
 						{likeClicked ? (
 							<AiFillLike className='icon' />
@@ -70,15 +73,30 @@ const Socials = ({ likes, postId }) => {
 							<AiOutlineLike className='icon' />
 						)}
 					</div>
-					<h2>{likesLength} likes</h2>
+					<h2>
+						{likesLength === 0
+							? "0 likes"
+							: likesLength === 1
+							? "1 like"
+							: likesLength + " likes"}
+					</h2>
 				</button>
-				<button onClick={() => setCommentsClicked(!commentsClicked)}>
+				<button
+					onClick={() => setCommentsClicked(!commentsClicked)}
+					className='socials-btn'
+				>
 					{!commentsClicked ? (
 						<>
 							<div className='icon-wrapper'>
 								<FaRegComment className='icon' />
 							</div>
-							{/* <h2>{comments} comments</h2> */}
+							<h2>
+								{allComments?.length === 0
+									? "No comments yet"
+									: allComments?.length === 1
+									? "1 comment"
+									: allComments?.length + " comments"}
+							</h2>
 						</>
 					) : (
 						<>
@@ -92,19 +110,16 @@ const Socials = ({ likes, postId }) => {
 			</div>
 			{commentsClicked && (
 				<div className='comments-wrapper'>
-					<AddComment
-						postId={postId}
-						setcommentSubmitted={setcommentSubmitted}
-					/>
-					{loading ? (
-						<Loading />
-					) : allComments?.length === 0 ? (
+					<AddComment postId={postId} />
+					{allComments?.length === 0 ? (
 						<h1>No Comments yet</h1>
 					) : (
-						allComments.map((comment, index) => (
+						allComments.map((comment) => (
 							<Comment
-								key={index}
+								key={comment?.commentId}
+								commentId={comment?.commentId}
 								commentorId={comment?.commentorId}
+								postId={postId}
 								content={comment?.comment}
 								time={comment?.createdAt}
 							/>

@@ -1,25 +1,24 @@
 import Textarea from "components/utility/Textarea"
+import { presets } from "components/utility/utilis"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { addComment } from "redux/actions/posts"
 
-const AddComment = ({ postId, setcommentSubmitted }) => {
+const AddComment = ({ postId }) => {
 	const dispatch = useDispatch()
 	const [comment, setComment] = useState("")
-	const userId = JSON.parse(localStorage.getItem("userId"))?.id
+	const user = JSON.parse(localStorage.getItem("User"))
 
 	const handleSubmit = () => {
 		dispatch(
 			addComment(postId, {
 				comment: comment,
-				userId: userId,
+				userId: user._id,
 			})
 		)
 		setComment("")
-		setcommentSubmitted(true)
 	}
-	console.log(handleSubmit ? true : false)
 
 	return (
 		<div className='add-comment'>
@@ -27,8 +26,8 @@ const AddComment = ({ postId, setcommentSubmitted }) => {
 				<Link to='/user/..'>
 					<img
 						className='avatar'
-						src='https://i.pravatar.cc/150?img=26'
-						alt='user avatar'
+						src={user?.avatar ? user?.avatar : presets?.avatar}
+						alt={user?.name}
 					/>
 				</Link>
 			</div>

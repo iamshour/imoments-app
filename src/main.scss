@@ -68,7 +68,7 @@
 	transition: transform 250ms ease-in-out;
 	&:hover,
 	&:active {
-		transform: scale(0.99);
+		transform: scale(0.98);
 	}
 }
 @mixin fade-in {

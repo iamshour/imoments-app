@@ -149,11 +149,6 @@ export const updatePost = (postId, postData) => async (dispatch) => {
 export const bookmarkPost = (postId, userId) => async (dispatch) => {
 	try {
 		await api.bookmarkPost(postId, userId)
-		// const { data } = await api.bookmarkPost(postId, userId)
-		// dispatch({
-		// 	type: "NEW_POST_MESSAGE",
-		// 	payload: data,
-		// })
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
@@ -176,6 +171,23 @@ export const likePost = (postId, userId) => async (dispatch) => {
 export const addComment = (postId, commentData) => async (dispatch) => {
 	try {
 		await api.addComment(postId, commentData)
+		dispatch({
+			type: "COMMENT_MSG",
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+	try {
+		await api.deleteComment(postId, commentId)
+		dispatch({
+			type: "COMMENT_MSG",
+		})
 	} catch (error) {
 		dispatch({
 			type: "ERROR",

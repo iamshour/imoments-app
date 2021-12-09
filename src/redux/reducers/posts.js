@@ -5,6 +5,7 @@ export const posts = (
 		bookmarkedPosts: null,
 		postMessage: null,
 		postLoading: false,
+		commentMsg: false,
 	},
 	{ type, payload }
 ) => {
@@ -28,6 +29,16 @@ export const posts = (
 			return {
 				...state,
 				postMessage: payload,
+			}
+		case "COMMENT_MSG":
+			return {
+				...state,
+				commentMsg: true,
+			}
+		case "CLEAR_COMMENT_MSG":
+			return {
+				...state,
+				commentMsg: false,
 			}
 		case "START_POST_LOADING":
 			return {

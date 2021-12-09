@@ -3,9 +3,9 @@ import axios from "axios"
 const API = axios.create({ baseURL: "http://localhost:5000" })
 
 //AUTH
-export const signUp = (data) => API.post("user/signup", data)
-export const signIn = (data) => API.post("user/signin", data)
-export const googleApi = (data) => API.post("user/googleauth", data)
+export const signUp = (data) => API.post("auth/signup", data)
+export const signIn = (data) => API.post("auth/signin", data)
+export const googleApi = (data) => API.post("auth/googleauth", data)
 
 //USERS
 export const getUser = (userId) => API.get(`user/${userId}`)
@@ -40,7 +40,10 @@ export const likePost = (postId, userId) =>
 	API.put(`/posts/${postId}/like`, userId)
 
 export const addComment = (postId, commentData) =>
-	API.put(`/posts/${postId}/comment`, commentData)
+	API.put(`/posts/${postId}/addcomment`, commentData)
+
+export const deleteComment = (postId, commentId) =>
+	API.put(`/posts/${postId}/deletecomment`, commentId)
 
 export const getComments = (postId) => API.get(`/posts/${postId}/comments`)
 
