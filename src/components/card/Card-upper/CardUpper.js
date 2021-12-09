@@ -8,6 +8,7 @@ import { IoMdClose } from "react-icons/io"
 import { useState } from "react"
 import { useEffect } from "react"
 import { useLocation } from "react-router"
+import { makeUppercase } from "components/utility/utilis"
 
 const CardUpper = ({
 	avatar,
@@ -35,7 +36,7 @@ const CardUpper = ({
 			<Link to={`/profile/${creatorId}`} className='left'>
 				<img src={avatar} alt={name} />
 				<div className='info'>
-					<h1>{name}</h1>
+					<h1>{makeUppercase(name, 0) + " " + makeUppercase(name, 1)}</h1>
 					<h2>
 						<Moment fromNow>{time}</Moment>
 					</h2>

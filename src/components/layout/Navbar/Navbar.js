@@ -5,10 +5,28 @@ import { AiFillHome } from "react-icons/ai"
 import { BsSearch } from "react-icons/bs"
 import { BsPlusLg } from "react-icons/bs"
 import { VscBell } from "react-icons/vsc"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { getNotifications } from "redux/actions/user"
 // VscBellDot
 
 const Navbar = () => {
 	const location = useLocation()
+	const dispatch = useDispatch()
+	const { notifications } = useSelector((state) => state.user)
+	const { commentMsg } = useSelector((state) => state.posts)
+
+	const userId = JSON.parse(localStorage.getItem("userId"))?.id
+
+	useEffect(() => {
+		dispatch(getNotifications(userId))
+
+		return () => {
+			dispatch({
+				type: "CLEAR_USER_TAB",
+			})
+		}
+	}, [dispatch, userId, location, commentMsg])
 
 	return (
 		<nav style={location.pathname === "/auth" ? { display: "none" } : {}}>

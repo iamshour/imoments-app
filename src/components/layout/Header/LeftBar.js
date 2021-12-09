@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { useDispatch } from "react-redux"
 import { signOut } from "redux/actions/auth"
-import { presets } from "components/utility/utilis"
+import { makeUppercase, presets } from "components/utility/utilis"
 //icons/assets
 import logo from "images/logo.png"
 import { BsBookmarks, BsInfoCircle } from "react-icons/bs"
@@ -104,7 +104,11 @@ const LeftBar = ({ currentUser }) => {
 									}
 									alt={currentUser?.name || "User avatar"}
 								/>
-								<h1>{currentUser?.name}</h1>
+								<h1>
+									{makeUppercase(currentUser?.name, 0) +
+										" " +
+										makeUppercase(currentUser?.name, 1)}
+								</h1>
 							</Link>
 						</div>
 						<div className='left-bar-links'>

@@ -7,6 +7,7 @@ import { getProfilePosts } from "redux/actions/posts"
 import Card from "components/card/Card"
 import Loading from "components/utility/Loading"
 import UserCard from "components/profile/UserCard"
+import { makeUppercase } from "components/utility/utilis"
 
 const Profile = () => {
 	const params = useParams()
@@ -57,8 +58,7 @@ const Profile = () => {
 				<h5>My Posts</h5>
 			) : (
 				<h5>
-					{user?.name?.split(" ")[0]?.charAt(0)?.toUpperCase() +
-						user?.name?.split(" ")[0]?.slice(1)}
+					{makeUppercase(user?.name, 0)}
 					's posts
 				</h5>
 			)}

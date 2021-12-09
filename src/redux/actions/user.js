@@ -9,7 +9,59 @@ export const getSingleUser = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
-			type: "NOTIFICATION",
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const getFollowers = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getFollowers(userId)
+		dispatch({
+			type: "GET_FOLLOWERS",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const getFollowing = (userId) => async (dispatch) => {
+	try {
+		const { data } = await api.getFollowing(userId)
+
+		dispatch({
+			type: "GET_FOLLOWING",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error.response.data.message,
+		})
+	}
+}
+
+export const getNotifications = (userId) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "START_USER_LOADING",
+		})
+		const { data } = await api.getNotifications(userId)
+		dispatch({
+			type: "GET_NOTIFICATIONS",
+			payload: data,
+		})
+		dispatch({
+			type: "END_USER_LOADING",
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
 			payload: error.response.data.message,
 		})
 	}
@@ -40,37 +92,6 @@ export const followUnfollow = (userId, currentUserId) => async (dispatch) => {
 		})
 		dispatch({
 			type: "NEW_USER_MESSAGE",
-			payload: data,
-		})
-	} catch (error) {
-		dispatch({
-			type: "ERROR",
-			payload: error.response.data.message,
-		})
-	}
-}
-
-export const getFollowers = (userId) => async (dispatch) => {
-	try {
-		const { data } = await api.getFollowers(userId)
-		dispatch({
-			type: "GET_FOLLOWERS",
-			payload: data,
-		})
-	} catch (error) {
-		dispatch({
-			type: "ERROR",
-			payload: error.response.data.message,
-		})
-	}
-}
-
-export const getFollowing = (userId) => async (dispatch) => {
-	try {
-		const { data } = await api.getFollowing(userId)
-
-		dispatch({
-			type: "GET_FOLLOWING",
 			payload: data,
 		})
 	} catch (error) {

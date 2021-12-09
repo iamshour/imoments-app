@@ -1,6 +1,6 @@
 import FollowingBtn from "./Btns/FollowingBtn"
 import FollowersBtn from "./Btns/FollowersBtn"
-import { presets } from "components/utility/utilis"
+import { makeUppercase, presets } from "components/utility/utilis"
 import FollowBtn from "components/profile/Btns/FollowBtn"
 import { useState } from "react"
 import Textarea from "components/utility/Textarea"
@@ -94,7 +94,13 @@ const UserCard = ({ currentUserId, user }) => {
 								alt={user?.name}
 							/>
 						)}
-						{!editProfile && <h1>{user?.name}</h1>}
+						{!editProfile && (
+							<h1>
+								{makeUppercase(user?.name, 0) +
+									" " +
+									makeUppercase(user?.name, 1)}
+							</h1>
+						)}
 					</div>
 					<div className='right'>
 						{!editProfile ? (

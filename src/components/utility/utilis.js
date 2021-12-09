@@ -65,3 +65,10 @@ export const closeModalBtn = (location) => {
 	location.pathname === ("/" || "/search" || "/addPost" || "/notifications") &&
 		(document.querySelector("nav").style.display = "unset")
 }
+
+export const makeUppercase = (word, index) => {
+	return (
+		word?.split(" ")[index]?.charAt(0)?.toUpperCase() +
+		word?.split(" ")[index]?.slice(1)
+	)
+}

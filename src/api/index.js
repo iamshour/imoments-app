@@ -15,6 +15,8 @@ export const updateProfile = (userId, userData) =>
 	API.put(`user/${userId}/update`, userData)
 export const getFollowers = (userId) => API.get(`user/${userId}/followers`)
 export const getFollowing = (userId) => API.get(`user/${userId}/following`)
+export const getNotifications = (userId) =>
+	API.get(`user/${userId}/notifications`)
 export const searchUser = (searchTerm) => API.get(`user?name=${searchTerm}`)
 export const followUser = (userId, currentUserId) =>
 	API.put(`user/${userId}/follow`, currentUserId, {

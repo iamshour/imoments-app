@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { getUser } from "api"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import { presets } from "components/utility/utilis"
+import { makeUppercase, presets } from "components/utility/utilis"
 import { BsTrash } from "react-icons/bs"
 import { deleteComment } from "redux/actions/posts"
 
@@ -37,7 +37,6 @@ const Comment = ({ content, time, commentorId, commentId, postId }) => {
 				commentId: commentId,
 			})
 		)
-		// setDeleteClicked(true)
 	}
 
 	return (
@@ -71,7 +70,11 @@ const Comment = ({ content, time, commentorId, commentId, postId }) => {
 						<div className='top'>
 							<div>
 								<Link to={`/profile/${commentorId}`}>
-									<h1>{user?.name}</h1>
+									<h1>
+										{makeUppercase(user?.name, 0) +
+											" " +
+											makeUppercase(user?.name, 1)}
+									</h1>
 								</Link>
 								<h2>
 									<Moment fromNow>{time}</Moment>

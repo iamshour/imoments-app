@@ -6,6 +6,7 @@ export const user = (
 		loading: false,
 		followers: null,
 		following: null,
+		notifications: null,
 		userLoading: false,
 		userMessage: null,
 	},
@@ -26,6 +27,11 @@ export const user = (
 			return {
 				...state,
 				following: payload,
+			}
+		case "GET_NOTIFICATIONS":
+			return {
+				...state,
+				notifications: payload,
 			}
 		case "SEARCH_USER_LOADING":
 			return {
@@ -69,6 +75,7 @@ export const user = (
 				results: null,
 				userLoading: null,
 				userMessage: null,
+				notifications: null,
 			}
 
 		default:
