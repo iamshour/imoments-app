@@ -13,7 +13,7 @@ import { getNotifications } from "redux/actions/user"
 const Navbar = () => {
 	const location = useLocation()
 	const dispatch = useDispatch()
-	const { notifications } = useSelector((state) => state.user)
+	const { notifications, userMessage } = useSelector((state) => state.user)
 	const { commentMsg } = useSelector((state) => state.posts)
 
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
@@ -26,7 +26,7 @@ const Navbar = () => {
 				type: "CLEAR_USER_TAB",
 			})
 		}
-	}, [dispatch, userId, location, commentMsg])
+	}, [dispatch, userId, location, commentMsg, userMessage])
 
 	return (
 		<nav style={location.pathname === "/auth" ? { display: "none" } : {}}>

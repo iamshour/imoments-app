@@ -9,27 +9,44 @@ export const googleApi = (data) => API.post("auth/googleauth", data)
 
 //USERS
 export const getUser = (userId) => API.get(`user/${userId}`)
+
 export const addProfileInfo = (userId, userData) =>
 	API.post(`user/${userId}/add`, userData)
+
 export const updateProfile = (userId, userData) =>
 	API.put(`user/${userId}/update`, userData)
+
 export const getFollowers = (userId) => API.get(`user/${userId}/followers`)
+
 export const getFollowing = (userId) => API.get(`user/${userId}/following`)
+
 export const getNotifications = (userId) =>
 	API.get(`user/${userId}/notifications`)
+
+export const clearNotifications = (userId) =>
+	API.put(`user/${userId}/clearnotifications`)
+
+export const clearSinleNotification = (userId, notificationId) =>
+	API.put(`user/${userId}/clearnotification`, notificationId)
+
 export const searchUser = (searchTerm) => API.get(`user?name=${searchTerm}`)
+
 export const followUser = (userId, currentUserId) =>
 	API.put(`user/${userId}/follow`, currentUserId, {
 		"content-type": "application/json",
 		method: "PUT",
 	})
+
 export const changepass = (userId, userData) =>
 	API.put(`user/${userId}/changepass`, userData)
+
 export const deleteUser = (userId) => API.delete(`user/${userId}/delete`)
 
 //POSTS
 export const getProfilePosts = (userId) => API.get(`/posts/${userId}/profile`)
+
 export const getPosts = (userId) => API.get(`/posts/${userId}/timeline`)
+
 export const getBookmarkedPosts = (userId) =>
 	API.get(`/posts/${userId}/bookmarks`)
 
