@@ -1,25 +1,27 @@
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
 import { useLocation } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import { getNotifications } from "redux/actions/user"
+import { Link } from "react-router-dom"
 //icons
 import { AiFillHome } from "react-icons/ai"
 import { BsSearch } from "react-icons/bs"
 import { BsPlusLg } from "react-icons/bs"
 import { VscBell } from "react-icons/vsc"
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
-import { getNotifications } from "redux/actions/user"
-// VscBellDot
 
 const Navbar = () => {
 	const location = useLocation()
 	const dispatch = useDispatch()
 	const { notifications, userMessage } = useSelector((state) => state.user)
 	const { commentMsg } = useSelector((state) => state.posts)
+	const [notifChecked, setNotifChecked] = useState(false)
 
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	useEffect(() => {
-		dispatch(getNotifications(userId))
+		if (userId) {
+			dispatch(getNotifications(userId))
+		}
 
 		return () => {
 			dispatch({
@@ -54,9 +56,17 @@ const Navbar = () => {
 				<Link
 					to='/notifications'
 					className={`nav-item ${
-						location.pathname === "/notifications" && "pressed notif"
+						location.pathname === "/notifications" && "pressed"
 					}`}
+					onClick={() => setNotifChecked(true)}
 				>
+					{notifications?.length > 0 &&
+						location.pathname !== "/notifications" &&
+						!notifChecked && (
+							<div className='notifs'>
+								<p>{notifications?.length}</p>
+							</div>
+						)}
 					<VscBell className='icon' />
 				</Link>
 			</div>

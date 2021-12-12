@@ -104,6 +104,7 @@ nav {
 			padding: 1.8rem;
 			border-radius: 50%;
 			@include pressed;
+			position: relative;
 
 			.icon {
 				font-size: 3rem;
@@ -117,6 +118,23 @@ nav {
 			animation-delay: 0s;
 			.icon {
 				color: white;
+			}
+		}
+		.notifs {
+			position: absolute;
+			top: 35%;
+			right: 10%;
+			width: 1.8rem;
+			height: 1.8rem;
+			transform: translate(-50%, -50%);
+			background-color: var(--main-color);
+			border-radius: 50%;
+			@include centering;
+			p {
+				color: white;
+				font-size: 1rem;
+				position: relative;
+				left: -0.5px;
 			}
 		}
 	}

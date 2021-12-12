@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react"
 import { useHistory, useLocation } from "react-router"
+import decode from "jwt-decode"
+import { getUser } from "api"
+import { useDispatch, useSelector } from "react-redux"
+import { titleFunc, backIcon } from "components/utility/utilis"
 //comps
 import LeftBar from "./LeftBar"
-import { titleFunc, backIcon } from "components/utility/utilis"
 //icons
 import { FiSun } from "react-icons/fi"
 import { BsFillMoonFill } from "react-icons/bs"
 import { IoArrowBackOutline } from "react-icons/io5"
-import { useSelector } from "react-redux"
-import { getUser } from "api"
+import { signOut } from "redux/actions/auth"
 
 const Header = () => {
+	const dispatch = useDispatch()
 	const history = useHistory()
 	const location = useLocation()
 	const [theme, setTheme] = useState("light")
@@ -23,7 +26,16 @@ const Header = () => {
 	const { user, userMessage } = useSelector((state) => state?.user)
 
 	useEffect(() => {
-		// const token = user?.token
+		const token = JSON.parse(localStorage.getItem("userId"))?.token
+
+		if (token) {
+			const decodedToken = decode(token)
+
+			if (decodedToken.exp * 1000 < new Date().getTime()) {
+				dispatch(signOut(history))
+			}
+		}
+
 		if (currentUserId) {
 			const getCurrentUser = async () => {
 				const { data } = await getUser(currentUserId)
