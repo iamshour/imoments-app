@@ -16,6 +16,7 @@ import Notifications from "pages/Notifications"
 import NotFound from "pages/NotFound"
 import Settings from "pages/Settings"
 import Bookmarks from "pages/Bookmarks"
+import ResetPass from "pages/ResetPass"
 
 function App() {
 	const location = useLocation()
@@ -53,6 +54,9 @@ function App() {
 					</Route>
 					<Route path='/bookmarks'>
 						{user ? <Bookmarks /> : <Redirect to='/auth' />}
+					</Route>
+					<Route path='/reset-password'>
+						{user ? <Redirect to='/' /> : <ResetPass />}
 					</Route>
 					<Route component={NotFound} />
 				</Switch>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useLocation } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import { getNotifications } from "redux/actions/user"
@@ -8,13 +8,14 @@ import { AiFillHome } from "react-icons/ai"
 import { BsSearch } from "react-icons/bs"
 import { BsPlusLg } from "react-icons/bs"
 import { VscBell } from "react-icons/vsc"
+import { useHistory } from "react-router-dom"
 
 const Navbar = () => {
+	const history = useHistory()
 	const location = useLocation()
 	const dispatch = useDispatch()
 	const { notifications, userMessage } = useSelector((state) => state.user)
 	const { commentMsg } = useSelector((state) => state.posts)
-	const [notifChecked, setNotifChecked] = useState(false)
 
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
@@ -28,7 +29,7 @@ const Navbar = () => {
 				type: "CLEAR_USER_TAB",
 			})
 		}
-	}, [dispatch, userId, location, commentMsg, userMessage])
+	}, [dispatch, userId, location, commentMsg, userMessage, history])
 
 	return (
 		<nav style={location.pathname === "/auth" ? { display: "none" } : {}}>
@@ -58,15 +59,12 @@ const Navbar = () => {
 					className={`nav-item ${
 						location.pathname === "/notifications" && "pressed"
 					}`}
-					onClick={() => setNotifChecked(true)}
 				>
-					{notifications?.length > 0 &&
-						location.pathname !== "/notifications" &&
-						!notifChecked && (
-							<div className='notifs'>
-								<p>{notifications?.length}</p>
-							</div>
-						)}
+					{notifications?.length > 0 && location.pathname !== "/notifications" && (
+						<div className='notifs'>
+							<p>{notifications?.length}</p>
+						</div>
+					)}
 					<VscBell className='icon' />
 				</Link>
 			</div>

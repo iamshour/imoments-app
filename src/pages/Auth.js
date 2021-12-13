@@ -9,6 +9,7 @@ import { IoMailOutline } from "react-icons/io5"
 import { FcGoogle } from "react-icons/fc"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { googleAuth, signIn, signUp } from "redux/actions/auth"
+import { Link } from "react-router-dom"
 
 const Auth = () => {
 	const dispatch = useDispatch()
@@ -101,6 +102,11 @@ const Auth = () => {
 						/>
 					)}
 				</div>
+				{showSignin && (
+					<Link to='/reset-password'>
+						<h1>Forgot your password?</h1>
+					</Link>
+				)}
 				{!showSignin && (
 					<div className='input-bar-icon'>
 						<BsFillLockFill className='icon' />

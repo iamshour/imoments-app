@@ -46,7 +46,7 @@ const Header = () => {
 		}
 
 		//Later JWT here
-	}, [location, currentUserId, userMessage])
+	}, [location, currentUserId, userMessage, dispatch, history])
 
 	useEffect(() => {
 		document.documentElement.setAttribute(

@@ -1,27 +1,28 @@
 export const titleFunc = (location, currentUser, user) => {
-	const title =
-		location.pathname === "/search"
-			? "Search for users"
-			: location.pathname === "/notifications"
-			? "Notifications"
-			: location.pathname === "/addpost"
-			? "Add a post"
-			: location.pathname === `/profile/${currentUser?._id}`
-			? "My profile"
-			: location.pathname === `/profile/${user?._id}`
-			? `${
-					user?.name?.split(" ")[0]?.charAt(0)?.toUpperCase() +
-					user?.name?.split(" ")[0]?.slice(1)
-			  }'s profile`
-			: location.pathname === "/settings"
-			? "Account Settings"
-			: location.pathname === "/bookmarks"
-			? "Bookmarked Posts"
-			: location.pathname === "/report"
-			? "Report a problem"
-			: location.pathname === "/about"
-			? "About imoments app"
-			: null
+	const title = location.pathname.startsWith("/search")
+		? "Search for users"
+		: location.pathname.startsWith("/notifications")
+		? "Notifications"
+		: location.pathname.startsWith("/addpost")
+		? "Add a post"
+		: location.pathname.startsWith(`/profile/${currentUser?._id}`)
+		? "My profile"
+		: location.pathname.startsWith(`/profile/${user?._id}`)
+		? `${
+				user?.name?.split(" ")[0]?.charAt(0)?.toUpperCase() +
+				user?.name?.split(" ")[0]?.slice(1)
+		  }'s profile`
+		: location.pathname.startsWith("/settings")
+		? "Account Settings"
+		: location.pathname.startsWith("/bookmarks")
+		? "Bookmarked Posts"
+		: location.pathname.startsWith("/report")
+		? "Report a problem"
+		: location.pathname.startsWith("/about")
+		? "About imoments app"
+		: location.pathname.startsWith("/reset-password")
+		? "Reset password"
+		: null
 
 	return title
 }
@@ -33,12 +34,13 @@ export const backIcon = (
 	IoArrowBackOutline
 ) => {
 	const icon =
-		location.pathname === `/profile/${currentUser?._id}` ||
-		location.pathname === `/profile/${user?._id}` ||
-		location.pathname === "/settings" ||
-		location.pathname === "/bookmarks" ||
-		location.pathname === "/report" ||
-		location.pathname === "/about" ? (
+		location.pathname.startsWith(`/profile/${currentUser?._id}`) ||
+		location.pathname.startsWith(`/profile/${user?._id}`) ||
+		location.pathname.startsWith("/settings") ||
+		location.pathname.startsWith("/bookmarks") ||
+		location.pathname.startsWith("/report") ||
+		location.pathname.startsWith("/reset-password") ||
+		location.pathname.startsWith("/about") ? (
 			<button onClick={() => history.goBack()} className='go-back'>
 				<IoArrowBackOutline className='icon' />
 			</button>

@@ -1,0 +1,6 @@
+.reset-pass-page {
+	height: 100vh;
+	width: 100vw;
+	@include centering;
+	flex-direction: column;
+}
