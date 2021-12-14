@@ -2,6 +2,7 @@ export const auth = (
 	state = {
 		authData: JSON.parse(localStorage.getItem("userId")) || null,
 		notification: null,
+		loading: null,
 	},
 	{ type, payload }
 ) => {
@@ -24,6 +25,21 @@ export const auth = (
 			return {
 				...state,
 				notification: payload,
+			}
+		case "AUTH_LOADING_START":
+			return {
+				...state,
+				loading: true,
+			}
+		case "AUTH_LOADING_END":
+			return {
+				...state,
+				loading: false,
+			}
+		case "CLEAR_NOTIFICATION":
+			return {
+				...state,
+				notification: null,
 			}
 
 		default:

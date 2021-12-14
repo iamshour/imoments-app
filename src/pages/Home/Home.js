@@ -49,24 +49,28 @@ const Home = () => {
 					/>
 				))
 			) : (
-				<>
+				<div className='home-welcome'>
 					{customFetch ? (
-						<div>
-							<Loading />
-						</div>
+						<Loading />
 					) : (
 						<>
-							<h1>
-								Welcome To imoments, where you can share your favorite moments
-								with your friends &amp; family!
-							</h1>
-							<p>
-								No Posts yet. Add your own posts by clicking on the (+) button
-								below, or follow some new friends!
-							</p>
+							<img
+								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1639520856/imoments-app/Sally-4_wf355q.png'
+								alt='welcome to imoments app!'
+							/>
+							<div className='text'>
+								<h1>Welcome To imoments!</h1>
+								<p>
+									Add your own posts,
+									<br />
+									Share your favorite moments,
+									<br />
+									Follow some new friends!
+								</p>
+							</div>
 						</>
 					)}
-				</>
+				</div>
 			)}
 		</div>
 	)

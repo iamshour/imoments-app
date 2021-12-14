@@ -74,13 +74,21 @@ export const signOut = (history) => (dispatch) => {
 
 export const forgotPass = (email) => async (dispatch) => {
 	try {
+		dispatch({
+			type: "AUTH_LOADING_START",
+		})
 		const { data } = await api.forgotPass(email)
-
 		dispatch({
 			type: "NOTIFICATION",
 			payload: data,
 		})
+		dispatch({
+			type: "AUTH_LOADING_END",
+		})
 	} catch (error) {
+		dispatch({
+			type: "AUTH_LOADING_END",
+		})
 		dispatch({
 			type: "ERROR",
 			payload: error,
@@ -90,13 +98,21 @@ export const forgotPass = (email) => async (dispatch) => {
 
 export const resetPass = (link, userData) => async (dispatch) => {
 	try {
+		dispatch({
+			type: "AUTH_LOADING_START",
+		})
 		const { data } = await api.resetPass(link, userData)
-
 		dispatch({
 			type: "NOTIFICATION",
 			payload: data,
 		})
+		dispatch({
+			type: "AUTH_LOADING_END",
+		})
 	} catch (error) {
+		dispatch({
+			type: "AUTH_LOADING_END",
+		})
 		dispatch({
 			type: "ERROR",
 			payload: error,

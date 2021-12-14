@@ -1,11 +1,15 @@
-import { useState } from "react"
-import { IoMailOutline } from "react-icons/io5"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { forgotPass } from "redux/actions/auth"
+//COMPS
+import Loading from "components/utility/Loading"
+import SuccessMessage from "components/utility/SuccessMessage"
+//ICONS
+import { IoMailOutline } from "react-icons/io5"
 
 const ForgotPass = () => {
 	const dispatch = useDispatch()
-	const { notification } = useSelector((state) => state.auth)
+	const { notification, loading } = useSelector((state) => state.auth)
 	console.log(notification)
 	const [email, setEmail] = useState(null)
 
@@ -13,20 +17,38 @@ const ForgotPass = () => {
 		dispatch(forgotPass({ email: email }))
 	}
 
+	useEffect(() => {
+		return () => {
+			dispatch({
+				type: "CLEAR_NOTIFICATION",
+			})
+		}
+	}, [dispatch])
+
 	return (
 		<div className='reset-pass-page'>
-			<div className='input-bar-icon'>
-				<IoMailOutline className='icon' />
-				<input
-					type='email'
-					name='email'
-					placeholder='Enter your email'
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-			</div>
-			<button className='btn-large' onClick={handleSubmit}>
-				Confirm
-			</button>
+			{loading ? (
+				<Loading />
+			) : !loading && notification ? (
+				<>
+					<SuccessMessage message={notification?.message} />
+				</>
+			) : (
+				<>
+					<div className='input-bar-icon'>
+						<IoMailOutline className='icon' />
+						<input
+							type='email'
+							name='email'
+							placeholder='Enter your email'
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+					</div>
+					<button className='btn-large' onClick={handleSubmit}>
+						Confirm
+					</button>
+				</>
+			)}
 		</div>
 	)
 }

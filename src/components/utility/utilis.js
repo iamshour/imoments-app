@@ -22,7 +22,7 @@ export const titleFunc = (location, currentUser, user) => {
 		? "About imoments app"
 		: location.pathname.startsWith("/forgotpassword")
 		? "Forgot password"
-		: location.pathname.startsWith("/reset/:resetToken")
+		: location.pathname.startsWith("/reset")
 		? "Reset password"
 		: null
 

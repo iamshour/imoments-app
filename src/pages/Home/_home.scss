@@ -5,6 +5,32 @@
 	flex-direction: column;
 }
 
+.home-welcome {
+	width: 100%;
+	height: calc(100vh - 18rem);
+	@include centering;
+	flex-direction: column;
+
+	.text {
+		position: relative;
+		top: -20px;
+		h1 {
+			font-size: 2.2rem;
+			padding: 0 5rem;
+			text-align: center;
+		}
+		p {
+			padding: 2rem 6rem;
+			text-align: center;
+		}
+	}
+
+	img {
+		width: 85%;
+		height: auto;
+	}
+}
+
 @media (min-width: $breakpoint-desktop) {
 	.home-page,
 	.cards-container {
