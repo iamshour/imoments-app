@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { getUser } from "api"
 import { useDispatch } from "react-redux"
-import { makeUppercase, presets } from "components/utility/utilis"
+import { makeUppercase } from "components/utility/utilis"
 //ICONS
 import { MdOutlineClear } from "react-icons/md"
 import { clearSinleNotification } from "redux/actions/user"
@@ -31,10 +31,7 @@ const NotifCard = ({ notificationId, userId, time, body, referenceId }) => {
 	return (
 		<div className='notif-card'>
 			<Link to={`/profile/${userId}`} className='left'>
-				<img
-					src={user?.avatar ? user?.avatar : presets?.avatar}
-					alt={user?.name}
-				/>
+				<img src={user?.avatar} alt={user?.name} />
 			</Link>
 			<div className='middle'>
 				<h2>

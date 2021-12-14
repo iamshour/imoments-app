@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { getUser } from "api"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import { makeUppercase, presets } from "components/utility/utilis"
+import { makeUppercase } from "components/utility/utilis"
 import { BsTrash } from "react-icons/bs"
 import { deleteComment } from "redux/actions/posts"
 
@@ -60,10 +60,7 @@ const Comment = ({ content, time, commentorId, commentId, postId }) => {
 				<>
 					<div className='left'>
 						<Link to={`/profile/${commentorId}`}>
-							<img
-								src={user?.avatar ? user?.avatar : presets.avatar}
-								alt={user?.name}
-							/>
+							<img src={user?.avatar} alt={user?.name} />
 						</Link>
 					</div>
 					<div className='right'>

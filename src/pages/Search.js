@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { searchUser } from "redux/actions/user"
 //comps
 import Loading from "components/utility/Loading"
-import { presets } from "components/utility/utilis"
 import ResultCard from "components/search/ResultCard"
 //icons
 import { BsSearch } from "react-icons/bs"
@@ -67,7 +66,7 @@ const Search = () => {
 							key={user?._id}
 							userId={user?._id}
 							name={user?.name}
-							avatar={user?.avatar ? user?.avatar : presets.avatar}
+							avatar={user?.avatar}
 						/>
 					))}
 				</div>

@@ -71,3 +71,35 @@ export const signOut = (history) => (dispatch) => {
 		})
 	}
 }
+
+export const forgotPass = (email) => async (dispatch) => {
+	try {
+		const { data } = await api.forgotPass(email)
+
+		dispatch({
+			type: "NOTIFICATION",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error,
+		})
+	}
+}
+
+export const resetPass = (link, userData) => async (dispatch) => {
+	try {
+		const { data } = await api.resetPass(link, userData)
+
+		dispatch({
+			type: "NOTIFICATION",
+			payload: data,
+		})
+	} catch (error) {
+		dispatch({
+			type: "ERROR",
+			payload: error,
+		})
+	}
+}

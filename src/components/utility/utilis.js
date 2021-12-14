@@ -21,6 +21,8 @@ export const titleFunc = (location, currentUser, user) => {
 		: location.pathname.startsWith("/about")
 		? "About imoments app"
 		: location.pathname.startsWith("/reset-password")
+		? "Forgot password"
+		: location.pathname.startsWith("/reset/:resetToken")
 		? "Reset password"
 		: null
 
@@ -47,10 +49,6 @@ export const backIcon = (
 		) : null
 
 	return icon
-}
-
-export const presets = {
-	avatar: "https://www.w3schools.com/howto/img_avatar.png",
 }
 
 export const openModal = (location) => {

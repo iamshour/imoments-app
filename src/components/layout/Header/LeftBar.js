@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { useDispatch } from "react-redux"
 import { signOut } from "redux/actions/auth"
-import { makeUppercase, presets } from "components/utility/utilis"
+import { makeUppercase } from "components/utility/utilis"
 //icons/assets
 import logo from "images/logo.png"
 import { BsBookmarks, BsInfoCircle } from "react-icons/bs"
@@ -84,10 +84,7 @@ const LeftBar = ({ currentUser }) => {
 	return (
 		<>
 			<button className='avatar-wrapper' onClick={openLeftBar}>
-				<img
-					src={currentUser?.avatar ? currentUser?.avatar : presets?.avatar}
-					alt={currentUser?.name}
-				/>
+				<img src={currentUser?.avatar} alt={currentUser?.name} />
 			</button>
 			{leftBarOpened && (
 				<div className='backdrop' onClick={closeLeftBar}>
@@ -99,9 +96,7 @@ const LeftBar = ({ currentUser }) => {
 								onClick={closeLeftBar}
 							>
 								<img
-									src={
-										currentUser?.avatar ? currentUser?.avatar : presets?.avatar
-									}
+									src={currentUser?.avatar}
 									alt={currentUser?.name || "User avatar"}
 								/>
 								<h1>

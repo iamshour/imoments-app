@@ -1,5 +1,4 @@
 import Textarea from "components/utility/Textarea"
-import { presets } from "components/utility/utilis"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
@@ -24,11 +23,7 @@ const AddComment = ({ postId }) => {
 		<div className='add-comment'>
 			<div className='left'>
 				<Link to='/user/..'>
-					<img
-						className='avatar'
-						src={user?.avatar ? user?.avatar : presets?.avatar}
-						alt={user?.name}
-					/>
+					<img className='avatar' src={user?.avatar} alt={user?.name} />
 				</Link>
 			</div>
 			<div className='right'>

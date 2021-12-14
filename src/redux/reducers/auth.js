@@ -1,5 +1,8 @@
 export const auth = (
-	state = { authData: JSON.parse(localStorage.getItem("userId")) || null },
+	state = {
+		authData: JSON.parse(localStorage.getItem("userId")) || null,
+		notification: null,
+	},
 	{ type, payload }
 ) => {
 	switch (type) {
@@ -9,12 +12,18 @@ export const auth = (
 				...state,
 				authData: payload,
 			}
+
 		case "SIGN_OUT":
 			localStorage.removeItem("User")
 			localStorage.removeItem("userId")
 			// localStorage.clear()
 			return {
 				authData: null,
+			}
+		case "NOTIFICATION":
+			return {
+				...state,
+				notification: payload,
 			}
 
 		default:

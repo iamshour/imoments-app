@@ -3,7 +3,6 @@ import { useLocation } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import { getUser } from "api"
 import { updatePost } from "redux/actions/posts"
-import { presets } from "components/utility/utilis"
 //comps
 import Socials from "./Socials/Socials"
 import CardUpper from "./Card-upper/CardUpper"
@@ -61,7 +60,7 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 	return (
 		<div className='card'>
 			<CardUpper
-				avatar={postCreator?.avatar ? postCreator?.avatar : presets.avatar}
+				avatar={postCreator?.avatar}
 				creatorId={creatorId}
 				postId={postId}
 				name={postCreator?.name}

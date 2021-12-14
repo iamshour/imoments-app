@@ -16,6 +16,9 @@ API.interceptors.request.use((req) => {
 export const signUp = (data) => API.post("auth/signup", data)
 export const signIn = (data) => API.post("auth/signin", data)
 export const googleApi = (data) => API.post("auth/googleauth", data)
+export const forgotPass = (email) => API.post("/auth/forgotpassword", email)
+export const resetPass = (link, userData) =>
+	API.post(`/auth/resetpassword/${link}`, userData)
 
 //USERS
 export const getUser = (userId) => API.get(`user/${userId}`)

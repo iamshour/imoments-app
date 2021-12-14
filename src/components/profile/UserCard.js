@@ -1,6 +1,6 @@
 import FollowingBtn from "./Btns/FollowingBtn"
 import FollowersBtn from "./Btns/FollowersBtn"
-import { makeUppercase, presets } from "components/utility/utilis"
+import { makeUppercase } from "components/utility/utilis"
 import FollowBtn from "components/profile/Btns/FollowBtn"
 import { useState } from "react"
 import Textarea from "components/utility/Textarea"
@@ -70,13 +70,7 @@ const UserCard = ({ currentUserId, user }) => {
 									<FcAddImage className='icon' />
 									<img
 										style={{ width: "100px", height: "100px" }}
-										src={
-											file
-												? URL.createObjectURL(file)
-												: user?.avatar
-												? user?.avatar
-												: presets.avatar
-										}
+										src={file ? URL.createObjectURL(file) : user?.avatar}
 										alt="user's selection to upload"
 									/>
 								</label>
@@ -89,10 +83,7 @@ const UserCard = ({ currentUserId, user }) => {
 								/>
 							</div>
 						) : (
-							<img
-								src={user?.avatar ? user?.avatar : presets.avatar}
-								alt={user?.name}
-							/>
+							<img src={user?.avatar} alt={user?.name} />
 						)}
 						{!editProfile && (
 							<h1>

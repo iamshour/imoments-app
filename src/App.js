@@ -16,6 +16,7 @@ import Notifications from "pages/Notifications"
 import NotFound from "pages/NotFound"
 import Settings from "pages/Settings"
 import Bookmarks from "pages/Bookmarks"
+import ForgotPass from "pages/ForgotPass"
 import ResetPass from "pages/ResetPass"
 
 function App() {
@@ -24,10 +25,7 @@ function App() {
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem("userId")))
 
 	useEffect(() => {
-		// const token = user?.token
-
 		setUser(JSON.parse(localStorage.getItem("userId")))
-		//Later JWT here
 	}, [location])
 	return (
 		<Provider store={store}>
@@ -56,6 +54,9 @@ function App() {
 						{user ? <Bookmarks /> : <Redirect to='/auth' />}
 					</Route>
 					<Route path='/reset-password'>
+						{user ? <Redirect to='/' /> : <ForgotPass />}
+					</Route>
+					<Route path='/reset/:resetToken'>
 						{user ? <Redirect to='/' /> : <ResetPass />}
 					</Route>
 					<Route component={NotFound} />
