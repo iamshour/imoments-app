@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { BsFillLockFill } from "react-icons/bs"
-import { IoMailOutline } from "react-icons/io5"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { resetPass } from "redux/actions/auth"

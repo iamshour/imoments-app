@@ -1,0 +1,74 @@
+button {
+	font: unset;
+	font-family: inherit;
+	border: 0;
+	background: unset;
+	&:focus {
+		outline: 0;
+	}
+}
+
+.btn-medium,
+.btn-large {
+	@include centering;
+	cursor: pointer;
+	color: white;
+	background: var(--main-color);
+	border: 1px solid transparent;
+	transition: all 200ms ease-in-out;
+	p,
+	.icon {
+		font-size: inherit;
+		color: inherit;
+	}
+	&:hover,
+	&:active {
+		color: var(--main-color);
+		transform: translateY(-1px);
+		background: white;
+		border-color: var(--main-color);
+	}
+}
+
+.btn-medium {
+	padding: 0.6rem 1rem;
+	font-size: 1.5rem;
+	border-radius: 8px;
+
+	p {
+		margin-right: 0.4rem;
+	}
+}
+.btn-large {
+	padding: 0.8rem 1.6rem;
+	font-size: 2.4rem;
+	border-radius: 16px;
+	p {
+		margin-right: 0.8rem;
+	}
+}
+.btn-icon {
+	padding: 0.8rem;
+	border-radius: 18px;
+	background: var(--secondary-font);
+	@include pressed;
+	@include centering;
+
+	.icon {
+		font-size: 2.4rem;
+		color: white;
+	}
+}
+
+.following-btn {
+	color: var(--main-color);
+	transform: translateY(-1px);
+	background: white;
+	border-color: var(--main-color);
+}
+
+.reverse-btn {
+	background: var(--secondary-font);
+	color: var(--primary-font);
+	border-color: var(--primary-font);
+}

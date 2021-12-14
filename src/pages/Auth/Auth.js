@@ -103,7 +103,7 @@ const Auth = () => {
 					)}
 				</div>
 				{showSignin && (
-					<Link to='/reset-password'>
+					<Link to='/forgotpassword'>
 						<h1>Forgot your password?</h1>
 					</Link>
 				)}

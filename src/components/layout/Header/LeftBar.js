@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { useDispatch } from "react-redux"
@@ -12,11 +12,14 @@ import { AiOutlineCheck } from "react-icons/ai"
 import { FiUser, FiSettings } from "react-icons/fi"
 import { CgSupport } from "react-icons/cg"
 import { IoLogOutOutline } from "react-icons/io5"
+import { useWindowSize } from "components/utility/useWindowSize"
 
 const LeftBar = ({ currentUser }) => {
 	const dispatch = useDispatch()
 	const [leftBarOpened, setLeftBarOpened] = useState(false)
 	const [modalOpened, setModalOpened] = useState(false)
+
+	const { width } = useWindowSize()
 
 	const history = useHistory()
 
@@ -52,6 +55,20 @@ const LeftBar = ({ currentUser }) => {
 		setModalOpened(false)
 		document.querySelector("nav").style.display = "unset"
 	}
+
+	useEffect(() => {
+		if (width > 1000) {
+			const func = () => {
+				setLeftBarOpened(true)
+			}
+			func()
+		} else {
+			const func = () => {
+				setLeftBarOpened(false)
+			}
+			func()
+		}
+	}, [width])
 
 	const links = [
 		{

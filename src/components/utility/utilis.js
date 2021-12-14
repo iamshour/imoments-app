@@ -20,7 +20,7 @@ export const titleFunc = (location, currentUser, user) => {
 		? "Report a problem"
 		: location.pathname.startsWith("/about")
 		? "About imoments app"
-		: location.pathname.startsWith("/reset-password")
+		: location.pathname.startsWith("/forgotpassword")
 		? "Forgot password"
 		: location.pathname.startsWith("/reset/:resetToken")
 		? "Reset password"
@@ -41,7 +41,7 @@ export const backIcon = (
 		location.pathname.startsWith("/settings") ||
 		location.pathname.startsWith("/bookmarks") ||
 		location.pathname.startsWith("/report") ||
-		location.pathname.startsWith("/reset-password") ||
+		location.pathname.startsWith("/forgotpassword") ||
 		location.pathname.startsWith("/about") ? (
 			<button onClick={() => history.goBack()} className='go-back'>
 				<IoArrowBackOutline className='icon' />
