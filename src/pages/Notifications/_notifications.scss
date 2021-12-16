@@ -29,22 +29,8 @@
 			}
 		}
 
-		.empty-notif {
-			width: 100%;
+		.empty-wrapper {
 			height: calc(100vh - 18rem);
-			color: var(--secondary-font);
-			@include centering;
-			flex-direction: column;
-			.icon {
-				font-size: 14rem;
-				color: inherit;
-				margin-bottom: 3rem;
-			}
-			h1 {
-				color: inherit;
-				font-size: 1.8rem;
-				font-weight: 500;
-			}
 		}
 
 		.notif-card {

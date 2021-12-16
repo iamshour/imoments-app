@@ -23,11 +23,12 @@
 				justify-content: flex-start;
 				align-items: center;
 				color: var(--primary-font);
-				font-size: 2.4rem;
+				font-size: 1.8rem;
 				cursor: pointer;
 				transition: color 250ms ease-in;
 				h3 {
 					color: inherit;
+					font-weight: 500;
 				}
 
 				&:hover,
@@ -55,9 +56,9 @@
 				}
 				padding-top: 1rem;
 				.wrapper-info {
-					color: var(--secondary-font);
+					color: var(--main-color);
 					text-align: center;
-					font-size: 1.4rem;
+					font-size: 1.5rem;
 					width: 70%;
 					margin: 0 auto;
 				}
@@ -73,6 +74,7 @@
 					margin: 1rem auto;
 				}
 				.input-bar-icon {
+					margin-top: 1.6rem;
 					.eye {
 						margin: 0 0 0 0.8rem;
 						width: 3rem;
@@ -101,6 +103,7 @@
 					margin-bottom: 2rem;
 					text-align: center;
 					padding: 0 2rem;
+					font-size: 1.6rem;
 				}
 				.delete-btns {
 					width: 100%;

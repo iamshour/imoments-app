@@ -28,7 +28,7 @@ const Notifications = () => {
 						</button>
 					)}
 					{notifications?.length === 0 ? (
-						<div className='empty-notif'>
+						<div className='empty-wrapper'>
 							<BsEmojiSmileUpsideDown className='icon' />
 							<h1>No notificaions yet!</h1>
 						</div>

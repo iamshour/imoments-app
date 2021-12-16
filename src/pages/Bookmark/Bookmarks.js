@@ -4,6 +4,7 @@ import { getBookmarkedPosts } from "redux/actions/posts"
 //COMPS
 import Card from "components/card/Card"
 import Loading from "components/utility/Loading"
+import { BsEmojiFrown } from "react-icons/bs"
 
 const Bookmarks = () => {
 	const dispatch = useDispatch()
@@ -47,17 +48,16 @@ const Bookmarks = () => {
 					/>
 				))
 			) : (
-				<>
+				<div className='empty-wrapper'>
 					{customFetch ? (
-						<div>
-							<Loading />
-						</div>
+						<Loading />
 					) : (
 						<>
+							<BsEmojiFrown className='icon' />
 							<h1>No posts bookmarked yet!</h1>
 						</>
 					)}
-				</>
+				</div>
 			)}
 		</div>
 	)

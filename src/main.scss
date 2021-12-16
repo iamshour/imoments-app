@@ -40,6 +40,7 @@ $breakpoint-desktop: 1080px;
 @import "./pages/ForgotPass/forgotPass";
 @import "./pages/search/search";
 @import "./pages/profile/profile";
+@import "./pages/bookmark/bookmarks";
 @import "./components/layout/layout";
 @import "./components/layout/Header/leftBar";
 @import "./components/card/card";
@@ -188,6 +189,24 @@ textarea {
 	font-size: 1.5rem;
 	padding: 0.8rem;
 	color: var(--primary-font);
+}
+
+.empty-wrapper {
+	width: 100%;
+	height: 100%;
+	color: var(--secondary-font);
+	@include centering;
+	flex-direction: column;
+	.icon {
+		font-size: 14rem;
+		color: inherit;
+		margin-bottom: 3rem;
+	}
+	h1 {
+		color: inherit;
+		font-size: 1.8rem;
+		font-weight: 500;
+	}
 }
 
 .home-page,

@@ -85,13 +85,13 @@ const Profile = () => {
 				) : customFetch ? (
 					<Loading />
 				) : (
-					<div className='empty-posts'>
+					<div className='empty-wrapper'>
 						<BsEmojiNeutral className='icon' />
-						<p>
+						<h1>
 							{currentUserId === user?._id
 								? "No Posts yet. Add your own new posts, or follow some new friends!"
 								: "No posts added yet!"}
-						</p>
+						</h1>
 					</div>
 				)}
 			</div>
