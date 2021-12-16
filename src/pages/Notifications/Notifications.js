@@ -5,6 +5,7 @@ import NotifCard from "components/Notifications/NotifCard"
 import { MdOutlineClearAll } from "react-icons/md"
 import { useDispatch } from "react-redux"
 import { clearNotifications } from "redux/actions/user"
+import { BsEmojiSmileUpsideDown } from "react-icons/bs"
 
 const Notifications = () => {
 	const { notifications, userLoading } = useSelector((state) => state.user)
@@ -27,7 +28,10 @@ const Notifications = () => {
 						</button>
 					)}
 					{notifications?.length === 0 ? (
-						<h1>No notificaions at the moment!</h1>
+						<div className='empty-notif'>
+							<BsEmojiSmileUpsideDown className='icon' />
+							<h1>No notificaions yet!</h1>
+						</div>
 					) : (
 						notifications?.map((item) => (
 							<NotifCard

@@ -155,7 +155,7 @@ const UserCard = ({ currentUserId, user }) => {
 								</div>
 							) : (
 								<button
-									className='btn-medium'
+									className='btn-medium edit-profile-btn'
 									onClick={() => setEditProfile(true)}
 								>
 									<p>Edit Profile</p>

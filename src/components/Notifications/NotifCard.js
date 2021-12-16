@@ -34,13 +34,13 @@ const NotifCard = ({ notificationId, userId, time, body, referenceId }) => {
 				<img src={user?.avatar} alt={user?.name} />
 			</Link>
 			<div className='middle'>
-				<h2>
+				<h2 className='user-time'>
 					<Moment fromNow>{time}</Moment>
 				</h2>
 				<p>
 					<Link to={`/profile/${userId}`} className='user-name'>
 						{makeUppercase(user?.name, 0) + " " + makeUppercase(user?.name, 1)}
-					</Link>
+					</Link>{" "}
 					{body}
 				</p>
 			</div>

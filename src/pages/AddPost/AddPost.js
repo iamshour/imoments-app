@@ -51,7 +51,7 @@ const AddPost = () => {
 				dispatch({
 					type: "CLEAR_ADD_POST",
 				})
-			}, 2000)
+			}, 1500)
 		}
 	}, [postMessage, dispatch, history])
 
@@ -91,7 +91,7 @@ const AddPost = () => {
 								/>
 							</div>
 							<div className='right'>
-								<h3>Add Image</h3>
+								<h1>Add Image</h1>
 								<h2>(Optional)</h2>
 							</div>
 						</div>

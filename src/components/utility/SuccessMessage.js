@@ -4,7 +4,7 @@ const SuccessMessage = ({ message }) => {
 	return (
 		<div className='conditional-container'>
 			<BsCheck2Circle className='success-icon' />
-			<h3>{message}</h3>
+			<h1>{message}</h1>
 		</div>
 	)
 }

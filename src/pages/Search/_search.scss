@@ -4,7 +4,7 @@
 		max-width: 50rem;
 		height: auto;
 		margin: 0 auto;
-		margin-bottom: 4rem;
+		margin-bottom: 3.2rem;
 		button {
 			cursor: pointer;
 			width: 2.4rem;
@@ -23,6 +23,7 @@
 		flex-direction: column;
 
 		.result-card {
+			margin-bottom: 1rem;
 			width: 90%;
 			max-width: 72rem;
 			display: flex;
@@ -39,7 +40,6 @@
 				left: 0;
 				z-index: 0;
 			}
-			margin-bottom: 1.6rem;
 			cursor: pointer;
 			transition: all 250ms ease-in-out;
 
@@ -56,12 +56,15 @@
 					object-fit: cover;
 					border-radius: 50%;
 					margin-right: 0.8rem;
+					border: 1px solid var(--secondary-font);
 				}
 				.info {
 					@include centering;
 					flex-direction: column;
 					h1 {
 						margin-bottom: 0.4rem;
+						font-size: 1.4rem;
+						font-weight: 500;
 					}
 				}
 			}
@@ -70,6 +73,11 @@
 				flex-direction: column;
 				position: relative;
 				z-index: 1;
+				.btn-medium {
+					p {
+						margin: 0;
+					}
+				}
 			}
 			.right-custom {
 				z-index: -1;

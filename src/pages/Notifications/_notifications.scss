@@ -1,81 +1,109 @@
 .notifications-page {
-	.clear-all {
-		float: right;
-		margin: 0 1.2rem 1.6rem 0;
-		@include centering;
-		padding: 0.8rem;
-		border-radius: 8px;
-		transition: all 250ms ease-in;
-		cursor: pointer;
-		p {
+	.wrapper {
+		.clear-all {
+			float: right;
+			margin: 0 1.2rem 1.6rem 0;
+			@include centering;
+			padding: 0.8rem;
+			border-radius: 8px;
 			transition: all 250ms ease-in;
-			margin-right: 0.8rem;
-			color: var(--main-color);
-		}
-		.icon {
-			transition: all 250ms ease-in;
-			font-size: 2rem;
-			color: var(--main-color);
-		}
-		&:hover,
-		&:active {
+			cursor: pointer;
 			p {
-				color: var(--primary-font);
-			}
-			.icon {
-				color: var(--primary-font);
-			}
-		}
-	}
-
-	.notif-card {
-		width: 100%;
-		max-width: 50rem;
-		padding: 0 1.2rem;
-		display: flex;
-		justify-content: space-between;
-		margin: 0 auto;
-		margin-bottom: 1.6rem;
-		.left {
-			margin-right: 0.8rem;
-			img {
-				border-radius: 50%;
-				width: 5rem;
-				height: 5rem;
-				object-fit: cover;
-				@include pressed;
-			}
-		}
-		.middle {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			margin-right: 0.8rem;
-			h2 {
-				font-size: 1.1rem;
-				margin-bottom: 0.4rem;
-				display: block;
-			}
-			p {
-				width: 100%;
-				.user-name {
-					font-weight: 700;
-					margin-right: 0.8rem;
-				}
-			}
-		}
-		.right {
-			.icon {
-				font-size: 2rem;
-				@include pressed;
-				color: var(--main-color);
 				transition: all 250ms ease-in;
-
-				&:hover,
-				&:active {
+				margin-right: 0.8rem;
+				color: var(--main-color);
+			}
+			.icon {
+				transition: all 250ms ease-in;
+				font-size: 2rem;
+				color: var(--main-color);
+			}
+			&:hover,
+			&:active {
+				p {
 					color: var(--primary-font);
 				}
+				.icon {
+					color: var(--primary-font);
+				}
+			}
+		}
+
+		.empty-notif {
+			width: 100%;
+			height: calc(100vh - 18rem);
+			color: var(--secondary-font);
+			@include centering;
+			flex-direction: column;
+			.icon {
+				font-size: 14rem;
+				color: inherit;
+				margin-bottom: 3rem;
+			}
+			h1 {
+				color: inherit;
+				font-size: 1.8rem;
+				font-weight: 500;
+			}
+		}
+
+		.notif-card {
+			cursor: pointer;
+			position: relative;
+			@include card-glass;
+			width: 96%;
+			max-width: 50rem;
+			padding: 0.8rem;
+			display: flex;
+			justify-content: space-between;
+			margin: 0 auto;
+			margin-bottom: 0.8rem;
+			transition: transform 250ms ease-in-out;
+			.left {
+				margin-right: 0.8rem;
+				img {
+					border-radius: 50%;
+					width: 5rem;
+					height: 5rem;
+					object-fit: cover;
+					@include pressed;
+					border: 1px solid var(--secondary-font);
+				}
+			}
+			.middle {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				margin-right: 0.8rem;
+				font-size: 1.5rem;
+				.user-name {
+					font-size: inherit;
+				}
+				h2 {
+					margin-bottom: 0.4rem;
+				}
+				p {
+					font-size: inherit;
+					width: 100%;
+				}
+			}
+			.right {
+				.icon {
+					font-size: 2rem;
+					@include pressed;
+					color: var(--main-color);
+					transition: all 250ms ease-in;
+
+					&:hover,
+					&:active {
+						color: var(--primary-font);
+					}
+				}
+			}
+			&:hover,
+			&:active {
+				transform: translateY(-2px);
 			}
 		}
 	}

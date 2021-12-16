@@ -8,6 +8,7 @@ import Card from "components/card/Card"
 import Loading from "components/utility/Loading"
 import UserCard from "components/profile/UserCard"
 import { makeUppercase } from "components/utility/utilis"
+import { BsEmojiNeutral } from "react-icons/bs"
 
 const Profile = () => {
 	const params = useParams()
@@ -84,11 +85,14 @@ const Profile = () => {
 				) : customFetch ? (
 					<Loading />
 				) : (
-					<p>
-						{currentUserId === user?._id
-							? "No Posts yet. Add your own new posts, or follow some new friends!"
-							: "No posts added yet!"}
-					</p>
+					<div className='empty-posts'>
+						<BsEmojiNeutral className='icon' />
+						<p>
+							{currentUserId === user?._id
+								? "No Posts yet. Add your own new posts, or follow some new friends!"
+								: "No posts added yet!"}
+						</p>
+					</div>
 				)}
 			</div>
 		</div>

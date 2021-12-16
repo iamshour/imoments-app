@@ -30,9 +30,16 @@
 			.right {
 				@include centering;
 				flex-direction: column;
-				h3 {
-					color: var(--secondary-font);
+				h1 {
+					font-size: 1.8rem;
+					color: var(--main-color);
+					font-weight: 700;
 					margin-bottom: 0.6rem;
+				}
+				h2 {
+					font-size: 1.2rem;
+					font-weight: 500;
+					color: var(--secondary-font);
 				}
 			}
 		}

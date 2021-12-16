@@ -21,7 +21,7 @@ const FollowBtn = ({ currentUserId, userId }) => {
 
 	return (
 		<button
-			className={`btn-medium ${followed && "following-btn"}`}
+			className={`btn-medium follow-btn ${followed && "following-btn"}`}
 			onClick={() => dispatch(followUnfollow(userId, currentUserId))}
 		>
 			<p>{followed ? "Following" : "Follow"}</p>
