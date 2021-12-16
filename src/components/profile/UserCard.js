@@ -23,7 +23,7 @@ const UserCard = ({ currentUserId, user }) => {
 	const [firstName, setFirstName] = useState(user?.name?.split(" ")[0])
 	const [lastName, setLastName] = useState(user?.name.split(" ")[1])
 	const [content, setContent] = useState(user?.bio ? user?.bio : "")
-	const [file, setFile] = useState()
+	const [file, setFile] = useState(null)
 
 	const imgChange = (e) => {
 		if (e.target.files[0]) {
@@ -45,12 +45,14 @@ const UserCard = ({ currentUserId, user }) => {
 		imgData.set("lastName", lastName)
 		imgData.set("bio", content)
 
-		if (file && !user?.avatar) {
+		if (file && !user?.cloudinary_id) {
 			imgData.set("image", file)
 			dispatch(addProfileInfo(user?._id, imgData))
-		} else if (file && user?.avatar) {
+			setFile(null)
+		} else if (file && user?.cloudinary_id) {
 			imgData.set("image", file)
 			dispatch(updateProfile(user?._id, imgData))
+			setFile(null)
 		} else {
 			dispatch(updateProfile(user?._id, imgData))
 		}
@@ -65,11 +67,10 @@ const UserCard = ({ currentUserId, user }) => {
 				<div className='user-card'>
 					<div className='left'>
 						{editProfile ? (
-							<div>
+							<div className='edit-img'>
 								<label htmlFor='add-img'>
 									<FcAddImage className='icon' />
 									<img
-										style={{ width: "100px", height: "100px" }}
 										src={file ? URL.createObjectURL(file) : user?.avatar}
 										alt="user's selection to upload"
 									/>
@@ -100,7 +101,7 @@ const UserCard = ({ currentUserId, user }) => {
 								<FollowersBtn currentUserId={currentUserId} />
 							</div>
 						) : (
-							<div className='top-btns'>
+							<div className='edit-top'>
 								<div className='input-bar'>
 									<input
 										type='text'

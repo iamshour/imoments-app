@@ -67,13 +67,13 @@ const Comment = ({ content, time, commentorId, commentId, postId }) => {
 						<div className='top'>
 							<div>
 								<Link to={`/profile/${commentorId}`}>
-									<h1>
+									<h1 className='user-name-small'>
 										{makeUppercase(user?.name, 0) +
 											" " +
 											makeUppercase(user?.name, 1)}
 									</h1>
 								</Link>
-								<h2>
+								<h2 className='user-time-small'>
 									<Moment fromNow>{time}</Moment>
 								</h2>
 							</div>

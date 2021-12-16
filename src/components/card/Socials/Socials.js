@@ -73,7 +73,7 @@ const Socials = ({ likes, postId }) => {
 							<AiOutlineLike className='icon' />
 						)}
 					</div>
-					<h2>
+					<h2 className='user-socials'>
 						{likesLength === 0
 							? "0 likes"
 							: likesLength === 1
@@ -90,7 +90,7 @@ const Socials = ({ likes, postId }) => {
 							<div className='icon-wrapper'>
 								<FaRegComment className='icon' />
 							</div>
-							<h2>
+							<h2 className='user-socials'>
 								{allComments?.length === 0
 									? "No comments yet"
 									: allComments?.length === 1
@@ -103,7 +103,7 @@ const Socials = ({ likes, postId }) => {
 							<div className='icon-wrapper'>
 								<IoIosArrowUp className='icon' />
 							</div>
-							<h2>Hide comments</h2>
+							<h2 className='user-socials'>Hide comments</h2>
 						</>
 					)}
 				</button>
@@ -112,7 +112,7 @@ const Socials = ({ likes, postId }) => {
 				<div className='comments-wrapper'>
 					<AddComment postId={postId} />
 					{allComments?.length === 0 ? (
-						<h1>No Comments yet</h1>
+						<h2 className='no-comments user-socials'>No Comments yet</h2>
 					) : (
 						allComments.map((comment) => (
 							<Comment

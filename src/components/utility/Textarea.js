@@ -5,9 +5,9 @@ const Textarea = ({ content, setContent, customRows, name, maxCh }) => {
 
 	return (
 		<div className='textarea'>
-			<h2 className='counter'>
+			<h2 className='counter user-socials'>
 				Characters count: {charCount}/{maxCh}{" "}
-				{charCount >= maxCh && <span>Max Ch reached!</span>}
+				{charCount >= maxCh && <span>Max reached!</span>}
 			</h2>
 			<textarea
 				name={name}

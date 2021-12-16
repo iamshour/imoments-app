@@ -1,5 +1,4 @@
 .auth-page {
-	padding-top: 12rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -8,9 +7,11 @@
 	overflow-y: hidden;
 
 	img {
+		padding-top: 14rem;
 		width: 22rem;
 	}
 	.credentials {
+		margin-top: -5rem;
 		position: relative;
 		width: 85%;
 		.input-bar,
@@ -40,7 +41,23 @@
 				}
 			}
 		}
+		.forgot-pass {
+			h1 {
+				color: var(--main-color);
+				margin-top: 3.6rem;
+				text-align: center;
+				font-size: 1.4rem;
+			}
+		}
 	}
+	.logo-dissappear {
+		margin-bottom: 4.4rem;
+		margin: 1rem 0 2rem 0;
+	}
+	.credentials-signup {
+		margin-top: -4.5rem;
+	}
+
 	.actions {
 		position: relative;
 		width: 90%;
@@ -49,7 +66,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 2rem;
+		padding: 1.4rem;
 		&::before {
 			border-radius: 24px 24px 0 0;
 			top: 0;
@@ -61,26 +78,25 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			margin-bottom: 2.4rem;
+			margin-bottom: 1.6rem;
 			width: 100%;
+
 			.btn-large,
 			.btn-google {
 				padding: 1rem 0;
 				border-radius: 2.4rem;
 			}
 			.btn-large {
-				margin-bottom: 0.8rem;
 				width: 100%;
 			}
 			.or {
-				font-size: 1.6rem;
+				font-size: 1.4rem;
 				color: var(--main-color);
-				margin-bottom: 0.8rem;
+				margin: 0.6rem 0;
 			}
 			.btn-google {
 				background: transparent;
 				border-color: var(--main-color);
-				font-size: 2.4rem;
 				color: var(--main-color);
 				.icon {
 					margin-right: 0.8rem;

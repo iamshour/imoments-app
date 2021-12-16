@@ -21,7 +21,7 @@ const FollowingBtn = ({ currentUserId }) => {
 				{following?.length === 0 ||
 				following?.length === null ||
 				following?.length === undefined
-					? "No Followings yet"
+					? "0 Followings"
 					: following?.length === 1
 					? "1 Following"
 					: following?.length + " Followings"}

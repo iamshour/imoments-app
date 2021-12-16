@@ -10,9 +10,9 @@ const Layout = ({ children }) => {
 			<Header />
 			{children}
 			{location.pathname === "/" ||
-			location.pathname === "/search" ||
-			location.pathname === "/addpost" ||
-			location.pathname === "/notifications" ? (
+			location.pathname.startsWith("/search") ||
+			location.pathname.startsWith("/addpost") ||
+			location.pathname.startsWith("/notifications") ? (
 				<Navbar />
 			) : null}
 		</>

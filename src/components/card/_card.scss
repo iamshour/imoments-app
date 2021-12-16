@@ -74,8 +74,9 @@
 			.info {
 				@include centering;
 				flex-direction: column;
+				align-items: flex-start;
 				h1 {
-					margin-bottom: 6px;
+					margin-bottom: 5px;
 				}
 			}
 		}
@@ -120,7 +121,7 @@
 			transition: transform 250ms ease-in-out;
 			&:hover,
 			&active {
-				transform: scale(1.05);
+				transform: scale(0.99);
 			}
 		}
 	}
@@ -267,10 +268,14 @@
 				.btn-medium {
 					p {
 						margin-right: 0;
-						font-size: 1.25rem;
+						font-size: 1.3rem;
 					}
 				}
 			}
+		}
+
+		.no-comments {
+			margin: 0 auto;
 		}
 
 		.comment {
@@ -318,12 +323,7 @@
 					padding-top: 0.4rem;
 					margin-bottom: 1.2rem;
 					h1 {
-						font-size: 1.4rem;
-						font-weight: 700;
 						margin-bottom: 0.3rem;
-					}
-					h2 {
-						font-size: 1.2rem;
 					}
 					.delete-icon {
 						padding: 0.6rem;
@@ -352,7 +352,9 @@
 
 				h1 {
 					text-align: center;
-					padding: 0.8rem;
+					padding: 1rem;
+					font-weight: 300;
+					font-size: 1.8rem;
 				}
 
 				.delete-btns {
@@ -362,15 +364,6 @@
 					padding-bottom: 0.4rem;
 				}
 			}
-		}
-	}
-}
-
-.img-container {
-	img {
-		&:hover,
-		&active {
-			transform: scale(1.05);
 		}
 	}
 }

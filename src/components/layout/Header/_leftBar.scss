@@ -31,7 +31,7 @@
 
 		.left-bar-upper {
 			margin-bottom: 1.6rem;
-			padding: 2.4rem;
+			padding: 2.4rem 0 3.2rem 2.4rem;
 			position: relative;
 			&::before {
 				content: "";
@@ -48,13 +48,17 @@
 				flex-direction: column;
 				align-items: flex-start;
 				img {
+					margin-bottom: 1.4rem;
 					width: 6rem;
 					height: 6rem;
 					border-radius: 50%;
 					@include pressed;
+					border: 2px solid var(--secondary-font);
 				}
 				h1 {
-					margin: 0.8rem 0 0.4rem 0;
+					font-size: 1.6rem;
+					font-weight: 500;
+					color: var(--main-color);
 				}
 			}
 		}
@@ -68,14 +72,17 @@
 				width: 100%;
 				@include centering;
 				justify-content: flex-start;
-				padding: 2.4rem 0.4rem 2.4rem 1.6rem;
+				padding: 2.6rem 0.4rem 2.6rem 1.6rem;
+				font-size: 2rem;
 				color: var(--primary-font);
 				cursor: pointer;
 				h3 {
+					font-weight: 500;
+					font-size: inherit;
 					color: inherit;
 				}
 				.icon {
-					font-size: 2.2rem;
+					font-size: inherit;
 					color: inherit;
 					margin-right: 1.6rem;
 				}

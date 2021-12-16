@@ -46,6 +46,11 @@ header {
 		.header-info-wrapper {
 			@include centering;
 
+			h3 {
+				font-size: 2rem;
+				font-weight: 500;
+				color: var(--main-color);
+			}
 			.go-back {
 				@include centering;
 				padding: 0.8rem;

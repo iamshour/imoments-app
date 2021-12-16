@@ -1,0 +1,74 @@
+@mixin centering {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+@mixin glass {
+	&:before {
+		position: absolute;
+		content: "";
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: var(--bg-secondary);
+		backdrop-filter: blur(32px);
+		z-index: -1;
+		opacity: 90%;
+	}
+}
+@mixin card-glass {
+	&:before {
+		position: absolute;
+		content: "";
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: var(--card-bg);
+		backdrop-filter: blur(32px);
+		z-index: -1;
+		opacity: 55%;
+		border: 1px solid var(--secondary-font);
+		border-radius: 16px;
+	}
+}
+@mixin pressed {
+	cursor: pointer;
+	transition: transform 250ms ease-in-out;
+	&:hover,
+	&:active {
+		transform: scale(0.98);
+	}
+}
+@mixin fade-in {
+	animation: smoothing-in 0.3s ease-in forwards 0.2s;
+	@keyframes smoothing-in {
+		100% {
+			opacity: 1;
+		}
+	}
+}
+@mixin imgFadeIn {
+	opacity: 0;
+	animation: fading-in 0.2s ease-in forwards;
+	@keyframes fading-in {
+		100% {
+			opacity: 1;
+		}
+	}
+}
+@mixin backdrop {
+	position: fixed;
+	z-index: 99999;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	max-width: unset;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.95);
+	@include centering;
+	border-radius: 0;
+	margin: 0;
+	cursor: pointer;
+}

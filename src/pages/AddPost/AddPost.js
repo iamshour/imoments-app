@@ -76,7 +76,7 @@ const AddPost = () => {
 							</div>
 						</div>
 					) : (
-						<div className='top'>
+						<div className='addpost-top'>
 							<div className='left'>
 								<label htmlFor='add-img'>
 									<FcAddImage className='icon' />

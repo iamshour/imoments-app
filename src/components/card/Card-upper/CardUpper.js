@@ -36,8 +36,10 @@ const CardUpper = ({
 			<Link to={`/profile/${creatorId}`} className='left'>
 				<img src={avatar} alt={name} />
 				<div className='info'>
-					<h1>{makeUppercase(name, 0) + " " + makeUppercase(name, 1)}</h1>
-					<h2>
+					<h1 className='user-name'>
+						{makeUppercase(name, 0) + " " + makeUppercase(name, 1)}
+					</h1>
+					<h2 className='user-time'>
 						<Moment fromNow>{time}</Moment>
 					</h2>
 				</div>
