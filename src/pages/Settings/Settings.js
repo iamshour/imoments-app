@@ -17,6 +17,7 @@ const Settings = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
 	const currentUser = JSON.parse(localStorage.getItem("User"))
+	console.log(currentUser?._id)
 
 	const { userLoading, userMessage } = useSelector((state) => state?.user)
 	const { error } = useSelector((state) => state?.utility)
@@ -46,7 +47,7 @@ const Settings = () => {
 				type: "CLEAR_USER_TAB",
 			})
 			dispatch({
-				type: "CLEAR_UTILITY",
+				type: "CLEAR_ERROR",
 			})
 		}
 	}, [error, dispatch])

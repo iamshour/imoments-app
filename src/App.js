@@ -24,7 +24,6 @@ import { BiError } from "react-icons/bi"
 function App() {
 	const dispatch = useDispatch()
 	const { error } = useSelector((state) => state?.utility)
-	console.log(error)
 
 	useEffect(() => {
 		if (error !== null || undefined)
