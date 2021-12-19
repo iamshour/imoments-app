@@ -1,6 +1,29 @@
-.reset-pass-page {
+.reset-pass-page,
+.forgot-pass-page {
 	height: 100vh;
 	width: 100vw;
 	@include centering;
 	flex-direction: column;
+
+	.input-bar-icon {
+		margin-bottom: 1.6rem;
+		width: 85%;
+	}
+}
+.reset-pass-page {
+	.input-bar-icon {
+		.eye {
+			margin: 0 0 0 0.8rem;
+			width: 3rem;
+			cursor: pointer;
+
+			&:hover,
+			&:active {
+				color: var(--main-color);
+			}
+		}
+	}
+	.conditional-container {
+		margin-bottom: 2rem;
+	}
 }

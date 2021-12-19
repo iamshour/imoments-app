@@ -31,7 +31,7 @@ function App() {
 				dispatch({
 					type: "CLEAR_ERROR",
 				})
-			}, 1500)
+			}, 2000)
 	}, [error, dispatch])
 
 	return (
@@ -41,12 +41,8 @@ function App() {
 					<div className='wrapper'>
 						<h1>
 							<BiError className='icon' />
-							{error}
+							{error || "Some error occured. Please try again!"}
 						</h1>
-						{/* <h1>
-							<BiError className='icon' />
-							Hey this is a testing error log. just be patient and thanks!
-						</h1> */}
 					</div>
 				</div>
 			)}

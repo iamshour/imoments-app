@@ -120,7 +120,6 @@ const Auth = () => {
 						placeholder='Enter your password'
 						onChange={changeHandler}
 						onFocus={focus}
-						onBlur={focusOut}
 					/>
 					{!showPass ? (
 						<AiOutlineEye
@@ -143,7 +142,7 @@ const Auth = () => {
 					<div className='input-bar-icon'>
 						<BsFillLockFill className='icon' />
 						<input
-							type='password'
+							type={showPass ? "text" : "password"}
 							name='confirmPassword'
 							placeholder='Confirm your password'
 							onChange={changeHandler}

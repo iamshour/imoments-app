@@ -26,13 +26,11 @@ const ForgotPass = () => {
 	}, [dispatch])
 
 	return (
-		<div className='reset-pass-page'>
+		<div className='forgot-pass-page'>
 			{loading ? (
 				<Loading />
 			) : !loading && notification ? (
-				<>
-					<SuccessMessage message={notification?.message} />
-				</>
+				<SuccessMessage message={notification?.message} />
 			) : (
 				<>
 					<div className='input-bar-icon'>
