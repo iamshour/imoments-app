@@ -1,12 +1,18 @@
+import { useEffect } from "react"
 import { Switch, Route } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import "main.scss"
-//components
+//COMPS
 import Layout from "components/layout/Layout"
-//pages
+import PrivateRoute from "components/utility/PrivateRoute"
+import PublicRoute from "components/utility/PublicRoute"
+//ICONS
+import { BiError } from "react-icons/bi"
+//PAGES
 import Home from "pages/Home/Home"
 import Search from "pages/Search/Search"
 import AddPost from "pages/AddPost/AddPost"
+import About from "pages/About/About"
 import Profile from "pages/Profile/Profile"
 import Auth from "pages/Auth/Auth"
 import Notifications from "pages/Notifications/Notifications"
@@ -15,11 +21,7 @@ import Settings from "pages/Settings/Settings"
 import Bookmarks from "pages/Bookmark/Bookmarks"
 import ForgotPass from "pages/ForgotPass/ForgotPass"
 import ResetPass from "pages/ResetPass/ResetPass"
-import PrivateRoute from "components/utility/PrivateRoute"
-import PublicRoute from "components/utility/PublicRoute"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { BiError } from "react-icons/bi"
+import Report from "pages/Report/Report"
 
 function App() {
 	const dispatch = useDispatch()
@@ -57,6 +59,8 @@ function App() {
 				<PrivateRoute path='/notifications' component={Notifications} />
 				<PrivateRoute path='/settings' component={Settings} />
 				<PrivateRoute path='/bookmarks' component={Bookmarks} />
+				<PrivateRoute path='/about' component={About} />
+				<PrivateRoute path='/report' component={Report} />
 				<Route component={NotFound} />
 			</Switch>
 		</Layout>

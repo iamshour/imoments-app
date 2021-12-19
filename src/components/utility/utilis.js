@@ -19,7 +19,7 @@ export const titleFunc = (location, currentUser, user) => {
 		: location.pathname.startsWith("/report")
 		? "Report a problem"
 		: location.pathname.startsWith("/about")
-		? "About imoments app"
+		? "About app"
 		: location.pathname.startsWith("/forgotpassword")
 		? "Forgot password"
 		: location.pathname.startsWith("/reset")

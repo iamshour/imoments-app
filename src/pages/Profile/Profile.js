@@ -8,7 +8,7 @@ import Card from "components/card/Card"
 import Loading from "components/utility/Loading"
 import UserCard from "components/profile/UserCard"
 import { makeUppercase } from "components/utility/utilis"
-import { BsEmojiNeutral } from "react-icons/bs"
+import { GoFileMedia } from "react-icons/go"
 
 const Profile = () => {
 	const params = useParams()
@@ -86,12 +86,8 @@ const Profile = () => {
 					<Loading />
 				) : (
 					<div className='empty-wrapper'>
-						<BsEmojiNeutral className='icon' />
-						<h1>
-							{currentUserId === user?._id
-								? "No Posts yet. Add your own new posts, or follow some new friends!"
-								: "No posts added yet!"}
-						</h1>
+						<GoFileMedia className='icon' />
+						<h1>No posts added yet!</h1>
 					</div>
 				)}
 			</div>
