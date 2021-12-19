@@ -12,8 +12,8 @@ export const signUp = (formData, history) => async (dispatch) => {
 		history.push("/")
 	} catch (error) {
 		dispatch({
-			type: "NOTIFICATION",
-			payload: error,
+			type: "ERROR",
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -30,8 +30,8 @@ export const signIn = (formData, history) => async (dispatch) => {
 		history.push("/")
 	} catch (error) {
 		dispatch({
-			type: "NOTIFICATION",
-			payload: error,
+			type: "ERROR",
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -48,8 +48,8 @@ export const googleAuth = (googleData, history) => async (dispatch) => {
 		history.push("/")
 	} catch (error) {
 		dispatch({
-			type: "NOTIFICATION",
-			payload: error,
+			type: "ERROR",
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -66,8 +66,8 @@ export const signOut = (history) => (dispatch) => {
 		history.push("/auth")
 	} catch (error) {
 		dispatch({
-			type: "NOTIFICATION",
-			payload: error,
+			type: "ERROR",
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -91,7 +91,7 @@ export const forgotPass = (email) => async (dispatch) => {
 		})
 		dispatch({
 			type: "ERROR",
-			payload: error,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -115,7 +115,7 @@ export const resetPass = (link, userData) => async (dispatch) => {
 		})
 		dispatch({
 			type: "ERROR",
-			payload: error,
+			payload: error?.response?.data?.message,
 		})
 	}
 }

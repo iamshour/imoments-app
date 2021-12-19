@@ -85,16 +85,8 @@
 		}
 	}
 
-	.no-results {
-		margin: 0 auto;
-		width: 90%;
-		max-width: 72rem;
-		padding: 1.6rem;
-		position: relative;
-		@include card-glass;
-		p {
-			font-size: 1.6rem;
-		}
+	.empty-wrapper {
+		height: calc(100vh - 27rem);
 	}
 }
 

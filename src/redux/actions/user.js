@@ -10,7 +10,7 @@ export const getSingleUser = (userId) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -25,7 +25,7 @@ export const getFollowers = (userId) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -41,7 +41,7 @@ export const getFollowing = (userId) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -61,8 +61,11 @@ export const getNotifications = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_USER_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -82,8 +85,11 @@ export const clearNotifications = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_USER_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -104,8 +110,11 @@ export const clearSinleNotification =
 			})
 		} catch (error) {
 			dispatch({
+				type: "END_USER_LOADING",
+			})
+			dispatch({
 				type: "ERROR",
-				payload: error.response.data.message,
+				payload: error?.response?.data?.message,
 			})
 		}
 	}
@@ -123,7 +132,7 @@ export const searchUser = (searchTerm) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "NO_RESULTS",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -140,7 +149,7 @@ export const followUnfollow = (userId, currentUserId) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -160,8 +169,11 @@ export const addProfileInfo = (userId, userData) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_USER_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -181,8 +193,11 @@ export const updateProfile = (userId, userData) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_USER_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -202,8 +217,11 @@ export const deleteUser = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_USER_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -223,8 +241,11 @@ export const changepass = (userId, userData) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_USER_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }

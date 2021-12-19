@@ -1,31 +1,28 @@
-.notification-container {
+.error-container {
 	margin: 0 auto;
-	padding: 0.4rem;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	width: 85%;
+	width: 90%;
 	max-width: 40rem;
-	// position: absolute;
-	// top: 5rem;
-	// left: 50%;
-	// transform: translateX(-50%);
+	padding: 0.6rem 0.8rem;
+	border-radius: 4px;
+	position: absolute;
+	top: 7.4rem;
+	left: 50%;
+	transform: translateX(-50%);
+	background: rgb(209, 7, 7);
+	z-index: 999999;
 
-	p {
-		font-size: 1.6rem;
-	}
-}
-.warning {
-	background: yellow;
-	border-color: rgb(189, 189, 14);
-	p {
-		color: darkblue;
-	}
-}
-.danger {
-	background: rgb(250, 28, 28);
-	border-color: rgb(163, 6, 6);
-	p {
-		color: white;
+	.wrapper {
+		width: 100%;
+		h1 {
+			font-size: 1.6rem;
+			color: wheat;
+			line-height: 2.2rem;
+			.icon {
+				color: inherit;
+				font-size: 2.2rem;
+				margin-right: 0.8rem;
+			}
+		}
 	}
 }
 

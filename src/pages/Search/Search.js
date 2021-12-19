@@ -6,7 +6,7 @@ import { searchUser } from "redux/actions/user"
 import Loading from "components/utility/Loading"
 import ResultCard from "components/search/ResultCard"
 //icons
-import { BsSearch } from "react-icons/bs"
+import { BsEmojiFrown, BsSearch } from "react-icons/bs"
 import { RiSendPlane2Fill } from "react-icons/ri"
 
 const Search = () => {
@@ -71,8 +71,9 @@ const Search = () => {
 					))}
 				</div>
 			) : error ? (
-				<div className='no-results'>
-					<p>{error}</p>
+				<div className='empty-wrapper'>
+					<BsEmojiFrown className='icon' />
+					<h1>{error}</h1>
 				</div>
 			) : null}
 		</div>

@@ -1,7 +1,4 @@
-export const utility = (
-	state = { error: null, message: null },
-	{ type, payload }
-) => {
+export const utility = (state = { error: null }, { type, payload }) => {
 	switch (type) {
 		case "ERROR":
 			return {
@@ -9,16 +6,9 @@ export const utility = (
 				error: payload,
 			}
 
-		case "NEW_MESSAGE":
-			return {
-				...state,
-				message: payload,
-			}
-
-		case "CLEAR_UTILITY":
+		case "CLEAR_ERROR":
 			return {
 				error: null,
-				message: null,
 			}
 
 		default:

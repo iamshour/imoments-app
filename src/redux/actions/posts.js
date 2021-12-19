@@ -15,8 +15,11 @@ export const getTimeline = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_POST_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -36,8 +39,11 @@ export const getProfilePosts = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_POST_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -57,8 +63,11 @@ export const getBookmarkedPosts = (userId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_POST_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -78,8 +87,11 @@ export const ImgUpload = (imgData) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_POST_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -98,8 +110,11 @@ export const CapUpload = (capData) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_POST_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -119,8 +134,11 @@ export const deletePost = (postId) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_POST_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -140,8 +158,11 @@ export const updatePost = (postId, postData) => async (dispatch) => {
 		})
 	} catch (error) {
 		dispatch({
+			type: "END_POST_LOADING",
+		})
+		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -152,7 +173,7 @@ export const bookmarkPost = (postId, userId) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -163,7 +184,7 @@ export const likePost = (postId, userId) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -177,7 +198,7 @@ export const addComment = (postId, commentData) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
@@ -191,7 +212,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
-			payload: error.response.data.message,
+			payload: error?.response?.data?.message,
 		})
 	}
 }
