@@ -1,0 +1,33 @@
+.about-page {
+	width: 100%;
+	height: 100%;
+	margin: 9rem 0 3rem 0;
+	padding: 0 2rem;
+
+	.question {
+		margin-bottom: 2rem;
+		h1 {
+			font-size: 1.8rem;
+			margin-bottom: 0.8rem;
+		}
+	}
+	.bottom {
+		width: 100%;
+		@include centering;
+		justify-content: space-around;
+
+		a {
+			.icon {
+				font-size: 2.4rem;
+				color: var(--secondary-font);
+				transition: color 200ms ease-in-out, transform 200ms ease-in-out;
+
+				&:hover,
+				&active {
+					color: var(--main-color);
+					transform: scale(1.05);
+				}
+			}
+		}
+	}
+}

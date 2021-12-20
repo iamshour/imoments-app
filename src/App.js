@@ -40,12 +40,8 @@ function App() {
 		<Layout>
 			{(error !== null || undefined) && (
 				<div className='error-container'>
-					<div className='wrapper'>
-						<h1>
-							<BiError className='icon' />
-							{error || "Some error occured. Please try again!"}
-						</h1>
-					</div>
+					<BiError className='icon' />
+					<h1>{error || "Some error occured. Please try again!"}</h1>
 				</div>
 			)}
 			<Switch>

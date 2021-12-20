@@ -26,6 +26,9 @@ export const getUser = (userId) => API.get(`user/${userId}`)
 export const addProfileInfo = (userId, userData) =>
 	API.post(`user/${userId}/add`, userData)
 
+export const sendReport = (userId, reportContent) =>
+	API.post(`user/${userId}/report`, reportContent)
+
 export const updateProfile = (userId, userData) =>
 	API.put(`user/${userId}/update`, userData)
 

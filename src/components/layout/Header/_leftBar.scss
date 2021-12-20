@@ -54,6 +54,7 @@
 					border-radius: 50%;
 					@include pressed;
 					border: 2px solid var(--secondary-font);
+					object-fit: cover;
 				}
 				h1 {
 					font-size: 1.6rem;

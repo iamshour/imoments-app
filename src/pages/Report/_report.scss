@@ -1,0 +1,49 @@
+.report-page {
+	width: 100%;
+	height: 100vh;
+	.wrapper {
+		height: 100%;
+		width: 100%;
+		@include centering;
+		flex-direction: column;
+
+		.top {
+			@include centering;
+			flex-direction: column;
+			margin-bottom: 4rem;
+			p {
+				font-size: 2rem;
+				color: var(--secondary-font);
+				margin-bottom: 0.4rem;
+			}
+			h1 {
+				font-size: 4rem;
+				font-weight: 700;
+				color: var(--main-color);
+			}
+		}
+	}
+
+	form {
+		width: 90%;
+		position: relative;
+		@include card-glass;
+		padding: 1.4rem;
+		@include centering;
+		flex-direction: column;
+
+		.input-bar {
+			margin-bottom: 1.2rem;
+			width: 100%;
+		}
+		.input-bar:first-of-type {
+			@include centering;
+			input:first-of-type {
+				margin-right: 1rem;
+			}
+		}
+		textarea {
+			margin-bottom: 1.2rem;
+		}
+	}
+}

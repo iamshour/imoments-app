@@ -68,20 +68,25 @@ const UserCard = ({ currentUserId, user }) => {
 					<div className='left'>
 						{editProfile ? (
 							<div className='edit-img'>
-								<label htmlFor='add-img'>
-									<FcAddImage className='icon' />
+								<label
+									htmlFor='add-img'
+									className={!user?.googleUser ? "edit-label" : ""}
+								>
+									{!user?.googleUser && <FcAddImage className='icon' />}
 									<img
 										src={file ? URL.createObjectURL(file) : user?.avatar}
-										alt="user's selection to upload"
+										alt="user's uploaded avatar"
 									/>
 								</label>
-								<input
-									type='file'
-									style={{ display: "none" }}
-									id='add-img'
-									onChange={imgChange}
-									accept='.jpg, .jpeg, .png'
-								/>
+								{!user?.googleUser && (
+									<input
+										type='file'
+										style={{ display: "none" }}
+										id='add-img'
+										onChange={imgChange}
+										accept='.jpg, .jpeg, .png'
+									/>
+								)}
 							</div>
 						) : (
 							<img src={user?.avatar} alt={user?.name} />
@@ -100,7 +105,7 @@ const UserCard = ({ currentUserId, user }) => {
 								<FollowingBtn currentUserId={currentUserId} />
 								<FollowersBtn currentUserId={currentUserId} />
 							</div>
-						) : (
+						) : !user?.googleUser ? (
 							<div className='edit-top'>
 								<div className='input-bar'>
 									<input
@@ -121,7 +126,7 @@ const UserCard = ({ currentUserId, user }) => {
 									/>
 								</div>
 							</div>
-						)}
+						) : null}
 						{editProfile ? (
 							<Textarea
 								content={content}

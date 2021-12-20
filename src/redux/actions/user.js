@@ -249,3 +249,27 @@ export const changepass = (userId, userData) => async (dispatch) => {
 		})
 	}
 }
+
+export const sendReport = (userId, reportContent) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "START_USER_LOADING",
+		})
+		const { data } = await api.sendReport(userId, reportContent)
+		dispatch({
+			type: "NEW_USER_MESSAGE",
+			payload: data,
+		})
+		dispatch({
+			type: "END_USER_LOADING",
+		})
+	} catch (error) {
+		dispatch({
+			type: "END_USER_LOADING",
+		})
+		dispatch({
+			type: "ERROR",
+			payload: error?.response?.data?.message,
+		})
+	}
+}
