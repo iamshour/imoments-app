@@ -10,13 +10,13 @@ header {
 	height: 6.4rem;
 	width: 100vw;
 	@include centering;
+	padding: 0 1.6rem;
 
 	.header-wrapper {
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0.8rem 1.6rem;
 
 		.theme-wrapper {
 			button {
@@ -72,18 +72,154 @@ header {
 			}
 		}
 	}
-}
+	.wrapper-home {
+		.avatar-wrapper {
+			@include centering;
+			cursor: pointer;
+			@include pressed;
+			img {
+				border-radius: 50%;
+				width: 4rem;
+				height: 4rem;
+				border: 1px solid var(--main-color);
+				object-fit: cover;
+			}
+		}
+		.backdrop {
+			opacity: 0;
+			@include backdrop;
+			animation: fading-in 0.2s ease-in forwards;
+			@keyframes fading-in {
+				100% {
+					opacity: 1;
+				}
+			}
+			.left-bar {
+				position: fixed;
+				width: 72vw;
+				max-width: 30rem;
+				height: 100vh;
+				top: 0;
+				left: 0;
+				background: var(--bg-secondary);
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				transform: translate(-100px);
+				opacity: 0;
+				animation: slide-in 0.2s ease-in forwards 0.1s;
+				@keyframes slide-in {
+					100% {
+						transform: translate(0);
+						opacity: 1;
+					}
+				}
 
-.avatar-wrapper {
-	@include centering;
-	cursor: pointer;
-	@include pressed;
-	img {
-		border-radius: 50%;
-		width: 4rem;
-		height: 4rem;
-		border: 1px solid var(--main-color);
-		object-fit: cover;
+				.left-bar-upper {
+					margin-bottom: 1.6rem;
+					padding: 2.4rem 0 3.2rem 1.6rem;
+					position: relative;
+					cursor: default;
+					&::before {
+						content: "";
+						position: absolute;
+						left: 0;
+						bottom: 0;
+						width: 100%;
+						height: 0.5px;
+						background: var(--secondary-font);
+						opacity: 0.4;
+					}
+					.user-info {
+						@include centering;
+						flex-direction: column;
+						align-items: center;
+						width: 50%;
+						img {
+							margin-bottom: 1.4rem;
+							width: 6rem;
+							height: 6rem;
+							border-radius: 50%;
+							@include pressed;
+							border: 2px solid var(--secondary-font);
+							object-fit: cover;
+						}
+						h1 {
+							font-size: 1.6rem;
+							font-weight: 500;
+							color: var(--main-color);
+							// text-align: center;
+						}
+					}
+				}
+				.left-bar-links {
+					height: 100%;
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					cursor: default;
+					.link-container {
+						width: 100%;
+						@include centering;
+						justify-content: flex-start;
+						padding: 2.6rem 0.4rem 2.6rem 1.6rem;
+						font-size: 2rem;
+						color: var(--primary-font);
+						cursor: pointer;
+						h3 {
+							font-weight: 500;
+							font-size: inherit;
+							color: inherit;
+						}
+						.icon {
+							font-size: inherit;
+							color: inherit;
+							margin-right: 1.6rem;
+						}
+						&:hover,
+						&:active {
+							background: var(--secondary-font);
+							color: white;
+						}
+					}
+				}
+				.left-bar-bottom {
+					margin: 4rem auto;
+					width: 100%;
+					@include centering;
+					img {
+						width: 70%;
+						height: auto;
+					}
+				}
+			}
+		}
+		.signout-container {
+			position: relative;
+			width: 80%;
+			max-width: 40rem;
+			height: auto;
+			background: var(--bg-secondary);
+			cursor: default;
+			padding: 2rem;
+			border-radius: 16px;
+			box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6), -1px -2px 8px rgba(0, 0, 0, 0.6);
+			@include centering;
+			justify-content: space-around;
+			flex-wrap: wrap;
+
+			h3 {
+				font-size: 1.6rem;
+				font-weight: 700;
+				text-align: center;
+				padding: 1rem 1.6rem 2.8rem 1.6rem;
+				padding: 0 1.6rem 2.4rem 1.6rem;
+			}
+
+			.btn-large {
+				margin-bottom: 2.4rem;
+			}
+		}
 	}
 }
 
@@ -93,7 +229,7 @@ nav {
 	right: 50%;
 	transform: translate(-50%, -50%);
 	width: 95%;
-	max-width: 62rem;
+	max-width: 54rem;
 
 	&::before {
 		border-radius: 32px;
@@ -149,19 +285,14 @@ nav {
 @media (min-width: $breakpoint-tablet) {
 	header {
 		top: 0;
-		height: 8rem;
+		height: 7.2rem;
+		padding: 0 2.4rem;
 
 		.header-wrapper {
-			padding: 1.6rem 3rem;
-
-			.logo-wrapper {
-				img {
-					width: 12rem;
-				}
-			}
 			.theme-wrapper {
 				button {
 					padding: 1.4rem;
+
 					.icon {
 						font-size: 2.4rem;
 					}
@@ -173,21 +304,89 @@ nav {
 
 @media (min-width: $breakpoint-desktop) {
 	header {
-		.header-wrapper {
-			max-width: 2200px;
-
-			.logo-wrapper {
-				img {
-					width: 13rem;
-				}
+		height: 8rem;
+		.wrapper-home {
+			justify-content: flex-end;
+			.avatar-wrapper {
+				display: none;
 			}
-			.theme-wrapper {
-				button {
-					padding: 1.4rem;
-					.icon {
-						font-size: 2.4rem;
+			.backdrop-1 {
+				background: transparent;
+				width: 21.5rem;
+				height: 100vh;
+				position: absolute;
+				top: 0;
+				left: 0;
+				.left-bar {
+					width: 100%;
+					height: 100%;
+					position: unset;
+					max-width: unset;
+
+					.left-bar-upper {
+						margin-bottom: 2rem;
+						padding-top: 1.6rem;
+						.user-info {
+							width: 60%;
+							img {
+								width: 5rem;
+								height: 5rem;
+							}
+							h1 {
+								font-size: 1.5rem;
+							}
+						}
+					}
+					.left-bar-links {
+						.link-container {
+							padding: 2.8rem 0.2rem 2.8rem 1.4rem;
+							font-size: 1.7rem;
+						}
+					}
+					.left-bar-bottom {
+						margin: 5rem auto;
+						img {
+							width: 60%;
+						}
 					}
 				}
+			}
+		}
+	}
+
+	nav {
+		bottom: unset;
+		right: unset;
+		transform: unset;
+		top: 0;
+		left: 25rem;
+		max-width: 48rem;
+
+		&::before {
+			display: none;
+		}
+
+		.wrapper {
+			height: 8rem;
+			.nav-item {
+				border: 1px solid var(--secondary-font);
+				padding: 1.5rem;
+				background: var(--card-bg);
+				.icon {
+					font-size: 2.2rem;
+					color: var(--secondary-font);
+				}
+			}
+			.pressed {
+				border-color: transparent;
+				background: var(--nav-pressed);
+				.icon {
+					color: white;
+				}
+			}
+			.notifs {
+				top: 34%;
+				right: 6%;
 			}
 		}
 	}

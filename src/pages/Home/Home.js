@@ -11,9 +11,7 @@ const Home = () => {
 	//Current active user Id
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
-	const { timeline, postMessage, postLoading } = useSelector(
-		(state) => state.posts
-	)
+	const { timeline, postMessage, postLoading } = useSelector((state) => state.posts)
 
 	useEffect(() => {
 		dispatch(getTimeline(userId))
@@ -33,7 +31,7 @@ const Home = () => {
 	}, [dispatch, userId, postMessage])
 
 	return (
-		<div className='home-page'>
+		<div className={timeline?.length > 0 ? "home-page" : "home-page-empty"}>
 			{postLoading ? (
 				<Loading />
 			) : timeline?.length > 0 ? (
@@ -48,29 +46,25 @@ const Home = () => {
 						likes={post?.likes}
 					/>
 				))
+			) : customFetch ? (
+				<Loading />
 			) : (
-				<div className='home-welcome'>
-					{customFetch ? (
-						<Loading />
-					) : (
-						<>
-							<img
-								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1639520856/imoments-app/Sally-4_wf355q.png'
-								alt='welcome to imoments app!'
-							/>
-							<div className='text'>
-								<h1>Welcome To imoments!</h1>
-								<p>
-									Add your own posts,
-									<br />
-									Share your favorite moments,
-									<br />
-									Follow some new friends!
-								</p>
-							</div>
-						</>
-					)}
-				</div>
+				<>
+					<img
+						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1639520856/imoments-app/Sally-4_wf355q.png'
+						alt='welcome to imoments app!'
+					/>
+					<div className='text'>
+						<h1>Welcome To imoments!</h1>
+						<p>
+							Add your own posts,
+							<br />
+							Share your favorite moments,
+							<br />
+							Follow some new friends!
+						</p>
+					</div>
+				</>
 			)}
 		</div>
 	)

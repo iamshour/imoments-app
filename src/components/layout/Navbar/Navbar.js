@@ -34,32 +34,22 @@ const Navbar = () => {
 	return (
 		<nav style={location.pathname === "/auth" ? { display: "none" } : {}}>
 			<div className='wrapper' onChange={window.scroll(0, 0)}>
-				<Link
-					to='/'
-					className={`nav-item ${location.pathname === "/" && "pressed"}`}
-				>
+				<Link to='/' className={`nav-item ${location.pathname === "/" && "pressed"}`}>
 					<AiFillHome className='icon' />
 				</Link>
 				<Link
 					to='/search'
-					className={`nav-item ${location.pathname === "/search" && "pressed"}`}
-				>
+					className={`nav-item ${location.pathname === "/search" && "pressed"}`}>
 					<BsSearch className='icon' />
 				</Link>
 				<Link
 					to='/addpost'
-					className={`nav-item ${
-						location.pathname === "/addpost" && "pressed"
-					}`}
-				>
+					className={`nav-item ${location.pathname === "/addpost" && "pressed"}`}>
 					<BsPlusLg className='icon' />
 				</Link>
 				<Link
 					to='/notifications'
-					className={`nav-item ${
-						location.pathname === "/notifications" && "pressed"
-					}`}
-				>
+					className={`nav-item ${location.pathname === "/notifications" && "pressed"}`}>
 					{notifications?.length > 0 && location.pathname !== "/notifications" && (
 						<div className='notifs'>
 							<p>{notifications?.length}</p>

@@ -28,6 +28,7 @@
 
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1080px;
+$breakpoint-large-desktop: 1400px;
 @import "./components/utility/mixins";
 @import "./components/utility/utility";
 @import "./pages/Home/home";
@@ -43,7 +44,6 @@ $breakpoint-desktop: 1080px;
 @import "./pages/bookmark/bookmarks";
 @import "./pages/Report/report";
 @import "./components/layout/layout";
-@import "./components/layout/Header/leftBar";
 @import "./components/card/card";
 @import "./components/utility/buttons";
 @import "./components/utility/resets";
@@ -210,7 +210,6 @@ textarea {
 	}
 }
 
-.home-page,
 .bookmarks-page,
 .notifications-page,
 .search-page {
@@ -226,19 +225,27 @@ textarea {
 	.search-page {
 		margin: 12rem 0 8rem 0;
 	}
-	h1 {
-		font-size: 1.8rem;
+	p {
+		font-size: 1.7rem;
 	}
-	h2 {
-		font-size: 1.4rem;
+	.user-name {
+		font-size: 1.7rem;
 	}
-	h6 {
-		font-size: 1rem;
+	.user-name-small {
+		font-size: 1.5rem;
+	}
+	.user-time {
+		font-size: 1.3rem;
+	}
+	.user-time-small {
+		font-size: 1.2rem;
+	}
+	.user-socials {
+		font-size: 1.3rem;
 	}
 }
 
 @media (min-width: $breakpoint-desktop) {
-	.home-page,
 	.bookmarks-page,
 	.profile-page,
 	.search-page {

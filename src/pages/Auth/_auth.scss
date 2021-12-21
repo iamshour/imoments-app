@@ -14,6 +14,7 @@
 		margin-top: -5rem;
 		position: relative;
 		width: 85%;
+		max-width: 44rem;
 		.input-bar,
 		.input-bar-icon {
 			margin: 0 auto;
@@ -126,21 +127,11 @@
 }
 @media (min-width: $breakpoint-tablet) {
 	.auth-page {
-		margin-top: 8rem;
-		height: calc(100vh - 8rem);
-
-		.back-btn {
-			margin: 2rem auto 0 2.4rem;
-			.icon {
-				font-size: 2.4rem;
-			}
-		}
 		img {
 			width: 25rem;
-			margin: 0rem;
+			padding-top: 20rem;
 		}
 		.credentials {
-			max-width: 60rem;
 			.auth-bar {
 				margin-bottom: 1.6rem;
 			}
@@ -149,20 +140,11 @@
 			}
 		}
 		.actions {
-			max-width: 40rem;
-			padding: 3rem 0 2rem 0;
+			padding: 1.6rem;
 			.btns {
 				margin-bottom: 2.4rem;
-				.btn-regular {
-					margin-bottom: 1rem;
-					font-size: 2rem;
-				}
 				.or {
-					font-size: 1.7rem;
-					margin-bottom: 1rem;
-				}
-				.btn-google {
-					padding: 1.2rem;
+					font-size: 1.6rem;
 				}
 			}
 			.bottom-actions {

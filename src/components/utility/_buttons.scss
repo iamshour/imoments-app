@@ -72,3 +72,15 @@ button {
 	color: var(--primary-font);
 	border-color: var(--primary-font);
 }
+
+@media (min-width: $breakpoint-tablet) {
+	.btn-medium {
+		padding: 0.8rem 1.2rem;
+		font-size: 1.6rem;
+		border-radius: 8px;
+
+		p {
+			margin-right: 0.6rem;
+		}
+	}
+}

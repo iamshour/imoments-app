@@ -19,9 +19,7 @@ const Header = () => {
 	const [theme, setTheme] = useState("light")
 	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
 
-	const [currentUser, setCurrentUser] = useState(
-		JSON.parse(localStorage.getItem("User"))
-	)
+	const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("User")))
 
 	const { user, userMessage } = useSelector((state) => state?.user)
 
@@ -49,10 +47,7 @@ const Header = () => {
 	}, [location, currentUserId, userMessage, dispatch, history])
 
 	useEffect(() => {
-		document.documentElement.setAttribute(
-			"data-theme",
-			localStorage.getItem("theme")
-		)
+		document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"))
 
 		setTheme(localStorage.getItem("theme"))
 	}, [])
@@ -75,17 +70,11 @@ const Header = () => {
 	}
 
 	const title = titleFunc(location, currentUser, user && user)
-	const icon = backIcon(
-		location,
-		currentUser,
-		user && user,
-		history,
-		IoArrowBackOutline
-	)
+	const icon = backIcon(location, currentUser, user && user, history, IoArrowBackOutline)
 
 	return (
 		<header>
-			<div className='header-wrapper'>
+			<div className={`header-wrapper ${location.pathname === "/" && "wrapper-home"}`}>
 				{location.pathname === "/" ? (
 					<LeftBar currentUser={currentUser} />
 				) : (

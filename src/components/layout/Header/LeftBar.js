@@ -36,28 +36,31 @@ const LeftBar = ({ currentUser }) => {
 		document.querySelector("html").style.overflowY = "visible"
 	}
 	const signOutModel = () => {
-		setLeftBarOpened(false)
 		setModalOpened(true)
 		document.querySelector("nav").style.display = "hidden"
+		width < 1080
+			? setLeftBarOpened(false)
+			: (document.querySelector("nav").style.visibility = "hidden")
 	}
 	const signOutModelClose = (e) => {
-		if (
-			e.target.classList.contains("backdrop") ||
-			e.target.classList.contains("close-modal")
-		) {
-			setLeftBarOpened(false)
+		if (e.target.classList.contains("backdrop")) {
 			setModalOpened(false)
 			document.querySelector("nav").style.display = "unset"
+			width < 1080
+				? setLeftBarOpened(false)
+				: (document.querySelector("nav").style.visibility = "unset")
 		}
 	}
 	const signOutBtnClose = (e) => {
-		setLeftBarOpened(false)
 		setModalOpened(false)
 		document.querySelector("nav").style.display = "unset"
+		width < 1080
+			? setLeftBarOpened(false)
+			: (document.querySelector("nav").style.visibility = "unset")
 	}
 
 	useEffect(() => {
-		if (width > 1000) {
+		if (width >= 1080) {
 			const func = () => {
 				setLeftBarOpened(true)
 			}
@@ -104,18 +107,14 @@ const LeftBar = ({ currentUser }) => {
 				<img src={currentUser?.avatar} alt={currentUser?.name} />
 			</button>
 			{leftBarOpened && (
-				<div className='backdrop' onClick={closeLeftBar}>
+				<div className='backdrop backdrop-1' onClick={width < 1080 ? closeLeftBar : null}>
 					<div className='left-bar'>
 						<div className='left-bar-upper'>
 							<Link
 								to={`/profile/${currentUser?._id}`}
 								className='user-info'
-								onClick={closeLeftBar}
-							>
-								<img
-									src={currentUser?.avatar}
-									alt={currentUser?.name || "User avatar"}
-								/>
+								onClick={closeLeftBar}>
+								<img src={currentUser?.avatar} alt={currentUser?.name || "User avatar"} />
 								<h1>
 									{makeUppercase(currentUser?.name, 0) +
 										" " +
@@ -130,8 +129,7 @@ const LeftBar = ({ currentUser }) => {
 										to={item.destination}
 										key={item.title}
 										className='link-container'
-										onClick={closeLeftBar}
-									>
+										onClick={closeLeftBar}>
 										{item.icon}
 										<h3>{item.title}</h3>
 									</Link>
@@ -152,17 +150,11 @@ const LeftBar = ({ currentUser }) => {
 				<div className='backdrop' onClick={signOutModelClose}>
 					<div className='signout-container'>
 						<h3>Are you sure you want to sign out?</h3>
-						<button
-							className='btn-medium'
-							onClick={() => dispatch(signOut(history))}
-						>
+						<button className='btn-medium' onClick={() => dispatch(signOut(history))}>
 							<p>Yes, Sign Out</p>
 							<AiOutlineCheck className='icon' />
 						</button>
-						<button
-							onClick={signOutBtnClose}
-							className='btn-medium reverse-btn'
-						>
+						<button onClick={signOutBtnClose} className='btn-medium reverse-btn'>
 							<p>Cancel</p>
 							<IoMdClose className='icon' />
 						</button>

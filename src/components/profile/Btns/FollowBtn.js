@@ -7,29 +7,26 @@ import { useLocation } from "react-router"
 const FollowBtn = ({ currentUserId, userId }) => {
 	const location = useLocation()
 	const dispatch = useDispatch()
-	const [followed, setFollowed] = useState(false)
-
 	const { followers, userMessage } = useSelector((state) => state?.user)
+
+	const [followed, setFollowed] = useState(false)
 
 	useEffect(() => {
 		setFollowed(
-			followers?.map((person) => person?._id === userId).length > 0
-				? true
-				: false
+			followers
+				?.map((i) => {
+					return i._id
+				})
+				?.includes(currentUserId)
 		)
-	}, [userId, location, userMessage, followers])
+	}, [userId, currentUserId, location, userMessage, followers])
 
 	return (
 		<button
 			className={`btn-medium follow-btn ${followed && "following-btn"}`}
-			onClick={() => dispatch(followUnfollow(userId, currentUserId))}
-		>
+			onClick={() => dispatch(followUnfollow(userId, currentUserId))}>
 			<p>{followed ? "Following" : "Follow"}</p>
-			{followed ? (
-				<FiUserCheck className='icon' />
-			) : (
-				<FiUserPlus className='icon' />
-			)}
+			{followed ? <FiUserCheck className='icon' /> : <FiUserPlus className='icon' />}
 		</button>
 	)
 }
