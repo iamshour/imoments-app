@@ -9,6 +9,8 @@ import CardUpper from "./Card-upper/CardUpper"
 import Textarea from "components/utility/Textarea"
 //icons
 import { IoMdClose } from "react-icons/io"
+import Modal from "components/utility/Modal"
+import { closeModalBtn, openModal } from "components/utility/utilis"
 
 const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 	const location = useLocation()
@@ -36,23 +38,6 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 		}
 	}, [location, creatorId, userMessage])
 
-	const openImg = () => {
-		setOptionsClicked(false)
-		setImgOpenned(true)
-		document.querySelector("html").style.overflowY = "hidden"
-		document.querySelector("header").style.display = "none"
-		location.pathname === "/" &&
-			(document.querySelector("nav").style.display = "none")
-	}
-
-	const closeImg = (e) => {
-		setImgOpenned(false)
-		document.querySelector("header").style.display = "unset"
-		document.querySelector("html").style.overflowY = "visible"
-		location.pathname === "/" &&
-			(document.querySelector("nav").style.display = "unset")
-	}
-
 	const handleUpdate = () => {
 		dispatch(updatePost(postId, { caption: content, userId }))
 	}
@@ -70,18 +55,33 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 				setEditClicked={setEditClicked}
 			/>
 			{imgOpenned && (
-				<button className='btn-icon' onClick={closeImg}>
+				<button
+					className='btn-icon'
+					onClick={() => {
+						closeModalBtn(location)
+						setImgOpenned(false)
+					}}>
 					<IoMdClose className='icon' />
 				</button>
 			)}
 			{img && (
-				<button
-					className={`img-container ${imgOpenned && "img-openned"}`}
-					onClick={openImg}
-				>
-					<img src={img} alt='example' />
-				</button>
+				<img
+					className='img-unopened'
+					src={img}
+					alt='example'
+					onClick={() => {
+						openModal(location)
+						setOptionsClicked(false)
+						setImgOpenned(true)
+					}}
+				/>
 			)}
+			{img && imgOpenned && (
+				<Modal setModalOpen={setImgOpenned} setExtraOption={setOptionsClicked}>
+					<img src={img} alt='example' />
+				</Modal>
+			)}
+
 			{editClicked ? (
 				<Textarea
 					content={content}
@@ -100,18 +100,12 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 					</button>
 					<button
 						onClick={() => setEditClicked(false)}
-						className='btn-medium reverse-btn'
-					>
+						className='btn-medium reverse-btn'>
 						Cancel
 					</button>
 				</div>
 			) : (
-				<Socials
-					likes={likes}
-					comments={"29"}
-					creatorId={creatorId}
-					postId={postId}
-				/>
+				<Socials likes={likes} comments={"29"} creatorId={creatorId} postId={postId} />
 			)}
 		</div>
 	)

@@ -28,13 +28,7 @@ export const titleFunc = (location, currentUser, user) => {
 
 	return title
 }
-export const backIcon = (
-	location,
-	currentUser,
-	user,
-	history,
-	IoArrowBackOutline
-) => {
+export const backIcon = (location, currentUser, user, history, IoArrowBackOutline) => {
 	const icon =
 		location.pathname.startsWith(`/profile/${currentUser?._id}`) ||
 		location.pathname.startsWith(`/profile/${user?._id}`) ||
@@ -60,7 +54,7 @@ export const openModal = (location) => {
 
 export const closeModalBtn = (location) => {
 	document.querySelector("html").style.overflowY = "unset"
-	document.querySelector("header").style.display = "unset"
+	document.querySelector("header").style.display = "flex"
 
 	location.pathname === ("/" || "/search" || "/addPost" || "/notifications") &&
 		(document.querySelector("nav").style.display = "unset")
@@ -68,7 +62,6 @@ export const closeModalBtn = (location) => {
 
 export const makeUppercase = (word, index) => {
 	return (
-		word?.split(" ")[index]?.charAt(0)?.toUpperCase() +
-		word?.split(" ")[index]?.slice(1)
+		word?.split(" ")[index]?.charAt(0)?.toUpperCase() + word?.split(" ")[index]?.slice(1)
 	)
 }

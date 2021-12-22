@@ -6,11 +6,10 @@ const Modal = ({ children, setModalOpen, setExtraOption }) => {
 	const closeModalBackdrop = (e) => {
 		if (e.target.classList.contains("modal-backdrop")) {
 			document.querySelector("html").style.overflowY = "unset"
-			document.querySelector("header").style.display = "unset"
+			document.querySelector("header").style.display = "flex"
 			setModalOpen(false)
 			setExtraOption && setExtraOption(false)
-			location.pathname ===
-				("/" || "/search" || "/addPost" || "/notifications") &&
+			location.pathname === ("/" || "/search" || "/addPost" || "/notifications") &&
 				(document.querySelector("nav").style.display = "unset")
 		}
 	}
