@@ -9,6 +9,7 @@ header {
 	top: 0;
 	height: 6.4rem;
 	width: 100vw;
+	max-width: 1800px;
 	@include centering;
 	padding: 0 1.6rem;
 
@@ -287,24 +288,11 @@ nav {
 		top: 0;
 		height: 7.2rem;
 		padding: 0 2.4rem;
-
-		.header-wrapper {
-			.theme-wrapper {
-				button {
-					padding: 1.4rem;
-
-					.icon {
-						font-size: 2.4rem;
-					}
-				}
-			}
-		}
 	}
 }
 
 @media (min-width: $breakpoint-desktop) {
 	header {
-		height: 8rem;
 		.wrapper-home {
 			justify-content: flex-end;
 			.avatar-wrapper {
@@ -355,29 +343,33 @@ nav {
 	}
 
 	nav {
-		bottom: unset;
-		right: unset;
 		transform: unset;
 		top: 0;
-		left: 25rem;
-		max-width: 48rem;
+		right: unset;
+		bottom: unset;
+		width: 48rem;
+		margin: 0 auto;
+		margin-left: 25rem;
+		max-width: unset;
+		left: unset;
 
 		&::before {
 			display: none;
 		}
 
 		.wrapper {
-			height: 8rem;
+			height: 7.2rem;
 			.nav-item {
 				border: 1px solid var(--secondary-font);
-				padding: 1.5rem;
+				padding: 1.4rem;
 				background: var(--card-bg);
 				.icon {
-					font-size: 2.2rem;
+					font-size: 2rem;
 					color: var(--secondary-font);
 				}
 			}
 			.pressed {
+				overflow-y: visible;
 				border-color: transparent;
 				background: var(--nav-pressed);
 				.icon {
@@ -389,5 +381,11 @@ nav {
 				right: 6%;
 			}
 		}
+	}
+}
+
+@media (min-width: $breakpoint-max-desktop) {
+	header {
+		max-width: 1800px;
 	}
 }

@@ -26,6 +26,13 @@ const NotifCard = ({ notificationId, userId, time, body, referenceId }) => {
 			}
 		}
 		getNotifUser()
+
+		return () => {
+			getNotifUser({})
+			dispatch({
+				type: "CLEAR_USER_TAB",
+			})
+		}
 	}, [userId, dispatch])
 
 	return (
@@ -52,8 +59,7 @@ const NotifCard = ({ notificationId, userId, time, body, referenceId }) => {
 							notificationId: notificationId,
 						})
 					)
-				}
-			>
+				}>
 				<MdOutlineClear className='icon' />
 			</button>
 		</div>

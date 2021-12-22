@@ -1,14 +1,16 @@
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { useLocation } from "react-router"
+import { useDispatch } from "react-redux"
+import { deletePost } from "redux/actions/posts"
+import { makeUppercase, closeModalBtn } from "components/utility/utilis"
 import Moment from "react-moment"
 //COMPS
 import Dropdown from "./Dropdown"
+import Modal from "components/utility/Modal"
 //icons
-import { AiOutlineEllipsis } from "react-icons/ai"
 import { IoMdClose } from "react-icons/io"
-import { useState } from "react"
-import { useEffect } from "react"
-import { useLocation } from "react-router"
-import { makeUppercase } from "components/utility/utilis"
+import { AiOutlineEllipsis } from "react-icons/ai"
 
 const CardUpper = ({
 	avatar,
@@ -21,15 +23,17 @@ const CardUpper = ({
 	setEditClicked,
 }) => {
 	const location = useLocation()
+	const dispatch = useDispatch()
 	const currentUser = JSON.parse(localStorage.getItem("User"))
 	const [bookmarkIncluded, setBookmarkIncluded] = useState(
 		currentUser?.bookmarks?.includes(postId) ? true : false
 	)
 	const [bookmarkClicked, setbookmarkClicked] = useState(bookmarkIncluded)
+	const [deleteClicked, setDeleteClicked] = useState(false)
 
 	useEffect(() => {
 		setBookmarkIncluded(currentUser?.bookmarks?.includes(postId) ? true : false)
-	}, [currentUser.bookmarks, location, postId])
+	}, [currentUser?.bookmarks, location, postId])
 
 	return (
 		<div className='card-upper'>
@@ -55,8 +59,7 @@ const CardUpper = ({
 						setbookmarkClicked(false)
 						setBookmarkIncluded(false)
 					}
-				}}
-			>
+				}}>
 				{optionsClicked ? (
 					<IoMdClose className='icon' />
 				) : (
@@ -73,7 +76,33 @@ const CardUpper = ({
 					bookmarkIncluded={bookmarkIncluded}
 					setbookmarkClicked={setbookmarkClicked}
 					setBookmarkIncluded={setBookmarkIncluded}
+					setDeleteClicked={setDeleteClicked}
 				/>
+			)}
+			{deleteClicked && (
+				<Modal setModalOpen={setDeleteClicked} setExtraOption={setOptionsClicked}>
+					<h3>Are you sure you want to delete this post?</h3>
+					<div className='btns'>
+						<button
+							onClick={() => {
+								dispatch(deletePost(postId))
+								closeModalBtn(location)
+								setDeleteClicked(false)
+							}}
+							className='btn-medium'>
+							Yes, delete
+						</button>
+						<button
+							className='btn-medium reverse-btn'
+							onClick={() => {
+								closeModalBtn(location)
+								setDeleteClicked(false)
+								setOptionsClicked(false)
+							}}>
+							Cancel &amp; go back
+						</button>
+					</div>
+				</Modal>
 			)}
 		</div>
 	)

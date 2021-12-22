@@ -1,6 +1,6 @@
 import { useLocation } from "react-router"
 
-const Modal = ({ children, setModalOpen, setExtraOption }) => {
+const Modal = ({ children, setModalOpen, setExtraOption, additionalClassName }) => {
 	const location = useLocation()
 
 	const closeModalBackdrop = (e) => {
@@ -15,7 +15,11 @@ const Modal = ({ children, setModalOpen, setExtraOption }) => {
 	}
 
 	return (
-		<div className='modal-backdrop' onClick={closeModalBackdrop}>
+		<div
+			className={`modal-backdrop ${
+				additionalClassName !== undefined || null ? additionalClassName : ""
+			}`}
+			onClick={closeModalBackdrop}>
 			<div className='modal-container'>{children}</div>
 		</div>
 	)

@@ -38,6 +38,7 @@ body {
 	user-select: none;
 	overflow-x: hidden;
 	margin: 0 auto;
+	max-width: 1800px;
 	font-family: "Readex Pro", sans-serif;
 	&::-webkit-scrollbar {
 		display: unset;
@@ -60,4 +61,15 @@ select,
 a {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	font-family: inherit;
+}
+
+@media (min-width: $breakpoint-large-desktop) {
+	html {
+		font-size: 11px;
+	}
+}
+@media (min-width: $breakpoint-max-desktop) {
+	html {
+		font-size: 12px;
+	}
 }

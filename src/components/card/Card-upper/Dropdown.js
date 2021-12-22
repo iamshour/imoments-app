@@ -1,10 +1,7 @@
-import { useState } from "react"
 import { useLocation } from "react-router"
 import { useDispatch } from "react-redux"
-import { bookmarkPost, deletePost } from "redux/actions/posts"
-//COMPS
-import Modal from "components/utility/Modal"
-import { closeModalBtn, openModal } from "components/utility/utilis"
+import { bookmarkPost } from "redux/actions/posts"
+import { openModal } from "components/utility/utilis"
 //ICONS
 import { BiEdit } from "react-icons/bi"
 import { IoMdClose } from "react-icons/io"
@@ -20,12 +17,11 @@ const Dropdown = ({
 	bookmarkIncluded,
 	setBookmarkIncluded,
 	setbookmarkClicked,
+	setDeleteClicked,
 }) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const currentUser = JSON.parse(localStorage.getItem("User"))
-
-	const [deleteClicked, setDeleteClicked] = useState(false)
 
 	const bookmarkHandler = () => {
 		if (bookmarkIncluded) {
@@ -55,8 +51,7 @@ const Dropdown = ({
 							setEditClicked(true)
 							setOptionsClicked(false)
 						}}
-						className='dropdown-btn'
-					>
+						className='dropdown-btn'>
 						<BiEdit className='icon' />
 						<p>Edit Post</p>
 					</button>
@@ -64,42 +59,12 @@ const Dropdown = ({
 						onClick={() => {
 							setDeleteClicked(true)
 							openModal(location)
+							setOptionsClicked(false)
 						}}
-						className='dropdown-btn'
-					>
+						className='dropdown-btn'>
 						<IoMdClose className='icon' />
 						<p>Delete Post</p>
 					</button>
-					{deleteClicked && (
-						<Modal
-							setModalOpen={setDeleteClicked}
-							setExtraOption={setOptionsClicked}
-						>
-							<h3>Are you sure you want to delete this post?</h3>
-							<div className='btns'>
-								<button
-									onClick={() => {
-										dispatch(deletePost(postId))
-										closeModalBtn(location)
-										setDeleteClicked(false)
-									}}
-									className='btn-medium'
-								>
-									Yes, delete
-								</button>
-								<button
-									className='btn-medium reverse-btn'
-									onClick={() => {
-										closeModalBtn(location)
-										setDeleteClicked(false)
-										setOptionsClicked(false)
-									}}
-								>
-									Cancel &amp; go back
-								</button>
-							</div>
-						</Modal>
-					)}
 				</>
 			) : (
 				<>

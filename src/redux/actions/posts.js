@@ -121,21 +121,12 @@ export const CapUpload = (capData) => async (dispatch) => {
 
 export const deletePost = (postId) => async (dispatch) => {
 	try {
-		dispatch({
-			type: "START_POST_LOADING",
-		})
 		const { data } = await api.deletePost(postId)
 		dispatch({
 			type: "NEW_POST_MESSAGE",
 			payload: data,
 		})
-		dispatch({
-			type: "END_POST_LOADING",
-		})
 	} catch (error) {
-		dispatch({
-			type: "END_POST_LOADING",
-		})
 		dispatch({
 			type: "ERROR",
 			payload: error?.response?.data?.message,
@@ -145,21 +136,12 @@ export const deletePost = (postId) => async (dispatch) => {
 
 export const updatePost = (postId, postData) => async (dispatch) => {
 	try {
-		dispatch({
-			type: "START_POST_LOADING",
-		})
 		const { data } = await api.updatePost(postId, postData)
 		dispatch({
 			type: "NEW_POST_MESSAGE",
 			payload: data,
 		})
-		dispatch({
-			type: "END_POST_LOADING",
-		})
 	} catch (error) {
-		dispatch({
-			type: "END_POST_LOADING",
-		})
 		dispatch({
 			type: "ERROR",
 			payload: error?.response?.data?.message,

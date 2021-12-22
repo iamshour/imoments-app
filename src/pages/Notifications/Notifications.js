@@ -16,34 +16,29 @@ const Notifications = () => {
 		<div className='notifications-page'>
 			{userLoading ? (
 				<Loading />
+			) : notifications?.length === 0 ? (
+				<div className='empty-wrapper'>
+					<BsEmojiSmileUpsideDown className='icon' />
+					<h1>No notificaions yet!</h1>
+				</div>
 			) : (
 				<div className='wrapper'>
-					{notifications?.length > 0 && (
-						<button
-							className='clear-all'
-							onClick={() => dispatch(clearNotifications(currentUserId))}
-						>
+					<div className='clear-all'>
+						<button onClick={() => dispatch(clearNotifications(currentUserId))}>
 							<p>Clear all</p>
 							<MdOutlineClearAll className='icon' />
 						</button>
-					)}
-					{notifications?.length === 0 ? (
-						<div className='empty-wrapper'>
-							<BsEmojiSmileUpsideDown className='icon' />
-							<h1>No notificaions yet!</h1>
-						</div>
-					) : (
-						notifications?.map((item) => (
-							<NotifCard
-								key={item?.notificationId}
-								notificationId={item?.notificationId}
-								userId={item?.userId}
-								time={item?.createdAt}
-								body={item?.body}
-								referenceId={item?.referenceId}
-							/>
-						))
-					)}
+					</div>
+					{notifications?.map((item) => (
+						<NotifCard
+							key={item?.notificationId}
+							notificationId={item?.notificationId}
+							userId={item?.userId}
+							time={item?.createdAt}
+							body={item?.body}
+							referenceId={item?.referenceId}
+						/>
+					))}
 				</div>
 			)}
 		</div>

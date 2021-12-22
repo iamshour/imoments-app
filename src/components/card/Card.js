@@ -77,7 +77,10 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 				/>
 			)}
 			{img && imgOpenned && (
-				<Modal setModalOpen={setImgOpenned} setExtraOption={setOptionsClicked}>
+				<Modal
+					setModalOpen={setImgOpenned}
+					setExtraOption={setOptionsClicked}
+					additionalClassName='modal-img'>
 					<img src={img} alt='example' />
 				</Modal>
 			)}

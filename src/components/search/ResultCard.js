@@ -10,9 +10,9 @@ const ResultCard = ({ userId, name, avatar }) => {
 			<Link className='bg' to={`/profile/${userId}`} />
 			<div className='left'>
 				<img src={avatar} alt={name} />
-				<div className='info'>
-					<h1>{makeUppercase(name, 0) + " " + makeUppercase(name, 1)}</h1>
-				</div>
+				<h1 className='user-name'>
+					{makeUppercase(name, 0) + " " + makeUppercase(name, 1)}
+				</h1>
 			</div>
 			<div className='right'>
 				<Link to={`/profile/${userId}`} className='btn-medium'>

@@ -20,9 +20,7 @@ const Socials = ({ likes, postId }) => {
 	const [allComments, setAllComments] = useState([])
 
 	const [likesLength, setLikesLength] = useState(likes?.length)
-	const [likeIncluded, setLikeIncluded] = useState(
-		likes?.includes(userId) ? true : false
-	)
+	const [likeIncluded, setLikeIncluded] = useState(likes?.includes(userId) ? true : false)
 	const [likeClicked, setLikeClicked] = useState(likeIncluded)
 
 	const likeHandler = () => {
@@ -53,6 +51,7 @@ const Socials = ({ likes, postId }) => {
 		commentsHandler()
 
 		return () => {
+			commentsHandler({})
 			dispatch({
 				type: "CLEAR_COMMENT_MSG",
 			})
@@ -64,8 +63,7 @@ const Socials = ({ likes, postId }) => {
 			<div className='socials-bar'>
 				<button
 					onClick={likeHandler}
-					className={`socials-btn ${likeClicked && "clicked"}`}
-				>
+					className={`socials-btn ${likeClicked && "clicked"}`}>
 					<div className='icon-wrapper'>
 						{likeClicked ? (
 							<AiFillLike className='icon' />
@@ -83,8 +81,7 @@ const Socials = ({ likes, postId }) => {
 				</button>
 				<button
 					onClick={() => setCommentsClicked(!commentsClicked)}
-					className='socials-btn'
-				>
+					className='socials-btn'>
 					{!commentsClicked ? (
 						<>
 							<div className='icon-wrapper'>
