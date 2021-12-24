@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { signOut } from "redux/actions/auth"
 import { changepass, deleteUser } from "redux/actions/user"
 //COMPS
-import Loading from "components/utility/Loading"
 import SuccessMessage from "components/utility/SuccessMessage"
 //ICONS
 import { BsLock } from "react-icons/bs"
@@ -12,6 +11,7 @@ import { BiCheck } from "react-icons/bi"
 import { IoIosArrowUp } from "react-icons/io"
 import { RiDeleteBinLine } from "react-icons/ri"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import Spinner from "components/utility/Spinner"
 
 const Settings = () => {
 	const history = useHistory()
@@ -38,8 +38,7 @@ const Settings = () => {
 	}
 
 	useEffect(() => {
-		if (error !== (null || undefined))
-			return dispatch({ type: "CLEAR_USER_TAB" })
+		if (error !== (null || undefined)) return dispatch({ type: "CLEAR_USER_TAB" })
 
 		return () => {
 			dispatch({
@@ -72,17 +71,11 @@ const Settings = () => {
 					alignItems: "center",
 					height: "75vh",
 				}
-			}
-		>
-			{userLoading && (userMessage === null || undefined) ? (
-				<Loading />
-			) : !userLoading && (userMessage !== null || undefined) ? (
-				<SuccessMessage
-					style={{ marginTop: "40px" }}
-					message={userMessage?.message}
-				/>
+			}>
+			{!userLoading && (userMessage !== null || undefined) ? (
+				<SuccessMessage style={{ marginTop: "40px" }} message={userMessage?.message} />
 			) : (
-				<div className='container'>
+				<>
 					{!currentUser?.googleUser && (
 						<div className='upper-container'>
 							<button
@@ -90,8 +83,7 @@ const Settings = () => {
 								onClick={() => {
 									setChangePassClicked(!changePassClicked)
 									setDeleteAccClicked(false)
-								}}
-							>
+								}}>
 								{changePassClicked ? (
 									<IoIosArrowUp className='icon' />
 								) : (
@@ -102,8 +94,8 @@ const Settings = () => {
 							{changePassClicked && (
 								<div className='wrapper'>
 									<p className='wrapper-info'>
-										Your password must have a minimum of 8 characters, at least
-										one uppercase letter, one lowercase letter and one number.
+										Your password must have a minimum of 8 characters, at least one
+										uppercase letter, one lowercase letter and one number.
 									</p>
 									<div className='input-bar-icon'>
 										<input
@@ -126,14 +118,18 @@ const Settings = () => {
 									</div>
 									<div className='input-bar'>
 										<input
-											type='password'
+											type={showPass ? "text" : "password"}
 											name='confirmPassword'
 											placeholder='Confirm new password'
 											onChange={changeHandler}
 										/>
 									</div>
 									<button className='btn-medium' onClick={changePass}>
-										Confirm
+										{userLoading && (userMessage === null || undefined) ? (
+											<Spinner />
+										) : (
+											<p>Confirm</p>
+										)}
 									</button>
 								</div>
 							)}
@@ -145,8 +141,7 @@ const Settings = () => {
 							onClick={() => {
 								setDeleteAccClicked(!deleteAccClicked)
 								setChangePassClicked(false)
-							}}
-						>
+							}}>
 							{deleteAccClicked ? (
 								<IoIosArrowUp className='icon' />
 							) : (
@@ -157,8 +152,7 @@ const Settings = () => {
 						{deleteAccClicked && (
 							<div className='wrapper'>
 								<p className='wrapper-info'>
-									Warning: Once your account is deleted, all your data will be
-									lost.
+									Warning: Once your account is deleted, all your data will be lost.
 								</p>
 								<h3>Are you sure you want to delete your account?</h3>
 								<div className='delete-btns'>
@@ -168,23 +162,27 @@ const Settings = () => {
 											dispatch(deleteUser(currentUser?._id))
 											setTimeout(() => {
 												dispatch(signOut(history))
-											}, 500)
-										}}
-									>
-										<p>Confirm</p>
-										<BiCheck className='icon' />
+											}, 1000)
+										}}>
+										{userLoading && (userMessage === null || undefined) ? (
+											<Spinner />
+										) : (
+											<>
+												<p>Confirm</p>
+												<BiCheck className='icon' />
+											</>
+										)}
 									</button>
 									<button
 										className='btn-medium reverse-btn'
-										onClick={() => history.push("/")}
-									>
+										onClick={() => history.push("/")}>
 										Cancel &amp; go back home
 									</button>
 								</div>
 							</div>
 						)}
 					</div>
-				</div>
+				</>
 			)}
 		</div>
 	)

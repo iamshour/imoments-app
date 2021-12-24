@@ -73,7 +73,9 @@ header {
 			}
 		}
 	}
-	.wrapper-home {
+}
+.header-home {
+	.header-wrapper {
 		.avatar-wrapper {
 			@include centering;
 			cursor: pointer;
@@ -292,8 +294,8 @@ nav {
 }
 
 @media (min-width: $breakpoint-desktop) {
-	header {
-		.wrapper-home {
+	.header-home {
+		.header-wrapper {
 			justify-content: flex-end;
 			.avatar-wrapper {
 				display: none;
@@ -339,6 +341,11 @@ nav {
 					}
 				}
 			}
+		}
+	}
+	.header-auth {
+		&::before {
+			display: none;
 		}
 	}
 

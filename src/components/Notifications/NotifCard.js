@@ -14,10 +14,12 @@ const NotifCard = ({ notificationId, userId, time, body, referenceId }) => {
 	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	useEffect(() => {
+		let isMounted = true
+
 		const getNotifUser = async () => {
 			try {
 				const { data } = await getUser(userId)
-				setUser(data)
+				isMounted && setUser(data)
 			} catch (error) {
 				dispatch({
 					type: "ERROR",
@@ -28,7 +30,7 @@ const NotifCard = ({ notificationId, userId, time, body, referenceId }) => {
 		getNotifUser()
 
 		return () => {
-			getNotifUser({})
+			isMounted = false
 			dispatch({
 				type: "CLEAR_USER_TAB",
 			})

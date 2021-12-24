@@ -1,22 +1,19 @@
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addProfileInfo, updateProfile } from "redux/actions/user"
+import { makeUppercase } from "components/utility/utilis"
+//COMPS
 import FollowingBtn from "./Btns/FollowingBtn"
 import FollowersBtn from "./Btns/FollowersBtn"
-import { makeUppercase } from "components/utility/utilis"
 import FollowBtn from "components/profile/Btns/FollowBtn"
-import { useState } from "react"
+import Spinner from "components/utility/Spinner"
 import Textarea from "components/utility/Textarea"
+//ICONS
 import { FcAddImage } from "react-icons/fc"
-import { useEffect } from "react"
-import { useLocation } from "react-router"
-import { addProfileInfo, updateProfile } from "redux/actions/user"
-import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
-import Loading from "components/utility/Loading"
 
 const UserCard = ({ currentUserId, user }) => {
-	const location = useLocation()
 	const dispatch = useDispatch()
-
-	const { userLoading } = useSelector((state) => state?.user)
+	const { userLoading, userMessage } = useSelector((state) => state?.user)
 
 	const [editProfile, setEditProfile] = useState(false)
 
@@ -30,12 +27,6 @@ const UserCard = ({ currentUserId, user }) => {
 			setFile(e.target.files[0])
 		}
 	}
-
-	useEffect(() => {
-		setFirstName(user?.name?.split(" ")[0])
-		setLastName(user?.name?.split(" ")[1])
-		setContent(user?.bio ? user?.bio : "")
-	}, [location, user])
 
 	const handleUpdate = async (e) => {
 		e.preventDefault()
@@ -56,126 +47,112 @@ const UserCard = ({ currentUserId, user }) => {
 		} else {
 			dispatch(updateProfile(user?._id, imgData))
 		}
-		setEditProfile(false)
 	}
+
+	useEffect(() => {
+		setEditProfile(false)
+	}, [userMessage])
 
 	return (
 		<div className='profile-card-wrapper'>
-			{userLoading ? (
-				<Loading />
-			) : (
-				<div className='user-card'>
-					<div className='left'>
-						{editProfile ? (
-							<div className='edit-img'>
-								<label
-									htmlFor='add-img'
-									className={!user?.googleUser ? "edit-label" : ""}
-								>
-									{!user?.googleUser && <FcAddImage className='icon' />}
-									<img
-										src={file ? URL.createObjectURL(file) : user?.avatar}
-										alt="user's uploaded avatar"
-									/>
-								</label>
-								{!user?.googleUser && (
-									<input
-										type='file'
-										style={{ display: "none" }}
-										id='add-img'
-										onChange={imgChange}
-										accept='.jpg, .jpeg, .png'
-									/>
-								)}
-							</div>
-						) : (
-							<img src={user?.avatar} alt={user?.name} />
-						)}
-						{!editProfile && (
-							<h1>
-								{makeUppercase(user?.name, 0) +
-									" " +
-									makeUppercase(user?.name, 1)}
-							</h1>
-						)}
-					</div>
-					<div className='right'>
-						{!editProfile ? (
-							<div className='top-btns'>
-								<FollowingBtn currentUserId={currentUserId} />
-								<FollowersBtn currentUserId={currentUserId} />
-							</div>
-						) : !user?.googleUser ? (
-							<div className='edit-top'>
-								<div className='input-bar'>
-									<input
-										type='text'
-										name='firstName'
-										placeholder='First name'
-										value={firstName}
-										onChange={(e) => setFirstName(e.target.value)}
-									/>
-								</div>
-								<div className='input-bar'>
-									<input
-										type='text'
-										name='lastName'
-										placeholder='Last name'
-										value={lastName}
-										onChange={(e) => setLastName(e.target.value)}
-									/>
-								</div>
-							</div>
-						) : null}
-						{editProfile ? (
-							<Textarea
-								content={content}
-								setContent={setContent}
-								customRows={4}
-								name='bio'
-								maxCh='220'
-								className='bio-content'
-							/>
-						) : (
-							<div className='bio-content'>
-								<p>
-									{user?.bio
-										? user?.bio
-										: 'Click below to add your own bio here..."'}
-								</p>
-							</div>
-						)}
-						{currentUserId === user?._id ? (
-							editProfile ? (
-								<div className='edit-btns'>
-									<button className='btn-medium' onClick={handleUpdate}>
-										<p>Update</p>
-									</button>
-									<button
-										className='btn-medium reverse-btn'
-										onClick={() => setEditProfile(false)}
-									>
-										<p>Cancel</p>
-									</button>
-								</div>
-							) : (
-								<button
-									className='btn-medium edit-profile-btn'
-									onClick={() => setEditProfile(true)}
-								>
-									<p>Edit Profile</p>
-								</button>
-							)
-						) : (
-							<FollowBtn
-								className='profile-follow'
-								userId={user?._id}
-								currentUserId={currentUserId}
-							/>
-						)}
-					</div>
+			<div className='user-card'>
+				<div className='left'>
+					{editProfile ? (
+						<div className='edit-img'>
+							<label htmlFor='add-img' className={!user?.googleUser ? "edit-label" : ""}>
+								{!user?.googleUser && <FcAddImage className='icon' />}
+								<img
+									src={file ? URL.createObjectURL(file) : user?.avatar}
+									alt="user's uploaded avatar"
+								/>
+							</label>
+							{!user?.googleUser && (
+								<input
+									type='file'
+									style={{ display: "none" }}
+									id='add-img'
+									onChange={imgChange}
+									accept='.jpg, .jpeg, .png'
+								/>
+							)}
+						</div>
+					) : (
+						<img src={user?.avatar} alt={user?.name} />
+					)}
+					{!editProfile && (
+						<h1>{makeUppercase(user?.name, 0) + " " + makeUppercase(user?.name, 1)}</h1>
+					)}
 				</div>
-			)}
+				<div className='right'>
+					{!editProfile ? (
+						<div className='top-btns'>
+							<FollowingBtn currentUserId={currentUserId} />
+							<FollowersBtn currentUserId={currentUserId} />
+						</div>
+					) : !user?.googleUser ? (
+						<div className='edit-top'>
+							<div className='input-bar'>
+								<input
+									type='text'
+									name='firstName'
+									placeholder='First name'
+									value={firstName}
+									onChange={(e) => setFirstName(e.target.value)}
+								/>
+							</div>
+							<div className='input-bar'>
+								<input
+									type='text'
+									name='lastName'
+									placeholder='Last name'
+									value={lastName}
+									onChange={(e) => setLastName(e.target.value)}
+								/>
+							</div>
+						</div>
+					) : null}
+					{editProfile ? (
+						<Textarea
+							content={content}
+							setContent={setContent}
+							customRows={4}
+							name='bio'
+							maxCh='220'
+							className='bio-content'
+						/>
+					) : (
+						<div className='bio-content'>
+							<p>{user?.bio ? user?.bio : 'Click below to add your own bio here..."'}</p>
+						</div>
+					)}
+					{currentUserId === user?._id ? (
+						editProfile ? (
+							<div className='edit-btns'>
+								<button className='btn-medium' onClick={handleUpdate}>
+									{userLoading ? <Spinner /> : <p>Update</p>}
+								</button>
+								<button
+									className='btn-medium reverse-btn'
+									onClick={() => setEditProfile(false)}>
+									<p>Cancel</p>
+								</button>
+							</div>
+						) : (
+							<button
+								className='btn-medium edit-profile-btn'
+								onClick={() => setEditProfile(true)}>
+								<p>Edit Profile</p>
+							</button>
+						)
+					) : (
+						<FollowBtn
+							className='profile-follow'
+							userId={user?._id}
+							currentUserId={currentUserId}
+						/>
+					)}
+				</div>
+			</div>
 		</div>
 	)
 }

@@ -73,8 +73,15 @@ const Header = () => {
 	const icon = backIcon(location, currentUser, user && user, history, IoArrowBackOutline)
 
 	return (
-		<header>
-			<div className={`header-wrapper ${location.pathname === "/" && "wrapper-home"}`}>
+		<header
+			className={
+				location.pathname === "/"
+					? "header-home"
+					: location.pathname.startsWith("/auth")
+					? "header-auth"
+					: ""
+			}>
+			<div className='header-wrapper'>
 				{location.pathname === "/" ? (
 					<LeftBar currentUser={currentUser} />
 				) : (

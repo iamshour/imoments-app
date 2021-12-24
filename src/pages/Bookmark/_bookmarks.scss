@@ -1,5 +1,19 @@
 .bookmarks-page {
 	.empty-wrapper {
-		height: calc(100vh - 18rem);
+		height: calc(100vh - 13rem);
+	}
+}
+@media (min-width: $breakpoint-tablet) {
+	.bookmarks-page {
+		.empty-wrapper {
+			height: calc(100vh - 15rem);
+		}
+	}
+}
+@media (min-width: $breakpoint-desktop) {
+	.bookmarks-page {
+		.empty-wrapper {
+			height: calc(100vh - 17rem);
+		}
 	}
 }

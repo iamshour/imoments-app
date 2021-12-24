@@ -255,6 +255,11 @@
 					background: transparent;
 				}
 				.btn-medium {
+					width: 10.858rem;
+					.spinner-container {
+						width: 1.4938rem;
+						height: 1.4938rem;
+					}
 					p {
 						margin-right: 0;
 						font-size: 1.3rem;
@@ -343,9 +348,9 @@
 
 				h1 {
 					text-align: center;
-					padding: 1rem;
+					padding: 1rem 1rem 1.6rem 1rem;
 					font-weight: 500;
-					font-size: 1.8rem;
+					font-size: 1.7rem;
 					max-width: 85%;
 				}
 
@@ -354,6 +359,18 @@
 					display: flex;
 					justify-content: space-around;
 					padding-bottom: 0.4rem;
+					.btn-medium {
+						p {
+							margin: 0;
+						}
+						&:nth-of-type(1) {
+							width: 7.867rem;
+						}
+						.spinner-container {
+							width: 1.725rem;
+							height: 1.725rem;
+						}
+					}
 				}
 			}
 		}
@@ -398,6 +415,22 @@
 		}
 
 		.comments-wrapper {
+			.add-comment {
+				.right {
+					.btn-medium {
+						width: 11.923rem;
+						.spinner-container {
+							width: 1.6094rem;
+							height: 1.6094rem;
+						}
+						p {
+							margin-right: 0;
+							font-size: 1.4rem;
+						}
+					}
+				}
+			}
+
 			.no-comments {
 				font-size: 1.6rem;
 			}
@@ -422,8 +455,18 @@
 				}
 				.delete-comment-wrapper {
 					h1 {
-						padding-bottom: 1.6rem;
 						font-size: 2rem;
+					}
+					.delete-btns {
+						.btn-medium {
+							&:nth-of-type(1) {
+								width: 7.866rem;
+							}
+							.spinner-container {
+								width: 1.839rem;
+								height: 1.839rem;
+							}
+						}
 					}
 				}
 			}

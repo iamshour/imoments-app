@@ -37,10 +37,11 @@ const Socials = ({ likes, postId }) => {
 	}
 
 	useEffect(() => {
+		let isMounted = true
 		const commentsHandler = async () => {
 			try {
 				const { data } = await getComments(postId)
-				setAllComments(data)
+				isMounted && setAllComments(data)
 			} catch (error) {
 				dispatch({
 					type: "ERROR",
@@ -51,7 +52,7 @@ const Socials = ({ likes, postId }) => {
 		commentsHandler()
 
 		return () => {
-			commentsHandler({})
+			isMounted = false
 			dispatch({
 				type: "CLEAR_COMMENT_MSG",
 			})

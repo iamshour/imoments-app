@@ -71,5 +71,7 @@ a {
 @media (min-width: $breakpoint-max-desktop) {
 	html {
 		font-size: 12px;
+		min-height: 100vh;
+		background: white;
 	}
 }

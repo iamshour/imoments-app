@@ -27,14 +27,16 @@ const Card = ({ creatorId, postId, img, caption, time, likes }) => {
 	const { userMessage } = useSelector((state) => state?.user)
 
 	useEffect(() => {
+		let isMounted = true
+
 		const getPostCreator = async () => {
 			const { data } = await getUser(creatorId)
-			setPostCreator(data)
+			isMounted && setPostCreator(data)
 		}
 		getPostCreator()
 
 		return () => {
-			setPostCreator({})
+			isMounted = false
 		}
 	}, [location, creatorId, userMessage])
 

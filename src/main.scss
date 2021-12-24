@@ -219,6 +219,20 @@ textarea {
 	padding: 9rem 0 4rem 0;
 }
 
+.home-page,
+.bookmarks-page,
+.cards-container {
+	@include centering;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.home-page,
+.bookmarks-page {
+	min-height: 100vh;
+	padding-top: 9rem;
+}
+
 @media (min-width: $breakpoint-tablet) {
 	.bookmarks-page,
 	.notifications-page,
@@ -251,6 +265,10 @@ textarea {
 		h1 {
 			font-size: 3rem;
 		}
+	}
+	.home-page,
+	.bookmarks-page {
+		padding-top: 12rem;
 	}
 }
 

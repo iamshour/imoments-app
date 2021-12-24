@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import Loading from "components/utility/Loading"
 import NotifCard from "components/Notifications/NotifCard"
+
 //ICONS
 import { MdOutlineClearAll } from "react-icons/md"
 import { useDispatch } from "react-redux"
@@ -15,7 +16,9 @@ const Notifications = () => {
 	return (
 		<div className='notifications-page'>
 			{userLoading ? (
-				<Loading />
+				<div className='empty-wrapper'>
+					<Loading />
+				</div>
 			) : notifications?.length === 0 ? (
 				<div className='empty-wrapper'>
 					<BsEmojiSmileUpsideDown className='icon' />

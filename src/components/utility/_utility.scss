@@ -138,6 +138,15 @@
 	}
 }
 
+.spinner-container {
+	svg {
+		margin: auto;
+		background: 0 0;
+		display: block;
+		shape-rendering: auto;
+	}
+}
+
 @media (min-width: $breakpoint-tablet) {
 	.modal-backdrop {
 		.modal-container {

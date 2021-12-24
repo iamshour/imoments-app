@@ -26,6 +26,9 @@ const Home = () => {
 			dispatch({
 				type: "CLEAR_POSTS",
 			})
+			dispatch({
+				type: "CLEAR_USER_TAB",
+			})
 		}
 		//eslint-disable-next-line
 	}, [dispatch, userId, postMessage])

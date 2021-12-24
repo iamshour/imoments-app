@@ -1,25 +1,28 @@
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import Moment from "react-moment"
-import { useEffect } from "react"
-import { getUser } from "api"
 import { useDispatch } from "react-redux"
-import { useState } from "react"
-import { makeUppercase } from "components/utility/utilis"
-import { BsTrash } from "react-icons/bs"
 import { deleteComment } from "redux/actions/posts"
+import { getUser } from "api"
+import { makeUppercase } from "components/utility/utilis"
+import Moment from "react-moment"
+import Spinner from "components/utility/Spinner"
+//ICONS
+import { BsTrash } from "react-icons/bs"
 
 const Comment = ({ content, time, commentorId, commentId, postId }) => {
 	const dispatch = useDispatch()
 	const [user, setUser] = useState(null)
 	const [deleteClicked, setDeleteClicked] = useState(false)
+	const [deleteLoading, setDeleteLoading] = useState(false)
 
 	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	useEffect(() => {
+		let isMounted = true
 		const getCommentor = async () => {
 			try {
 				const { data } = await getUser(commentorId)
-				setUser(data)
+				isMounted && setUser(data)
 			} catch (error) {
 				dispatch({
 					type: "ERROR",
@@ -28,10 +31,14 @@ const Comment = ({ content, time, commentorId, commentId, postId }) => {
 			}
 		}
 		getCommentor()
+
+		return () => {
+			isMounted = false
+		}
 	}, [commentorId, content, dispatch])
 
 	const handleDelete = () => {
-		setDeleteClicked(true)
+		setDeleteLoading(true)
 		dispatch(
 			deleteComment(postId, {
 				commentId: commentId,
@@ -46,12 +53,11 @@ const Comment = ({ content, time, commentorId, commentId, postId }) => {
 					<h1>Are You sure you want to delete this comment?</h1>
 					<div className='delete-btns'>
 						<button className='btn-medium' onClick={handleDelete}>
-							Confirm
+							{deleteLoading ? <Spinner /> : <p>Confirm</p>}
 						</button>
 						<button
 							className='btn-medium reverse-btn'
-							onClick={() => setDeleteClicked(false)}
-						>
+							onClick={() => setDeleteClicked(false)}>
 							Cancel
 						</button>
 					</div>
@@ -68,9 +74,7 @@ const Comment = ({ content, time, commentorId, commentId, postId }) => {
 							<div>
 								<Link to={`/profile/${commentorId}`}>
 									<h1 className='user-name-small'>
-										{makeUppercase(user?.name, 0) +
-											" " +
-											makeUppercase(user?.name, 1)}
+										{makeUppercase(user?.name, 0) + " " + makeUppercase(user?.name, 1)}
 									</h1>
 								</Link>
 								<h2 className='user-time-small'>
@@ -78,10 +82,7 @@ const Comment = ({ content, time, commentorId, commentId, postId }) => {
 								</h2>
 							</div>
 							{currentUserId === commentorId && (
-								<button
-									onClick={() => setDeleteClicked(true)}
-									className='delete-icon'
-								>
+								<button onClick={() => setDeleteClicked(true)} className='delete-icon'>
 									<BsTrash className='icon' />
 								</button>
 							)}

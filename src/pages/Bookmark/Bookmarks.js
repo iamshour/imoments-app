@@ -34,7 +34,9 @@ const Bookmarks = () => {
 	return (
 		<div className='bookmarks-page'>
 			{postLoading ? (
-				<Loading />
+				<div className='empty-wrapper'>
+					<Loading />
+				</div>
 			) : bookmarkedPosts?.length > 0 ? (
 				bookmarkedPosts?.map((post) => (
 					<Card

@@ -14,7 +14,7 @@ const Navbar = () => {
 	const history = useHistory()
 	const location = useLocation()
 	const dispatch = useDispatch()
-	const { notifications, userMessage } = useSelector((state) => state.user)
+	const { userMessage, notifications } = useSelector((state) => state.user)
 	const { commentMsg } = useSelector((state) => state.posts)
 
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
@@ -29,7 +29,7 @@ const Navbar = () => {
 				type: "CLEAR_USER_TAB",
 			})
 		}
-	}, [dispatch, userId, location, commentMsg, userMessage, history])
+	}, [dispatch, userId, location, commentMsg, history, userMessage])
 
 	return (
 		<nav style={location.pathname === "/auth" ? { display: "none" } : {}}>

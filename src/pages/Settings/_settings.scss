@@ -1,121 +1,196 @@
 .settings-page {
-	margin-top: 8rem;
-	.container {
+	padding: 10rem 2rem 2rem 2rem;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+
+	.upper-container,
+	.bottom-container {
 		width: 100%;
-		height: 80vh;
-		padding: 2rem;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-		flex-direction: column;
+		max-width: 64.6rem;
+		border: 1px solid var(--secondary-font);
+		background: var(--card-bg);
+		border-radius: 8px;
+
+		.upper-btn {
+			width: 100%;
+			padding: 1.2rem 0.8rem;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			color: var(--primary-font);
+			font-size: 1.8rem;
+			cursor: pointer;
+			transition: color 250ms ease-in;
+			h3 {
+				color: inherit;
+				font-weight: 500;
+			}
+
+			&:hover,
+			&:active {
+				color: var(--main-color);
+			}
+
+			.icon {
+				margin-right: 1rem;
+			}
+		}
+
+		.wrapper {
+			opacity: 0;
+			animation: sliding-inn 200ms ease-in forwards;
+			@keyframes sliding-inn {
+				0% {
+					opacity: 0;
+					transform: translateY(-20px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0px);
+				}
+			}
+			.wrapper-info {
+				padding: 1.2rem 0 0.6rem 0;
+				color: var(--main-color);
+				text-align: center;
+				font-size: 1.5rem;
+				width: 70%;
+				margin: 0 auto;
+			}
+			.btn-medium {
+				.spinner-container {
+					width: 17.25px;
+					height: 17.25px;
+				}
+			}
+		}
+	}
+
+	.upper-container {
+		margin-bottom: 2.4rem;
+		.wrapper {
+			.input-bar-icon,
+			.input-bar {
+				width: 80%;
+				margin: 1rem auto;
+			}
+			.input-bar-icon {
+				margin-top: 1.6rem;
+				.eye {
+					margin: 0 0 0 0.8rem;
+					width: 3rem;
+					cursor: pointer;
+
+					&:hover,
+					&:active {
+						color: var(--main-color);
+					}
+				}
+			}
+			.btn-medium {
+				margin: 1.4rem auto;
+				width: 35%;
+			}
+		}
+	}
+
+	.bottom-container {
+		.wrapper {
+			h3 {
+				color: var(--main-color);
+				text-align: center;
+				padding: 2rem 2rem 3rem 2rem;
+				font-size: 1.6rem;
+			}
+			.delete-btns {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				flex-wrap: wrap;
+				button {
+					margin-bottom: 1.6rem;
+					&:nth-of-type(1) {
+						width: 32%;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: $breakpoint-tablet) {
+	.settings-page {
+		padding: 12rem 6rem 6rem 6rem;
 
 		.upper-container,
 		.bottom-container {
-			width: 100%;
-			border: 1px solid var(--secondary-font);
-			background: var(--card-bg);
-			border-radius: 8px;
-
 			.upper-btn {
-				width: 100%;
-				padding: 1.2rem 0.8rem;
-				display: flex;
-				justify-content: flex-start;
-				align-items: center;
-				color: var(--primary-font);
-				font-size: 1.8rem;
-				cursor: pointer;
-				transition: color 250ms ease-in;
-				h3 {
-					color: inherit;
-					font-weight: 500;
-				}
-
-				&:hover,
-				&:active {
-					color: var(--main-color);
-				}
+				padding: 1.4rem 1rem;
+				font-size: 2rem;
 
 				.icon {
-					margin-right: 1rem;
+					margin-right: 1.2rem;
 				}
 			}
 
 			.wrapper {
-				opacity: 0;
-				animation: sliding-inn 200ms ease-in forwards;
-				@keyframes sliding-inn {
-					0% {
-						opacity: 0;
-						transform: translateY(-20px);
-					}
-					100% {
-						opacity: 1;
-						transform: translateY(0px);
-					}
-				}
-				padding-top: 1rem;
 				.wrapper-info {
-					color: var(--main-color);
-					text-align: center;
-					font-size: 1.5rem;
-					width: 70%;
-					margin: 0 auto;
+					padding: 1.4rem 0 0.8rem 0;
+					font-size: 1.7rem;
+					width: 55%;
+					line-height: 2.2rem;
+				}
+				.btn-medium {
+					.spinner-container {
+						width: 1.839rem;
+						height: 1.839rem;
+					}
 				}
 			}
 		}
 
 		.upper-container {
-			margin-bottom: 2.4rem;
+			margin-bottom: 3.2rem;
 			.wrapper {
 				.input-bar-icon,
 				.input-bar {
-					width: 80%;
-					margin: 1rem auto;
+					width: 70%;
 				}
 				.input-bar-icon {
-					margin-top: 1.6rem;
 					.eye {
-						margin: 0 0 0 0.8rem;
-						width: 3rem;
-						cursor: pointer;
-
-						&:hover,
-						&:active {
-							color: var(--main-color);
-						}
+						margin: 0 0 0 1rem;
 					}
 				}
-			}
-
-			.btn-medium {
-				margin: 1rem auto;
+				.btn-medium {
+					margin: 2rem auto;
+				}
 			}
 		}
 
 		.bottom-container {
 			.wrapper {
-				.wrapper-info {
-					margin-bottom: 2rem;
-				}
 				h3 {
-					color: var(--main-color);
-					margin-bottom: 2rem;
-					text-align: center;
-					padding: 0 2rem;
-					font-size: 1.6rem;
+					padding-bottom: 4rem;
+					font-size: 2rem;
 				}
 				.delete-btns {
-					width: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: space-around;
-					flex-wrap: wrap;
+					justify-content: space-evenly;
 					button {
-						margin-bottom: 1.6rem;
+						margin-bottom: 2.4rem;
 					}
 				}
 			}
 		}
+	}
+}
+
+@media (min-width: $breakpoint-desktop) {
+	.settings-page {
+		padding-top: 14rem;
 	}
 }

@@ -4,11 +4,14 @@ import { AiOutlineSend } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { sendReport } from "redux/actions/user"
+import Spinner from "components/utility/Spinner"
+import SuccessMessage from "components/utility/SuccessMessage"
+import { useHistory } from "react-router-dom"
 
 const Report = () => {
 	const dispatch = useDispatch()
-	const { userMessage } = useSelector((state) => state?.user)
-	console.log(userMessage)
+	const history = useHistory()
+	const { userMessage, userLoading } = useSelector((state) => state?.user)
 
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
@@ -33,51 +36,68 @@ const Report = () => {
 				message: content,
 			})
 		)
+		// setFormData({})
+	}
+
+	if (!userLoading && (userMessage !== null || undefined)) {
+		setTimeout(() => {
+			history.push("/")
+		}, 2400)
 	}
 
 	return (
 		<div className='report-page'>
-			<div className='wrapper'>
-				<div className='top'>
-					<p>Having a little trouble?</p>
-					<h1>Get In Touch!</h1>
+			{!userLoading && (userMessage !== null || undefined) ? (
+				<SuccessMessage message={userMessage?.message} />
+			) : (
+				<div className='wrapper'>
+					<div className='top'>
+						<p>Having a little trouble?</p>
+						<h1>Get In Touch!</h1>
+					</div>
+					<form onSubmit={submit} autoComplete='off'>
+						<div className='input-bar'>
+							<input
+								type='text'
+								name='firstName'
+								placeholder='First name'
+								onChange={changeHandler}
+							/>
+							<input
+								type='text'
+								name='lastName'
+								placeholder='Last name'
+								onChange={changeHandler}
+							/>
+						</div>
+						<div className='input-bar'>
+							<input
+								type='text'
+								name='subject'
+								placeholder='Subject'
+								onChange={changeHandler}
+							/>
+						</div>
+						<Textarea
+							content={content}
+							setContent={setContent}
+							customRows={10}
+							name='your message'
+							maxCh='520'
+						/>
+						<button type='submit' className='btn-large'>
+							{userLoading ? (
+								<Spinner />
+							) : (
+								<>
+									<p>Send</p>
+									<AiOutlineSend className='icon' />
+								</>
+							)}
+						</button>
+					</form>
 				</div>
-				<form onSubmit={submit}>
-					<div className='input-bar'>
-						<input
-							type='text'
-							name='firstName'
-							placeholder='First name'
-							onChange={changeHandler}
-						/>
-						<input
-							type='text'
-							name='lastName'
-							placeholder='Last name'
-							onChange={changeHandler}
-						/>
-					</div>
-					<div className='input-bar'>
-						<input
-							type='text'
-							name='subject'
-							placeholder='Subject'
-							onChange={changeHandler}
-						/>
-					</div>
-					<Textarea
-						content={content}
-						setContent={setContent}
-						customRows={10}
-						name='your message'
-						maxCh='520'
-					/>
-					<button type='submit' className='btn-large'>
-						<p>Send</p>
-						<AiOutlineSend className='icon' />
-					</button>
-				</form>
-			</div>
+			)}
 		</div>
 	)
 }

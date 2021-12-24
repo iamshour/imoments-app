@@ -36,11 +36,9 @@ export const getFollowers = (userId) => API.get(`user/${userId}/followers`)
 
 export const getFollowing = (userId) => API.get(`user/${userId}/following`)
 
-export const getNotifications = (userId) =>
-	API.get(`user/${userId}/notifications`)
+export const getNotifications = (userId) => API.get(`user/${userId}/notifications`)
 
-export const clearNotifications = (userId) =>
-	API.put(`user/${userId}/clearnotifications`)
+export const clearNotifications = (userId) => API.put(`user/${userId}/clearnotifications`)
 
 export const clearSinleNotification = (userId, notificationId) =>
 	API.put(`user/${userId}/clearnotification`, notificationId)
@@ -63,16 +61,14 @@ export const getProfilePosts = (userId) => API.get(`/posts/${userId}/profile`)
 
 export const getPosts = (userId) => API.get(`/posts/${userId}/timeline`)
 
-export const getBookmarkedPosts = (userId) =>
-	API.get(`/posts/${userId}/bookmarks`)
+export const getBookmarkedPosts = (userId) => API.get(`/posts/${userId}/bookmarks`)
 
 export const updatePost = (postId, postData) =>
 	API.put(`/posts/${postId}/update`, postData)
 
 export const deletePost = (postId) => API.delete(`/posts/${postId}/delete`)
 
-export const likePost = (postId, userId) =>
-	API.put(`/posts/${postId}/like`, userId)
+export const likePost = (postId, userId) => API.put(`/posts/${postId}/like`, userId)
 
 export const addComment = (postId, commentData) =>
 	API.put(`/posts/${postId}/addcomment`, commentData)
@@ -87,5 +83,4 @@ export const bookmarkPost = (postId, userId) =>
 
 export const uploadImg = (imgData) => API.post("/posts/uploadimg", imgData)
 
-export const uploadCaption = (capData) =>
-	API.post("/posts/uploadcaption", capData)
+export const uploadCaption = (capData) => API.post("/posts/uploadcaption", capData)

@@ -94,30 +94,29 @@ export const clearNotifications = (userId) => async (dispatch) => {
 	}
 }
 
-export const clearSinleNotification =
-	(userId, notificationId) => async (dispatch) => {
-		try {
-			dispatch({
-				type: "START_USER_LOADING",
-			})
-			const { data } = await api.clearSinleNotification(userId, notificationId)
-			dispatch({
-				type: "NEW_USER_MESSAGE",
-				payload: data,
-			})
-			dispatch({
-				type: "END_USER_LOADING",
-			})
-		} catch (error) {
-			dispatch({
-				type: "END_USER_LOADING",
-			})
-			dispatch({
-				type: "ERROR",
-				payload: error?.response?.data?.message,
-			})
-		}
+export const clearSinleNotification = (userId, notificationId) => async (dispatch) => {
+	try {
+		dispatch({
+			type: "START_USER_LOADING",
+		})
+		const { data } = await api.clearSinleNotification(userId, notificationId)
+		dispatch({
+			type: "NEW_USER_MESSAGE",
+			payload: data,
+		})
+		dispatch({
+			type: "END_USER_LOADING",
+		})
+	} catch (error) {
+		dispatch({
+			type: "END_USER_LOADING",
+		})
+		dispatch({
+			type: "ERROR",
+			payload: error?.response?.data?.message,
+		})
 	}
+}
 
 export const searchUser = (searchTerm) => async (dispatch) => {
 	try {

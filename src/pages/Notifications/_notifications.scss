@@ -1,8 +1,14 @@
 .notifications-page {
+	min-height: 100vh;
+	width: 100%;
 	.wrapper {
+		width: 96%;
+		max-width: 65rem;
+		margin: 0 auto;
+
 		.clear-all {
 			width: 100%;
-			padding: 0 1.2rem 1.6rem 0;
+			padding-bottom: 1.6rem;
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
@@ -34,12 +40,9 @@
 			cursor: pointer;
 			position: relative;
 			@include card-glass;
-			width: 96%;
-			max-width: 65rem;
 			padding: 0.8rem;
 			display: flex;
 			justify-content: space-between;
-			margin: 0 auto;
 			margin-bottom: 0.8rem;
 			transition: transform 250ms ease-in-out;
 			.left {
@@ -99,7 +102,7 @@
 	.notifications-page {
 		.wrapper {
 			.clear-all {
-				padding: 0 3.2rem 2.4rem 0;
+				padding-bottom: 2.4rem;
 				button {
 					padding: 1.2rem;
 					font-size: 2.4rem;
