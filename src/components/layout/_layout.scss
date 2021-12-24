@@ -225,6 +225,11 @@ header {
 		}
 	}
 }
+.header-auth {
+	&::before {
+		display: none;
+	}
+}
 
 nav {
 	bottom: -24px;
@@ -341,11 +346,6 @@ nav {
 					}
 				}
 			}
-		}
-	}
-	.header-auth {
-		&::before {
-			display: none;
 		}
 	}
 

@@ -10,7 +10,6 @@ import { IoMailOutline } from "react-icons/io5"
 const ForgotPass = () => {
 	const dispatch = useDispatch()
 	const { notification, loading } = useSelector((state) => state.auth)
-	console.log(notification)
 	const [email, setEmail] = useState(null)
 
 	const handleSubmit = () => {

@@ -13,7 +13,6 @@ const ResetPass = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const { notification, loading } = useSelector((state) => state.auth)
-	console.log(notification)
 	const [showPass, setShowPass] = useState(false)
 	const [data, setData] = useState({
 		password: "",

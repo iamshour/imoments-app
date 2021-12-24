@@ -3,7 +3,6 @@ import GoogleLogin from "react-google-login"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { googleAuth, signIn, signUp } from "redux/actions/auth"
-import { useWindowSize } from "components/utility/useWindowSize"
 //icons/assets
 import logo from "images/logo.png"
 import { BsFillLockFill } from "react-icons/bs"
@@ -12,15 +11,18 @@ import { FcGoogle } from "react-icons/fc"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { Link } from "react-router-dom"
 import Spinner from "components/utility/Spinner"
+import Person from "images/person.svg"
+import { useWindowSize } from "components/utility/useWindowSize"
 
 const Auth = () => {
 	const dispatch = useDispatch()
 	const { error } = useSelector((state) => state?.utility)
+	const { width } = useWindowSize()
 
 	const history = useHistory()
 	const [showSignin, setShowSignin] = useState(true)
 	const [showPass, setShowPass] = useState(false)
-	const [logoDisappear, setLogoDisappear] = useState(false)
+	const [showHeading, setShowHeading] = useState(true)
 	const [actionLoading, setActionLoading] = useState(false)
 	const [formData, setFormData] = useState({
 		firstName: "",
@@ -66,32 +68,39 @@ const Auth = () => {
 			type: "ERROR",
 		})
 	}
-
-	const { width } = useWindowSize()
-
 	const focus = () => {
-		return width < 500 && setLogoDisappear(true)
+		width < 550 && setShowHeading(false)
 	}
-	const focusOut = () => {
-		return width < 500 && setLogoDisappear(false)
+	const blur = () => {
+		width < 550 && setShowHeading(true)
 	}
 
 	return (
 		<div className='auth-page'>
-			{/* <div className="auth-left">
-
-			</div> */}
-			<form autoComplete='off' className='auth-page' onSubmit={(e) => e.preventDefault()}>
-				<img
-					style={logoDisappear ? { opacity: "0" } : { opacity: "1" }}
-					src={logo}
-					alt='logo'
-					className={showSignin ? "custom-img" : ""}
-				/>
+			<div className='auth-left'>
+				<div className='wrapper'>
+					<img
+						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1639522671/imoments-app/Saly-22_cbuerp.png'
+						alt=''
+					/>
+				</div>
+			</div>
+			<div className='person'>
+				<img src={Person} alt='person image' />
+			</div>
+			<form id='formm' autoComplete='off' onSubmit={(e) => e.preventDefault()}>
+				<div className='heading'>
+					{showHeading && <h4>{showSignin ? "Welcome Back!" : "Get started!"}</h4>}
+				</div>
 				<div
-					className={`credentials ${!showSignin && "credentials-signup"} ${
-						logoDisappear && "logo-dissappear"
-					}`}>
+					className={`credentials ${!showSignin && "credentials-signup"}`}
+					style={
+						!showHeading && !showSignin
+							? { marginTop: "-3rem" }
+							: !showHeading && showSignin
+							? { marginTop: "-1rem" }
+							: {}
+					}>
 					{!showSignin && (
 						<div className='input-bar'>
 							<input
@@ -100,7 +109,7 @@ const Auth = () => {
 								placeholder='First name'
 								onChange={changeHandler}
 								onFocus={focus}
-								onBlur={focusOut}
+								onBlur={blur}
 							/>
 							<input
 								type='text'
@@ -108,7 +117,7 @@ const Auth = () => {
 								placeholder='Last name'
 								onChange={changeHandler}
 								onFocus={focus}
-								onBlur={focusOut}
+								onBlur={blur}
 							/>
 						</div>
 					)}
@@ -120,10 +129,10 @@ const Auth = () => {
 							placeholder='Enter your email'
 							onChange={changeHandler}
 							onFocus={focus}
-							onBlur={focusOut}
+							onBlur={blur}
 						/>
 					</div>
-					<div className='input-bar-icon'>
+					<div className={`input-bar-icon ${showSignin ? "pass-bar" : ""}`}>
 						<BsFillLockFill className='icon' />
 						<input
 							type={showPass ? "text" : "password"}
@@ -131,6 +140,7 @@ const Auth = () => {
 							placeholder='Enter your password'
 							onChange={changeHandler}
 							onFocus={focus}
+							onBlur={blur}
 						/>
 						{!showPass ? (
 							<AiOutlineEye className='icon eye' onClick={() => setShowPass(!showPass)} />
@@ -141,7 +151,7 @@ const Auth = () => {
 							/>
 						)}
 					</div>
-					{showSignin && !logoDisappear && (
+					{showSignin && (
 						<Link to='/forgotpassword' className='forgot-pass'>
 							<h1>Forgot your password?</h1>
 						</Link>
@@ -155,7 +165,7 @@ const Auth = () => {
 								placeholder='Confirm your password'
 								onChange={changeHandler}
 								onFocus={focus}
-								onBlur={focusOut}
+								onBlur={blur}
 							/>
 						</div>
 					)}
