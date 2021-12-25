@@ -141,7 +141,7 @@ const LeftBar = ({ currentUser }) => {
 						</div>
 						<div className='left-bar-bottom'>
 							<img
-								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640427791/imoments-app/imoments-logo_pyuwpm.png'
+								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640456656/imoments-app/imoments-logo_fexvcu.png'
 								alt='imoments logo'
 							/>
 						</div>

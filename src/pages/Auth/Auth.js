@@ -77,24 +77,40 @@ const Auth = () => {
 	return (
 		<div className='auth-page'>
 			<div className='auth-left'>
-				<div className='wrapper'>
+				<div className='logo-section'>
 					<img
-						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1639522671/imoments-app/Saly-22_cbuerp.png'
-						alt=''
-					/>
-
-					<img
-						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640425107/imoments-app/profile_xv9amg.png'
-						alt=''
-					/>
-					<img
-						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1639522709/imoments-app/Saly-26_us0k0u.png'
-						alt=''
+						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640456656/imoments-app/imoments-logo_fexvcu.png'
+						alt='imoments app logo'
 					/>
 				</div>
+				<div className='circles'>
+					<div className='circle'>
+						<img
+							src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426375/imoments-app/share_zbplud.png'
+							alt='share posts'
+						/>
+					</div>
+					<div className='circle'>
+						<img
+							src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426377/imoments-app/update_dgg8zq.png'
+							alt='update your profile'
+						/>
+					</div>
+					<div className='circle'>
+						<img
+							src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426377/imoments-app/enjoy_xekcue.png'
+							alt='enjoy our service!'
+						/>
+					</div>
+				</div>
+				<h1 className='slogan'>
+					Share your thoughts <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enjoy
+					your moment
+				</h1>
 			</div>
 			<div className='person'>
-				<img src={Person} alt='person image' />
+				<img src={Person} alt='illustration of a person' />
 			</div>
 			<form id='formm' autoComplete='off' onSubmit={(e) => e.preventDefault()}>
 				<div className='heading'>

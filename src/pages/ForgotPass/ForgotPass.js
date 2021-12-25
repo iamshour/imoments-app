@@ -39,6 +39,7 @@ const ForgotPass = () => {
 							name='email'
 							placeholder='Enter your email'
 							onChange={(e) => setEmail(e.target.value)}
+							autoComplete='off'
 						/>
 					</div>
 					<button className='btn-large' onClick={handleSubmit}>
