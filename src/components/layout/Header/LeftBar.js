@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux"
 import { signOut } from "redux/actions/auth"
 import { makeUppercase } from "components/utility/utilis"
 //icons/assets
-import logo from "images/logo.png"
 import { BsBookmarks, BsInfoCircle } from "react-icons/bs"
 import { IoMdClose } from "react-icons/io"
 import { AiOutlineCheck } from "react-icons/ai"
@@ -141,7 +140,10 @@ const LeftBar = ({ currentUser }) => {
 							</button>
 						</div>
 						<div className='left-bar-bottom'>
-							<img src={logo} alt='imoments logo' />
+							<img
+								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640427791/imoments-app/imoments-logo_pyuwpm.png'
+								alt='imoments logo'
+							/>
 						</div>
 					</div>
 				</div>

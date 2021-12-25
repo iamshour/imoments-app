@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { googleAuth, signIn, signUp } from "redux/actions/auth"
 //icons/assets
-import logo from "images/logo.png"
 import { BsFillLockFill } from "react-icons/bs"
 import { IoMailOutline } from "react-icons/io5"
 import { FcGoogle } from "react-icons/fc"
@@ -81,6 +80,15 @@ const Auth = () => {
 				<div className='wrapper'>
 					<img
 						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1639522671/imoments-app/Saly-22_cbuerp.png'
+						alt=''
+					/>
+
+					<img
+						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640425107/imoments-app/profile_xv9amg.png'
+						alt=''
+					/>
+					<img
+						src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1639522709/imoments-app/Saly-26_us0k0u.png'
 						alt=''
 					/>
 				</div>
