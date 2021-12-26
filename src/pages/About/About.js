@@ -12,8 +12,8 @@ const About = () => {
 				<div className='question'>
 					<h1>What is this app about?</h1>
 					<p>
-						imoments is all abou sharing your favorite moments, stories, quotes, jokes, or
-						anything on your mind to your followers to see and interact with.
+						imoments is all about sharing your favorite moments, stories, quotes, jokes,
+						or anything on your mind to your followers to see and interact with.
 					</p>
 				</div>
 				<div className='question'>

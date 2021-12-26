@@ -1,4 +1,5 @@
 import { useLocation } from "react-router"
+import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { bookmarkPost } from "redux/actions/posts"
 import { openModal } from "components/utility/utilis"
@@ -20,6 +21,7 @@ const Dropdown = ({
 	setDeleteClicked,
 }) => {
 	const dispatch = useDispatch()
+	const history = useHistory()
 	const location = useLocation()
 	const currentUser = JSON.parse(localStorage.getItem("User"))
 
@@ -76,7 +78,7 @@ const Dropdown = ({
 						)}
 						<p>Bookmark</p>
 					</button>
-					<button className='dropdown-btn'>
+					<button className='dropdown-btn' onClick={() => history.push("/report")}>
 						<MdOutlineReportProblem className='icon' />
 						<p>Report</p>
 					</button>
