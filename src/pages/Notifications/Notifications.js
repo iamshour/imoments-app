@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import Loading from "components/utility/Loading"
-import NotifCard from "components/Notifications/NotifCard"
+import NotifCard from "components/notifications/NotifCard"
 
 //ICONS
 import { MdOutlineClearAll } from "react-icons/md"
