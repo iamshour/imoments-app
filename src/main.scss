@@ -33,7 +33,7 @@ $breakpoint-max-desktop: 1800px;
 @import "./components/utility/mixins";
 @import "./components/utility/utility";
 @import "./pages/About/about";
-@import "./pages/Addpost/addpost";
+@import "./pages/Addpost/addpost.scss";
 @import "./pages/Auth/auth";
 @import "./pages/bookmark/bookmarks";
 @import "./pages/Home/home";
