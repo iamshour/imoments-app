@@ -14,7 +14,7 @@
 		background: var(--bg-secondary);
 		backdrop-filter: blur(32px);
 		z-index: -1;
-		opacity: 90%;
+		opacity: 0.9;
 	}
 }
 @mixin card-glass {
@@ -28,7 +28,7 @@
 		background: var(--card-bg);
 		backdrop-filter: blur(32px);
 		z-index: -1;
-		opacity: 55%;
+		opacity: 0.55;
 		border: 1px solid var(--secondary-font);
 		border-radius: 16px;
 	}

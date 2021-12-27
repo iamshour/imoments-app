@@ -42,7 +42,7 @@ const LeftBar = ({ currentUser }) => {
 			: (document.querySelector("nav").style.visibility = "hidden")
 	}
 	const signOutModelClose = (e) => {
-		if (e.target.classList.contains("backdrop")) {
+		if (e.target.classList.contains("modal-backdrop")) {
 			setModalOpened(false)
 			document.querySelector("nav").style.display = "unset"
 			width < 1080
@@ -149,17 +149,19 @@ const LeftBar = ({ currentUser }) => {
 				</div>
 			)}
 			{modalOpened && (
-				<div className='backdrop' onClick={signOutModelClose}>
-					<div className='signout-container'>
+				<div className='modal-backdrop' onClick={signOutModelClose}>
+					<div className='modal-container'>
 						<h3>Are you sure you want to sign out?</h3>
-						<button className='btn-medium' onClick={() => dispatch(signOut(history))}>
-							<p>Yes, Sign Out</p>
-							<AiOutlineCheck className='icon' />
-						</button>
-						<button onClick={signOutBtnClose} className='btn-medium reverse-btn'>
-							<p>Cancel</p>
-							<IoMdClose className='icon' />
-						</button>
+						<div className='btns'>
+							<button className='btn-large' onClick={() => dispatch(signOut(history))}>
+								<p>Sign Out</p>
+								<AiOutlineCheck className='icon' />
+							</button>
+							<button onClick={signOutBtnClose} className='btn-large reverse-btn'>
+								<p>Cancel</p>
+								<IoMdClose className='icon' />
+							</button>
+						</div>
 					</div>
 				</div>
 			)}

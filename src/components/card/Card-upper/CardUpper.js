@@ -89,17 +89,17 @@ const CardUpper = ({
 								closeModalBtn(location)
 								setDeleteClicked(false)
 							}}
-							className='btn-medium'>
+							className='btn-large'>
 							Yes, delete
 						</button>
 						<button
-							className='btn-medium reverse-btn'
+							className='btn-large reverse-btn'
 							onClick={() => {
 								closeModalBtn(location)
 								setDeleteClicked(false)
 								setOptionsClicked(false)
 							}}>
-							Cancel &amp; go back
+							Cancel
 						</button>
 					</div>
 				</Modal>

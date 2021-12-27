@@ -82,11 +82,10 @@
 
 		h3 {
 			text-align: center;
-			padding: 1rem 1.6rem 2.8rem 1.6rem;
-			padding: 0 1.6rem 2.4rem 1.6rem;
-			font-size: 1.8rem;
-			line-height: 2rem;
-			font-weight: 500;
+			padding: 0 1.6rem 3rem 1.6rem;
+			font-size: 2.2rem;
+			line-height: 2.6rem;
+			font-weight: 700;
 		}
 
 		.btns {
@@ -94,7 +93,10 @@
 			justify-content: space-around;
 			width: 100%;
 			flex-wrap: wrap;
-			gap: 1rem;
+			.btn-large {
+				margin-bottom: 2rem;
+				width: 75%;
+			}
 		}
 	}
 }
@@ -148,10 +150,16 @@
 @media (min-width: $breakpoint-tablet) {
 	.modal-backdrop {
 		.modal-container {
-			padding: 2rem;
 			h3 {
-				font-size: 2rem;
-				line-height: 2.6rem;
+				font-size: 2.4rem;
+				line-height: 3.2rem;
+			}
+
+			.btns {
+				.btn-large {
+					margin-bottom: 1.6rem;
+					width: 46%;
+				}
 			}
 		}
 	}
