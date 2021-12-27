@@ -86,8 +86,8 @@ const UserCard = ({ currentUserId, user }) => {
 				<div className='right'>
 					{!editProfile ? (
 						<div className='top-btns'>
-							<FollowingBtn currentUserId={currentUserId} />
-							<FollowersBtn currentUserId={currentUserId} />
+							<FollowingBtn />
+							<FollowersBtn />
 						</div>
 					) : !user?.googleUser ? (
 						<div className='edit-top'>

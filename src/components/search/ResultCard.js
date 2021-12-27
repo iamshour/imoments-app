@@ -1,21 +1,41 @@
-import { makeUppercase } from "components/utility/utilis"
-import { Link } from "react-router-dom"
+import { closeModalBtn, makeUppercase } from "components/utility/utilis"
+import { Link, useLocation } from "react-router-dom"
 //icons
 
-const ResultCard = ({ userId, name, avatar }) => {
+const ResultCard = ({ userId, name, avatar, setModalOpen }) => {
 	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
+	const location = useLocation()
 
 	return (
 		<div className='result-card'>
-			<Link className='bg' to={`/profile/${userId}`} />
-			<div className='left'>
-				<img src={avatar} alt={name} />
-				<h1 className='user-name'>
-					{makeUppercase(name, 0) + " " + makeUppercase(name, 1)}
-				</h1>
+			<div className='result-card-left'>
+				<Link
+					to={`/profile/${userId}`}
+					onClick={() => {
+						setModalOpen && setModalOpen(false)
+						closeModalBtn(location)
+					}}>
+					<img src={avatar} alt={name} />
+				</Link>
+				<Link
+					to={`/profile/${userId}`}
+					onClick={() => {
+						setModalOpen && setModalOpen(false)
+						closeModalBtn(location)
+					}}>
+					<h1 className='user-name'>
+						{makeUppercase(name, 0) + " " + makeUppercase(name, 1)}
+					</h1>
+				</Link>
 			</div>
-			<div className='right'>
-				<Link to={`/profile/${userId}`} className='btn-medium'>
+			<div className='result-card-right'>
+				<Link
+					to={`/profile/${userId}`}
+					className='btn-medium'
+					onClick={() => {
+						setModalOpen && setModalOpen(false)
+						closeModalBtn(location)
+					}}>
 					<p>{currentUserId === userId ? "Edit" : "View"} profile</p>
 				</Link>
 			</div>
