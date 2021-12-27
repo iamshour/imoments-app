@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { Switch, Route } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import "main.scss"
+import "./main.scss"
 //COMPS
 import Layout from "components/layout/Layout"
 import PrivateRoute from "components/utility/PrivateRoute"
