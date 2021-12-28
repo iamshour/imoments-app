@@ -1,13 +1,14 @@
+import { useState, useEffect } from "react"
+import { useHistory } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import { CapUpload, ImgUpload } from "redux/actions/posts"
+//COMPS
 import Loading from "components/utility/Loading"
 import SuccessMessage from "components/utility/SuccessMessage"
 import Textarea from "components/utility/Textarea"
-import { useEffect } from "react"
-import { useState } from "react"
+//ICONS
 import { FcAddImage } from "react-icons/fc"
 import { IoMdCheckmarkCircleOutline, IoMdClose } from "react-icons/io"
-import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router"
-import { CapUpload, ImgUpload } from "redux/actions/posts"
 
 const AddPost = () => {
 	const dispatch = useDispatch()
@@ -66,10 +67,7 @@ const AddPost = () => {
 					{file ? (
 						<div className='top top-img'>
 							<div className='img-wrapper'>
-								<img
-									src={URL.createObjectURL(file)}
-									alt="user's selection to upload"
-								/>
+								<img src={URL.createObjectURL(file)} alt="user's selection to upload" />
 								<button className='btn-icon' onClick={() => setFile()}>
 									<IoMdClose className='icon' />
 								</button>
