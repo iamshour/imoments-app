@@ -35,7 +35,6 @@
 			"react-app/jest"
 		]
 	},
-	"baseUrl": "./src",
 	"browserslist": {
 		"production": [
 			">0.2%",
