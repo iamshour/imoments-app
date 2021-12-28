@@ -1,7 +1,10 @@
 .private-container {
-	width: 100%;
-	padding: 2.4rem;
-	margin: 6rem 0;
+	position: relative;
+	@include card-glass;
+	width: 95%;
+	max-width: 100rem;
+	padding: 1.6rem;
+	margin: 9rem auto 4rem auto;
 	h1 {
 		text-align: left;
 		padding: 3rem 0 1rem 0;
@@ -10,7 +13,7 @@
 		font-weight: 500;
 		&:nth-of-type(1) {
 			font-size: 2.4rem;
-			padding: 2rem 0 3rem 0;
+			padding: 1rem 0 3rem 0;
 			font-weight: 700;
 		}
 	}
@@ -20,5 +23,31 @@
 		font-size: 1.6rem;
 		margin-bottom: 0.4rem;
 		color: var(--primary-font);
+	}
+}
+
+@media (min-width: $breakpoint-tablet) {
+	.private-container {
+		width: 90%;
+		padding: 2rem;
+		margin-top: 10rem;
+		h1 {
+			padding: 3rem 0 1rem 0;
+			font-size: 2.2rem;
+			&:nth-of-type(1) {
+				font-size: 2.6rem;
+			}
+		}
+
+		p,
+		li {
+			font-size: 1.7rem;
+			margin-bottom: 0.6rem;
+		}
+		h2 {
+			font-size: 1.8rem;
+			margin-bottom: 0.8rem;
+			color: var(--main-color);
+		}
 	}
 }

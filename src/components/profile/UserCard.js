@@ -17,10 +17,15 @@ const UserCard = ({ currentUserId, user }) => {
 
 	const [editProfile, setEditProfile] = useState(false)
 
-	const [firstName, setFirstName] = useState(user?.name?.split(" ")[0])
-	const [lastName, setLastName] = useState(user?.name.split(" ")[1])
+	const [firstName, setFirstName] = useState("")
+	const [lastName, setLastName] = useState("")
 	const [content, setContent] = useState(user?.bio ? user?.bio : "")
 	const [file, setFile] = useState(null)
+
+	useEffect(() => {
+		setFirstName(user?.name?.split(" ")[0])
+		setLastName(user?.name.split(" ")[1])
+	}, [user?.name, currentUserId])
 
 	const imgChange = (e) => {
 		if (e.target.files[0]) {
