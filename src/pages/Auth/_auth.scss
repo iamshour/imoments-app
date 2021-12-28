@@ -32,7 +32,7 @@
 
 		form {
 			width: 100%;
-			height: 100%;
+			height: 90%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -155,6 +155,23 @@
 				}
 			}
 		}
+		.private-links {
+			height: 10%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			a {
+				font-size: 1.2rem;
+				color: var(--secondary-font);
+				transition: all 150ms ease-in;
+				&:hover,
+				&:active {
+					transform: scale(1.02);
+					color: var(--main-color);
+				}
+			}
+		}
 	}
 }
 @media (min-width: $breakpoint-tablet) {
@@ -251,6 +268,9 @@
 			width: 50vw;
 			height: 100%;
 			@include centering;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 			&::before {
 				border-radius: 0;
 				opacity: 0.7;
@@ -259,7 +279,7 @@
 
 			form {
 				width: 100%;
-				height: 100%;
+				height: 90%;
 				max-height: 90rem;
 				justify-content: space-around;
 				padding: 3rem 1.6rem 3rem 1.6rem;
@@ -269,6 +289,11 @@
 						text-align: center;
 						font-size: 2.6rem;
 					}
+				}
+			}
+			.private-links {
+				a {
+					font-size: 1.4rem;
 				}
 			}
 		}

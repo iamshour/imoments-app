@@ -36,6 +36,8 @@ export const backIcon = (location, currentUser, user, history, IoArrowBackOutlin
 		location.pathname.startsWith("/bookmarks") ||
 		location.pathname.startsWith("/report") ||
 		location.pathname.startsWith("/forgotpassword") ||
+		location.pathname.startsWith("/privacy") ||
+		location.pathname.startsWith("/terms") ||
 		location.pathname.startsWith("/about") ? (
 			<button onClick={() => history.goBack()} className='go-back'>
 				<IoArrowBackOutline className='icon' />
