@@ -94,3 +94,13 @@
 		}
 	}
 }
+
+@media (min-width: $breakpoint-max-desktop) {
+	.report-page {
+		form {
+			background: var(--card-bg);
+			border-radius: 16px;
+			border: 1px solid var(--secondary-font);
+		}
+	}
+}

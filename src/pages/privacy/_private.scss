@@ -51,3 +51,11 @@
 		}
 	}
 }
+
+@media (min-width: $breakpoint-max-desktop) {
+	.private-container {
+		background: var(--card-bg);
+		border-radius: 16px;
+		border: 1px solid var(--secondary-font);
+	}
+}
