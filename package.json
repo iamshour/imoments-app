@@ -35,9 +35,7 @@
 			"react-app/jest"
 		]
 	},
-	"compilerOptions": {
-		"baseUrl": "./src"
-	},
+	"baseUrl": "./src",
 	"browserslist": {
 		"production": [
 			">0.2%",
