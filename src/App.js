@@ -22,6 +22,8 @@ import Bookmarks from "pages/bookmarks/Bookmarks"
 import ForgotPass from "pages/forgotPass/ForgotPass"
 import ResetPass from "pages/resetPass/ResetPass"
 import Report from "pages/report/Report"
+import Privacy from "pages/privacy/Privacy"
+import Terms from "pages/privacy/Terms"
 
 function App() {
 	const dispatch = useDispatch()
@@ -57,6 +59,8 @@ function App() {
 				<PrivateRoute path='/bookmarks' component={Bookmarks} />
 				<PrivateRoute path='/about' component={About} />
 				<PrivateRoute path='/report' component={Report} />
+				<Route path='/privacy' component={Privacy} />
+				<Route path='/terms' component={Terms} />
 				<Route component={NotFound} />
 			</Switch>
 		</Layout>

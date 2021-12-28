@@ -1,15 +1,6 @@
 {
 	"compilerOptions": {
-		"baseUrl": "./",
-		"paths": {
-			"api/*": ["src/api/*"],
-			"components/*": ["src/components/*"],
-			"images/*": ["src/images/*"],
-			"pages/*": ["src/pages/*"],
-			"redux/*": ["src/redux/*"],
-			"App/*": ["src/*"]
-		}
+		"baseUrl": "src"
 	},
-	"include": ["src"],
-	"exclude": ["node_modules", "build", "public"]
+	"include": ["src"]
 }

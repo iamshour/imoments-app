@@ -63,9 +63,9 @@ const Auth = () => {
 	}
 	const googleFailure = (err) => {
 		console.log(`Error: ${err}`)
-		dispatch({
-			type: "ERROR",
-		})
+		// dispatch({
+		// 	type: "ERROR",
+		// })
 	}
 	const focus = () => {
 		width < 550 && setShowHeading(false)
