@@ -43,7 +43,7 @@
 		padding-top: 12rem;
 		.container {
 			width: 87%;
-			max-width: 72.644rem;
+			max-width: 82.644rem;
 			padding: 1.6rem;
 			.question {
 				margin-bottom: 3rem;
@@ -70,5 +70,15 @@
 @media (min-width: $breakpoint-tablet) {
 	.about-page {
 		padding-top: 14rem;
+	}
+}
+@media (min-width: $breakpoint-max-desktop) {
+	.about-page {
+		.container {
+			background: var(--card-bg);
+			border-radius: 16px;
+			padding: 2.4rem;
+			border: 1px solid var(--secondary-font);
+		}
 	}
 }

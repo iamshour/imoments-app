@@ -234,6 +234,7 @@
 
 @media (min-width: $breakpoint-tablet) {
 	.profile-page {
+		min-height: 100vh;
 		.profile-card-wrapper {
 			padding-top: 9rem;
 			min-height: 20rem;
@@ -364,7 +365,7 @@
 			margin-top: 4rem;
 		}
 		.empty-container {
-			height: calc(100vh - 48.255rem);
+			min-height: calc(100vh - 48.255rem);
 		}
 	}
 }

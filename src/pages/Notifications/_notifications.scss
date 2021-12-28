@@ -139,3 +139,16 @@
 		}
 	}
 }
+
+@media (min-width: $breakpoint-max-desktop) {
+	.notifications-page {
+		.wrapper {
+			.notif-card {
+				background: var(--card-bg);
+				border-radius: 16px;
+				padding: 2.4rem;
+				border: 1px solid var(--secondary-font);
+			}
+		}
+	}
+}
