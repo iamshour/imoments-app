@@ -9,8 +9,9 @@ const Modal = ({ children, setModalOpen, setExtraOption, additionalClassName }) 
 			document.querySelector("header").style.display = "flex"
 			setModalOpen(false)
 			setExtraOption && setExtraOption(false)
-			location.pathname === ("/" || "/search" || "/addPost" || "/notifications") &&
-				(document.querySelector("nav").style.display = "unset")
+			location.pathname.startsWith(
+				"/home" || "/search" || "/addPost" || "/notifications"
+			) && (document.querySelector("nav").style.display = "unset")
 		}
 	}
 

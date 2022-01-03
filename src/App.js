@@ -24,6 +24,7 @@ import ResetPass from "pages/resetPass/ResetPass"
 import Report from "pages/report/Report"
 import Privacy from "pages/privacy/Privacy"
 import Terms from "pages/privacy/Terms"
+import GetStarted from "pages/getstarted/GetStarted"
 
 function App() {
 	const dispatch = useDispatch()
@@ -47,10 +48,11 @@ function App() {
 				</div>
 			)}
 			<Switch>
+				<PublicRoute exact path='/' component={GetStarted} />
 				<PublicRoute path='/auth' component={Auth} />
 				<PublicRoute path='/forgotpassword' component={ForgotPass} />
 				<PublicRoute path='/reset/:resetToken' component={ResetPass} />
-				<PrivateRoute exact path='/' component={Home} />
+				<PrivateRoute path='/home' component={Home} />
 				<PrivateRoute path='/search' component={Search} />
 				<PrivateRoute path='/addpost' component={AddPost} />
 				<PrivateRoute path='/profile/:id' component={Profile} />

@@ -22,9 +22,7 @@ const Profile = () => {
 	//GETTING VISITED USER
 	const { user, userMessage } = useSelector((state) => state?.user)
 
-	const { userPosts, postMessage, postLoading } = useSelector(
-		(state) => state?.posts
-	)
+	const { userPosts, postMessage, postLoading } = useSelector((state) => state?.posts)
 
 	useEffect(() => {
 		dispatch(getSingleUser(params.id))
@@ -66,8 +64,7 @@ const Profile = () => {
 			<div
 				className={`cards-container ${
 					(postLoading || userPosts?.length === 0) && "empty-container"
-				}`}
-			>
+				}`}>
 				{postLoading ? (
 					<Loading />
 				) : userPosts?.length > 0 ? (
@@ -78,7 +75,7 @@ const Profile = () => {
 							postId={post?._id}
 							img={post?.postImg}
 							caption={post?.caption}
-							time={new Date(post?.createdAt).toDateString()}
+							time={post?.createdAt}
 							likes={post?.likes}
 						/>
 					))

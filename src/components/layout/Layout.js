@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
 		<>
 			<Header />
 			{children}
-			{location.pathname === "/" ||
+			{location.pathname.startsWith("/home") ||
 			location.pathname.startsWith("/search") ||
 			location.pathname.startsWith("/addpost") ||
 			location.pathname.startsWith("/notifications") ? (

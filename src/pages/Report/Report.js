@@ -41,7 +41,7 @@ const Report = () => {
 
 	if (!userLoading && (userMessage !== null || undefined)) {
 		setTimeout(() => {
-			history.push("/")
+			history.push("/home")
 		}, 2400)
 	}
 

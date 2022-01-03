@@ -53,7 +53,7 @@ const Settings = () => {
 	useEffect(() => {
 		if (!userLoading && (userMessage !== null || undefined)) {
 			setTimeout(() => {
-				history.push("/")
+				history.push("/home")
 				dispatch({
 					type: "CLEAR_USER_TAB",
 				})
@@ -175,7 +175,7 @@ const Settings = () => {
 									</button>
 									<button
 										className='btn-medium reverse-btn'
-										onClick={() => history.push("/")}>
+										onClick={() => history.push("/home")}>
 										Cancel &amp; go back home
 									</button>
 								</div>

@@ -9,7 +9,7 @@ export const signUp = (formData, history) => async (dispatch) => {
 			payload: data,
 		})
 
-		history.push("/")
+		history.push("/home")
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
@@ -27,7 +27,7 @@ export const signIn = (formData, history) => async (dispatch) => {
 			payload: data,
 		})
 
-		history.push("/")
+		history.push("/home")
 	} catch (error) {
 		dispatch({
 			type: "ERROR",
@@ -45,7 +45,7 @@ export const googleAuth = (googleData, history) => async (dispatch) => {
 			payload: data,
 		})
 
-		history.push("/")
+		history.push("/home")
 	} catch (error) {
 		dispatch({
 			type: "ERROR",

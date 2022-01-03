@@ -6,7 +6,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
 			{...rest}
 			render={(props) =>
 				localStorage.getItem("userId") ? (
-					<Redirect to='/' />
+					<Redirect to='/home' />
 				) : (
 					<Component {...props} />
 				)

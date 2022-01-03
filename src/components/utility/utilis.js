@@ -50,7 +50,7 @@ export const backIcon = (location, currentUser, user, history, IoArrowBackOutlin
 export const openModal = (location) => {
 	document.querySelector("html").style.overflowY = "hidden"
 	document.querySelector("header").style.display = "none"
-	location.pathname === ("/" || "/search" || "/addPost" || "/notifications") &&
+	location.pathname === ("/home" || "/search" || "/addPost" || "/notifications") &&
 		(document.querySelector("nav").style.display = "none")
 }
 
@@ -58,7 +58,7 @@ export const closeModalBtn = (location) => {
 	document.querySelector("html").style.overflowY = "unset"
 	document.querySelector("header").style.display = "flex"
 
-	location.pathname === ("/" || "/search" || "/addPost" || "/notifications") &&
+	location.pathname === ("/home" || "/search" || "/addPost" || "/notifications") &&
 		(document.querySelector("nav").style.display = "unset")
 }
 

@@ -219,7 +219,10 @@
 
 	h5 {
 		font-size: 1.8rem;
-		margin: 3rem 0 2rem 2rem;
+		max-width: 90rem;
+		margin: 0 auto;
+		padding: 4rem 0 2rem 2rem;
+		text-align: left;
 		color: var(--secondary-font);
 		font-weight: 700;
 	}
@@ -228,7 +231,7 @@
 		position: relative;
 	}
 	.empty-container {
-		height: calc(100vh - 39.878rem);
+		height: calc(100vh - 35rem);
 	}
 }
 
@@ -362,10 +365,10 @@
 		}
 		h5 {
 			font-size: 2rem;
-			margin-top: 4rem;
+			padding-top: 6rem;
 		}
 		.empty-container {
-			min-height: calc(100vh - 48.255rem);
+			height: calc(100vh - 44rem);
 		}
 	}
 }

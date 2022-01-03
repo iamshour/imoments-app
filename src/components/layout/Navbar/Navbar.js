@@ -32,25 +32,29 @@ const Navbar = () => {
 	}, [dispatch, userId, location, commentMsg, history, userMessage])
 
 	return (
-		<nav style={location.pathname === "/auth" ? { display: "none" } : {}}>
+		<nav>
 			<div className='wrapper' onChange={window.scroll(0, 0)}>
-				<Link to='/' className={`nav-item ${location.pathname === "/" && "pressed"}`}>
+				<Link
+					to='/'
+					className={`nav-item ${location.pathname.startsWith("/home") && "pressed"}`}>
 					<AiFillHome className='icon' />
 				</Link>
 				<Link
 					to='/search'
-					className={`nav-item ${location.pathname === "/search" && "pressed"}`}>
+					className={`nav-item ${location.pathname.startsWith("/search") && "pressed"}`}>
 					<BsSearch className='icon' />
 				</Link>
 				<Link
 					to='/addpost'
-					className={`nav-item ${location.pathname === "/addpost" && "pressed"}`}>
+					className={`nav-item ${location.pathname.startsWith("/addpost") && "pressed"}`}>
 					<BsPlusLg className='icon' />
 				</Link>
 				<Link
 					to='/notifications'
-					className={`nav-item ${location.pathname === "/notifications" && "pressed"}`}>
-					{notifications?.length > 0 && location.pathname !== "/notifications" && (
+					className={`nav-item ${
+						location.pathname.startsWith("/notifications") && "pressed"
+					}`}>
+					{notifications?.length > 0 && !location.pathname.startsWith("/notifications") && (
 						<div className='notifs'>
 							<p>{notifications?.length}</p>
 						</div>

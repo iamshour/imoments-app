@@ -75,14 +75,14 @@ const Header = () => {
 	return (
 		<header
 			className={
-				location.pathname === "/"
+				location.pathname.startsWith("/home")
 					? "header-home"
-					: location.pathname.startsWith("/auth")
+					: location.pathname === "/" || location.pathname.startsWith("/auth")
 					? "header-auth"
 					: ""
 			}>
 			<div className='header-wrapper'>
-				{location.pathname === "/" ? (
+				{location.pathname.startsWith("/home") ? (
 					<LeftBar currentUser={currentUser} />
 				) : (
 					<div className='header-info-wrapper'>

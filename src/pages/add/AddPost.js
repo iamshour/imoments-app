@@ -48,7 +48,7 @@ const AddPost = () => {
 	useEffect(() => {
 		if (postMessage) {
 			setTimeout(() => {
-				history.push("/")
+				history.push("/home")
 				dispatch({
 					type: "CLEAR_ADD_POST",
 				})
