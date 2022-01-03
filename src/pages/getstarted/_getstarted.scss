@@ -1,28 +1,20 @@
 .get-started-page {
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
 	min-height: 100vh;
 	@include centering;
 
 	.wrapper {
 		width: 100%;
-		height: 85vh;
-		max-height: 80rem;
-		display: flex;
+		height: 85%;
+		max-height: 120rem;
+		@include centering;
 		flex-direction: column;
-		justify-content: space-evenly;
-		align-items: center;
+		justify-content: space-between;
 
 		.welcome-container {
-			position: relative;
-			@include glass;
-			&::before {
-				border-radius: 16px;
-				border: 1px solid var(--secondary-font);
-			}
-			width: 95%;
-			max-width: 50rem;
-			height: auto;
+			width: 100%;
+			max-width: 70rem;
 
 			#welcome-svg:not(.animated) .animable {
 				opacity: 0;
@@ -122,19 +114,24 @@
 		}
 		.info {
 			width: 100%;
+			height: 55%;
 			max-width: 45rem;
-			padding: 0 1.6rem;
+			padding: 0 1.4rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
 
 			.desc {
 				text-align: center;
-				margin-bottom: 4rem;
 
 				h1 {
 					font-weight: 700;
 					font-size: 3.2rem;
-					color: var(--main-color);
 					letter-spacing: -2px;
-					margin-bottom: 2.6rem;
+					margin-bottom: 3rem;
+					background: -webkit-linear-gradient(180deg, #b24bf5 0%, #f41760 100%);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
 				}
 				p {
 					font-size: 1.8rem;
@@ -150,36 +147,29 @@
 				width: max-content;
 				margin: 0 auto;
 			}
-		}
-	}
-}
-
-@media (min-width: $breakpoint-tablet) {
-	.get-started-page {
-		.wrapper {
-			max-height: 95rem;
-			gap: 2rem;
-			flex-wrap: nowrap;
-			.welcome-container {
-				max-width: 70rem;
-			}
-			.info {
-				max-width: 68rem;
-
-				.desc {
-					margin-bottom: 7rem;
-
-					h1 {
-						font-size: 5rem;
-						letter-spacing: 2px;
-						margin-bottom: 5rem;
+			details {
+				summary > * {
+					display: inline;
+				}
+				summary {
+					cursor: pointer;
+					font-size: 1.4rem;
+					color: var(--secondary-font);
+					transition: color 250ms ease-in-out;
+					&:hover,
+					&:active {
+						color: var(--main-color);
 					}
-					p {
-						font-size: 2.4rem;
-						margin-bottom: 1.6rem;
-					}
-					h2 {
-						font-size: 2.4rem;
+				}
+
+				p {
+					font-size: 1.5rem;
+					line-height: 15px;
+					font-weight: 300;
+					.link {
+						color: var(--main-color);
+						font-size: 1.5rem;
+						font-weight: 700;
 					}
 				}
 			}
@@ -187,33 +177,100 @@
 	}
 }
 
-@media (min-width: $breakpoint-desktop) {
+@media (min-width: $breakpoint-tablet) {
 	.get-started-page {
-		// display: none;
 		.wrapper {
-			// max-width: 120rem;
-			flex-direction: row;
-			justify-content: space-between;
-			.welcome-container {
-				max-width: 70rem;
-			}
+			height: 90%;
+			max-height: 120rem;
+
 			.info {
-				max-width: 68rem;
+				max-width: unset;
+				justify-content: space-around;
+				padding: 0;
+				max-width: 62rem;
 
 				.desc {
-					margin-bottom: 7rem;
-
+					margin-bottom: 1rem;
 					h1 {
 						font-size: 5rem;
 						letter-spacing: 2px;
+						margin-bottom: 3.6rem;
+					}
+					p {
+						font-size: 2.2rem;
+						margin: 0 auto;
+						margin-bottom: 1.6rem;
+						max-width: 55rem;
+					}
+					h2 {
+						font-size: 2.2rem;
+					}
+				}
+
+				details {
+					summary {
+						font-size: 1.8rem;
+						padding-bottom: 1rem;
+					}
+
+					p {
+						font-size: 2rem;
+						line-height: 20px;
+						.link {
+							font-size: 2.2rem;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 1080px) {
+	.get-started-page {
+		width: 99%;
+		margin: 0 auto;
+		.wrapper {
+			width: 100%;
+			height: 100%;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			max-width: 150rem;
+			margin: 0 auto;
+
+			.welcome-container {
+				max-width: unset;
+			}
+
+			.info {
+				height: 85%;
+				justify-content: space-evenly;
+
+				.desc {
+					padding-right: 1.6rem;
+					h1 {
+						font-size: 6rem;
 						margin-bottom: 5rem;
 					}
 					p {
 						font-size: 2.4rem;
-						margin-bottom: 1.6rem;
+						margin-bottom: 2.4rem;
+						max-width: 60rem;
 					}
 					h2 {
-						font-size: 2.4rem;
+						font-size: 2.2rem;
+					}
+				}
+
+				details {
+					summary {
+						padding-bottom: 1.6rem;
+					}
+
+					p {
+						padding-right: 2rem;
+						line-height: 2.1rem;
 					}
 				}
 			}

@@ -228,10 +228,12 @@ const Auth = () => {
 						</div>
 					</div>
 				</form>
-				<div className='private-links'>
-					<Link to='/privacy'>Privacy Policy</Link>
-					<Link to='/terms'>Terms &amp; conditions</Link>
-				</div>
+				{showSignin && (
+					<div className='private-links'>
+						<Link to='/privacy'>Privacy Policy</Link>
+						<Link to='/terms'>Terms &amp; conditions</Link>
+					</div>
+				)}
 			</div>
 		</div>
 	)

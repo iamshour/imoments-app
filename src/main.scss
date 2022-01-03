@@ -32,6 +32,8 @@ $breakpoint-large-desktop: 1400px;
 $breakpoint-max-desktop: 1800px;
 @import "./components/utility/mixins";
 @import "./components/utility/utility";
+@import "./components/utility/buttons";
+@import "./components/utility/resets";
 @import "./pages/about/about";
 @import "./pages/add/add";
 @import "./pages/auth/auth";
@@ -48,8 +50,6 @@ $breakpoint-max-desktop: 1800px;
 @import "./pages/getstarted/getstarted";
 @import "./components/layout/layout";
 @import "./components/card/card";
-@import "./components/utility/buttons";
-@import "./components/utility/resets";
 
 //RESETS
 
@@ -84,7 +84,8 @@ label {
 .profile-page,
 .search-page,
 .addpost-page,
-.auth-page {
+.auth-page,
+.get-started-page {
 	opacity: 0;
 	@include fade-in;
 }
