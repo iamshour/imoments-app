@@ -92,7 +92,7 @@ const Privacy = () => {
 						<strong>Website</strong> refers to imoments app, accessible from{" "}
 						<a
 							href='https://imoments.netlify.app/#/'
-							rel='external nofollow noopener'
+							rel='external nofollow noopener noreferrer'
 							target='_blank'>
 							https://imoments.netlify.app/#/
 						</a>
