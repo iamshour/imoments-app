@@ -1,9 +1,6 @@
 const Terms = () => {
 	return (
 		<div className='private-container'>
-			<h1>
-				<strong>Terms and Conditions</strong>
-			</h1>
 			<p>Welcome to imoments app!</p>
 			<p>
 				These terms and conditions outline the rules and regulations for the use of

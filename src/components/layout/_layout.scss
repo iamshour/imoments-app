@@ -59,9 +59,11 @@ header {
 				border-radius: 50%;
 				margin-left: -0.8rem;
 				cursor: pointer;
+				transition: background 200ms ease-in-out;
 				.icon {
 					font-size: 2.4rem;
 					color: var(--primary-font);
+					transition: color 200ms ease-in-out;
 				}
 				&:hover,
 				&:active {

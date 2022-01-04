@@ -24,6 +24,10 @@ export const titleFunc = (location, currentUser, user) => {
 		? "Forgot password"
 		: location.pathname.startsWith("/reset")
 		? "Reset password"
+		: location.pathname.startsWith("/privacy")
+		? "Privacy policy"
+		: location.pathname.startsWith("/terms")
+		? "Terms & conditions"
 		: null
 
 	return title

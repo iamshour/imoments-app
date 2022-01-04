@@ -228,12 +228,6 @@ const Auth = () => {
 						</div>
 					</div>
 				</form>
-				{showSignin && (
-					<div className='private-links'>
-						<Link to='/privacy'>Privacy Policy</Link>
-						<Link to='/terms'>Terms &amp; conditions</Link>
-					</div>
-				)}
 			</div>
 		</div>
 	)

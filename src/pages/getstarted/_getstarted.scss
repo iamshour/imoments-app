@@ -6,15 +6,15 @@
 
 	.wrapper {
 		width: 100%;
-		height: 85%;
+		height: 95%;
 		max-height: 120rem;
 		@include centering;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: space-around;
 
 		.welcome-container {
 			width: 100%;
-			max-width: 70rem;
+			max-width: 50rem;
 
 			#welcome-svg:not(.animated) .animable {
 				opacity: 0;
@@ -123,6 +123,7 @@
 
 			.desc {
 				text-align: center;
+				margin-bottom: 1rem;
 
 				h1 {
 					font-weight: 700;
@@ -143,11 +144,14 @@
 					font-size: 1.8rem;
 				}
 			}
-			a {
+			.btn-large {
 				width: max-content;
 				margin: 0 auto;
+				margin-bottom: 1rem;
 			}
 			details {
+				margin-bottom: 1rem;
+
 				summary > * {
 					display: inline;
 				}
@@ -173,52 +177,20 @@
 					}
 				}
 			}
-		}
-	}
-}
-
-@media (min-width: $breakpoint-tablet) {
-	.get-started-page {
-		.wrapper {
-			height: 90%;
-			max-height: 120rem;
-
-			.info {
-				max-width: unset;
+			.private-links {
+				height: 10%;
+				width: 100%;
+				display: flex;
+				align-items: center;
 				justify-content: space-around;
-				padding: 0;
-				max-width: 62rem;
-
-				.desc {
-					margin-bottom: 1rem;
-					h1 {
-						font-size: 5rem;
-						letter-spacing: 2px;
-						margin-bottom: 3.6rem;
-					}
-					p {
-						font-size: 2.2rem;
-						margin: 0 auto;
-						margin-bottom: 1.6rem;
-						max-width: 55rem;
-					}
-					h2 {
-						font-size: 2.2rem;
-					}
-				}
-
-				details {
-					summary {
-						font-size: 1.8rem;
-						padding-bottom: 1rem;
-					}
-
-					p {
-						font-size: 2rem;
-						line-height: 20px;
-						.link {
-							font-size: 2.2rem;
-						}
+				a {
+					font-size: 1.2rem;
+					color: var(--secondary-font);
+					transition: all 150ms ease-in;
+					&:hover,
+					&:active {
+						transform: scale(1.02);
+						color: var(--main-color);
 					}
 				}
 			}
@@ -226,7 +198,7 @@
 	}
 }
 
-@media (min-width: 1080px) {
+@media (min-width: $breakpoint-tablet) {
 	.get-started-page {
 		width: 99%;
 		margin: 0 auto;
@@ -244,11 +216,46 @@
 			}
 
 			.info {
-				height: 85%;
+				height: 95%;
 				justify-content: space-evenly;
 
 				.desc {
 					padding-right: 1.6rem;
+					h1 {
+						font-size: 4rem;
+						margin-bottom: 3rem;
+					}
+					p {
+						margin-bottom: 2rem;
+						max-width: 60rem;
+					}
+				}
+
+				details {
+					margin-bottom: -4rem;
+					summary {
+						padding-bottom: 0.8rem;
+					}
+
+					p {
+						padding-right: 2rem;
+						line-height: 2rem;
+					}
+				}
+				.private-links {
+					margin-bottom: -3rem;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 1080px) {
+	.get-started-page {
+		.wrapper {
+			.info {
+				max-width: 44%;
+				.desc {
 					h1 {
 						font-size: 6rem;
 						margin-bottom: 5rem;
@@ -256,7 +263,6 @@
 					p {
 						font-size: 2.4rem;
 						margin-bottom: 2.4rem;
-						max-width: 60rem;
 					}
 					h2 {
 						font-size: 2.2rem;
@@ -264,15 +270,15 @@
 				}
 
 				details {
-					summary {
-						padding-bottom: 1.6rem;
-					}
+					margin-bottom: -2rem;
 
 					p {
-						padding-right: 2rem;
 						line-height: 2.1rem;
 					}
 				}
+			}
+			.welcome-container {
+				max-width: 56%;
 			}
 		}
 	}

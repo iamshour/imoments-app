@@ -2587,6 +2587,10 @@ const GetStarted = () => {
 							.
 						</p>
 					</details>
+					<div className='private-links'>
+						<Link to='/privacy'>Privacy Policy</Link>
+						<Link to='/terms'>Terms &amp; conditions</Link>
+					</div>
 				</div>
 			</div>
 		</div>
