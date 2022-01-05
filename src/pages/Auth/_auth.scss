@@ -21,13 +21,18 @@
 	.auth-right {
 		position: relative;
 		@include glass;
-		height: 70vh;
-		min-height: 70vh;
+		height: 68vh;
+		min-height: 68vh;
 		overflow-y: hidden;
 		&::before {
 			border-radius: 44px 44px 0 0;
 			opacity: 0.6;
 			border-top: 0.5px solid var(--secondary-font);
+			background: linear-gradient(
+				180deg,
+				var(--bg-secondary) 0%,
+				var(--secondary-font) 100%
+			);
 		}
 
 		form {
@@ -37,45 +42,40 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-between;
-			padding: 1.6rem 1.6rem 6.5rem 1.6rem;
+			padding: 3rem 0 6.5rem 0;
+
 			.heading {
 				width: 100%;
-				padding: 1.6rem 0 2rem 2rem;
+				padding-left: 3rem;
 				h4 {
-					font-size: 3.2rem;
+					font-size: 2.8rem;
 					font-weight: 700;
 					color: var(--main-color);
 					text-align: left;
+					letter-spacing: 2px;
 				}
 			}
 
 			.credentials {
 				position: relative;
-				width: 85%;
+				width: 80%;
 				max-width: 44rem;
+				padding: 2rem 0;
 				.input-bar,
 				.input-bar-icon {
 					margin: 0 auto;
-					margin-bottom: 0.8rem;
+					margin-bottom: 0.6rem;
 				}
-				.pass-bar {
-					margin-bottom: 2rem;
-				}
-				.input-bar {
-					display: flex;
-					justify-content: space-between;
 
-					input {
-						&:first-child {
-							margin-right: 1.6rem;
-						}
-					}
-				}
 				.input-bar-icon {
+					padding: 1rem;
+					.icon {
+						font-size: 2rem;
+					}
 					.eye {
 						margin: 0 0 0 0.8rem;
-						width: 3rem;
 						cursor: pointer;
+						font-size: 2.4rem;
 
 						&:hover,
 						&:active {
@@ -83,6 +83,22 @@
 						}
 					}
 				}
+
+				.input-bar {
+					display: flex;
+					justify-content: space-between;
+					input {
+						padding: 1rem;
+						&:first-child {
+							margin-right: 1rem;
+						}
+					}
+				}
+
+				.pass-bar {
+					margin-bottom: 3rem;
+				}
+
 				.forgot-pass {
 					h1 {
 						color: var(--main-color);
@@ -102,19 +118,25 @@
 					display: flex;
 					flex-direction: column;
 					align-items: center;
-					padding: 1.6rem 0;
+					padding: 2rem 0;
 					width: 100%;
+					margin-bottom: 1rem;
 
 					.btn-large,
 					.btn-google {
-						padding: 1rem 0;
-						border-radius: 2.4rem;
-					}
-					.btn-large {
-						width: 100%;
+						@include centering;
+						cursor: pointer;
+						height: 46px;
+						border-radius: 4px;
+
 						p {
 							margin: 0;
+							font-size: 14px;
 						}
+					}
+					.btn-large {
+						width: 214.63px;
+						padding: 8px;
 						.spinner-container {
 							width: 2.7594rem;
 							height: 2.7594rem;
@@ -122,19 +144,30 @@
 					}
 					.or {
 						font-size: 1.2rem;
-						color: var(--main-color);
-						padding: 0.4rem 0;
+						color: var(--primary-font);
+						padding: 0.8rem 0;
 					}
 					.btn-google {
-						background: transparent;
-						border-color: var(--main-color);
-						color: var(--main-color);
+						padding-right: 32px;
+						position: relative;
+						@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+						font-family: "Roboto", sans-serif;
+						background: var(--google-btn-bg);
+						color: var(--google-btn-font);
+						white-space: nowrap;
+						transition: all 250ms ease-in-out;
+						box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+
 						.icon {
-							margin-right: 0.8rem;
-							font-size: inherit;
+							margin-right: 16px;
+							font-size: 18px;
 						}
-						p {
-							margin: 0;
+
+						&:hover,
+						&:active,
+						&:focus {
+							background: var(--google-btn-bg-pressed);
+							box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 						}
 					}
 				}
@@ -142,8 +175,8 @@
 					width: 100%;
 					@include centering;
 					p {
-						font-size: 1.4rem;
-						color: var(--main-color);
+						font-size: 1.2rem;
+						color: var(--primary-font);
 						margin-right: 1rem;
 					}
 					button {
@@ -237,6 +270,7 @@
 						rgba(161, 66, 245, 0.8) 0%,
 						rgba(230, 46, 83, 0.8) 70%
 					);
+					background-clip: text;
 					-webkit-background-clip: text;
 					-webkit-text-fill-color: transparent;
 				}
@@ -261,15 +295,48 @@
 			}
 
 			form {
-				width: 100%;
 				max-height: 90rem;
 				justify-content: space-around;
-				padding: 3rem 1.6rem 3rem 1.6rem;
+				padding-bottom: 3rem;
 				.heading {
 					padding: 0;
 					h4 {
 						text-align: center;
-						font-size: 2.6rem;
+						font-size: 3rem;
+					}
+				}
+				.credentials {
+					.input-bar,
+					.input-bar-icon {
+						margin-bottom: 0.8rem;
+					}
+					.input-bar-icon {
+						padding: 1.2rem;
+						.icon {
+							font-size: 2.4rem;
+						}
+					}
+					.input-bar {
+						input {
+							padding: 1.2rem;
+						}
+					}
+				}
+				.actions {
+					.btns {
+						margin-bottom: 1.6rem;
+						.or {
+							font-size: 1.4rem;
+							padding: 1rem 0;
+						}
+					}
+					.bottom-actions {
+						p {
+							font-size: 1.4rem;
+						}
+						button {
+							font-size: 1.6rem;
+						}
 					}
 				}
 			}
@@ -328,7 +395,7 @@
 				padding: 4rem 1.6rem 1rem 1.6rem;
 				.heading {
 					h4 {
-						font-size: 3rem;
+						font-size: 3.2rem;
 					}
 				}
 			}

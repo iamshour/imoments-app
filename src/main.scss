@@ -9,6 +9,9 @@
 	--nav-pressed: linear-gradient(180deg, #a844ff 0%, #ff3f67 100%);
 	--nav-icon-unpressed: #666666;
 	--theme-icon: #b24bf5;
+	--google-btn-bg: #ffffff;
+	--google-btn-bg-pressed: #cac4c4;
+	--google-btn-font: rgba(0, 0, 0, 54%);
 }
 
 [data-theme="dark"] {
@@ -22,6 +25,9 @@
 	--nav-pressed: linear-gradient(180deg, #a844ff 0%, #ff3f67 100%);
 	--nav-icon-unpressed: #666666;
 	--theme-icon: gold;
+	--google-btn-bg: #4285f4;
+	--google-btn-bg-pressed: #2d79f2;
+	--google-btn-font: #ffffff;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;500;700&display=swap");

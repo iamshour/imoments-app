@@ -1,27 +1,24 @@
 import { useEffect, useState } from "react"
 import GoogleLogin from "react-google-login"
+import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { googleAuth, signIn, signUp } from "redux/actions/auth"
 //icons/assets
 import { BsFillLockFill } from "react-icons/bs"
 import { IoMailOutline } from "react-icons/io5"
-import { FcGoogle } from "react-icons/fc"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
-import { Link } from "react-router-dom"
 import Spinner from "components/utility/Spinner"
 import Person from "images/person.svg"
-import { useWindowSize } from "components/utility/useWindowSize"
+import GoogleIcon from "images/btn_google_light_normal_ios.svg"
 
 const Auth = () => {
 	const dispatch = useDispatch()
 	const { error } = useSelector((state) => state?.utility)
-	const { width } = useWindowSize()
 
 	const history = useHistory()
 	const [showSignin, setShowSignin] = useState(true)
 	const [showPass, setShowPass] = useState(false)
-	const [showHeading, setShowHeading] = useState(true)
 	const [actionLoading, setActionLoading] = useState(false)
 	const [formData, setFormData] = useState({
 		firstName: "",
@@ -67,12 +64,21 @@ const Auth = () => {
 		// 	type: "ERROR",
 		// })
 	}
-	const focus = () => {
-		width < 550 && setShowHeading(false)
-	}
-	const blur = () => {
-		width < 550 && setShowHeading(true)
-	}
+
+	const circles = [
+		{
+			src: "https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426375/imoments-app/share_zbplud.png",
+			alt: "Share posts",
+		},
+		{
+			src: "https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426377/imoments-app/update_dgg8zq.png",
+			alt: "update your profile",
+		},
+		{
+			src: "https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426377/imoments-app/enjoy_xekcue.png",
+			alt: "enjoy our service!",
+		},
+	]
 
 	return (
 		<div className='auth-page'>
@@ -85,24 +91,11 @@ const Auth = () => {
 						/>
 					</div>
 					<div className='circles'>
-						<div className='circle'>
-							<img
-								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426375/imoments-app/share_zbplud.png'
-								alt='share posts'
-							/>
-						</div>
-						<div className='circle'>
-							<img
-								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426377/imoments-app/update_dgg8zq.png'
-								alt='update your profile'
-							/>
-						</div>
-						<div className='circle'>
-							<img
-								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640426377/imoments-app/enjoy_xekcue.png'
-								alt='enjoy our service!'
-							/>
-						</div>
+						{circles?.map((circle, index) => (
+							<div className='circle' key={index}>
+								<img src={circle?.src} alt={circle?.alt} />
+							</div>
+						))}
 					</div>
 					<h1 className='slogan'>
 						Share your thoughts <br />
@@ -117,17 +110,9 @@ const Auth = () => {
 			<div className='auth-right'>
 				<form id='formm' autoComplete='off' onSubmit={(e) => e.preventDefault()}>
 					<div className='heading'>
-						{showHeading && <h4>{showSignin ? "Welcome Back!" : "Get started!"}</h4>}
+						<h4>{showSignin ? "Welcome Back!" : "Get started!"}</h4>
 					</div>
-					<div
-						className={`credentials ${!showSignin && "credentials-signup"}`}
-						style={
-							!showHeading && !showSignin
-								? { marginTop: "-3rem" }
-								: !showHeading && showSignin
-								? { marginTop: "-1rem" }
-								: {}
-						}>
+					<div className={`credentials ${!showSignin && "credentials-signup"}`}>
 						{!showSignin && (
 							<div className='input-bar'>
 								<input
@@ -135,16 +120,12 @@ const Auth = () => {
 									name='firstName'
 									placeholder='First name'
 									onChange={changeHandler}
-									onFocus={focus}
-									onBlur={blur}
 								/>
 								<input
 									type='text'
 									name='lastName'
 									placeholder='Last name'
 									onChange={changeHandler}
-									onFocus={focus}
-									onBlur={blur}
 								/>
 							</div>
 						)}
@@ -155,8 +136,6 @@ const Auth = () => {
 								name='email'
 								placeholder='Enter your email'
 								onChange={changeHandler}
-								onFocus={focus}
-								onBlur={blur}
 							/>
 						</div>
 						<div className={`input-bar-icon ${showSignin ? "pass-bar" : ""}`}>
@@ -166,8 +145,6 @@ const Auth = () => {
 								name='password'
 								placeholder='Enter your password'
 								onChange={changeHandler}
-								onFocus={focus}
-								onBlur={blur}
 							/>
 							{!showPass ? (
 								<AiOutlineEye
@@ -194,8 +171,6 @@ const Auth = () => {
 									name='confirmPassword'
 									placeholder='Confirm your password'
 									onChange={changeHandler}
-									onFocus={focus}
-									onBlur={blur}
 								/>
 							</div>
 						)}
@@ -210,10 +185,14 @@ const Auth = () => {
 								clientId={`${process.env.REACT_APP_CLIENT_ID}`}
 								render={(renderProps) => (
 									<button
-										className='btn-google btn-large'
+										className='btn-google'
 										onClick={renderProps.onClick}
 										disabled={renderProps.disabled}>
-										<FcGoogle className='icon' />
+										<img
+											src={GoogleIcon}
+											alt={`Sign ${showSignin ? "in" : "up"} with Google`}
+											className='icon'
+										/>
 										<p>Sign {showSignin ? "in" : "up"} with Google</p>
 									</button>
 								)}
