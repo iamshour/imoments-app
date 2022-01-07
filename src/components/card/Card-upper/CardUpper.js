@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useLocation } from "react-router"
-import { useDispatch } from "react-redux"
-import { deletePost } from "redux/actions/posts"
-import { makeUppercase, closeModalBtn } from "components/utility/utilis"
+import { makeUppercase } from "components/utility/utilis"
 import Moment from "react-moment"
 //COMPS
 import Dropdown from "./Dropdown"
-import Modal from "components/utility/Modal"
 //icons
 import { IoMdClose } from "react-icons/io"
 import { AiOutlineEllipsis } from "react-icons/ai"
@@ -23,13 +20,11 @@ const CardUpper = ({
 	setEditClicked,
 }) => {
 	const location = useLocation()
-	const dispatch = useDispatch()
 	const currentUser = JSON.parse(localStorage.getItem("User"))
 	const [bookmarkIncluded, setBookmarkIncluded] = useState(
 		currentUser?.bookmarks?.includes(postId) ? true : false
 	)
 	const [bookmarkClicked, setbookmarkClicked] = useState(bookmarkIncluded)
-	const [deleteClicked, setDeleteClicked] = useState(false)
 
 	useEffect(() => {
 		setBookmarkIncluded(currentUser?.bookmarks?.includes(postId) ? true : false)
@@ -76,33 +71,7 @@ const CardUpper = ({
 					bookmarkIncluded={bookmarkIncluded}
 					setbookmarkClicked={setbookmarkClicked}
 					setBookmarkIncluded={setBookmarkIncluded}
-					setDeleteClicked={setDeleteClicked}
 				/>
-			)}
-			{deleteClicked && (
-				<Modal setModalOpen={setDeleteClicked} setExtraOption={setOptionsClicked}>
-					<h3>Are you sure you want to delete this post?</h3>
-					<div className='btns'>
-						<button
-							onClick={() => {
-								dispatch(deletePost(postId))
-								closeModalBtn(location)
-								setDeleteClicked(false)
-							}}
-							className='btn-large'>
-							Yes, delete
-						</button>
-						<button
-							className='btn-large reverse-btn'
-							onClick={() => {
-								closeModalBtn(location)
-								setDeleteClicked(false)
-								setOptionsClicked(false)
-							}}>
-							Cancel
-						</button>
-					</div>
-				</Modal>
 			)}
 		</div>
 	)

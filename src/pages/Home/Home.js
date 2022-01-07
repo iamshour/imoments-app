@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getTimeline } from "redux/actions/posts"
 //COMPS
@@ -7,7 +7,6 @@ import Loading from "components/utility/Loading"
 
 const Home = () => {
 	const dispatch = useDispatch()
-	const [customFetch, setCustomFetch] = useState(true)
 	//Current active user Id
 	const userId = JSON.parse(localStorage.getItem("userId"))?.id
 
@@ -15,12 +14,6 @@ const Home = () => {
 
 	useEffect(() => {
 		dispatch(getTimeline(userId))
-
-		if (customFetch) {
-			setTimeout(() => {
-				setCustomFetch(false)
-			}, 1500)
-		}
 
 		return () => {
 			dispatch({
@@ -49,8 +42,6 @@ const Home = () => {
 						likes={post?.likes}
 					/>
 				))
-			) : customFetch ? (
-				<Loading />
 			) : (
 				<>
 					<img

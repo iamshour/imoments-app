@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useLocation, useParams } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import { getSingleUser } from "redux/actions/user"
@@ -14,7 +14,6 @@ const Profile = () => {
 	const params = useParams()
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const [customFetch, setCustomFetch] = useState(true)
 
 	//GETTING CURRENT USER ID
 	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
@@ -36,11 +35,6 @@ const Profile = () => {
 
 	useEffect(() => {
 		dispatch(getProfilePosts(params.id))
-		if (customFetch) {
-			setTimeout(() => {
-				setCustomFetch(false)
-			}, 1500)
-		}
 
 		return () => {
 			dispatch({
@@ -79,8 +73,6 @@ const Profile = () => {
 							likes={post?.likes}
 						/>
 					))
-				) : customFetch ? (
-					<Loading />
 				) : (
 					<div className='empty-wrapper'>
 						<GoFileMedia className='icon' />

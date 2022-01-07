@@ -38,21 +38,22 @@ const FollowersBtn = () => {
 						: followers?.length + " Followers"}
 				</p>
 			</button>
-			{modalOpen && (
-				<Modal setModalOpen={setModalOpen} additionalClassName='follow-modal'>
-					<h1 className='modal-title'>Followers</h1>
-					{followers?.length > 0 &&
-						followers?.map((user) => (
-							<ResultCard
-								key={user?._id}
-								userId={user?._id}
-								name={user?.name}
-								avatar={user?.avatar}
-								setModalOpen={setModalOpen}
-							/>
-						))}
-				</Modal>
-			)}
+			<Modal
+				modalOpen={modalOpen}
+				setModalOpen={setModalOpen}
+				additionalClassName='follow-modal'>
+				<h1 className='modal-title'>Followers</h1>
+				{followers?.length > 0 &&
+					followers?.map((user) => (
+						<ResultCard
+							key={user?._id}
+							userId={user?._id}
+							name={user?.name}
+							avatar={user?.avatar}
+							setModalOpen={setModalOpen}
+						/>
+					))}
+			</Modal>
 		</>
 	)
 }

@@ -60,9 +60,6 @@ const Auth = () => {
 	}
 	const googleFailure = (err) => {
 		console.log(`Error: ${err}`)
-		// dispatch({
-		// 	type: "ERROR",
-		// })
 	}
 
 	const circles = [

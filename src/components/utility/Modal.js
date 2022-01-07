@@ -1,28 +1,36 @@
-import { useLocation } from "react-router"
+import ReactDom from "react-dom"
 
-const Modal = ({ children, setModalOpen, setExtraOption, additionalClassName }) => {
-	const location = useLocation()
-
+const Modal = ({
+	children,
+	modalOpen,
+	setModalOpen,
+	setExtraOption,
+	additionalClassName,
+}) => {
 	const closeModalBackdrop = (e) => {
 		if (e.target.classList.contains("modal-backdrop")) {
 			document.querySelector("html").style.overflowY = "unset"
-			document.querySelector("header").style.display = "flex"
 			setModalOpen(false)
 			setExtraOption && setExtraOption(false)
-			location.pathname.startsWith(
-				"/home" || "/search" || "/addPost" || "/notifications"
-			) && (document.querySelector("nav").style.display = "unset")
 		}
 	}
 
-	return (
+	if (modalOpen) {
+		document.querySelector("html").style.overflowY = "hidden"
+	} else {
+		document.querySelector("html").style.overflowY = "unset"
+		return null
+	}
+
+	return ReactDom.createPortal(
 		<div
 			className={`modal-backdrop ${
 				additionalClassName !== undefined || null ? additionalClassName : ""
 			}`}
 			onClick={closeModalBackdrop}>
 			<div className='modal-container'>{children}</div>
-		</div>
+		</div>,
+		document.getElementById("portal")
 	)
 }
 

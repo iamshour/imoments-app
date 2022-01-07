@@ -177,46 +177,6 @@
 		}
 	}
 
-	.follow-modal {
-		.modal-container {
-			height: 80vh;
-			max-height: 70rem;
-			width: 90%;
-			max-width: 50rem;
-			border-radius: 4px;
-			@include centering;
-			flex-direction: column;
-			justify-content: flex-start;
-			position: relative;
-			z-index: -1;
-			padding: 2rem 1.2rem;
-			overflow-y: scroll;
-
-			.modal-title {
-				font-size: 2.2rem;
-				color: var(--secondary-font);
-				padding: 2rem 0;
-			}
-
-			.result-card {
-				width: 100%;
-				padding: 0.6rem 0.8rem;
-				margin-bottom: 1rem;
-
-				.result-card-left {
-					h1 {
-						font-size: 1.3rem;
-					}
-				}
-				.result-card-right {
-					.btn-medium {
-						width: unset;
-					}
-				}
-			}
-		}
-	}
-
 	h5 {
 		font-size: 1.8rem;
 		max-width: 90rem;
@@ -232,6 +192,46 @@
 	}
 	.empty-container {
 		height: calc(100vh - 35rem);
+	}
+}
+
+.follow-modal {
+	.modal-container {
+		height: 80vh;
+		max-height: 70rem;
+		width: 90%;
+		max-width: 50rem;
+		border-radius: 4px;
+		@include centering;
+		flex-direction: column;
+		justify-content: flex-start;
+		position: relative;
+		z-index: -1;
+		padding: 2rem 1.2rem;
+		overflow-y: scroll;
+
+		.modal-title {
+			font-size: 2.2rem;
+			color: var(--secondary-font);
+			padding: 2rem 0;
+		}
+
+		.result-card {
+			width: 100%;
+			padding: 0.6rem 0.8rem;
+			margin-bottom: 1rem;
+
+			.result-card-left {
+				h1 {
+					font-size: 1.3rem;
+				}
+			}
+			.result-card-right {
+				.btn-medium {
+					width: unset;
+				}
+			}
+		}
 	}
 }
 
@@ -338,37 +338,37 @@
 				}
 			}
 		}
-		.follow-modal {
-			.modal-container {
-				padding: 2.4rem 1.6rem;
-
-				.modal-title {
-					font-size: 2.2rem;
-					padding: 2rem 0;
-				}
-
-				.result-card {
-					padding: 0.8rem 1.2rem;
-
-					.result-card-left {
-						h1 {
-							font-size: 1.4rem;
-						}
-					}
-					.result-card-right {
-						.btn-medium {
-							width: unset;
-						}
-					}
-				}
-			}
-		}
 		h5 {
 			font-size: 2rem;
 			padding-top: 6rem;
 		}
 		.empty-container {
 			height: calc(100vh - 44rem);
+		}
+	}
+	.follow-modal {
+		.modal-container {
+			padding: 2.4rem 1.6rem;
+
+			.modal-title {
+				font-size: 2.2rem;
+				padding: 2rem 0;
+			}
+
+			.result-card {
+				padding: 0.8rem 1.2rem;
+
+				.result-card-left {
+					h1 {
+						font-size: 1.4rem;
+					}
+				}
+				.result-card-right {
+					.btn-medium {
+						width: unset;
+					}
+				}
+			}
 		}
 	}
 }

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { useDispatch } from "react-redux"
 import { signOut } from "redux/actions/auth"
-import { makeUppercase } from "components/utility/utilis"
+import { closeModalBtn, makeUppercase } from "components/utility/utilis"
 //icons/assets
 import { BsBookmarks, BsInfoCircle } from "react-icons/bs"
 import { IoMdClose } from "react-icons/io"
@@ -11,66 +11,14 @@ import { AiOutlineCheck } from "react-icons/ai"
 import { FiUser, FiSettings } from "react-icons/fi"
 import { CgSupport } from "react-icons/cg"
 import { IoLogOutOutline } from "react-icons/io5"
-import { useWindowSize } from "components/utility/useWindowSize"
+import Modal from "components/utility/Modal"
 
 const LeftBar = ({ currentUser }) => {
-	const dispatch = useDispatch()
-	const [leftBarOpened, setLeftBarOpened] = useState(false)
-	const [modalOpened, setModalOpened] = useState(false)
-
-	const { width } = useWindowSize()
-
 	const history = useHistory()
+	const dispatch = useDispatch()
 
-	const openLeftBar = () => {
-		setLeftBarOpened(true)
-		document.documentElement.style.overflowY = "hidden"
-		document.querySelector("nav").style.display = "none"
-	}
-	const closeLeftBar = (e) => {
-		if (e.target.classList.contains("backdrop")) {
-			setLeftBarOpened(false)
-			document.querySelector("nav").style.display = "unset"
-		}
-		document.querySelector("html").style.overflowY = "visible"
-	}
-	const signOutModel = () => {
-		setModalOpened(true)
-		document.querySelector("nav").style.display = "hidden"
-		width < 1080
-			? setLeftBarOpened(false)
-			: (document.querySelector("nav").style.visibility = "hidden")
-	}
-	const signOutModelClose = (e) => {
-		if (e.target.classList.contains("modal-backdrop")) {
-			setModalOpened(false)
-			document.querySelector("nav").style.display = "unset"
-			width < 1080
-				? setLeftBarOpened(false)
-				: (document.querySelector("nav").style.visibility = "unset")
-		}
-	}
-	const signOutBtnClose = (e) => {
-		setModalOpened(false)
-		document.querySelector("nav").style.display = "unset"
-		width < 1080
-			? setLeftBarOpened(false)
-			: (document.querySelector("nav").style.visibility = "unset")
-	}
-
-	useEffect(() => {
-		if (width >= 1080) {
-			const func = () => {
-				setLeftBarOpened(true)
-			}
-			func()
-		} else {
-			const func = () => {
-				setLeftBarOpened(false)
-			}
-			func()
-		}
-	}, [width])
+	const [leftBarOpened, setLeftBarOpened] = useState(false)
+	const [signOutModalOpened, setSignOutModalOpened] = useState(false)
 
 	const links = [
 		{
@@ -100,71 +48,89 @@ const LeftBar = ({ currentUser }) => {
 		},
 	]
 
+	const closeBarBackdrop = (e) => {
+		if (e.target.classList.contains("left-bar-active")) {
+			setLeftBarOpened(false)
+		}
+	}
+
 	return (
 		<>
-			<button className='avatar-wrapper' onClick={openLeftBar}>
+			<button className='avatar-wrapper' onClick={() => setLeftBarOpened(true)}>
 				<img src={currentUser?.avatar} alt={currentUser?.name} />
 			</button>
-			{leftBarOpened && (
-				<div className='backdrop backdrop-1' onClick={width < 1080 ? closeLeftBar : null}>
-					<div className='left-bar'>
-						<div className='left-bar-upper'>
-							<Link
-								to={`/profile/${currentUser?._id}`}
-								className='user-info'
-								onClick={closeLeftBar}>
-								<img src={currentUser?.avatar} alt={currentUser?.name || "User avatar"} />
-								<h1>
-									{makeUppercase(currentUser?.name, 0) +
-										" " +
-										makeUppercase(currentUser?.name, 1)}
-								</h1>
-							</Link>
-						</div>
-						<div className='left-bar-links'>
-							{links?.map((item) => {
-								return (
-									<Link
-										to={item.destination}
-										key={item.title}
-										className='link-container'
-										onClick={closeLeftBar}>
-										{item.icon}
-										<h3>{item.title}</h3>
-									</Link>
-								)
-							})}
-							<button className='link-container' onClick={signOutModel}>
-								<IoLogOutOutline className='icon' />
-								<h3>Sign Out</h3>
-							</button>
-						</div>
-						<div className='left-bar-bottom'>
-							<img
-								src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640456656/imoments-app/imoments-logo_fexvcu.png'
-								alt='imoments logo'
-							/>
-						</div>
+			<div
+				className={`left-bar ${leftBarOpened ? "left-bar-active" : ""}`}
+				onClick={closeBarBackdrop}>
+				<div className='left-bar-container'>
+					<div className='left-bar-upper'>
+						<Link
+							to={`/profile/${currentUser?._id}`}
+							className='user-info'
+							onClick={() => setLeftBarOpened(false)}>
+							<img src={currentUser?.avatar} alt={currentUser?.name || "User avatar"} />
+							<h1>
+								{makeUppercase(currentUser?.name, 0) +
+									" " +
+									makeUppercase(currentUser?.name, 1)}
+							</h1>
+						</Link>
+					</div>
+					<div className='left-bar-links'>
+						{links?.map((item) => {
+							return (
+								<Link
+									to={item.destination}
+									key={item.title}
+									className='link-container'
+									onClick={() => setLeftBarOpened(false)}>
+									{item.icon}
+									<h3>{item.title}</h3>
+								</Link>
+							)
+						})}
+						<button
+							className='link-container'
+							onClick={() => {
+								setSignOutModalOpened(true)
+								setLeftBarOpened(false)
+							}}>
+							<IoLogOutOutline className='icon' />
+							<h3>Sign Out</h3>
+						</button>
+					</div>
+					<div className='left-bar-bottom'>
+						<img
+							src='https://res.cloudinary.com/dniaqkd0y/image/upload/v1640456656/imoments-app/imoments-logo_fexvcu.png'
+							alt='imoments logo'
+						/>
 					</div>
 				</div>
-			)}
-			{modalOpened && (
-				<div className='modal-backdrop' onClick={signOutModelClose}>
-					<div className='modal-container'>
-						<h3>Are you sure you want to sign out?</h3>
-						<div className='btns'>
-							<button className='btn-large' onClick={() => dispatch(signOut(history))}>
-								<p>Sign Out</p>
-								<AiOutlineCheck className='icon' />
-							</button>
-							<button onClick={signOutBtnClose} className='btn-large reverse-btn'>
-								<p>Cancel</p>
-								<IoMdClose className='icon' />
-							</button>
-						</div>
-					</div>
+			</div>
+			<Modal modalOpen={signOutModalOpened} setModalOpen={setSignOutModalOpened}>
+				<h3>Are you sure you want to sign out?</h3>
+				<div className='btns'>
+					<button
+						className='btn-large'
+						onClick={() => {
+							dispatch(signOut(history))
+							setSignOutModalOpened(false)
+							closeModalBtn()
+						}}>
+						<p>Sign Out</p>
+						<AiOutlineCheck className='icon' />
+					</button>
+					<button
+						onClick={() => {
+							setSignOutModalOpened(false)
+							closeModalBtn()
+						}}
+						className='btn-large reverse-btn'>
+						<p>Cancel</p>
+						<IoMdClose className='icon' />
+					</button>
 				</div>
-			)}
+			</Modal>
 		</>
 	)
 }

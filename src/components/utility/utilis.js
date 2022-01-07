@@ -51,19 +51,12 @@ export const backIcon = (location, currentUser, user, history, IoArrowBackOutlin
 	return icon
 }
 
-export const openModal = (location) => {
+export const openModal = () => {
 	document.querySelector("html").style.overflowY = "hidden"
-	document.querySelector("header").style.display = "none"
-	location.pathname === ("/home" || "/search" || "/addPost" || "/notifications") &&
-		(document.querySelector("nav").style.display = "none")
 }
 
-export const closeModalBtn = (location) => {
+export const closeModalBtn = () => {
 	document.querySelector("html").style.overflowY = "unset"
-	document.querySelector("header").style.display = "flex"
-
-	location.pathname === ("/home" || "/search" || "/addPost" || "/notifications") &&
-		(document.querySelector("nav").style.display = "unset")
 }
 
 export const makeUppercase = (word, index) => {
