@@ -56,10 +56,12 @@
 @media (min-width: $breakpoint-desktop) {
 	.home-page,
 	.home-page-empty {
-		padding-left: 21.5rem;
+		width: calc(100% - 21.5rem);
+		margin-left: 21.49rem;
 	}
 	.home-page {
 		padding-bottom: 2rem;
+		position: relative;
 	}
 	.home-page-empty {
 		.text {

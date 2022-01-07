@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { useLocation, useParams } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import { getFollowing } from "redux/actions/user"
-import { openModal } from "components/utility/utilis"
 //COMPS
 import ResultCard from "components/search/ResultCard"
 import Modal from "components/utility/Modal"
@@ -22,11 +21,7 @@ const FollowingBtn = () => {
 
 	return (
 		<>
-			<button
-				onClick={() => {
-					following?.length > 0 && openModal(location)
-					following?.length > 0 && setModalOpen(true)
-				}}>
+			<button onClick={() => following?.length > 0 && setModalOpen(true)}>
 				<FiUserCheck className='icon' />
 				<p>
 					{following?.length === 0 ||

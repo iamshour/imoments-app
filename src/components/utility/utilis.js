@@ -51,10 +51,6 @@ export const backIcon = (location, currentUser, user, history, IoArrowBackOutlin
 	return icon
 }
 
-export const openModal = () => {
-	document.querySelector("html").style.overflowY = "hidden"
-}
-
 export const closeModalBtn = () => {
 	document.querySelector("html").style.overflowY = "unset"
 }

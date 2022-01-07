@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useParams } from "react-router"
 import { getFollowers } from "redux/actions/user"
-import { openModal } from "components/utility/utilis"
 //COMPS
 import ResultCard from "components/search/ResultCard"
 import Modal from "components/utility/Modal"
@@ -22,11 +21,7 @@ const FollowersBtn = () => {
 
 	return (
 		<>
-			<button
-				onClick={() => {
-					followers?.length > 0 && openModal(location)
-					followers?.length > 0 && setModalOpen(true)
-				}}>
+			<button onClick={() => followers?.length > 0 && setModalOpen(true)}>
 				<FiUsers className='icon' />
 				<p>
 					{followers?.length === 0 ||
