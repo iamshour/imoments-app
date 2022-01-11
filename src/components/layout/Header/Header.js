@@ -47,10 +47,14 @@ const Header = () => {
 	}, [location, currentUserId, userMessage, dispatch, history])
 
 	useEffect(() => {
-		document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"))
+		setTheme(
+			localStorage.getItem("theme")
+				? localStorage.getItem("theme")
+				: localStorage?.setItem("theme", theme)
+		)
 
-		setTheme(localStorage.getItem("theme"))
-	}, [])
+		document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"))
+	}, [theme])
 
 	const saveTheme = (theme) => {
 		setTheme(theme)
