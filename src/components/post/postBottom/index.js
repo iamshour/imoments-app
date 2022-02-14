@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { getComments } from "api"
 import { likePost } from "redux/actions/posts"
 //comps
-import Comment from "components/post/postBottom/comment"
-import AddComment from "components/post/postBottom/comment/AddComment"
+import Comment from "./comment"
+import AddComment from "./comment/AddComment"
 //icons
 import { AiOutlineLike, AiFillLike } from "react-icons/ai"
 import { FaRegComment } from "react-icons/fa"

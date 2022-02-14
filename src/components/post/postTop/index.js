@@ -4,7 +4,7 @@ import { useLocation } from "react-router"
 import { makeUppercase } from "components/utility"
 import Moment from "react-moment"
 //COMPS
-import Dropdown from "components/post/postTop/Dropdown"
+import Dropdown from "./Dropdown"
 //icons
 import { IoMdClose } from "react-icons/io"
 import { AiOutlineEllipsis } from "react-icons/ai"

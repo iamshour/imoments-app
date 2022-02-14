@@ -1,5 +1,5 @@
-import Header from "components/layout/header"
-import Navbar from "components/layout/navbar"
+import Header from "./header"
+import Navbar from "./navbar"
 import { useLocation } from "react-router"
 
 const Layout = ({ children }) => {
