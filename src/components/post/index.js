@@ -5,8 +5,8 @@ import { getUser } from "api"
 import { updatePost } from "redux/actions/posts"
 import { closeModalBtn } from "components/utility"
 //comps
-import PostBottom from "./postBottom"
-import PostTop from "./postTop"
+import PostBottom from "components/post/postBottom"
+import PostTop from "components/post/postTop"
 import Textarea from "components/fragments/Textarea"
 import Modal from "components/fragments/Modal"
 //icons

@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { addProfileInfo, updateProfile } from "redux/actions/user"
 import { makeUppercase } from "components/utility"
 //COMPS
-import FollowingBtn from "./children/FollowingBtn"
-import FollowersBtn from "./children/FollowersBtn"
-import FollowBtn from "./children/FollowBtn"
+import FollowBtn from "components/userCard/children/FollowBtn"
+import FollowingBtn from "components/userCard/children/FollowingBtn"
+import FollowersBtn from "components/userCard/children/FollowersBtn"
 import Spinner from "components/fragments/Spinner"
 import Textarea from "components/fragments/Textarea"
 //ICONS
