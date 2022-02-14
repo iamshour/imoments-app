@@ -3,15 +3,15 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { useDispatch } from "react-redux"
 import { signOut } from "redux/actions/auth"
-import { closeModalBtn, makeUppercase } from "components/utility/utilis"
+import { closeModalBtn, makeUppercase } from "components/utility"
 //icons/assets
+import Modal from "components/fragments/Modal"
 import { BsBookmarks, BsInfoCircle } from "react-icons/bs"
 import { IoMdClose } from "react-icons/io"
 import { AiOutlineCheck } from "react-icons/ai"
 import { FiUser, FiSettings } from "react-icons/fi"
 import { CgSupport } from "react-icons/cg"
 import { IoLogOutOutline } from "react-icons/io5"
-import Modal from "components/utility/Modal"
 
 const LeftBar = ({ currentUser }) => {
 	const history = useHistory()

@@ -1,0 +1,312 @@
+:root {
+	--app-bg-color: #f9f9f9;
+	--app-bg-img: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b24bf5' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+	--primary-font: #38005a;
+	--secondary-font: #d083ff;
+	--card-bg: #f2f2f2;
+	--bg-secondary: #f2ddff;
+	--main-color: #b24bf5;
+	--nav-pressed: linear-gradient(180deg, #a844ff 0%, #ff3f67 100%);
+	--nav-icon-unpressed: #666666;
+	--theme-icon: #b24bf5;
+	--google-btn-bg: #ffffff;
+	--google-btn-bg-pressed: #cac4c4;
+	--google-btn-font: rgba(0, 0, 0, 54%);
+}
+
+[data-theme="dark"] {
+	--app-bg-color: #1c1c1c;
+	--app-bg-img: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23fe8ba7' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+	--primary-font: #ffffff;
+	--secondary-font: #93495c;
+	--card-bg: #2b121a;
+	--bg-secondary: #1e0606;
+	--main-color: #f41760;
+	--nav-pressed: linear-gradient(180deg, #a844ff 0%, #ff3f67 100%);
+	--nav-icon-unpressed: #666666;
+	--theme-icon: gold;
+	--google-btn-bg: #4285f4;
+	--google-btn-bg-pressed: #2d79f2;
+	--google-btn-font: #ffffff;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;500;700&display=swap");
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1080px;
+$breakpoint-large-desktop: 1400px;
+$breakpoint-max-desktop: 1800px;
+@import "./mixins";
+@import "./buttons";
+@import "./resets";
+@import "components/fragments";
+@import "components/layout";
+@import "components/post";
+@import "pages/about";
+@import "pages/addPost";
+@import "pages/auth";
+@import "pages/bookmarks";
+@import "pages/getstarted";
+@import "pages/home";
+@import "pages/notFound";
+@import "pages/notifications";
+@import "pages/privacy";
+@import "pages/profile";
+@import "pages/report";
+@import "pages/resetPass";
+@import "pages/search";
+@import "pages/settings";
+
+//RESETS
+
+label,
+textarea,
+input {
+	background: var(--bg-secondary);
+	border: 1px solid var(--secondary-font);
+	&:focus {
+		outline: 0;
+		border-color: var(--main-color);
+	}
+	&::placeholder {
+		color: var(--secondary-font);
+	}
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active {
+		transition: background-color 5000s;
+		-webkit-text-fill-color: var(--primary-font) !important;
+	}
+}
+
+label {
+	cursor: pointer;
+	@include pressed;
+}
+
+.home-page,
+.bookmarks-page,
+.profile-page,
+.search-page,
+.addpost-page,
+.auth-page,
+.get-started-page {
+	opacity: 0;
+	@include fade-in;
+}
+
+//COMMON STYLING -- CHANGABLE
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--primary-font);
+}
+
+p {
+	color: var(--primary-font);
+	font-size: 1.6rem;
+	font-weight: 300;
+}
+.user-name,
+.user-name-small {
+	color: var(--primary-font);
+	font-weight: 500;
+}
+.user-time,
+.user-time-small,
+.user-socials {
+	color: var(--secondary-font);
+}
+
+.user-name {
+	font-size: 1.6rem;
+}
+.user-name-small {
+	font-size: 1.4rem;
+}
+.user-time,
+.user-time-small {
+	font-weight: 300;
+}
+.user-time {
+	font-size: 1.2rem;
+}
+.user-time-small {
+	font-size: 1rem;
+}
+.user-socials {
+	font-weight: 500;
+	font-size: 1.2rem;
+}
+
+h6 {
+	font-size: 1rem;
+	color: var(--secondary-font);
+}
+input {
+	width: 100%;
+	font-size: 1.6rem;
+	color: var(--primary-font);
+	line-height: 2.4rem;
+}
+
+.input-bar {
+	input {
+		padding: 1.2rem;
+		border-radius: 1.6rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--secondary-font);
+
+		&:focus {
+			border-color: var(--main-color);
+		}
+	}
+}
+
+.input-bar-icon {
+	padding: 1.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background: var(--bg-secondary);
+	border-radius: 1.6rem;
+	border: 1px solid var(--secondary-font);
+
+	.icon {
+		color: var(--secondary-font);
+		font-size: 2.4rem;
+		margin-right: 0.8rem;
+	}
+	input {
+		border: 0;
+		background: none;
+	}
+	&:focus-within {
+		border-color: var(--main-color);
+		.icon {
+			color: var(--main-color);
+		}
+	}
+}
+
+textarea {
+	width: 100%;
+	border-radius: 1.6rem;
+	font-size: 1.5rem;
+	padding: 0.8rem;
+	color: var(--primary-font);
+}
+
+.empty-wrapper {
+	width: 100%;
+	height: 100%;
+	color: var(--secondary-font);
+	@include centering;
+	flex-direction: column;
+	.icon {
+		font-size: 14rem;
+		color: inherit;
+		margin-bottom: 3rem;
+	}
+	h1 {
+		color: inherit;
+		font-size: 1.8rem;
+		font-weight: 700;
+	}
+}
+
+.bookmarks-page,
+.notifications-page,
+.search-page {
+	width: 100%;
+	height: 100%;
+	padding: 9rem 0 4rem 0;
+}
+
+.home-page,
+.bookmarks-page,
+.cards-container {
+	@include centering;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.home-page,
+.bookmarks-page {
+	min-height: 100vh;
+	padding-top: 9rem;
+}
+
+@media (min-width: $breakpoint-tablet) {
+	.bookmarks-page,
+	.notifications-page,
+	.search-page {
+		padding-top: 11rem;
+	}
+	p {
+		font-size: 1.7rem;
+	}
+	.user-name {
+		font-size: 1.7rem;
+	}
+	.user-name-small {
+		font-size: 1.5rem;
+	}
+	.user-time {
+		font-size: 1.3rem;
+	}
+	.user-time-small {
+		font-size: 1.2rem;
+	}
+	.user-socials {
+		font-size: 1.3rem;
+	}
+	.empty-wrapper {
+		.icon {
+			font-size: 20rem;
+			margin-bottom: 6rem;
+		}
+		h1 {
+			font-size: 3rem;
+		}
+	}
+	.home-page,
+	.bookmarks-page {
+		padding-top: 12rem;
+	}
+}
+
+@media (min-width: $breakpoint-desktop) {
+	.bookmarks-page,
+	.notifications-page,
+	.search-page {
+		padding-top: 13rem;
+	}
+}
+
+@media (min-width: $breakpoint-max-desktop) {
+	body {
+		position: relative;
+		&::before,
+		&::after {
+			position: absolute;
+			content: "";
+			width: 1px;
+			height: 100%;
+			background: var(--secondary-font);
+			top: 0;
+			opacity: 0.5;
+		}
+		&::before {
+			left: 0;
+		}
+		&::after {
+			right: 0;
+		}
+	}
+}
