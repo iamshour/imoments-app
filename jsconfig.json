@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
-		"baseUrl": "src"
+		"baseUrl": "./src"
 	},
-	"include": ["src"],
+	"include": ["./src"],
 	"paths": {
 		"api/*": ["api/*"],
 		"components/*": ["components/*"],
