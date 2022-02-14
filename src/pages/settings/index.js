@@ -61,6 +61,13 @@ const Settings = () => {
 		}
 	}, [userLoading, userMessage, history, dispatch])
 
+	const deleteHandler = () => {
+		dispatch(deleteUser(currentUser?._id))
+		setTimeout(() => {
+			dispatch(signOut(history))
+		}, 1000)
+	}
+
 	return (
 		<div
 			className='settings-page'
@@ -156,14 +163,7 @@ const Settings = () => {
 								</p>
 								<h3>Are you sure you want to delete your account?</h3>
 								<div className='delete-btns'>
-									<button
-										className='btn-medium'
-										onClick={() => {
-											dispatch(deleteUser(currentUser?._id))
-											setTimeout(() => {
-												dispatch(signOut(history))
-											}, 1000)
-										}}>
+									<button className='btn-medium' onClick={deleteHandler}>
 										{userLoading && (userMessage === null || undefined) ? (
 											<Spinner />
 										) : (

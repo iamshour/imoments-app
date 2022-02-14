@@ -14,10 +14,8 @@ const Profile = () => {
 	const params = useParams()
 	const dispatch = useDispatch()
 	const location = useLocation()
-
 	//GETTING CURRENT USER ID
 	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
-
 	//GETTING VISITED USER
 	const { user, userMessage } = useSelector((state) => state?.user)
 
@@ -57,7 +55,7 @@ const Profile = () => {
 			)}
 			<div
 				className={`cards-container ${
-					(postLoading || userPosts?.length === 0) && "empty-container"
+					postLoading || userPosts?.length === 0 ? "empty-container" : ""
 				}`}>
 				{postLoading ? (
 					<Loading />

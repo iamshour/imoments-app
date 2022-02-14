@@ -1,29 +1,20 @@
 import { useState, useEffect } from "react"
 import { useLocation } from "react-router"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { getUser } from "api"
-import { updatePost } from "redux/actions/posts"
-import { closeModalBtn } from "components/utility"
 //comps
 import PostBottom from "./postBottom"
 import PostTop from "./postTop"
-import Textarea from "components/fragments/Textarea"
-import Modal from "components/fragments/Modal"
-//icons
-import { IoMdClose } from "react-icons/io"
+import PostImg from "./PostImg"
+import EditPost from "./EditPost"
 
 const Post = ({ creatorId, postId, img, caption, time, likes }) => {
 	const location = useLocation()
-	const dispatch = useDispatch()
 	const [postCreator, setPostCreator] = useState(null)
 
 	const [optionsClicked, setOptionsClicked] = useState(false)
 	const [editClicked, setEditClicked] = useState(false)
-	const [content, setContent] = useState(caption ? caption : null)
 
-	const userId = JSON.parse(localStorage.getItem("userId"))?.id
-
-	const [imgOpenned, setImgOpenned] = useState(false)
 	const { userMessage } = useSelector((state) => state?.user)
 
 	useEffect(() => {
@@ -40,10 +31,6 @@ const Post = ({ creatorId, postId, img, caption, time, likes }) => {
 		}
 	}, [location, creatorId, userMessage])
 
-	const handleUpdate = () => {
-		dispatch(updatePost(postId, { caption: content, userId }))
-	}
-
 	return (
 		<div className='card'>
 			<PostTop
@@ -56,54 +43,9 @@ const Post = ({ creatorId, postId, img, caption, time, likes }) => {
 				setOptionsClicked={setOptionsClicked}
 				setEditClicked={setEditClicked}
 			/>
-			{img && (
-				<>
-					<img
-						className='img-unopened'
-						src={img}
-						alt='example'
-						onClick={() => {
-							setOptionsClicked(false)
-							setImgOpenned(true)
-						}}
-					/>
-					<Modal
-						modalOpen={imgOpenned}
-						setModalOpen={setImgOpenned}
-						setExtraOption={setOptionsClicked}
-						additionalClassName='modal-img'>
-						<button
-							className='btn-icon'
-							onClick={() => {
-								setImgOpenned(false)
-								closeModalBtn()
-							}}>
-							<IoMdClose className='icon' />
-						</button>
-						<img src={img} alt='example' />
-					</Modal>
-				</>
-			)}
+			{img && <PostImg img={img} setOptionsClicked={setOptionsClicked} />}
 			{editClicked ? (
-				<>
-					<Textarea
-						content={content}
-						setContent={setContent}
-						customRows={4}
-						name='caption'
-						maxCh='320'
-					/>
-					<div className='edit-btns'>
-						<button className='btn-medium' onClick={handleUpdate}>
-							Update
-						</button>
-						<button
-							onClick={() => setEditClicked(false)}
-							className='btn-medium reverse-btn'>
-							Cancel
-						</button>
-					</div>
-				</>
+				<EditPost caption={caption} postId={postId} setEditClicked={setEditClicked} />
 			) : (
 				<>
 					{caption && <p className='caption'>{caption}</p>}

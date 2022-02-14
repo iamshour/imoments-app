@@ -30,6 +30,24 @@ const PostTop = ({
 		setBookmarkIncluded(currentUser?.bookmarks?.includes(postId) ? true : false)
 	}, [currentUser?.bookmarks, location, postId])
 
+	const saveBookmark = (status) => {
+		setbookmarkClicked(status)
+		setBookmarkIncluded(status)
+	}
+
+	const handleClick = () => {
+		setOptionsClicked(!optionsClicked)
+		bookmarkClicked ? saveBookmark(true) : saveBookmark(false)
+	}
+
+	const optionsIcon = () => {
+		return optionsClicked ? (
+			<IoMdClose className='icon' />
+		) : (
+			<AiOutlineEllipsis className='icon' />
+		)
+	}
+
 	return (
 		<div className='card-upper'>
 			<Link to={`/profile/${creatorId}`} className='left'>
@@ -43,23 +61,8 @@ const PostTop = ({
 					</h2>
 				</div>
 			</Link>
-			<button
-				className='right'
-				onClick={() => {
-					setOptionsClicked(!optionsClicked)
-					if (bookmarkClicked) {
-						setbookmarkClicked(true)
-						setBookmarkIncluded(true)
-					} else {
-						setbookmarkClicked(false)
-						setBookmarkIncluded(false)
-					}
-				}}>
-				{optionsClicked ? (
-					<IoMdClose className='icon' />
-				) : (
-					<AiOutlineEllipsis className='icon' />
-				)}
+			<button className='right' onClick={handleClick}>
+				{optionsIcon()}
 			</button>
 			{optionsClicked && (
 				<Dropdown

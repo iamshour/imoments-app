@@ -236,7 +236,7 @@ nav {
 				color: var(--nav-icon-unpressed);
 			}
 		}
-		.pressed {
+		.nav-item.active {
 			background: var(--nav-pressed);
 			opacity: 0;
 			@include fade-in;

@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react"
 import { useHistory, useLocation } from "react-router"
 import decode from "jwt-decode"
-import { getUser } from "api"
 import { useDispatch, useSelector } from "react-redux"
+import { getUser } from "api"
+import { signOut } from "redux/actions/auth"
 import { titleFunc, backIcon } from "components/utility"
 //comps
 import LeftBar from "./LeftBar"
+import ThemeBtn from "./ThemeBtn"
 //icons
-import { FiSun } from "react-icons/fi"
-import { BsFillMoonFill } from "react-icons/bs"
 import { IoArrowBackOutline } from "react-icons/io5"
-import { signOut } from "redux/actions/auth"
 
 const Header = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const location = useLocation()
-	const [theme, setTheme] = useState("light")
+
 	const currentUserId = JSON.parse(localStorage.getItem("userId"))?.id
 
 	const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("User")))
@@ -46,45 +45,18 @@ const Header = () => {
 		//Later JWT here
 	}, [location, currentUserId, userMessage, dispatch, history])
 
-	useEffect(() => {
-		setTheme(
-			localStorage.getItem("theme")
-				? localStorage.getItem("theme")
-				: localStorage?.setItem("theme", theme)
-		)
-
-		document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"))
-	}, [theme])
-
-	const saveTheme = (theme) => {
-		setTheme(theme)
-		localStorage.setItem("theme", theme)
-		document.documentElement.setAttribute("data-theme", theme)
-	}
-	const switcher = () => {
-		if (theme === "light") {
-			saveTheme("dark")
-			document.querySelector("body").style.transition =
-				"background 250ms ease-in-out, color 250ms ease-in-out"
-		} else {
-			saveTheme("light")
-			document.querySelector("body").style.transition =
-				"background 250ms ease-in-out, color 250ms ease-in-out"
-		}
-	}
-
 	const title = titleFunc(location, currentUser, user && user)
 	const icon = backIcon(location, currentUser, user && user, history, IoArrowBackOutline)
+	const headerClass = (link) => {
+		return link.startsWith("/home")
+			? "header-home"
+			: link === "/" || link.startsWith("/auth")
+			? "header-auth"
+			: ""
+	}
 
 	return (
-		<header
-			className={
-				location.pathname.startsWith("/home")
-					? "header-home"
-					: location.pathname === "/" || location.pathname.startsWith("/auth")
-					? "header-auth"
-					: ""
-			}>
+		<header className={headerClass(location.pathname)}>
 			<div className='header-wrapper'>
 				{location.pathname.startsWith("/home") ? (
 					<LeftBar currentUser={currentUser} />
@@ -94,15 +66,7 @@ const Header = () => {
 						<h3>{title}</h3>
 					</div>
 				)}
-				<div className='theme-wrapper'>
-					<button onClick={switcher}>
-						{theme === "light" ? (
-							<BsFillMoonFill className='icon' />
-						) : (
-							<FiSun className='icon' />
-						)}
-					</button>
-				</div>
+				<ThemeBtn />
 			</div>
 		</header>
 	)

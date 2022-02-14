@@ -11,6 +11,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import Spinner from "components/fragments/Spinner"
 import Person from "images/person.svg"
 import GoogleIcon from "images/btn_google_light_normal_ios.svg"
+import { nameInputs } from "components/utility"
 
 const Auth = () => {
 	const dispatch = useDispatch()
@@ -112,18 +113,15 @@ const Auth = () => {
 					<div className={`credentials ${!showSignin && "credentials-signup"}`}>
 						{!showSignin && (
 							<div className='input-bar'>
-								<input
-									type='text'
-									name='firstName'
-									placeholder='First name'
-									onChange={changeHandler}
-								/>
-								<input
-									type='text'
-									name='lastName'
-									placeholder='Last name'
-									onChange={changeHandler}
-								/>
+								{nameInputs.map((item, index) => (
+									<input
+										type='text'
+										name={item.name}
+										placeholder={item.placeholder}
+										onChange={changeHandler}
+										key={index}
+									/>
+								))}
 							</div>
 						)}
 						<div className='input-bar-icon'>

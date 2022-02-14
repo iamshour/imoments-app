@@ -8,6 +8,7 @@ import Spinner from "components/fragments/Spinner"
 import SuccessMessage from "components/fragments/SuccessMessage"
 //ICONS
 import { AiOutlineSend } from "react-icons/ai"
+import { nameInputs } from "components/utility"
 
 const Report = () => {
 	const dispatch = useDispatch()
@@ -37,7 +38,6 @@ const Report = () => {
 				message: content,
 			})
 		)
-		// setFormData({})
 	}
 
 	if (!userLoading && (userMessage !== null || undefined)) {
@@ -58,18 +58,15 @@ const Report = () => {
 					</div>
 					<form onSubmit={submit} autoComplete='off'>
 						<div className='input-bar'>
-							<input
-								type='text'
-								name='firstName'
-								placeholder='First name'
-								onChange={changeHandler}
-							/>
-							<input
-								type='text'
-								name='lastName'
-								placeholder='Last name'
-								onChange={changeHandler}
-							/>
+							{nameInputs.map((item, index) => (
+								<input
+									type='text'
+									name={item.name}
+									placeholder={item.placeholder}
+									onChange={changeHandler}
+									key={index}
+								/>
+							))}
 						</div>
 						<div className='input-bar'>
 							<input

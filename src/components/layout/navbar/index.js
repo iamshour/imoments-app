@@ -30,36 +30,44 @@ const Navbar = () => {
 		}
 	}, [dispatch, userId, location, commentMsg, history, userMessage])
 
+	const isActive = (dest) => {
+		return location.pathname === dest ? "active" : ""
+	}
+
+	const pages = [
+		{
+			link: "/home",
+			icon: <AiFillHome className='icon' />,
+		},
+		{
+			link: "/search",
+			icon: <BsSearch className='icon' />,
+		},
+		{
+			link: "/addpost",
+			icon: <BsPlusLg className='icon' />,
+		},
+		{
+			link: "/notifications",
+			icon: <VscBell className='icon' />,
+			badge: notifications?.length > 0 &&
+				!location.pathname.startsWith("/notifications") && (
+					<div className='notifs'>
+						<p>{notifications?.length}</p>
+					</div>
+				),
+		},
+	]
+
 	return (
 		<nav>
 			<div className='wrapper' onChange={window.scroll(0, 0)}>
-				<Link
-					to='/'
-					className={`nav-item ${location.pathname.startsWith("/home") && "pressed"}`}>
-					<AiFillHome className='icon' />
-				</Link>
-				<Link
-					to='/search'
-					className={`nav-item ${location.pathname.startsWith("/search") && "pressed"}`}>
-					<BsSearch className='icon' />
-				</Link>
-				<Link
-					to='/addpost'
-					className={`nav-item ${location.pathname.startsWith("/addpost") && "pressed"}`}>
-					<BsPlusLg className='icon' />
-				</Link>
-				<Link
-					to='/notifications'
-					className={`nav-item ${
-						location.pathname.startsWith("/notifications") && "pressed"
-					}`}>
-					{notifications?.length > 0 && !location.pathname.startsWith("/notifications") && (
-						<div className='notifs'>
-							<p>{notifications?.length}</p>
-						</div>
-					)}
-					<VscBell className='icon' />
-				</Link>
+				{pages.map((page, index) => (
+					<Link key={index} to={page.link} className={`nav-item ${isActive(page.link)}`}>
+						{page.icon}
+						{page?.badge}
+					</Link>
+				))}
 			</div>
 		</nav>
 	)

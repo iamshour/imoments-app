@@ -48,40 +48,60 @@ const Dropdown = ({
 		setOptionsClicked(false)
 	}
 
+	const myPost = currentUser?._id === creatorId ? true : false
+
+	const myPostBtns = [
+		{
+			handleClick: () => {
+				setEditClicked(true)
+				setOptionsClicked(false)
+			},
+			icon: <BiEdit className='icon' />,
+			text: "Edit Post",
+		},
+		{
+			handleClick: () => {
+				setDeleteClicked(true)
+			},
+			icon: <IoMdClose className='icon' />,
+			text: "Delete Post",
+		},
+	]
+
+	const othersBtns = [
+		{
+			handleClick: bookmarkHandler,
+			icon: bookmarkClicked ? (
+				<BsBookmarkFill className='icon' />
+			) : (
+				<BsBookmark className='icon' />
+			),
+			text: "Bookmark",
+		},
+		{
+			handleClick: () => {
+				history.push("/report")
+			},
+			icon: <MdOutlineReportProblem className='icon' />,
+			text: "Report",
+		},
+	]
+
 	return (
 		<div className='dropdown'>
-			{currentUser?._id === creatorId ? (
-				<>
-					<button
-						onClick={() => {
-							setEditClicked(true)
-							setOptionsClicked(false)
-						}}
-						className='dropdown-btn'>
-						<BiEdit className='icon' />
-						<p>Edit Post</p>
-					</button>
-					<button onClick={() => setDeleteClicked(true)} className='dropdown-btn'>
-						<IoMdClose className='icon' />
-						<p>Delete Post</p>
-					</button>
-				</>
-			) : (
-				<>
-					<button className='dropdown-btn' onClick={bookmarkHandler}>
-						{bookmarkClicked ? (
-							<BsBookmarkFill className='icon' />
-						) : (
-							<BsBookmark className='icon' />
-						)}
-						<p>Bookmark</p>
-					</button>
-					<button className='dropdown-btn' onClick={() => history.push("/report")}>
-						<MdOutlineReportProblem className='icon' />
-						<p>Report</p>
-					</button>
-				</>
-			)}
+			{myPost
+				? myPostBtns.map((btn, index) => (
+						<button key={index} onClick={btn.handleClick} className='dropdown-btn'>
+							{btn.icon}
+							<p>{btn.text}</p>
+						</button>
+				  ))
+				: othersBtns.map((btn, index) => (
+						<button key={index} onClick={btn.handleClick} className='dropdown-btn'>
+							{btn.icon}
+							<p>{btn.text}</p>
+						</button>
+				  ))}
 			<Modal
 				modalOpen={deleteClicked}
 				setModalOpen={setDeleteClicked}
